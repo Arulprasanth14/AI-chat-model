@@ -1,0 +1,227 @@
+template_key: real_estate_testimonial_set
+template_label: Testimonial Set
+vertical: realestate
+template_name_match:
+- testimonial
+fields:
+- code: TS1
+  kind: checkbox
+  required: true
+  section_name: Testimonial Overview
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Build trust and credibility
+    value: build_trust
+  - label: Showcase customer success
+    value: showcase_success
+  - label: Generate leads
+    value: generate_leads
+  - label: Support a product launch
+    value: support_launch
+  - label: Promote a service
+    value: promote_service
+  - label: Social proof campaign
+    value: social_proof
+  - label: Other
+    value: other
+- code: TS2
+  kind: radio
+  required: true
+  section_name: Testimonial Overview
+  section_order: 0
+  section_field_order: 1
+  options:
+  - label: Single Testimonial
+    value: single
+  - label: 3-Piece Set
+    value: 3_piece
+  - label: 5-Piece Set
+    value: 5_piece
+  - label: 10-Piece Set
+    value: 10_piece
+  - label: Custom Quantity
+    value: custom
+- code: TS3
+  kind: text
+  required: true
+  section_name: Featured Client
+  section_order: 1
+  section_field_order: 0
+- code: TS4
+  kind: text
+  required: true
+  section_name: Testimonial Content
+  section_order: 2
+  section_field_order: 0
+- code: TS5
+  kind: checkbox
+  required: true
+  section_name: Testimonial Content
+  section_order: 2
+  section_field_order: 1
+  options:
+  - label: Increased sales
+    value: increased_sales
+  - label: Faster growth
+    value: faster_growth
+  - label: Saved time
+    value: saved_time
+  - label: Improved efficiency
+    value: improved_efficiency
+  - label: Successful property sale
+    value: successful_property_sale
+  - label: Higher ROI
+    value: higher_roi
+  - label: Other
+    value: other
+- code: TS6
+  kind: text
+  required: false
+  section_name: Testimonial Content
+  section_order: 2
+  section_field_order: 2
+- code: TS7
+  kind: file
+  required: true
+  section_name: Assets
+  section_order: 3
+  section_field_order: 0
+- code: TS8
+  kind: checkbox
+  required: true
+  section_name: Assets
+  section_order: 3
+  section_field_order: 1
+  options:
+  - label: Company logo
+    value: company_logo
+  - label: Star rating
+    value: star_rating
+  - label: Product screenshots
+    value: product_screenshots
+  - label: Before/after images
+    value: before_after
+  - label: Brand imagery
+    value: brand_imagery
+  - label: Video thumbnail
+    value: video_thumbnail
+  - label: Other
+    value: other
+  - label: None
+    value: none
+- code: TS9
+  kind: file
+  required: false
+  section_name: Assets
+  section_order: 3
+  section_field_order: 2
+- code: TS10
+  kind: radio
+  required: true
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Contact us
+    value: contact_us
+  - label: Book a consultation
+    value: book_consultation
+  - label: Request a demo
+    value: request_demo
+  - label: Learn more
+    value: learn_more
+  - label: Visit our website
+    value: visit_website
+  - label: Other
+    value: other
+- code: TS11
+  kind: text
+  required: true
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 1
+- code: TS12
+  kind: radio
+  required: true
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 2
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: TS13
+  kind: text
+  required: false
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 3
+- code: TS14
+  kind: checkbox
+  required: true
+  section_name: Platform & Format
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: Instagram
+    value: instagram
+  - label: Facebook
+    value: facebook
+  - label: LinkedIn
+    value: linkedin
+  - label: Website
+    value: website
+  - label: Google Display
+    value: google_display
+  - label: Email Marketing
+    value: email_marketing
+  - label: Multiple Platforms
+    value: multiple_platforms
+  - label: Other
+    value: other
+- code: TS15
+  kind: radio
+  required: true
+  section_name: Platform & Format
+  section_order: 5
+  section_field_order: 1
+  options:
+  - label: Static Graphics
+    value: static_graphics
+  - label: Motion Graphics
+    value: motion_graphics
+  - label: Video Testimonials
+    value: video_testimonials
+  - label: Mixed Set
+    value: mixed_set
+- code: TS16
+  kind: file
+  required: false
+  section_name: Design Direction
+  section_order: 6
+  section_field_order: 0
+- code: TS17
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: Premium
+    value: premium
+  - label: Corporate
+    value: corporate
+  - label: Luxury
+    value: luxury
+  - label: Modern
+    value: modern
+  - label: Minimal
+    value: minimal
+  - label: Social Media Native
+    value: social_media_native
+  - label: Bold & Promotional
+    value: bold_promotional
+  - label: Other
+    value: other

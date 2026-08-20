@@ -1,0 +1,141 @@
+template_key: technology_services_white_paper
+template_label: White Paper
+vertical: technology
+template_name_match:
+- white paper
+- whitepaper
+- report cover
+fields:
+- code: WP1
+  kind: text
+  required: true
+  section_name: Report Overview
+  section_order: 0
+  section_field_order: 0
+- code: WP2
+  kind: text
+  required: true
+  section_name: Report Overview
+  section_order: 0
+  section_field_order: 1
+- code: WP3
+  kind: text
+  required: true
+  section_name: Report Overview
+  section_order: 0
+  section_field_order: 2
+- code: WP4
+  kind: text
+  required: true
+  section_name: Report Overview
+  section_order: 0
+  section_field_order: 3
+- code: WP5
+  kind: text
+  required: true
+  section_name: Cover Content
+  section_order: 1
+  section_field_order: 0
+- code: WP6
+  kind: radio
+  required: true
+  section_name: Cover Content
+  section_order: 1
+  section_field_order: 1
+  options:
+  - label: Download the Full Report
+    value: download_the_full_report
+  - label: Visit Our Website
+    value: visit_our_website
+  - label: Contact Us
+    value: contact_us
+  - label: Scan a QR Code
+    value: scan_a_qr_code
+  - label: No Call to Action
+    value: no_call_to_action
+- code: WP7
+  kind: text
+  required: false
+  section_name: Cover Content
+  section_order: 1
+  section_field_order: 2
+- code: WP8
+  kind: radio
+  required: true
+  section_name: Images & Assets
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: WP9
+  kind: file
+  required: false
+  section_name: Images & Assets
+  section_order: 2
+  section_field_order: 1
+- code: WP10
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: WP11
+  kind: file
+  required: false
+  section_name: Design Direction
+  section_order: 3
+  section_field_order: 1
+- code: WP12
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 3
+  section_field_order: 2
+  options:
+  - label: Corporate
+    value: corporate
+  - label: Premium
+    value: premium
+  - label: Editorial
+    value: editorial
+  - label: Academic
+    value: academic
+  - label: Data-Driven
+    value: data_driven
+  - label: Modern
+    value: modern
+  - label: Minimalist
+    value: minimalist
+  - label: Technology-Focused
+    value: technology_focused
+  - label: Sustainability-Focused
+    value: sustainability_focused
+  - label: Other
+    value: other
+- code: WP13
+  kind: radio
+  required: true
+  section_name: Production Requirements
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Print
+    value: print
+  - label: Digital PDF Distribution
+    value: digital_pdf_distribution
+  - label: Both
+    value: both
+- code: WP14
+  kind: text
+  required: false
+  section_name: Production Requirements
+  section_order: 4
+  section_field_order: 1

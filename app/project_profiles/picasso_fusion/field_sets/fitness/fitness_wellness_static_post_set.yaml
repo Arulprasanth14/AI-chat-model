@@ -1,0 +1,294 @@
+template_key: fitness_wellness_static_post_set
+template_label: Static Post Set
+vertical: fitness
+template_name_match:
+- static post
+- static post set
+- social media post
+- post set
+fields:
+- code: SP1
+  kind: radio
+  required: true
+  section_name: Post Topic & Message
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Course / Program
+    value: course_program
+  - label: New Batch
+    value: new_batch
+  - label: Student Result
+    value: student_result
+  - label: Student Testimonial
+    value: student_testimonial
+  - label: Faculty Spotlight
+    value: faculty_spotlight
+  - label: Free Workshop
+    value: free_workshop
+  - label: Seminar / Event
+    value: seminar_event
+  - label: Admission Open
+    value: admission_open
+  - label: Scholarship
+    value: scholarship
+  - label: Educational Tip
+    value: educational_tip
+  - label: Brand Awareness
+    value: brand_awareness
+  - label: Other
+    value: other
+- code: SP2
+  kind: text
+  required: true
+  section_name: Post Topic & Message
+  section_order: 0
+  section_field_order: 1
+- code: SP3
+  kind: text
+  required: true
+  section_name: Post Topic & Message
+  section_order: 0
+  section_field_order: 2
+- code: SP4
+  kind: radio
+  required: true
+  section_name: Goal & Offer
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Call Us
+    value: call_us
+  - label: WhatsApp Us
+    value: whatsapp_us
+  - label: Visit Website
+    value: visit_website
+  - label: Enquire Now
+    value: enquire_now
+  - label: Register for Event
+    value: register_for_event
+  - label: Book Free Consultation
+    value: book_free_consultation
+  - label: Visit Centre
+    value: visit_centre
+  - label: Build Awareness
+    value: build_awareness
+  - label: Other
+    value: other
+- code: SP5
+  kind: text
+  required: false
+  section_name: Goal & Offer
+  section_order: 1
+  section_field_order: 1
+- code: SP6
+  kind: radio
+  required: true
+  section_name: Copy & Testimonial
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: Final Copy Ready
+    value: final_copy_ready
+  - label: Rough Points Only
+    value: rough_points_only
+  - label: Need Copywriting Support
+    value: need_copywriting_support
+- code: SP7
+  kind: text
+  required: false
+  section_name: Copy & Testimonial
+  section_order: 2
+  section_field_order: 1
+- code: SP8
+  kind: radio
+  required: true
+  section_name: Copy & Testimonial
+  section_order: 2
+  section_field_order: 2
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: SP9
+  kind: text
+  required: false
+  section_name: Copy & Testimonial
+  section_order: 2
+  section_field_order: 3
+- code: SP10
+  kind: radio
+  required: false
+  section_name: Copy & Testimonial
+  section_order: 2
+  section_field_order: 4
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: SP11
+  kind: checkbox
+  required: true
+  section_name: Images & Assets
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: Student Photo
+    value: student_photo
+  - label: Faculty Photo
+    value: faculty_photo
+  - label: Classroom Photo
+    value: classroom_photo
+  - label: Campus Photo
+    value: campus_photo
+  - label: Event Photo
+    value: event_photo
+  - label: I'll Upload Custom Images
+    value: ill_upload_custom_images
+  - label: Use Stock Images
+    value: use_stock_images
+  - label: Designer Can Decide
+    value: designer_can_decide
+- code: SP12
+  kind: file
+  required: false
+  section_name: Images & Assets
+  section_order: 3
+  section_field_order: 1
+- code: SP13
+  kind: checkbox
+  required: false
+  section_name: Design Requirements
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Logo
+    value: logo
+  - label: Phone Number
+    value: phone_number
+  - label: WhatsApp Number
+    value: whatsapp_number
+  - label: Website
+    value: website
+  - label: QR Code
+    value: qr_code
+  - label: Course Name
+    value: course_name
+  - label: Fee Structure
+    value: fee_structure
+  - label: Offer Details
+    value: offer_details
+  - label: Branch Location
+    value: branch_location
+  - label: Social Handles
+    value: social_handles
+  - label: Other
+    value: other
+- code: SP14
+  kind: text
+  required: true
+  section_name: Design Requirements
+  section_order: 4
+  section_field_order: 1
+- code: SP15
+  kind: checkbox
+  required: true
+  section_name: Style & References
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: Premium
+    value: premium
+  - label: Academic
+    value: academic
+  - label: Professional
+    value: professional
+  - label: Modern
+    value: modern
+  - label: Minimal
+    value: minimal
+  - label: Trustworthy
+    value: trustworthy
+  - label: High Impact
+    value: high_impact
+  - label: Motivational
+    value: motivational
+  - label: Student-Focused
+    value: student_focused
+  - label: Clean
+    value: clean
+  - label: Bold
+    value: bold
+  - label: Match Our Brand Style
+    value: match_our_brand_style
+- code: SP16
+  kind: checkbox
+  required: false
+  section_name: Style & References
+  section_order: 5
+  section_field_order: 1
+  options:
+  - label: Upload Images
+    value: upload_images
+  - label: Instagram Link
+    value: instagram_link
+  - label: Website Link
+    value: website_link
+  - label: Pinterest Link
+    value: pinterest_link
+  - label: Skip
+    value: skip
+- code: SP17
+  kind: text
+  required: false
+  section_name: Style & References
+  section_order: 5
+  section_field_order: 2
+- code: SP18
+  kind: checkbox
+  required: true
+  section_name: Publishing & Language
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Instagram Feed
+    value: instagram_feed
+  - label: Instagram Story
+    value: instagram_story
+  - label: Facebook
+    value: facebook
+  - label: LinkedIn
+    value: linkedin
+  - label: WhatsApp
+    value: whatsapp
+  - label: Multiple Platforms
+    value: multiple_platforms
+- code: SP19
+  kind: radio
+  required: true
+  section_name: Publishing & Language
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: English
+    value: english
+  - label: Hindi
+    value: hindi
+  - label: Tamil
+    value: tamil
+  - label: Telugu
+    value: telugu
+  - label: Malayalam
+    value: malayalam
+  - label: Kannada
+    value: kannada
+  - label: Other
+    value: other
+- code: SP20
+  kind: text
+  required: false
+  section_name: Additional Notes
+  section_order: 7
+  section_field_order: 0

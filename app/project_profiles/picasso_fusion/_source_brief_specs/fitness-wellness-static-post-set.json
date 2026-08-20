@@ -1,0 +1,281 @@
+{
+  "key": "fitness_wellness_static_post_set",
+  "label": "Static Post Set",
+  "verticalKey": "fitness",
+  "templateNameMatch": ["static post", "static post set", "social media post", "post set"],
+  "sections": [
+    {
+      "name": "Post Topic & Message",
+      "questions": [
+        {
+          "code": "SP1",
+          "kind": "radio",
+          "question": "What are we promoting?",
+          "hint": "Choose one primary topic for this post.",
+          "options": [
+            { "label": "Course / Program", "value": "course_program" },
+            { "label": "New Batch", "value": "new_batch" },
+            { "label": "Student Result", "value": "student_result" },
+            { "label": "Student Testimonial", "value": "student_testimonial" },
+            { "label": "Faculty Spotlight", "value": "faculty_spotlight" },
+            { "label": "Free Workshop", "value": "free_workshop" },
+            { "label": "Seminar / Event", "value": "seminar_event" },
+            { "label": "Admission Open", "value": "admission_open" },
+            { "label": "Scholarship", "value": "scholarship" },
+            { "label": "Educational Tip", "value": "educational_tip" },
+            { "label": "Brand Awareness", "value": "brand_awareness" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP2",
+          "kind": "text",
+          "question": "What's the one message you want people to remember?",
+          "hint": "Describe the main takeaway. Examples: \"Admissions open for our NEET crash course.\", \"127 students scored above 95%.\", \"Free career guidance seminar this Saturday.\"",
+          "required": true
+        },
+        {
+          "code": "SP3",
+          "kind": "text",
+          "question": "Which course, class, result or service is being featured?",
+          "hint": "Provide the Course/Program Name, Key Benefit, and who it's for. Example: Course: JEE Advanced Foundation Program; Benefit: Improve problem-solving and rank potential; Audience: Class 11 & 12 students.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Goal & Offer",
+      "questions": [
+        {
+          "code": "SP4",
+          "kind": "radio",
+          "question": "What's the goal of this post?",
+          "hint": "What action should people take?",
+          "options": [
+            { "label": "Call Us", "value": "call_us" },
+            { "label": "WhatsApp Us", "value": "whatsapp_us" },
+            { "label": "Visit Website", "value": "visit_website" },
+            { "label": "Enquire Now", "value": "enquire_now" },
+            { "label": "Register for Event", "value": "register_for_event" },
+            { "label": "Book Free Consultation", "value": "book_free_consultation" },
+            { "label": "Visit Centre", "value": "visit_centre" },
+            { "label": "Build Awareness", "value": "build_awareness" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP5",
+          "kind": "text",
+          "question": "Is there an offer, announcement or important detail?",
+          "hint": "Include any dates, discounts, deadlines, limited seats, scholarship details, or special benefits.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Copy & Testimonial",
+      "questions": [
+        {
+          "code": "SP6",
+          "kind": "radio",
+          "question": "Do you already have the copy?",
+          "options": [
+            { "label": "Final Copy Ready", "value": "final_copy_ready" },
+            { "label": "Rough Points Only", "value": "rough_points_only" },
+            { "label": "Need Copywriting Support", "value": "need_copywriting_support" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP7",
+          "kind": "text",
+          "question": "Provide your copy or rough points.",
+          "hint": "Only if you have final copy or rough points ready.",
+          "required": false
+        },
+        {
+          "code": "SP8",
+          "kind": "radio",
+          "question": "Are you featuring a student review or testimonial?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP9",
+          "kind": "text",
+          "question": "Provide the student name, course name, and testimonial text.",
+          "hint": "Only if you are featuring a student review or testimonial.",
+          "required": false
+        },
+        {
+          "code": "SP10",
+          "kind": "radio",
+          "question": "Has permission been obtained to use this testimonial?",
+          "hint": "Only if you are featuring a student review or testimonial.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Images & Assets",
+      "questions": [
+        {
+          "code": "SP11",
+          "kind": "checkbox",
+          "question": "Do you have photos to use?",
+          "options": [
+            { "label": "Student Photo", "value": "student_photo" },
+            { "label": "Faculty Photo", "value": "faculty_photo" },
+            { "label": "Classroom Photo", "value": "classroom_photo" },
+            { "label": "Campus Photo", "value": "campus_photo" },
+            { "label": "Event Photo", "value": "event_photo" },
+            { "label": "I'll Upload Custom Images", "value": "ill_upload_custom_images" },
+            { "label": "Use Stock Images", "value": "use_stock_images" },
+            { "label": "Designer Can Decide", "value": "designer_can_decide" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP12",
+          "kind": "file",
+          "question": "Upload your images.",
+          "hint": "Recommended: 1080 × 1080 px or higher, PNG or JPG. Only if you selected \"I'll Upload Custom Images\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Requirements",
+      "questions": [
+        {
+          "code": "SP13",
+          "kind": "checkbox",
+          "question": "Is there anything that must appear on the design?",
+          "hint": "Select all that apply.",
+          "options": [
+            { "label": "Logo", "value": "logo" },
+            { "label": "Phone Number", "value": "phone_number" },
+            { "label": "WhatsApp Number", "value": "whatsapp_number" },
+            { "label": "Website", "value": "website" },
+            { "label": "QR Code", "value": "qr_code" },
+            { "label": "Course Name", "value": "course_name" },
+            { "label": "Fee Structure", "value": "fee_structure" },
+            { "label": "Offer Details", "value": "offer_details" },
+            { "label": "Branch Location", "value": "branch_location" },
+            { "label": "Social Handles", "value": "social_handles" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": false
+        },
+        {
+          "code": "SP14",
+          "kind": "text",
+          "question": "What should appear as the main headline?",
+          "hint": "This is the biggest text on the design. Examples: \"Admissions Open\", \"AIR 23 in JEE Advanced\", \"Free Career Guidance Seminar\".",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "SP15",
+          "kind": "checkbox",
+          "question": "What visual style should this post have?",
+          "hint": "Choose up to 3.",
+          "options": [
+            { "label": "Premium", "value": "premium" },
+            { "label": "Academic", "value": "academic" },
+            { "label": "Professional", "value": "professional" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Trustworthy", "value": "trustworthy" },
+            { "label": "High Impact", "value": "high_impact" },
+            { "label": "Motivational", "value": "motivational" },
+            { "label": "Student-Focused", "value": "student_focused" },
+            { "label": "Clean", "value": "clean" },
+            { "label": "Bold", "value": "bold" },
+            { "label": "Match Our Brand Style", "value": "match_our_brand_style" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP16",
+          "kind": "checkbox",
+          "question": "Do you have any reference designs?",
+          "options": [
+            { "label": "Upload Images", "value": "upload_images" },
+            { "label": "Instagram Link", "value": "instagram_link" },
+            { "label": "Website Link", "value": "website_link" },
+            { "label": "Pinterest Link", "value": "pinterest_link" },
+            { "label": "Skip", "value": "skip" }
+          ],
+          "required": false
+        },
+        {
+          "code": "SP17",
+          "kind": "text",
+          "question": "Provide the reference link(s), or upload the images.",
+          "hint": "Only if you selected a reference option above (not Skip).",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Publishing & Language",
+      "questions": [
+        {
+          "code": "SP18",
+          "kind": "checkbox",
+          "question": "Where will this post be published?",
+          "options": [
+            { "label": "Instagram Feed", "value": "instagram_feed" },
+            { "label": "Instagram Story", "value": "instagram_story" },
+            { "label": "Facebook", "value": "facebook" },
+            { "label": "LinkedIn", "value": "linkedin" },
+            { "label": "WhatsApp", "value": "whatsapp" },
+            { "label": "Multiple Platforms", "value": "multiple_platforms" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP19",
+          "kind": "radio",
+          "question": "What language should this post use?",
+          "options": [
+            { "label": "English", "value": "english" },
+            { "label": "Hindi", "value": "hindi" },
+            { "label": "Tamil", "value": "tamil" },
+            { "label": "Telugu", "value": "telugu" },
+            { "label": "Malayalam", "value": "malayalam" },
+            { "label": "Kannada", "value": "kannada" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Additional Notes",
+      "questions": [
+        {
+          "code": "SP20",
+          "kind": "text",
+          "question": "Is there anything you'd like us to avoid?",
+          "hint": "Examples: \"Avoid overly corporate visuals.\", \"Don't use stock student photos.\", \"Keep the design premium and clean.\"",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

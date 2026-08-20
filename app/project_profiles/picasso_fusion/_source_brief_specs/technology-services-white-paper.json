@@ -1,0 +1,161 @@
+{
+  "key": "technology_services_white_paper",
+  "label": "White Paper",
+  "verticalKey": "technology",
+  "templateNameMatch": ["white paper", "whitepaper", "report cover"],
+  "sections": [
+    {
+      "name": "Report Overview",
+      "questions": [
+        {
+          "code": "WP1",
+          "kind": "text",
+          "question": "What is the title of the white paper or report?",
+          "hint": "Provide the exact title as it should appear on the cover.",
+          "required": true
+        },
+        {
+          "code": "WP2",
+          "kind": "text",
+          "question": "What is the report about?",
+          "hint": "Provide a brief summary of the report's topic, findings, or purpose.",
+          "required": true
+        },
+        {
+          "code": "WP3",
+          "kind": "text",
+          "question": "Who is the intended audience?",
+          "hint": "Examples: Executives, investors, healthcare professionals, policymakers, researchers, customers, etc.",
+          "required": true
+        },
+        {
+          "code": "WP4",
+          "kind": "text",
+          "question": "How many pages does the report contain?",
+          "hint": "This helps determine spine requirements and cover layout considerations.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Cover Content",
+      "questions": [
+        {
+          "code": "WP5",
+          "kind": "text",
+          "question": "What text should appear on the cover?",
+          "hint": "Include title, subtitle, author name, company name, publication date, edition number, or any other required content.",
+          "required": true
+        },
+        {
+          "code": "WP6",
+          "kind": "radio",
+          "question": "Should the cover include any call to action?",
+          "options": [
+            { "label": "Download the Full Report", "value": "download_the_full_report" },
+            { "label": "Visit Our Website", "value": "visit_our_website" },
+            { "label": "Contact Us", "value": "contact_us" },
+            { "label": "Scan a QR Code", "value": "scan_a_qr_code" },
+            { "label": "No Call to Action", "value": "no_call_to_action" }
+          ],
+          "required": true
+        },
+        {
+          "code": "WP7",
+          "kind": "text",
+          "question": "What is the destination URL for the QR code?",
+          "hint": "Only if you selected Scan a QR Code above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Images & Assets",
+      "questions": [
+        {
+          "code": "WP8",
+          "kind": "radio",
+          "question": "Do you have photography, illustrations, charts, or imagery for the cover?",
+          "hint": "Print assets should be a minimum of 300 DPI at final print size.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "WP9",
+          "kind": "file",
+          "question": "Upload print-ready assets.",
+          "hint": "Only if you have photography, illustrations, charts, or imagery for the cover.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Direction",
+      "questions": [
+        {
+          "code": "WP10",
+          "kind": "radio",
+          "question": "Any reference designs or inspiration?",
+          "hint": "Share examples, competitor reports, previous editions, or styles you admire.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "WP11",
+          "kind": "file",
+          "question": "Upload reference designs, up to 3.",
+          "hint": "Only if you said yes to reference designs above.",
+          "required": false
+        },
+        {
+          "code": "WP12",
+          "kind": "radio",
+          "question": "Describe the visual style you'd like.",
+          "options": [
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Academic", "value": "academic" },
+            { "label": "Data-Driven", "value": "data_driven" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Minimalist", "value": "minimalist" },
+            { "label": "Technology-Focused", "value": "technology_focused" },
+            { "label": "Sustainability-Focused", "value": "sustainability_focused" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Production Requirements",
+      "questions": [
+        {
+          "code": "WP13",
+          "kind": "radio",
+          "question": "Is this cover for print, digital PDF distribution, or both?",
+          "hint": "This is actually more important than asking technical requirements first because digital report covers are designed differently from printed covers.",
+          "options": [
+            { "label": "Print", "value": "print" },
+            { "label": "Digital PDF Distribution", "value": "digital_pdf_distribution" },
+            { "label": "Both", "value": "both" }
+          ],
+          "required": true
+        },
+        {
+          "code": "WP14",
+          "kind": "text",
+          "question": "Any technical or print-specific requirements?",
+          "hint": "Leave blank if unsure — we'll use standard specifications.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

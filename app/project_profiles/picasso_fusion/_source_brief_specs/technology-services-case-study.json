@@ -1,0 +1,169 @@
+{
+  "key": "technology_services_case_study",
+  "label": "Case Study",
+  "verticalKey": "technology",
+  "templateNameMatch": ["case study"],
+  "sections": [
+    {
+      "name": "Story Overview",
+      "questions": [
+        {
+          "code": "CS1",
+          "kind": "text",
+          "question": "What project, client, or success story is this case study about?",
+          "hint": "Provide a brief overview of the project.",
+          "required": true
+        },
+        {
+          "code": "CS2",
+          "kind": "text",
+          "question": "What challenge or problem was being addressed?",
+          "hint": "What was the situation before your solution was implemented?",
+          "required": true
+        },
+        {
+          "code": "CS3",
+          "kind": "text",
+          "question": "What solution was provided?",
+          "hint": "Describe the service, product, or approach that solved the problem.",
+          "required": true
+        },
+        {
+          "code": "CS4",
+          "kind": "text",
+          "question": "What results or outcomes should be highlighted?",
+          "hint": "Include metrics, achievements, testimonials, or measurable impact.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Content & Assets",
+      "questions": [
+        {
+          "code": "CS5",
+          "kind": "text",
+          "question": "What copy/text should appear on this one-pager?",
+          "hint": "Please provide final content. Late copy changes may require additional revisions.",
+          "required": true
+        },
+        {
+          "code": "CS6",
+          "kind": "radio",
+          "question": "Do you have photography, screenshots, charts, or visuals for this case study?",
+          "hint": "Print assets should be a minimum of 300 DPI at final print size.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CS7",
+          "kind": "file",
+          "question": "Upload print-ready images, screenshots, or charts.",
+          "hint": "Only if you have photography, screenshots, charts, or visuals.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Direction",
+      "questions": [
+        {
+          "code": "CS8",
+          "kind": "radio",
+          "question": "Any reference designs or inspiration?",
+          "hint": "Share examples you like, competitor materials, or previous case studies.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CS9",
+          "kind": "file",
+          "question": "Upload reference designs, up to 3.",
+          "hint": "Only if you said yes to reference designs above.",
+          "required": false
+        },
+        {
+          "code": "CS10",
+          "kind": "radio",
+          "question": "Describe the visual style you'd like.",
+          "options": [
+            { "label": "Professional", "value": "professional" },
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Bold", "value": "bold" },
+            { "label": "Data-Focused", "value": "data_focused" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Call to Action",
+      "questions": [
+        {
+          "code": "CS11",
+          "kind": "radio",
+          "question": "What action should readers take after viewing this case study?",
+          "options": [
+            { "label": "Contact Us", "value": "contact_us" },
+            { "label": "Book a Consultation", "value": "book_a_consultation" },
+            { "label": "Visit Our Website", "value": "visit_our_website" },
+            { "label": "Scan a QR Code", "value": "scan_a_qr_code" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CS12",
+          "kind": "text",
+          "question": "What is the destination URL for the QR code?",
+          "hint": "Only if you selected Scan a QR Code above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Production Requirements",
+      "questions": [
+        {
+          "code": "CS13",
+          "kind": "radio",
+          "question": "What size should the case study be?",
+          "options": [
+            { "label": "A4", "value": "a4" },
+            { "label": "US Letter", "value": "us_letter" },
+            { "label": "A5", "value": "a5" },
+            { "label": "Custom", "value": "custom" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CS14",
+          "kind": "radio",
+          "question": "Single-sided or double-sided?",
+          "options": [
+            { "label": "Single-Sided", "value": "single_sided" },
+            { "label": "Double-Sided", "value": "double_sided" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CS15",
+          "kind": "text",
+          "question": "Any technical or print-specific requirements?",
+          "hint": "Leave blank if unsure — we'll use standard print specifications.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

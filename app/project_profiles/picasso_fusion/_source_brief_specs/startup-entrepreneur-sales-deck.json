@@ -1,0 +1,231 @@
+{
+  "key": "startup_entrepreneur_sales_deck",
+  "label": "Sales Deck — Presentation",
+  "verticalKey": "startup",
+  "templateNameMatch": ["sales deck", "sales presentation", "presentation deck — sales", "sales pitch deck"],
+  "sections": [
+    {
+      "name": "Deck Overview",
+      "questions": [
+        {
+          "code": "SD1",
+          "kind": "text",
+          "question": "What is this sales presentation about?",
+          "hint": "One deck = one conversion goal.",
+          "required": true
+        },
+        {
+          "code": "SD2",
+          "kind": "text",
+          "question": "What product, service, or solution are we selling?",
+          "hint": "Provide a brief overview including key benefits and differentiators.",
+          "required": true
+        },
+        {
+          "code": "SD3",
+          "kind": "checkbox",
+          "question": "Who is the target audience?",
+          "hint": "The deck should speak directly to the decision-maker.",
+          "options": [
+            { "label": "Founders", "value": "founders" },
+            { "label": "SMB Owners", "value": "smb_owners" },
+            { "label": "Enterprise Buyers", "value": "enterprise_buyers" },
+            { "label": "Marketing Teams", "value": "marketing_teams" },
+            { "label": "Real Estate Developers", "value": "real_estate_developers" },
+            { "label": "Investors", "value": "investors" },
+            { "label": "HR Leaders", "value": "hr_leaders" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Problem & Solution",
+      "questions": [
+        {
+          "code": "SD4",
+          "kind": "text",
+          "question": "What challenges or pain points does the audience face?",
+          "hint": "Strong sales decks start with the customer's problem.",
+          "required": true
+        },
+        {
+          "code": "SD5",
+          "kind": "text",
+          "question": "How does your solution solve those challenges?",
+          "hint": "Focus on outcomes and value, not just features.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Differentiation & Proof",
+      "questions": [
+        {
+          "code": "SD6",
+          "kind": "checkbox",
+          "question": "What are your key differentiators?",
+          "hint": "Why should someone choose you instead of competitors or alternatives?",
+          "options": [
+            { "label": "Faster Implementation", "value": "faster_implementation" },
+            { "label": "Lower Cost", "value": "lower_cost" },
+            { "label": "Better Results", "value": "better_results" },
+            { "label": "Proprietary Technology", "value": "proprietary_technology" },
+            { "label": "Industry Expertise", "value": "industry_expertise" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SD7",
+          "kind": "checkbox",
+          "question": "What proof, results, or case studies can we include?",
+          "hint": "Evidence increases trust and conversion.",
+          "options": [
+            { "label": "Client Success Stories", "value": "client_success_stories" },
+            { "label": "Testimonials", "value": "testimonials" },
+            { "label": "Revenue Growth", "value": "revenue_growth" },
+            { "label": "Cost Savings", "value": "cost_savings" },
+            { "label": "Customer Metrics", "value": "customer_metrics" },
+            { "label": "Awards", "value": "awards" },
+            { "label": "Partnerships", "value": "partnerships" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Offer & Call to Action",
+      "questions": [
+        {
+          "code": "SD8",
+          "kind": "radio",
+          "question": "What pricing or package information should be included?",
+          "options": [
+            { "label": "Include Pricing", "value": "include_pricing" },
+            { "label": "Include Starting Price", "value": "include_starting_price" },
+            { "label": "Contact for Pricing", "value": "contact_for_pricing" },
+            { "label": "Not Required", "value": "not_required" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SD9",
+          "kind": "radio",
+          "question": "What is the primary call to action?",
+          "hint": "The presentation should end with one clear next step.",
+          "options": [
+            { "label": "Book a Demo", "value": "book_a_demo" },
+            { "label": "Schedule a Call", "value": "schedule_a_call" },
+            { "label": "Request a Proposal", "value": "request_a_proposal" },
+            { "label": "Start Free Trial", "value": "start_free_trial" },
+            { "label": "Contact Sales", "value": "contact_sales" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Existing Content",
+      "questions": [
+        {
+          "code": "SD10",
+          "kind": "radio",
+          "question": "Do you already have content or an existing sales deck?",
+          "options": [
+            { "label": "Complete Deck Available", "value": "complete_deck_available" },
+            { "label": "Partial Content Available", "value": "partial_content_available" },
+            { "label": "Need Help Structuring Content", "value": "need_structuring" },
+            { "label": "Need Help Creating Content", "value": "need_creation" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SD11",
+          "kind": "file",
+          "question": "Upload your existing deck, sales materials, or supporting documents.",
+          "hint": "Accepted formats: PPTX, PDF, DOCX, Google Slides export. Only if you have existing content.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Branding & Assets",
+      "questions": [
+        {
+          "code": "SD12",
+          "kind": "radio",
+          "question": "Do you have branding and assets?",
+          "hint": "Strong visual consistency builds credibility.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" },
+            { "label": "Partial", "value": "partial" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SD13",
+          "kind": "file",
+          "question": "Upload logos, screenshots, product visuals, case study graphics, and brand assets.",
+          "hint": "PNG, SVG, JPG preferred. Only if you have branding assets.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Delivery & Presentation Style",
+      "questions": [
+        {
+          "code": "SD14",
+          "kind": "radio",
+          "question": "How will this deck be used?",
+          "hint": "This is one of the most important questions because a live deck and a send-ahead deck require different content density.",
+          "options": [
+            { "label": "Live Sales Presentation", "value": "live_sales_presentation" },
+            { "label": "Send as PDF", "value": "send_as_pdf" },
+            { "label": "Both", "value": "both" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SD15",
+          "kind": "radio",
+          "question": "Any sales decks or presentation styles you'd like us to reference?",
+          "hint": "Competitor decks, industry examples, or presentations you admire.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SD16",
+          "kind": "file",
+          "question": "Upload reference decks, up to 3.",
+          "hint": "Only if you said yes to reference decks above.",
+          "required": false
+        },
+        {
+          "code": "SD17",
+          "kind": "radio",
+          "question": "Describe the presentation style you'd like.",
+          "options": [
+            { "label": "Modern SaaS", "value": "modern_saas" },
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "Startup", "value": "startup" },
+            { "label": "Data-Driven", "value": "data_driven" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "High-Impact Sales", "value": "high_impact_sales" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    }
+  ]
+}

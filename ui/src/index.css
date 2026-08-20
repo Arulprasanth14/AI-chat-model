@@ -1,0 +1,98 @@
+/* ui/src/index.css — Picasso Fusion design system tokens & baseline */
+@import "./App.css";
+
+:root {
+  --bg: #F4F3F0;
+  --bg-main: #F4F3F0;
+  --surface: #ffffff;
+  --label: #14110F;
+  --label-2: #6e6e6e;
+  --label-3: #565656;
+  --sep: #E4E1DA;
+  --sep-dark: #d6d2c9;
+  --fill-2: #ECEAE4;
+  --fill-3: #F4F3F0;
+
+  --lime: #FF4D3D;
+  --lime-d: #E0382A;
+  --lime-t: #FBF0DC;
+  --lime-txt: #ffffff;
+  --coral-txt: #7a5212;
+  --navy: #1A1814;
+  --sb-bg: #1A1814;
+
+  --green: #34c759;
+  --green-t: rgba(52, 199, 89, 0.1);
+  --green-txt: #1a6b2e;
+  --orange: #ff9500;
+  --orange-t: rgba(255, 149, 0, 0.1);
+  --orange-txt: #7a4200;
+  --red: #ff3b30;
+  --red-t: rgba(255, 59, 48, 0.08);
+  --red-txt: #c0180f;
+  --blue: #007aff;
+  --blue-t: rgba(0, 122, 255, 0.1);
+  --blue-txt: #003d80;
+
+  --r-s: 8px;
+  --r-m: 12px;
+  --r-l: 16px;
+  --r-xl: 20px;
+  --r-p: 999px;
+
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg-main);
+  color: var(--label);
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
+}
+
+/* Animations */
+@keyframes msgIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.msg-in {
+  animation: msgIn 0.26s ease both;
+}
+
+@keyframes tdot {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+.tdot {
+  animation: tdot 1.3s infinite;
+}
+
+.no-sb {
+  scrollbar-width: none;
+}
+.no-sb::-webkit-scrollbar {
+  display: none;
+}

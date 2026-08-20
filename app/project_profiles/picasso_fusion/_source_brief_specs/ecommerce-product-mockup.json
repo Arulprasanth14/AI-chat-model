@@ -1,0 +1,297 @@
+{
+  "key": "ecommerce_product_mockup",
+  "label": "Product Mockup",
+  "verticalKey": "ecommerce",
+  "templateNameMatch": ["product mockup", "mockup", "packaging mockup"],
+  "sections": [
+    {
+      "name": "Mockup Type & Product",
+      "questions": [
+        {
+          "code": "MK1",
+          "kind": "radio",
+          "question": "What are we creating today?",
+          "hint": "Select the type of mockup.",
+          "options": [
+            { "label": "Product Mockup", "value": "product_mockup" },
+            { "label": "Packaging Mockup", "value": "packaging_mockup" },
+            { "label": "Bottle Mockup", "value": "bottle_mockup" },
+            { "label": "Jar / Tube Mockup", "value": "jar_tube_mockup" },
+            { "label": "Box Mockup", "value": "box_mockup" },
+            { "label": "Apparel Mockup", "value": "apparel_mockup" },
+            { "label": "Device Mockup", "value": "device_mockup" },
+            { "label": "Cosmetic Mockup", "value": "cosmetic_mockup" },
+            { "label": "Food & Beverage Mockup", "value": "food_beverage_mockup" },
+            { "label": "Flat Lay Composition", "value": "flat_lay_composition" },
+            { "label": "Lifestyle Product Scene", "value": "lifestyle_product_scene" },
+            { "label": "Gift Box Presentation", "value": "gift_box_presentation" },
+            { "label": "Product Collection", "value": "product_collection" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "MK2",
+          "kind": "text",
+          "question": "Which product(s) are we showcasing?",
+          "hint": "Provide the key product information: Product Name, Category, Colours/Variants, Size or Dimensions (Optional), Key Features.",
+          "required": true
+        },
+        {
+          "code": "MK3",
+          "kind": "text",
+          "question": "What's the ONE message customers should remember?",
+          "hint": "Describe the impression this mockup should create. Example: \"Premium skincare with a luxurious feel.\", \"Minimal, sustainable packaging.\", \"Designed for modern professionals.\"",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Goal & Placement",
+      "questions": [
+        {
+          "code": "MK4",
+          "kind": "radio",
+          "question": "What's the goal of this mockup?",
+          "options": [
+            { "label": "Product Launch", "value": "product_launch" },
+            { "label": "Website Listing", "value": "website_listing" },
+            { "label": "Online Store", "value": "online_store" },
+            { "label": "Social Media", "value": "social_media" },
+            { "label": "Advertisement", "value": "advertisement" },
+            { "label": "Packaging Preview", "value": "packaging_preview" },
+            { "label": "Sales Presentation", "value": "sales_presentation" },
+            { "label": "Catalogue", "value": "catalogue" },
+            { "label": "Marketplace Listing", "value": "marketplace_listing" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "MK5",
+          "kind": "checkbox",
+          "question": "Where will this mockup be used?",
+          "options": [
+            { "label": "Website", "value": "website" },
+            { "label": "Shopify Store", "value": "shopify_store" },
+            { "label": "Amazon / Marketplace", "value": "amazon_marketplace" },
+            { "label": "Instagram", "value": "instagram" },
+            { "label": "Facebook", "value": "facebook" },
+            { "label": "LinkedIn", "value": "linkedin" },
+            { "label": "Print Catalogue", "value": "print_catalogue" },
+            { "label": "Presentation", "value": "presentation" },
+            { "label": "Multiple Platforms", "value": "multiple_platforms" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Style & Presentation",
+      "questions": [
+        {
+          "code": "MK6",
+          "kind": "checkbox",
+          "question": "What style best suits your product?",
+          "hint": "Choose up to 3.",
+          "options": [
+            { "label": "Premium", "value": "premium" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Lifestyle", "value": "lifestyle" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Clean Studio", "value": "clean_studio" },
+            { "label": "Bold", "value": "bold" },
+            { "label": "High Contrast", "value": "high_contrast" },
+            { "label": "Organic", "value": "organic" },
+            { "label": "Natural", "value": "natural" },
+            { "label": "Vibrant", "value": "vibrant" },
+            { "label": "Match My Brand Style", "value": "match_my_brand_style" }
+          ],
+          "required": true
+        },
+        {
+          "code": "MK7",
+          "kind": "radio",
+          "question": "What type of presentation would you like?",
+          "options": [
+            { "label": "Studio Product Shot", "value": "studio_product_shot" },
+            { "label": "Lifestyle Scene", "value": "lifestyle_scene" },
+            { "label": "Flat Lay", "value": "flat_lay" },
+            { "label": "Floating Product", "value": "floating_product" },
+            { "label": "Product in Use", "value": "product_in_use" },
+            { "label": "Packaging Focus", "value": "packaging_focus" },
+            { "label": "Collection Display", "value": "collection_display" },
+            { "label": "Designer Can Recommend", "value": "designer_can_recommend" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Images & Assets",
+      "questions": [
+        {
+          "code": "MK8",
+          "kind": "checkbox",
+          "question": "Do you have product images or artwork?",
+          "options": [
+            { "label": "I'll Upload Product Photos", "value": "ill_upload_product_photos" },
+            { "label": "I'll Upload Packaging Artwork", "value": "ill_upload_packaging_artwork" },
+            { "label": "I'll Upload Labels", "value": "ill_upload_labels" },
+            { "label": "I'll Upload 3D Renders", "value": "ill_upload_3d_renders" },
+            { "label": "I Have Multiple Angles", "value": "i_have_multiple_angles" },
+            { "label": "Designer Can Work with Available Assets", "value": "designer_can_work_with_available_assets" }
+          ],
+          "required": true
+        },
+        {
+          "code": "MK9",
+          "kind": "file",
+          "question": "Upload your files.",
+          "hint": "Upload product photos, packaging artwork, labels, logos, or transparent PNGs. For the best results, provide multiple angles or high-resolution images.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Requirements",
+      "questions": [
+        {
+          "code": "MK10",
+          "kind": "checkbox",
+          "question": "Is there anything that must appear?",
+          "hint": "Select all that apply.",
+          "options": [
+            { "label": "Product Logo", "value": "product_logo" },
+            { "label": "Product Name", "value": "product_name" },
+            { "label": "Packaging Design", "value": "packaging_design" },
+            { "label": "Price", "value": "price" },
+            { "label": "Offer Badge", "value": "offer_badge" },
+            { "label": "Brand Logo", "value": "brand_logo" },
+            { "label": "Tagline", "value": "tagline" },
+            { "label": "QR Code", "value": "qr_code" },
+            { "label": "CTA", "value": "cta" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Brand Assets",
+      "questions": [
+        {
+          "code": "MK11",
+          "kind": "radio",
+          "question": "Would you like us to follow your existing brand identity?",
+          "hint": "Brand Assets & Guidelines.",
+          "options": [
+            { "label": "Use My Saved Brand Kit", "value": "use_my_saved_brand_kit" },
+            { "label": "Upload Brand Guidelines", "value": "upload_brand_guidelines" },
+            { "label": "Upload Logo & Assets", "value": "upload_logo_assets" },
+            { "label": "Customize This Project", "value": "customize_this_project" }
+          ],
+          "required": true
+        },
+        {
+          "code": "MK12",
+          "kind": "checkbox",
+          "question": "What should we customize?",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "options": [
+            { "label": "Brand Colors", "value": "brand_colors" },
+            { "label": "Brand Fonts", "value": "brand_fonts" },
+            { "label": "Additional Instructions", "value": "additional_instructions" }
+          ],
+          "required": false
+        },
+        {
+          "code": "MK13",
+          "kind": "text",
+          "question": "Provide any additional brand customization details.",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "References & Notes",
+      "questions": [
+        {
+          "code": "MK14",
+          "kind": "checkbox",
+          "question": "Do you have any inspiration?",
+          "hint": "Share mockups or product visuals you like.",
+          "options": [
+            { "label": "Website Link", "value": "website_link" },
+            { "label": "Pinterest Link", "value": "pinterest_link" },
+            { "label": "Instagram Link", "value": "instagram_link" },
+            { "label": "Upload Images", "value": "upload_images" },
+            { "label": "Skip", "value": "skip" }
+          ],
+          "required": false
+        },
+        {
+          "code": "MK15",
+          "kind": "text",
+          "question": "Provide the reference link(s), or note that you're uploading images.",
+          "hint": "Only if you selected a reference option above (not Skip).",
+          "required": false
+        },
+        {
+          "code": "MK16",
+          "kind": "text",
+          "question": "Is there anything you'd like us to avoid?",
+          "hint": "Mention any colours, props, backgrounds, compositions, or visual styles you'd prefer not to use.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Output & Language",
+      "questions": [
+        {
+          "code": "MK17",
+          "kind": "checkbox",
+          "question": "What output do you need?",
+          "options": [
+            { "label": "Web Optimized", "value": "web_optimized" },
+            { "label": "High Resolution", "value": "high_resolution" },
+            { "label": "Print Ready", "value": "print_ready" },
+            { "label": "Transparent Background", "value": "transparent_background" },
+            { "label": "Multiple Versions", "value": "multiple_versions" },
+            { "label": "Let the Creative Team Recommend", "value": "let_the_creative_team_recommend" }
+          ],
+          "required": true
+        },
+        {
+          "code": "MK18",
+          "kind": "radio",
+          "question": "What language should appear on the mockup?",
+          "options": [
+            { "label": "English", "value": "english" },
+            { "label": "Hindi", "value": "hindi" },
+            { "label": "Tamil", "value": "tamil" },
+            { "label": "Telugu", "value": "telugu" },
+            { "label": "Malayalam", "value": "malayalam" },
+            { "label": "Kannada", "value": "kannada" },
+            { "label": "Arabic", "value": "arabic" },
+            { "label": "Spanish", "value": "spanish" },
+            { "label": "French", "value": "french" },
+            { "label": "German", "value": "german" },
+            { "label": "Portuguese", "value": "portuguese" },
+            { "label": "Chinese", "value": "chinese" },
+            { "label": "Japanese", "value": "japanese" },
+            { "label": "Korean", "value": "korean" },
+            { "label": "Urdu", "value": "urdu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    }
+  ]
+}

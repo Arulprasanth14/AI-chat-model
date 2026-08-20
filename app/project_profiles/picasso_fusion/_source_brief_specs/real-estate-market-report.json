@@ -1,0 +1,252 @@
+{
+  "key": "real_estate_market_report",
+  "label": "Real Estate Market Report",
+  "verticalKey": "realestate",
+  "templateNameMatch": ["market report"],
+  "sections": [
+    {
+      "name": "Report Overview",
+      "questions": [
+        {
+          "code": "MR1",
+          "kind": "radio",
+          "question": "What market or area does this report cover?",
+          "options": [
+            { "label": "Suburb Market Report", "value": "suburb" },
+            { "label": "City Market Report", "value": "city" },
+            { "label": "Commercial Property Market", "value": "commercial" },
+            { "label": "Rental Market Report", "value": "rental" },
+            { "label": "Luxury Property Market", "value": "luxury" },
+            { "label": "Investment Market Report", "value": "investment" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "MR2",
+          "kind": "radio",
+          "question": "What reporting period does this report cover?",
+          "options": [
+            { "label": "Monthly", "value": "monthly" },
+            { "label": "Quarterly", "value": "quarterly" },
+            { "label": "Half-Yearly", "value": "half_yearly" },
+            { "label": "Annual", "value": "annual" },
+            { "label": "Custom Date Range", "value": "custom_range" }
+          ],
+          "required": true
+        },
+        {
+          "code": "MR3",
+          "kind": "checkbox",
+          "question": "What is the primary goal of this report?",
+          "options": [
+            { "label": "Generate seller leads", "value": "generate_seller_leads" },
+            { "label": "Position the agency as a market expert", "value": "market_expert_positioning" },
+            { "label": "Inform property owners", "value": "inform_owners" },
+            { "label": "Attract investors", "value": "attract_investors" },
+            { "label": "Support marketing campaigns", "value": "support_campaigns" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Report Format",
+      "questions": [
+        {
+          "code": "MR4",
+          "kind": "radio",
+          "question": "What format is required?",
+          "hint": "This is critical — the layout changes significantly depending on distribution.",
+          "options": [
+            { "label": "Printed Report", "value": "printed" },
+            { "label": "Digital PDF", "value": "digital_pdf" },
+            { "label": "LinkedIn PDF Carousel", "value": "linkedin_carousel" },
+            { "label": "Email Attachment", "value": "email_attachment" },
+            { "label": "Both Print & Digital", "value": "both" }
+          ],
+          "required": true
+        },
+        {
+          "code": "MR5",
+          "kind": "radio",
+          "question": "How many pages should the report contain?",
+          "options": [
+            { "label": "4 Pages", "value": "4" },
+            { "label": "8 Pages", "value": "8" },
+            { "label": "12 Pages", "value": "12" },
+            { "label": "Custom", "value": "custom" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Content & Data",
+      "questions": [
+        {
+          "code": "MR6",
+          "kind": "checkbox",
+          "question": "What data and insights should be included?",
+          "options": [
+            { "label": "Median sale price", "value": "median_sale_price" },
+            { "label": "Median rent", "value": "median_rent" },
+            { "label": "Days on market", "value": "days_on_market" },
+            { "label": "Clearance rates", "value": "clearance_rates" },
+            { "label": "Sales volume", "value": "sales_volume" },
+            { "label": "Rental yield", "value": "rental_yield" },
+            { "label": "Market trends", "value": "market_trends" },
+            { "label": "Demographic insights", "value": "demographic_insights" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "MR7",
+          "kind": "radio",
+          "question": "Do you have the data prepared?",
+          "options": [
+            { "label": "Yes, final data ready", "value": "final_ready" },
+            { "label": "Partial data available", "value": "partial" },
+            { "label": "Need help organising data", "value": "need_help" }
+          ],
+          "required": true
+        },
+        {
+          "code": "MR8",
+          "kind": "file",
+          "question": "Please upload your data files.",
+          "hint": "Accepted formats: Excel, CSV, PDF, Google Sheets export.",
+          "required": true
+        },
+        {
+          "code": "MR9",
+          "kind": "text",
+          "question": "What written commentary or analysis should appear in the report? Please provide final, approved copy.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Charts & Visuals",
+      "questions": [
+        {
+          "code": "MR10",
+          "kind": "radio",
+          "question": "Should any charts, graphs, or infographics be included?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "MR11",
+          "kind": "radio",
+          "question": "Do you have existing charts, or should they be designed from the supplied data?",
+          "hint": "Only ask this if the client said yes to including charts above.",
+          "options": [
+            { "label": "I have existing charts to provide", "value": "existing_charts" },
+            { "label": "Design from the supplied data", "value": "design_from_data" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": false
+        },
+        {
+          "code": "MR12",
+          "kind": "file",
+          "question": "Do you have photography or imagery for the report? Please upload the images.",
+          "hint": "Minimum 300 DPI for print.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Call to Action",
+      "questions": [
+        {
+          "code": "MR13",
+          "kind": "radio",
+          "question": "What action should readers take after reading the report?",
+          "options": [
+            { "label": "Request a property appraisal", "value": "request_appraisal" },
+            { "label": "Contact an agent", "value": "contact_agent" },
+            { "label": "Download a full report", "value": "download_report" },
+            { "label": "Book a consultation", "value": "book_consultation" },
+            { "label": "Visit the website", "value": "visit_website" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "MR14",
+          "kind": "radio",
+          "question": "Will a QR code be included?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "MR15",
+          "kind": "text",
+          "question": "What URL should the QR code link to?",
+          "hint": "Only ask this if the client said yes to including a QR code.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Direction",
+      "questions": [
+        {
+          "code": "MR16",
+          "kind": "file",
+          "question": "Any market reports or publications you'd like us to reference?",
+          "hint": "Examples: competitor reports, industry reports, previous editions. Upload reference designs, up to 3.",
+          "required": false
+        },
+        {
+          "code": "MR17",
+          "kind": "radio",
+          "question": "Describe the report design style.",
+          "options": [
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Premium Real Estate", "value": "premium_real_estate" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Investor-Focused", "value": "investor_focused" },
+            { "label": "Data-Driven", "value": "data_driven" },
+            { "label": "Modern Minimal", "value": "modern_minimal" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Technical Requirements",
+      "questions": [
+        {
+          "code": "MR18",
+          "kind": "radio",
+          "question": "Will this report be printed, viewed digitally, or both?",
+          "options": [
+            { "label": "Print Only", "value": "print_only" },
+            { "label": "Digital Only", "value": "digital_only" },
+            { "label": "Both", "value": "both" }
+          ],
+          "required": true
+        },
+        {
+          "code": "MR19",
+          "kind": "text",
+          "question": "Any other technical or production requirements?",
+          "hint": "Examples: interactive PDF, print-ready PDF, LinkedIn carousel format, custom page size. Leave blank if unsure.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

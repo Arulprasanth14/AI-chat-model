@@ -1,0 +1,246 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# Picasso Fusion — Project Profile
+# ──────────────────────────────────────────────────────────────────────────────
+# This file fully defines the Picasso AI creative brief capture domain.
+#
+# REUSABILITY NOTE:
+#   This is the ONLY place where domain-specific field names, descriptions,
+#   and persona text live. The Python orchestrator, state ledger, retriever,
+#   and prompt builder are completely unaware of these strings at code level.
+#   To add a new project integration, duplicate this folder, update the
+#   fields below, drop in new knowledge_docs, and set ACTIVE_PROFILE in .env.
+# ──────────────────────────────────────────────────────────────────────────────
+
+profile_id: "picasso_fusion"
+knowledge_namespace: "picasso_fusion"
+llm_temperature: 0.3
+
+industries:
+  - fashion_apparel
+  - beauty_wellness
+  - food_beverage
+  - technology
+  - real_estate
+  - finance
+  - healthcare
+  - entertainment
+  - retail
+  - education
+
+persona_prompt: |
+  You are Picasso, an expert creative strategist and brand consultant for
+  Picasso AI — a full-service creative agency specialising in high-impact
+  digital campaigns, brand identity, and content strategy.
+
+  Your role is to conduct a friendly, professional creative brief intake
+  conversation with a new or returning client. Your goal is to gather all the
+  information needed to design a compelling campaign or creative deliverable.
+
+  Conversation principles:
+  - Be warm, curious, and conversational — never robotic or form-like.
+  - Ask only one or two topics at a time; do not overwhelm the client.
+  - Acknowledge and build on what the client shares before moving on.
+  - Use the retrieved knowledge to guide your questioning style and tone.
+  - You have access to the list of fields still missing from the brief.
+    Use this context to steer the conversation naturally, but you decide
+    how and when to ask — never repeat a question verbatim or in a fixed order.
+  - When the client answers partially, probe gently for missing details
+    rather than jumping to the next topic.
+  - Extract structured information from conversational answers — the client
+    should never feel they are filling out a form.
+  - Once you believe all required information is captured, confirm with the
+    client and offer a brief summary.
+
+  Important: You are not following a script. You are a skilled conversationalist
+  who happens to be gathering specific information.
+
+required_fields:
+  - code: client_name
+    description: >
+      The client's name or the organisation commissioning the creative work.
+      May be a person's name, a business name, or a brand name.
+    required: true
+
+  - code: project_type
+    description: >
+      The type of creative deliverable requested. Must be one of the following
+      exact values: static_post, carousel, reel, video_addon, print_addon,
+      digital_addon, listing_sheet, flyer_brochure, buyer_seller_guide,
+      market_report, cma_presentation, open_home_signboard, testimonial_set,
+      email_template, linkedin_banner, youtube_banner, product_mockup, ad_banner,
+      pitch_deck, one_pager, sales_deck, proposal_template, presentation,
+      press_kit, business_card, email_signature, case_study, white_paper,
+      web_banner_set. Extract the value from what the user describes and map
+      it to the closest matching code from this list. Do not capture a
+      free-text sentence — use only values from this list.
+    required: true
+    enum_values:
+      - static_post
+      - carousel
+      - reel
+      - video_addon
+      - print_addon
+      - digital_addon
+      - listing_sheet
+      - flyer_brochure
+      - buyer_seller_guide
+      - market_report
+      - cma_presentation
+      - open_home_signboard
+      - testimonial_set
+      - email_template
+      - linkedin_banner
+      - youtube_banner
+      - product_mockup
+      - ad_banner
+      - pitch_deck
+      - one_pager
+      - sales_deck
+      - proposal_template
+      - presentation
+      - press_kit
+      - business_card
+      - email_signature
+      - case_study
+      - white_paper
+      - web_banner_set
+
+  - code: primary_objective
+    description: >
+      The single most important business or marketing objective for this project.
+      What success looks like from the client's perspective.
+    required: true
+
+  - code: target_audience
+    description: >
+      Description of the intended audience: demographics, psychographics,
+      behaviours, pain points, and where they spend time online/offline.
+    required: true
+
+  - code: industry_vertical
+    description: >
+      The industry or market vertical the client operates in (e.g. fashion,
+      SaaS, F&B, real estate). Used for retrieval filtering.
+    required: true
+
+  - code: brand_personality
+    description: >
+      The tone, values, and personality the brand wants to project.
+      Examples: bold and disruptive, warm and approachable, premium and minimal,
+      playful and youthful. A client may describe MULTIPLE personalities — capture
+      all of them as a list. This field stores adjective-style descriptors only,
+      NOT structural choices like 'use existing brand' or 'new logo' (those go in
+      brand_identity_preference).
+    required: true
+    input_type: list
+    enum_values:
+      - bold_disruptive
+      - warm_approachable
+      - premium_minimal
+      - playful_youthful
+      - authentic_genuine
+      - corporate_professional
+
+  - code: key_messages
+    description: >
+      The qualitative brand statement or core feeling the audience should take away
+      — a creative, emotive idea, not a number. This is what the campaign SAYS or
+      FEELS LIKE. Examples: 'Fresh pasta made daily', 'Affordability and trust',
+      'Warm and approachable'. Always a phrase or short sentence a person would
+      say, never a percentage, conversion rate, or business target.
+    required: true
+
+  - code: budget_range
+    description: >
+      Approximate budget range for the project. Can be expressed as a range,
+      a tier (starter / growth / enterprise), or a specific figure.
+    required: false  # Will be re-enabled once package-based pricing selection is wired in
+
+  - code: timeline
+    description: >
+      Desired delivery timeline or go-live date. Includes any fixed deadlines
+      (product launches, events, seasonal peaks) that constrain scheduling.
+    required: true
+
+  - code: deliverables
+    description: >
+      Specific creative assets or outputs expected. Examples: 10 social media
+      graphics, 1 hero video, 3 banner sizes, brand guidelines document,
+      monthly content calendar. A client may list MULTIPLE deliverables across
+      different turns — capture all of them cumulatively, not just the last one.
+    required: true
+    input_type: list
+
+  - code: competitors_or_references
+    description: >
+      Competitor brands or creative references the client wants to differentiate
+      from or draw inspiration from. Helps calibrate the creative direction.
+    required: false
+
+  - code: existing_assets
+    description: >
+      Any existing brand assets that must be incorporated: logo files, colour
+      palette, fonts, photography, style guides.
+    required: false
+
+  - code: approval_process
+    description: >
+      Who needs to sign off on creative work, how many revision rounds are
+      expected, and the internal stakeholder structure.
+    required: false
+
+  - code: distribution_channels
+    description: >
+      Where the creative outputs will be used: Instagram, LinkedIn, TikTok,
+      OOH, print, broadcast, email, website. Affects format requirements.
+      A client may mention MULTIPLE channels across different turns — capture
+      all of them, not just the most recently mentioned.
+    required: true
+    input_type: list
+    enum_values:
+      - instagram
+      - linkedin
+      - tiktok
+      - facebook
+      - youtube
+      - website
+      - email
+      - print
+      - ooh
+
+  - code: success_metrics
+    description: >
+      How success will be measured — always quantitative, analytical, or business-outcome
+      oriented. This field captures what the client wants to ACHIEVE or MEASURE,
+      expressed as a number, rate, or business target. Examples: '20% increase in
+      engagement', '500 new signups per month', '10% uplift in sales', 'top 3 brand
+      recall in region'. If the client states a goal with a number or a KPI (e.g.
+      conversion rate, reach, ROI), it belongs here.
+    required: true
+
+
+  - code: brand_identity_preference
+    description: >
+      How the client wants to handle brand identity and logos. This is a STRUCTURAL
+      choice about brand assets, NOT a personality descriptor.
+      Few-shot examples to distinguish from brand_personality:
+        - "We have brand guidelines I'll upload" -> upload_brand_guidelines
+        - "Use our saved brand kit" -> use_saved_brand_kit
+        - "I'll upload our logo files" -> upload_logo_assets
+        - "I want to customise just this project with new colors" -> customize_this_project
+        - "bold and premium" -> this is brand_personality, NOT brand_identity_preference
+    required: true
+    enum_values:
+      - use_saved_brand_kit
+      - upload_brand_guidelines
+      - upload_logo_assets
+      - customize_this_project
+
+  - code: hybrid_notes
+    description: >
+      Additional notes when the client wants a hybrid or customized brand approach
+      (chosen customize_this_project in brand_identity_preference). Captures
+      specifics like 'use existing colors but a new logo style', 'keep the font
+      but update the palette', etc. Only ask this if brand_identity_preference
+      is set to customize_this_project.
+    required: false

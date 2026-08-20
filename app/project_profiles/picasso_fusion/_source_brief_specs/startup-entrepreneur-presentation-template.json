@@ -1,0 +1,234 @@
+{
+  "key": "startup_entrepreneur_presentation_template",
+  "label": "Presentation Template — Reusable Master",
+  "verticalKey": "startup",
+  "templateNameMatch": ["presentation template", "reusable master", "master template", "template deck"],
+  "sections": [
+    {
+      "name": "Template Overview",
+      "questions": [
+        {
+          "code": "PT1",
+          "kind": "radio",
+          "question": "What will this presentation template be used for?",
+          "hint": "Understanding the use case helps determine the required slide layouts.",
+          "options": [
+            { "label": "Pitch Decks", "value": "pitch_decks" },
+            { "label": "Sales Presentations", "value": "sales_presentations" },
+            { "label": "Investor Updates", "value": "investor_updates" },
+            { "label": "Board Meetings", "value": "board_meetings" },
+            { "label": "Company Reports", "value": "company_reports" },
+            { "label": "Product Presentations", "value": "product_presentations" },
+            { "label": "Internal Presentations", "value": "internal_presentations" },
+            { "label": "Multiple Use Cases", "value": "multiple_use_cases" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT2",
+          "kind": "checkbox",
+          "question": "Who will be using this template?",
+          "hint": "Template complexity should match the user's skill level.",
+          "options": [
+            { "label": "Founder", "value": "founder" },
+            { "label": "Sales Team", "value": "sales_team" },
+            { "label": "Marketing Team", "value": "marketing_team" },
+            { "label": "Executive Team", "value": "executive_team" },
+            { "label": "Entire Company", "value": "entire_company" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Branding & Assets",
+      "questions": [
+        {
+          "code": "PT3",
+          "kind": "radio",
+          "question": "What branding assets are available?",
+          "hint": "Consistent branding creates professional presentations.",
+          "options": [
+            { "label": "Full Brand Guidelines", "value": "full_brand_guidelines" },
+            { "label": "Logo Only", "value": "logo_only" },
+            { "label": "Existing Presentation", "value": "existing_presentation" },
+            { "label": "Website Branding", "value": "website_branding" },
+            { "label": "No Branding Yet", "value": "no_branding_yet" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT4",
+          "kind": "file",
+          "question": "Upload logo, fonts, brand guidelines, and visual assets.",
+          "hint": "Accepted formats: SVG, PNG, PDF, PPTX. Only if you have branding assets.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Content & Layouts",
+      "questions": [
+        {
+          "code": "PT5",
+          "kind": "checkbox",
+          "question": "Which slide layouts are required?",
+          "hint": "Select all layouts that should be included.",
+          "options": [
+            { "label": "Cover Slide", "value": "cover_slide" },
+            { "label": "Section Divider", "value": "section_divider" },
+            { "label": "Agenda", "value": "agenda" },
+            { "label": "Team Introduction", "value": "team_introduction" },
+            { "label": "Problem / Opportunity", "value": "problem_opportunity" },
+            { "label": "Solution", "value": "solution" },
+            { "label": "Product Overview", "value": "product_overview" },
+            { "label": "Features", "value": "features" },
+            { "label": "Timeline", "value": "timeline" },
+            { "label": "Roadmap", "value": "roadmap" },
+            { "label": "Statistics & Data", "value": "statistics_data" },
+            { "label": "Charts & Graphs", "value": "charts_graphs" },
+            { "label": "Pricing", "value": "pricing" },
+            { "label": "Case Study", "value": "case_study" },
+            { "label": "Testimonial", "value": "testimonial" },
+            { "label": "Comparison Table", "value": "comparison_table" },
+            { "label": "Gallery", "value": "gallery" },
+            { "label": "Thank You / Contact", "value": "thank_you_contact" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT6",
+          "kind": "radio",
+          "question": "How many template layouts are required?",
+          "options": [
+            { "label": "10 Slides", "value": "10" },
+            { "label": "15 Slides", "value": "15" },
+            { "label": "20 Slides", "value": "20" },
+            { "label": "25+ Slides", "value": "25_plus" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Platform & Technical Specs",
+      "questions": [
+        {
+          "code": "PT7",
+          "kind": "radio",
+          "question": "Which presentation platform will be used?",
+          "hint": "This is one of the most important questions and is currently missing.",
+          "options": [
+            { "label": "PowerPoint", "value": "powerpoint" },
+            { "label": "Google Slides", "value": "google_slides" },
+            { "label": "Keynote", "value": "keynote" },
+            { "label": "Canva", "value": "canva" },
+            { "label": "Multiple Platforms", "value": "multiple_platforms" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT8",
+          "kind": "radio",
+          "question": "Should the template include editable charts, tables, and infographics?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT9",
+          "kind": "radio",
+          "question": "What level of editability is required?",
+          "options": [
+            { "label": "Fully Editable", "value": "fully_editable" },
+            { "label": "Locked Brand Elements", "value": "locked_brand_elements" },
+            { "label": "Beginner-Friendly", "value": "beginner_friendly" },
+            { "label": "Advanced User Template", "value": "advanced_user_template" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "PT10",
+          "kind": "radio",
+          "question": "Preferred presentation style?",
+          "options": [
+            { "label": "Startup", "value": "startup" },
+            { "label": "Investor-Grade", "value": "investor_grade" },
+            { "label": "Modern SaaS", "value": "modern_saas" },
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Data-Driven", "value": "data_driven" },
+            { "label": "Bold & Creative", "value": "bold_creative" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT11",
+          "kind": "radio",
+          "question": "Any reference presentations or templates?",
+          "hint": "Share examples you like or currently use.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT12",
+          "kind": "file",
+          "question": "Upload reference presentations, up to 3.",
+          "hint": "Only if you said yes to reference presentations above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Brand Elements & Technical Requirements",
+      "questions": [
+        {
+          "code": "PT13",
+          "kind": "checkbox",
+          "question": "Are there any mandatory brand elements that must appear throughout the template?",
+          "options": [
+            { "label": "Logo Placement", "value": "logo_placement" },
+            { "label": "Footer", "value": "footer" },
+            { "label": "Page Numbers", "value": "page_numbers" },
+            { "label": "Brand Shapes", "value": "brand_shapes" },
+            { "label": "Brand Icons", "value": "brand_icons" },
+            { "label": "Contact Information", "value": "contact_information" },
+            { "label": "Other", "value": "other" },
+            { "label": "None", "value": "none" }
+          ],
+          "required": false
+        },
+        {
+          "code": "PT14",
+          "kind": "checkbox",
+          "question": "Any technical requirements?",
+          "options": [
+            { "label": "16:9 Widescreen", "value": "16_9_widescreen" },
+            { "label": "4:3 Format", "value": "4_3_format" },
+            { "label": "Light Theme", "value": "light_theme" },
+            { "label": "Dark Theme", "value": "dark_theme" },
+            { "label": "Master Slides Required", "value": "master_slides_required" },
+            { "label": "Presentation Notes Included", "value": "presentation_notes_included" },
+            { "label": "Other", "value": "other" },
+            { "label": "None", "value": "none" }
+          ],
+          "required": false
+        }
+      ]
+    }
+  ]
+}

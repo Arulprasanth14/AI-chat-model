@@ -1,0 +1,378 @@
+{
+  "key": "fitness_wellness_video_addon",
+  "label": "Video",
+  "verticalKey": "fitness",
+  "templateNameMatch": ["video add-on", "video addon", "video brief", "brand video", "product video"],
+  "sections": [
+    {
+      "name": "Video Purpose & Message",
+      "questions": [
+        {
+          "code": "VD1",
+          "kind": "radio",
+          "question": "What are we creating today?",
+          "hint": "Select the purpose of the video.",
+          "options": [
+            { "label": "Brand Video", "value": "brand_video" },
+            { "label": "Product Video", "value": "product_video" },
+            { "label": "Service Promotion", "value": "service_promotion" },
+            { "label": "Advertisement", "value": "advertisement" },
+            { "label": "Company Introduction", "value": "company_introduction" },
+            { "label": "Event Highlights", "value": "event_highlights" },
+            { "label": "Customer Testimonial", "value": "customer_testimonial" },
+            { "label": "Interview", "value": "interview" },
+            { "label": "Tutorial / How-To", "value": "tutorial_how_to" },
+            { "label": "Educational Video", "value": "educational_video" },
+            { "label": "Social Media Campaign", "value": "social_media_campaign" },
+            { "label": "Portfolio Showcase", "value": "portfolio_showcase" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD2",
+          "kind": "text",
+          "question": "What's the one message viewers should remember?",
+          "hint": "Describe the single biggest takeaway. Example: \"We build premium homes with transparent pricing.\", \"Our new skincare range is now available.\", \"Join our annual fitness challenge.\"",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Goal & Audience",
+      "questions": [
+        {
+          "code": "VD3",
+          "kind": "checkbox",
+          "question": "What's the goal of this video?",
+          "options": [
+            { "label": "Increase Brand Awareness", "value": "increase_brand_awareness" },
+            { "label": "Generate Leads", "value": "generate_leads" },
+            { "label": "Sell a Product", "value": "sell_a_product" },
+            { "label": "Promote a Service", "value": "promote_a_service" },
+            { "label": "Book Appointments", "value": "book_appointments" },
+            { "label": "Launch a Product", "value": "launch_a_product" },
+            { "label": "Build Trust", "value": "build_trust" },
+            { "label": "Educate Customers", "value": "educate_customers" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD4",
+          "kind": "text",
+          "question": "Who is this video for?",
+          "hint": "Describe your target audience.",
+          "required": true
+        },
+        {
+          "code": "VD5",
+          "kind": "checkbox",
+          "question": "Who or what will be featured?",
+          "hint": "Select all that apply.",
+          "options": [
+            { "label": "Founder / Team", "value": "founder_team" },
+            { "label": "Customer", "value": "customer" },
+            { "label": "Product", "value": "product" },
+            { "label": "Service", "value": "service" },
+            { "label": "Office / Store", "value": "office_store" },
+            { "label": "Event", "value": "event" },
+            { "label": "Process / Behind the Scenes", "value": "process_behind_the_scenes" },
+            { "label": "Animation / Motion Graphics", "value": "animation_motion_graphics" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Key Messages & Footage",
+      "questions": [
+        {
+          "code": "VD6",
+          "kind": "text",
+          "question": "What are the three most important points this video should communicate?",
+          "hint": "Keep it simple — focus on the key messages you want every viewer to remember.",
+          "required": true
+        },
+        {
+          "code": "VD7",
+          "kind": "checkbox",
+          "question": "Do you already have footage?",
+          "options": [
+            { "label": "I'll Upload Video Clips", "value": "ill_upload_video_clips" },
+            { "label": "I'll Upload Photos", "value": "ill_upload_photos" },
+            { "label": "I Have Both Photos & Videos", "value": "i_have_both_photos_videos" },
+            { "label": "Share via Google Drive", "value": "share_via_google_drive" },
+            { "label": "Use Stock Footage", "value": "use_stock_footage" },
+            { "label": "Footage Will Be Provided Later", "value": "footage_will_be_provided_later" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD8",
+          "kind": "file",
+          "question": "Upload your files.",
+          "hint": "Upload videos, photos, logos, graphics, or supporting assets. Recommended: MP4/MOV, 1080p or higher. Only if you'll be uploading your own footage.",
+          "required": false
+        },
+        {
+          "code": "VD9",
+          "kind": "text",
+          "question": "Are there any important scenes that must appear?",
+          "hint": "Example: Product demonstration, Customer testimonial, Team introduction, Factory tour, Before & after, Event highlights.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Length & Script",
+      "questions": [
+        {
+          "code": "VD10",
+          "kind": "radio",
+          "question": "Approximately how long should the final video be?",
+          "options": [
+            { "label": "Under 30 Seconds", "value": "under_30_seconds" },
+            { "label": "30–60 Seconds", "value": "30_60_seconds" },
+            { "label": "1–3 Minutes", "value": "1_3_minutes" },
+            { "label": "3–5 Minutes", "value": "3_5_minutes" },
+            { "label": "5–10 Minutes", "value": "5_10_minutes" },
+            { "label": "Let the Creative Team Decide", "value": "let_the_creative_team_decide" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD11",
+          "kind": "radio",
+          "question": "Do you already have a script?",
+          "options": [
+            { "label": "Final Script Ready", "value": "final_script_ready" },
+            { "label": "Rough Talking Points", "value": "rough_talking_points" },
+            { "label": "Need Scriptwriting Support", "value": "need_scriptwriting_support" },
+            { "label": "No Narration Required", "value": "no_narration_required" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD12",
+          "kind": "text",
+          "question": "Provide your script or rough talking points.",
+          "hint": "Only if you selected \"Final Script Ready\" or \"Rough Talking Points\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Tone & Music",
+      "questions": [
+        {
+          "code": "VD13",
+          "kind": "checkbox",
+          "question": "How should the video feel?",
+          "hint": "Choose up to 3.",
+          "options": [
+            { "label": "Premium", "value": "premium" },
+            { "label": "Cinematic", "value": "cinematic" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Professional", "value": "professional" },
+            { "label": "Documentary", "value": "documentary" },
+            { "label": "Emotional", "value": "emotional" },
+            { "label": "Bold", "value": "bold" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "High Energy", "value": "high_energy" },
+            { "label": "Clean", "value": "clean" },
+            { "label": "Fun", "value": "fun" },
+            { "label": "Inspirational", "value": "inspirational" },
+            { "label": "Match My Brand Style", "value": "match_my_brand_style" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD14",
+          "kind": "radio",
+          "question": "What kind of music would you prefer?",
+          "options": [
+            { "label": "Cinematic", "value": "cinematic" },
+            { "label": "Upbeat", "value": "upbeat" },
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Emotional", "value": "emotional" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Ambient", "value": "ambient" },
+            { "label": "Motivational", "value": "motivational" },
+            { "label": "I'll Upload My Own Music", "value": "ill_upload_my_own_music" },
+            { "label": "No Music", "value": "no_music" },
+            { "label": "Designer Can Choose", "value": "designer_can_choose" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Brand Assets",
+      "questions": [
+        {
+          "code": "VD15",
+          "kind": "radio",
+          "question": "Would you like us to follow your existing brand identity?",
+          "hint": "Brand Assets & Guidelines.",
+          "options": [
+            { "label": "Use My Saved Brand Kit", "value": "use_my_saved_brand_kit" },
+            { "label": "Upload Brand Guidelines", "value": "upload_brand_guidelines" },
+            { "label": "Upload Logo & Assets", "value": "upload_logo_assets" },
+            { "label": "Customize This Project", "value": "customize_this_project" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD16",
+          "kind": "checkbox",
+          "question": "What should we customize?",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "options": [
+            { "label": "Brand Colors", "value": "brand_colors" },
+            { "label": "Brand Fonts", "value": "brand_fonts" },
+            { "label": "Logo Placement", "value": "logo_placement" },
+            { "label": "Additional Instructions", "value": "additional_instructions" }
+          ],
+          "required": false
+        },
+        {
+          "code": "VD17",
+          "kind": "text",
+          "question": "Provide any additional brand customization details.",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "VD18",
+          "kind": "checkbox",
+          "question": "Do you have any inspiration?",
+          "hint": "Share videos you like.",
+          "options": [
+            { "label": "YouTube Link", "value": "youtube_link" },
+            { "label": "Vimeo Link", "value": "vimeo_link" },
+            { "label": "Instagram Reel", "value": "instagram_reel" },
+            { "label": "TikTok", "value": "tiktok" },
+            { "label": "Upload Reference Video", "value": "upload_reference_video" },
+            { "label": "Skip", "value": "skip" }
+          ],
+          "required": false
+        },
+        {
+          "code": "VD19",
+          "kind": "text",
+          "question": "Provide the reference link(s).",
+          "hint": "Only if you selected YouTube Link, Vimeo Link, Instagram Reel, or TikTok above.",
+          "required": false
+        },
+        {
+          "code": "VD20",
+          "kind": "file",
+          "question": "Upload reference video.",
+          "hint": "Only if you selected \"Upload Reference Video\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Publishing & Format",
+      "questions": [
+        {
+          "code": "VD21",
+          "kind": "checkbox",
+          "question": "Where will this video be published?",
+          "hint": "Select all that apply.",
+          "options": [
+            { "label": "Instagram", "value": "instagram" },
+            { "label": "Facebook", "value": "facebook" },
+            { "label": "YouTube", "value": "youtube" },
+            { "label": "YouTube Shorts", "value": "youtube_shorts" },
+            { "label": "TikTok", "value": "tiktok" },
+            { "label": "LinkedIn", "value": "linkedin" },
+            { "label": "Website", "value": "website" },
+            { "label": "Presentation", "value": "presentation" },
+            { "label": "Digital Display", "value": "digital_display" },
+            { "label": "Television", "value": "television" },
+            { "label": "Multiple Platforms", "value": "multiple_platforms" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD22",
+          "kind": "checkbox",
+          "question": "What output formats do you need?",
+          "hint": "Select all that apply.",
+          "options": [
+            { "label": "Vertical (9:16)", "value": "vertical_9_16" },
+            { "label": "Square (1:1)", "value": "square_1_1" },
+            { "label": "Landscape (16:9)", "value": "landscape_16_9" },
+            { "label": "Multiple Formats", "value": "multiple_formats" },
+            { "label": "Let the Creative Team Recommend", "value": "let_the_creative_team_recommend" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD23",
+          "kind": "radio",
+          "question": "What language should the video use?",
+          "options": [
+            { "label": "English", "value": "english" },
+            { "label": "Hindi", "value": "hindi" },
+            { "label": "Tamil", "value": "tamil" },
+            { "label": "Telugu", "value": "telugu" },
+            { "label": "Malayalam", "value": "malayalam" },
+            { "label": "Kannada", "value": "kannada" },
+            { "label": "Arabic", "value": "arabic" },
+            { "label": "Spanish", "value": "spanish" },
+            { "label": "French", "value": "french" },
+            { "label": "German", "value": "german" },
+            { "label": "Portuguese", "value": "portuguese" },
+            { "label": "Chinese", "value": "chinese" },
+            { "label": "Japanese", "value": "japanese" },
+            { "label": "Korean", "value": "korean" },
+            { "label": "Urdu", "value": "urdu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Call to Action & Notes",
+      "questions": [
+        {
+          "code": "VD24",
+          "kind": "radio",
+          "question": "What should viewers do after watching?",
+          "options": [
+            { "label": "Visit Our Website", "value": "visit_our_website" },
+            { "label": "Contact Us", "value": "contact_us" },
+            { "label": "Book a Consultation", "value": "book_a_consultation" },
+            { "label": "Buy Now", "value": "buy_now" },
+            { "label": "Follow Our Page", "value": "follow_our_page" },
+            { "label": "Subscribe", "value": "subscribe" },
+            { "label": "Share the Video", "value": "share_the_video" },
+            { "label": "Learn More", "value": "learn_more" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD25",
+          "kind": "text",
+          "question": "Is there anything you'd like us to avoid?",
+          "hint": "Mention any editing styles, transitions, music, wording, colours, competitors, or visual directions you'd prefer not to use.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

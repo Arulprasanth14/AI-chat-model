@@ -1,0 +1,358 @@
+{
+  "key": "retail_boutique_carousel",
+  "label": "Carousel",
+  "verticalKey": "retail",
+  "templateNameMatch": ["carousel set", "carousel", "carousel post"],
+  "sections": [
+    {
+      "name": "Carousel Purpose & Product",
+      "questions": [
+        {
+          "code": "CR1",
+          "kind": "radio",
+          "question": "What are we creating today?",
+          "hint": "Select the purpose of this carousel.",
+          "options": [
+            { "label": "New Collection Launch", "value": "new_collection_launch" },
+            { "label": "Product Showcase", "value": "product_showcase" },
+            { "label": "Seasonal Collection", "value": "seasonal_collection" },
+            { "label": "Best Sellers", "value": "best_sellers" },
+            { "label": "New Arrivals", "value": "new_arrivals" },
+            { "label": "Gift Guide", "value": "gift_guide" },
+            { "label": "Product Comparison", "value": "product_comparison" },
+            { "label": "How to Choose", "value": "how_to_choose" },
+            { "label": "Styling Tips", "value": "styling_tips" },
+            { "label": "Behind the Brand", "value": "behind_the_brand" },
+            { "label": "Customer Stories", "value": "customer_stories" },
+            { "label": "Store Tour", "value": "store_tour" },
+            { "label": "Sale / Offer", "value": "sale_offer" },
+            { "label": "Event Promotion", "value": "event_promotion" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR2",
+          "kind": "text",
+          "question": "What are we showcasing?",
+          "hint": "Provide the key details: Product(s)/Collection Name, Category, Price (Optional), Key Features/Benefits.",
+          "required": true
+        },
+        {
+          "code": "CR3",
+          "kind": "text",
+          "question": "What's the ONE message customers should remember?",
+          "hint": "Describe the biggest reason someone should swipe through and visit your store or explore your collection. Example: \"Discover our latest summer collection.\", \"Find the perfect gift for every occasion.\", \"See why customers love our handcrafted furniture.\"",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Goal & Audience",
+      "questions": [
+        {
+          "code": "CR4",
+          "kind": "checkbox",
+          "question": "What's the goal of this carousel?",
+          "options": [
+            { "label": "Increase Store Visits", "value": "increase_store_visits" },
+            { "label": "Promote a Collection", "value": "promote_a_collection" },
+            { "label": "Showcase Multiple Products", "value": "showcase_multiple_products" },
+            { "label": "Educate Customers", "value": "educate_customers" },
+            { "label": "Launch New Arrivals", "value": "launch_new_arrivals" },
+            { "label": "Promote a Sale", "value": "promote_a_sale" },
+            { "label": "Build Brand Awareness", "value": "build_brand_awareness" },
+            { "label": "Generate Enquiries", "value": "generate_enquiries" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR5",
+          "kind": "text",
+          "question": "Who is this carousel for?",
+          "hint": "Describe your ideal customer.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Structure & Content",
+      "questions": [
+        {
+          "code": "CR6",
+          "kind": "radio",
+          "question": "How should the carousel be structured?",
+          "hint": "Choose the storytelling style.",
+          "options": [
+            { "label": "Collection Showcase", "value": "collection_showcase" },
+            { "label": "Product Highlights", "value": "product_highlights" },
+            { "label": "Buying Guide", "value": "buying_guide" },
+            { "label": "Before → After", "value": "before_after" },
+            { "label": "Tips & Inspiration", "value": "tips_inspiration" },
+            { "label": "Behind the Scenes", "value": "behind_the_scenes" },
+            { "label": "Brand Story", "value": "brand_story" },
+            { "label": "Customer Journey", "value": "customer_journey" },
+            { "label": "Designer Can Recommend", "value": "designer_can_recommend" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR7",
+          "kind": "radio",
+          "question": "Do you already have the content?",
+          "options": [
+            { "label": "Final Copy Ready", "value": "final_copy_ready" },
+            { "label": "Rough Points", "value": "rough_points" },
+            { "label": "Need Copywriting Support", "value": "need_copywriting_support" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR8",
+          "kind": "text",
+          "question": "Provide your copy or rough points.",
+          "hint": "Only if you have final copy ready or rough points.",
+          "required": false
+        },
+        {
+          "code": "CR9",
+          "kind": "text",
+          "question": "Tell us the flow of the carousel.",
+          "hint": "Describe what you'd like each slide to communicate. Example: Cover → New Autumn Collection; Slide 2 → Featured Product 1; Slide 3 → Featured Product 2; Slide 4 → Key Benefits; Slide 5 → In-store Experience; Slide 6 → Offer; Slide 7 → Visit Our Store.",
+          "required": true
+        },
+        {
+          "code": "CR10",
+          "kind": "text",
+          "question": "What should the cover slide say?",
+          "hint": "This is the first thing customers will see. Example: \"New Collection Has Arrived\", \"7 Must-Have Home Décor Pieces\", \"Why Everyone Loves Our Boutique\".",
+          "required": true
+        },
+        {
+          "code": "CR11",
+          "kind": "radio",
+          "question": "How many slides would you like?",
+          "options": [
+            { "label": "5", "value": "5" },
+            { "label": "6", "value": "6" },
+            { "label": "7", "value": "7" },
+            { "label": "Let the Creative Team Decide", "value": "let_the_creative_team_decide" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Offer",
+      "questions": [
+        {
+          "code": "CR12",
+          "kind": "radio",
+          "question": "Are you running an offer?",
+          "options": [
+            { "label": "No Offer", "value": "no_offer" },
+            { "label": "Percentage Discount", "value": "percentage_discount" },
+            { "label": "Flat Discount", "value": "flat_discount" },
+            { "label": "Buy One Get One", "value": "buy_one_get_one" },
+            { "label": "Free Gift", "value": "free_gift" },
+            { "label": "Limited-Time Offer", "value": "limited_time_offer" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR13",
+          "kind": "text",
+          "question": "Provide the offer details, start & end date, and terms & conditions.",
+          "hint": "Only if you are running an offer.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Images & Assets",
+      "questions": [
+        {
+          "code": "CR14",
+          "kind": "checkbox",
+          "question": "Do you have images or assets?",
+          "options": [
+            { "label": "I'll Upload Product Photos", "value": "ill_upload_product_photos" },
+            { "label": "I'll Upload Store Photos", "value": "ill_upload_store_photos" },
+            { "label": "I'll Upload Lifestyle Photos", "value": "ill_upload_lifestyle_photos" },
+            { "label": "I'll Upload All Available Assets", "value": "ill_upload_all_available_assets" },
+            { "label": "Use Stock Lifestyle Images", "value": "use_stock_lifestyle_images" },
+            { "label": "Use Only Brand Assets", "value": "use_only_brand_assets" },
+            { "label": "Designer Can Recommend", "value": "designer_can_recommend" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR15",
+          "kind": "file",
+          "question": "Upload your files.",
+          "hint": "Upload product photos, collection images, store photography, logos, or supporting assets.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Brand Assets",
+      "questions": [
+        {
+          "code": "CR16",
+          "kind": "radio",
+          "question": "Would you like us to follow your existing brand identity?",
+          "hint": "Brand Assets & Guidelines.",
+          "options": [
+            { "label": "Use My Saved Brand Kit", "value": "use_my_saved_brand_kit" },
+            { "label": "Upload Brand Guidelines", "value": "upload_brand_guidelines" },
+            { "label": "Upload Logo & Assets", "value": "upload_logo_assets" },
+            { "label": "Customize This Project", "value": "customize_this_project" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR17",
+          "kind": "checkbox",
+          "question": "What should we customize?",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "options": [
+            { "label": "Brand Colors", "value": "brand_colors" },
+            { "label": "Brand Fonts", "value": "brand_fonts" },
+            { "label": "Additional Instructions", "value": "additional_instructions" }
+          ],
+          "required": false
+        },
+        {
+          "code": "CR18",
+          "kind": "text",
+          "question": "Provide any additional brand customization details.",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "CR19",
+          "kind": "checkbox",
+          "question": "What visual style should this carousel have?",
+          "hint": "Choose up to 3.",
+          "options": [
+            { "label": "Premium", "value": "premium" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Lifestyle", "value": "lifestyle" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Bold", "value": "bold" },
+            { "label": "Elegant", "value": "elegant" },
+            { "label": "Vibrant", "value": "vibrant" },
+            { "label": "High Contrast", "value": "high_contrast" },
+            { "label": "Clean", "value": "clean" },
+            { "label": "Match My Brand Style", "value": "match_my_brand_style" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR20",
+          "kind": "checkbox",
+          "question": "Do you have any inspiration?",
+          "hint": "Share carousel examples you like.",
+          "options": [
+            { "label": "Instagram Link", "value": "instagram_link" },
+            { "label": "Pinterest Link", "value": "pinterest_link" },
+            { "label": "Website Link", "value": "website_link" },
+            { "label": "Upload Reference Images", "value": "upload_reference_images" },
+            { "label": "Skip", "value": "skip" }
+          ],
+          "required": false
+        },
+        {
+          "code": "CR21",
+          "kind": "text",
+          "question": "Provide the reference link(s), or note that you're uploading images.",
+          "hint": "Only if you selected a reference option above (not Skip).",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Publishing & Language",
+      "questions": [
+        {
+          "code": "CR22",
+          "kind": "radio",
+          "question": "What should the final slide encourage customers to do?",
+          "options": [
+            { "label": "Visit Our Store", "value": "visit_our_store" },
+            { "label": "Explore the Collection", "value": "explore_the_collection" },
+            { "label": "Shop Now", "value": "shop_now" },
+            { "label": "Book a Visit", "value": "book_a_visit" },
+            { "label": "Contact Us", "value": "contact_us" },
+            { "label": "Send Us a DM", "value": "send_us_a_dm" },
+            { "label": "Follow Our Page", "value": "follow_our_page" },
+            { "label": "Learn More", "value": "learn_more" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR23",
+          "kind": "checkbox",
+          "question": "Where will this carousel be published?",
+          "options": [
+            { "label": "Instagram (1:1)", "value": "instagram_1_1" },
+            { "label": "Instagram (4:5)", "value": "instagram_4_5" },
+            { "label": "Facebook", "value": "facebook" },
+            { "label": "LinkedIn", "value": "linkedin" },
+            { "label": "Pinterest", "value": "pinterest" },
+            { "label": "Multiple Platforms", "value": "multiple_platforms" },
+            { "label": "Custom Size", "value": "custom_size" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR24",
+          "kind": "radio",
+          "question": "What language should the carousel use?",
+          "options": [
+            { "label": "English", "value": "english" },
+            { "label": "Hindi", "value": "hindi" },
+            { "label": "Tamil", "value": "tamil" },
+            { "label": "Telugu", "value": "telugu" },
+            { "label": "Malayalam", "value": "malayalam" },
+            { "label": "Kannada", "value": "kannada" },
+            { "label": "Arabic", "value": "arabic" },
+            { "label": "Spanish", "value": "spanish" },
+            { "label": "French", "value": "french" },
+            { "label": "German", "value": "german" },
+            { "label": "Portuguese", "value": "portuguese" },
+            { "label": "Chinese", "value": "chinese" },
+            { "label": "Japanese", "value": "japanese" },
+            { "label": "Korean", "value": "korean" },
+            { "label": "Urdu", "value": "urdu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Additional Notes",
+      "questions": [
+        {
+          "code": "CR25",
+          "kind": "text",
+          "question": "Is there anything you'd like us to avoid?",
+          "hint": "Mention any colours, imagery, wording, competitor references, or visual directions you'd prefer not to use.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

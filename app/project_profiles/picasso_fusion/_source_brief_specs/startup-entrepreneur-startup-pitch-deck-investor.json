@@ -1,0 +1,246 @@
+{
+  "key": "startup_entrepreneur_pitch_deck_investor",
+  "label": "Pitch Deck — Investor",
+  "verticalKey": "startup",
+  "templateNameMatch": ["pitch deck", "investor deck", "pitch / investor deck", "investor pitch"],
+  "sections": [
+    {
+      "name": "Deck Overview",
+      "questions": [
+        {
+          "code": "PD1",
+          "kind": "radio",
+          "question": "What stage of fundraising is this deck for?",
+          "hint": "Investor expectations vary by stage.",
+          "options": [
+            { "label": "Pre-Seed", "value": "pre_seed" },
+            { "label": "Seed", "value": "seed" },
+            { "label": "Series A", "value": "series_a" },
+            { "label": "Series B+", "value": "series_b_plus" },
+            { "label": "Angel Investment", "value": "angel_investment" },
+            { "label": "Accelerator / Incubator", "value": "accelerator_incubator" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PD2",
+          "kind": "text",
+          "question": "What company, product, or startup are we presenting?",
+          "hint": "Brief overview of what the business does and who it serves.",
+          "required": true
+        },
+        {
+          "code": "PD3",
+          "kind": "checkbox",
+          "question": "Who is the target audience for this deck?",
+          "hint": "Different investors expect different information.",
+          "options": [
+            { "label": "Angel Investors", "value": "angel_investors" },
+            { "label": "Venture Capital Firms", "value": "vc_firms" },
+            { "label": "Accelerators", "value": "accelerators" },
+            { "label": "Strategic Partners", "value": "strategic_partners" },
+            { "label": "Family Offices", "value": "family_offices" },
+            { "label": "Corporate Investors", "value": "corporate_investors" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Business Fundamentals",
+      "questions": [
+        {
+          "code": "PD4",
+          "kind": "text",
+          "question": "What problem are you solving?",
+          "hint": "Investors invest in meaningful problems.",
+          "required": true
+        },
+        {
+          "code": "PD5",
+          "kind": "text",
+          "question": "What is your solution?",
+          "hint": "Clearly explain how your product or service solves the problem.",
+          "required": true
+        },
+        {
+          "code": "PD6",
+          "kind": "checkbox",
+          "question": "What is your business model? How does the company make money?",
+          "options": [
+            { "label": "SaaS Subscription", "value": "saas_subscription" },
+            { "label": "Marketplace", "value": "marketplace" },
+            { "label": "Transaction Fees", "value": "transaction_fees" },
+            { "label": "Licensing", "value": "licensing" },
+            { "label": "Services", "value": "services" },
+            { "label": "E-commerce", "value": "ecommerce" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Market & Competition",
+      "questions": [
+        {
+          "code": "PD7",
+          "kind": "text",
+          "question": "What market opportunity should be highlighted?",
+          "hint": "Market size, industry opportunity, growth trends, TAM/SAM/SOM, etc.",
+          "required": true
+        },
+        {
+          "code": "PD8",
+          "kind": "text",
+          "question": "Who are your key competitors and what makes you different?",
+          "hint": "Differentiation is one of the most important investor considerations.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Traction & Funding Ask",
+      "questions": [
+        {
+          "code": "PD9",
+          "kind": "checkbox",
+          "question": "What traction or proof do you have?",
+          "hint": "Metrics build credibility.",
+          "options": [
+            { "label": "Revenue", "value": "revenue" },
+            { "label": "Users", "value": "users" },
+            { "label": "Growth Rate", "value": "growth_rate" },
+            { "label": "Customers", "value": "customers" },
+            { "label": "Partnerships", "value": "partnerships" },
+            { "label": "Retention", "value": "retention" },
+            { "label": "Waitlist", "value": "waitlist" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PD10",
+          "kind": "text",
+          "question": "How much funding are you seeking, and by when do you need it?",
+          "required": true
+        },
+        {
+          "code": "PD11",
+          "kind": "checkbox",
+          "question": "What will the funds primarily be used for?",
+          "options": [
+            { "label": "Product Development", "value": "product_development" },
+            { "label": "Hiring", "value": "hiring" },
+            { "label": "Marketing", "value": "marketing" },
+            { "label": "Expansion", "value": "expansion" },
+            { "label": "Operations", "value": "operations" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Existing Content",
+      "questions": [
+        {
+          "code": "PD12",
+          "kind": "radio",
+          "question": "Do you already have content, notes, or an existing deck?",
+          "options": [
+            { "label": "Yes, complete deck", "value": "complete_deck" },
+            { "label": "Partial content available", "value": "partial_content" },
+            { "label": "Need help structuring content", "value": "need_structuring" },
+            { "label": "Need help creating content", "value": "need_creation" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PD13",
+          "kind": "file",
+          "question": "Upload existing deck, content, or supporting documents.",
+          "hint": "Accepted formats: PPTX, PDF, DOCX, Google Slides export. Only if you have existing content.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Branding & Assets",
+      "questions": [
+        {
+          "code": "PD14",
+          "kind": "radio",
+          "question": "Do you have branding and assets?",
+          "hint": "Consistent branding improves investor perception.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" },
+            { "label": "Partial", "value": "partial" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PD15",
+          "kind": "file",
+          "question": "Upload logos, screenshots, product images, and brand assets.",
+          "hint": "PNG, SVG, JPG preferred. Only if you have branding assets.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Delivery & Presentation Style",
+      "questions": [
+        {
+          "code": "PD16",
+          "kind": "radio",
+          "question": "Will this deck be presented live or sent to investors for review?",
+          "hint": "This affects slide density and storytelling style.",
+          "options": [
+            { "label": "Live Presentation", "value": "live_presentation" },
+            { "label": "Send-Ahead Deck", "value": "send_ahead_deck" },
+            { "label": "Both", "value": "both" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PD17",
+          "kind": "radio",
+          "question": "Do you have any reference pitch decks or presentation styles?",
+          "hint": "Competitor decks, successful startup decks, or visual styles you admire.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PD18",
+          "kind": "file",
+          "question": "Upload reference decks, up to 3.",
+          "hint": "Only if you said yes to reference decks above.",
+          "required": false
+        },
+        {
+          "code": "PD19",
+          "kind": "radio",
+          "question": "Describe the presentation style you'd like.",
+          "options": [
+            { "label": "Investor-Grade", "value": "investor_grade" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "SaaS", "value": "saas" },
+            { "label": "Data-Driven", "value": "data_driven" },
+            { "label": "Bold Startup", "value": "bold_startup" },
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    }
+  ]
+}

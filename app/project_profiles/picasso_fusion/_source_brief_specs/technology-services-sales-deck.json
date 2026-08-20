@@ -1,0 +1,243 @@
+{
+  "key": "technology_services_sales_deck",
+  "label": "Sales Deck — Presentation",
+  "verticalKey": "technology",
+  "templateNameMatch": ["sales deck", "sales presentation", "presentation deck — sales", "sales pitch deck"],
+  "sections": [
+    {
+      "name": "Presentation Goal",
+      "questions": [
+        {
+          "code": "SD1",
+          "kind": "checkbox",
+          "question": "What is the primary goal of this sales presentation?",
+          "hint": "Examples: Generate leads, close a sale, secure a meeting, pitch a service, introduce a product, win a contract.",
+          "options": [
+            { "label": "Generate Leads", "value": "generate_leads" },
+            { "label": "Close a Sale", "value": "close_a_sale" },
+            { "label": "Secure a Meeting", "value": "secure_a_meeting" },
+            { "label": "Pitch a Service", "value": "pitch_a_service" },
+            { "label": "Introduce a Product", "value": "introduce_a_product" },
+            { "label": "Win a Contract", "value": "win_a_contract" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SD2",
+          "kind": "checkbox",
+          "question": "Who is the target audience?",
+          "hint": "Examples: Small business owners, enterprise buyers, HR managers, procurement teams, retailers, investors, healthcare professionals, etc. This is one of the most important questions because the design and messaging should be tailored to the audience.",
+          "options": [
+            { "label": "Small Business Owners", "value": "small_business_owners" },
+            { "label": "Enterprise Buyers", "value": "enterprise_buyers" },
+            { "label": "HR Managers", "value": "hr_managers" },
+            { "label": "Procurement Teams", "value": "procurement_teams" },
+            { "label": "Retailers", "value": "retailers" },
+            { "label": "Investors", "value": "investors" },
+            { "label": "Healthcare Professionals", "value": "healthcare_professionals" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Product / Service Information",
+      "questions": [
+        {
+          "code": "SD3",
+          "kind": "text",
+          "question": "What product, service, or solution are you presenting?",
+          "hint": "Provide a brief description of the offering.",
+          "required": true
+        },
+        {
+          "code": "SD4",
+          "kind": "text",
+          "question": "What are the key benefits or selling points?",
+          "hint": "List the most important features, benefits, or competitive advantages to highlight.",
+          "required": true
+        },
+        {
+          "code": "SD5",
+          "kind": "radio",
+          "question": "Are there any offers, pricing details, memberships, or promotions to include?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SD6",
+          "kind": "text",
+          "question": "What are the offer details?",
+          "hint": "Pricing, offer terms, dates, what's included, and any conditions. Only if you said yes above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Content",
+      "questions": [
+        {
+          "code": "SD7",
+          "kind": "radio",
+          "question": "Do you already have presentation content prepared?",
+          "options": [
+            { "label": "Yes, Complete Content Ready", "value": "complete_content_ready" },
+            { "label": "Partial Content Available", "value": "partial_content_available" },
+            { "label": "Need Help Structuring Content", "value": "need_help_structuring_content" },
+            { "label": "Need Help Writing Content", "value": "need_help_writing_content" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SD8",
+          "kind": "file",
+          "question": "Upload your presentation content, notes, or existing deck.",
+          "hint": "Accepted formats: PPTX, PDF, DOCX, Google Slides export. Only if you have existing content.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Assets",
+      "questions": [
+        {
+          "code": "SD9",
+          "kind": "radio",
+          "question": "Do you have photography, product screenshots, charts, case studies, or visuals to include?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SD10",
+          "kind": "file",
+          "question": "Upload available assets.",
+          "hint": "Only if you have photography, product screenshots, charts, case studies, or visuals.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Call to Action",
+      "questions": [
+        {
+          "code": "SD11",
+          "kind": "radio",
+          "question": "What action should the audience take after viewing the presentation?",
+          "hint": "Examples: Book a demo, Request a proposal, Contact sales, Start a trial, Schedule a meeting.",
+          "options": [
+            { "label": "Book a Demo", "value": "book_a_demo" },
+            { "label": "Request a Proposal", "value": "request_a_proposal" },
+            { "label": "Contact Sales", "value": "contact_sales" },
+            { "label": "Start a Trial", "value": "start_a_trial" },
+            { "label": "Schedule a Meeting", "value": "schedule_a_meeting" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SD12",
+          "kind": "radio",
+          "question": "Will the presentation include a QR code?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SD13",
+          "kind": "text",
+          "question": "What is the destination URL for the QR code?",
+          "hint": "Only if you said yes above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Direction",
+      "questions": [
+        {
+          "code": "SD14",
+          "kind": "radio",
+          "question": "Any presentation designs or inspiration you'd like us to reference?",
+          "hint": "Competitors, industry leaders, previous presentations, or styles you admire.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SD15",
+          "kind": "file",
+          "question": "Upload reference presentations, up to 3.",
+          "hint": "Only if you said yes to reference designs above.",
+          "required": false
+        },
+        {
+          "code": "SD16",
+          "kind": "radio",
+          "question": "Describe the presentation style you'd like.",
+          "hint": "Examples: Corporate, premium, modern SaaS, bold, minimal, enterprise, data-driven, luxury.",
+          "options": [
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "Modern SaaS", "value": "modern_saas" },
+            { "label": "Bold", "value": "bold" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Enterprise", "value": "enterprise" },
+            { "label": "Data-Driven", "value": "data_driven" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Delivery Requirements",
+      "questions": [
+        {
+          "code": "SD17",
+          "kind": "radio",
+          "question": "Will this presentation be presented live or shared as a standalone deck?",
+          "hint": "This is a critical question because live presentations use less text, while standalone decks require more context.",
+          "options": [
+            { "label": "Presented Live", "value": "presented_live" },
+            { "label": "Shared for Reading", "value": "shared_for_reading" },
+            { "label": "Both", "value": "both" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SD18",
+          "kind": "radio",
+          "question": "What format would you like delivered?",
+          "options": [
+            { "label": "PowerPoint (.pptx)", "value": "powerpoint_pptx" },
+            { "label": "Google Slides", "value": "google_slides" },
+            { "label": "Keynote", "value": "keynote" },
+            { "label": "PDF", "value": "pdf" },
+            { "label": "Multiple Formats", "value": "multiple_formats" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SD19",
+          "kind": "text",
+          "question": "Any technical or presentation-specific requirements?",
+          "hint": "Leave blank if unsure.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

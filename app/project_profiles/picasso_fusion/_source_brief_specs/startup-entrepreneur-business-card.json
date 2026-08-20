@@ -1,0 +1,221 @@
+{
+  "key": "startup_entrepreneur_business_card",
+  "label": "Business Card",
+  "verticalKey": "startup",
+  "templateNameMatch": ["business card", "namecard", "name card"],
+  "sections": [
+    {
+      "name": "Card Overview",
+      "questions": [
+        {
+          "code": "BC1",
+          "kind": "text",
+          "question": "Who is this business card for?",
+          "hint": "Provide the person's name and job title exactly as it should appear. Examples: \"John Smith – Founder & CEO\", \"Sarah Lee – Senior Property Consultant\", \"Michael Chen – Marketing Director\".",
+          "required": true
+        },
+        {
+          "code": "BC2",
+          "kind": "radio",
+          "question": "What is the primary purpose of this business card?",
+          "hint": "Different goals require different layouts and information hierarchy.",
+          "options": [
+            { "label": "Networking", "value": "networking" },
+            { "label": "Sales & Lead Generation", "value": "sales_lead_generation" },
+            { "label": "Client Meetings", "value": "client_meetings" },
+            { "label": "Corporate Identity", "value": "corporate_identity" },
+            { "label": "Event Distribution", "value": "event_distribution" },
+            { "label": "Personal Branding", "value": "personal_branding" }
+          ],
+          "required": true
+        },
+        {
+          "code": "BC3",
+          "kind": "checkbox",
+          "question": "What contact details should appear?",
+          "hint": "Include only information recipients should use.",
+          "options": [
+            { "label": "Mobile Number", "value": "mobile_number" },
+            { "label": "Office Number", "value": "office_number" },
+            { "label": "Email Address", "value": "email_address" },
+            { "label": "Website", "value": "website" },
+            { "label": "Office Address", "value": "office_address" },
+            { "label": "LinkedIn Profile", "value": "linkedin_profile" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "QR Code",
+      "questions": [
+        {
+          "code": "BC4",
+          "kind": "radio",
+          "question": "Should a QR code be included?",
+          "hint": "QR codes can improve engagement and lead generation.",
+          "options": [
+            { "label": "Website", "value": "website" },
+            { "label": "Digital Business Card (vCard)", "value": "digital_business_card_vcard" },
+            { "label": "LinkedIn Profile", "value": "linkedin_profile" },
+            { "label": "Booking Page", "value": "booking_page" },
+            { "label": "Portfolio", "value": "portfolio" },
+            { "label": "No QR Code", "value": "no_qr_code" }
+          ],
+          "required": true
+        },
+        {
+          "code": "BC5",
+          "kind": "text",
+          "question": "Provide QR code destination URL.",
+          "hint": "Please verify the link before production. Only if you selected a QR code option above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Branding & Assets",
+      "questions": [
+        {
+          "code": "BC6",
+          "kind": "radio",
+          "question": "Do you have brand assets?",
+          "hint": "Consistent branding creates a professional impression.",
+          "options": [
+            { "label": "Full Brand Guidelines", "value": "full_brand_guidelines" },
+            { "label": "Logo Only", "value": "logo_only" },
+            { "label": "Existing Business Card", "value": "existing_business_card" },
+            { "label": "No Assets Available", "value": "no_assets_available" }
+          ],
+          "required": true
+        },
+        {
+          "code": "BC7",
+          "kind": "file",
+          "question": "Upload logo, brand guide, and visual assets.",
+          "hint": "Vector files (SVG, AI, EPS, PDF) preferred. Only if you have brand assets.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Layout",
+      "questions": [
+        {
+          "code": "BC8",
+          "kind": "radio",
+          "question": "Single-sided or double-sided card?",
+          "hint": "Double-sided cards provide additional space for branding and QR codes.",
+          "options": [
+            { "label": "Single-Sided", "value": "single_sided" },
+            { "label": "Double-Sided", "value": "double_sided" }
+          ],
+          "required": true
+        },
+        {
+          "code": "BC9",
+          "kind": "checkbox",
+          "question": "Should any additional information appear?",
+          "hint": "Only include information that adds value.",
+          "options": [
+            { "label": "Tagline", "value": "tagline" },
+            { "label": "Certifications", "value": "certifications" },
+            { "label": "Awards", "value": "awards" },
+            { "label": "Service Categories", "value": "service_categories" },
+            { "label": "Social Media Handles", "value": "social_media_handles" },
+            { "label": "Appointment Booking Link", "value": "appointment_booking_link" },
+            { "label": "Other", "value": "other" },
+            { "label": "None", "value": "none" }
+          ],
+          "required": false
+        },
+        {
+          "code": "BC10",
+          "kind": "radio",
+          "question": "What card orientation do you prefer?",
+          "hint": "This affects layout significantly and is often forgotten.",
+          "options": [
+            { "label": "Horizontal", "value": "horizontal" },
+            { "label": "Vertical", "value": "vertical" },
+            { "label": "Square", "value": "square" },
+            { "label": "No Preference", "value": "no_preference" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "BC11",
+          "kind": "radio",
+          "question": "Preferred card style?",
+          "hint": "Match the card to the brand personality.",
+          "options": [
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Creative", "value": "creative" },
+            { "label": "Bold", "value": "bold" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "BC12",
+          "kind": "radio",
+          "question": "Any reference business cards or inspiration?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "BC13",
+          "kind": "file",
+          "question": "Upload reference cards, up to 3.",
+          "hint": "Only if you said yes to reference business cards above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Print & Production",
+      "questions": [
+        {
+          "code": "BC14",
+          "kind": "checkbox",
+          "question": "Any print-specific requirements?",
+          "hint": "Leave blank if unsure.",
+          "options": [
+            { "label": "Matte Finish", "value": "matte_finish" },
+            { "label": "Soft-Touch Lamination", "value": "soft_touch_lamination" },
+            { "label": "Spot UV", "value": "spot_uv" },
+            { "label": "Foil Stamping", "value": "foil_stamping" },
+            { "label": "Embossing", "value": "embossing" },
+            { "label": "Rounded Corners", "value": "rounded_corners" },
+            { "label": "Recycled Stock", "value": "recycled_stock" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": false
+        },
+        {
+          "code": "BC15",
+          "kind": "radio",
+          "question": "Will multiple employees use this design template?",
+          "hint": "This determines whether the designer should create a reusable business card system.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,254 @@
+template_key: real_estate_buyer_seller_guide
+template_label: Buyer / Seller Guide
+vertical: realestate
+template_name_match:
+- buyer guide
+- seller guide
+- buyer/seller
+- buyer seller
+fields:
+- code: BG1
+  kind: radio
+  required: true
+  section_name: Guide Overview
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: First Home Buyer Guide
+    value: first_home_buyer
+  - label: Property Buyer Guide
+    value: property_buyer
+  - label: Property Seller Guide
+    value: property_seller
+  - label: Investor Guide
+    value: investor
+  - label: Downsizer Guide
+    value: downsizer
+  - label: Suburb Guide
+    value: suburb
+  - label: Custom Guide
+    value: custom
+- code: BG2
+  kind: checkbox
+  required: true
+  section_name: Guide Overview
+  section_order: 0
+  section_field_order: 1
+  options:
+  - label: First-time buyers
+    value: first_time_buyers
+  - label: Property investors
+    value: property_investors
+  - label: Homeowners preparing to sell
+    value: homeowners_selling
+  - label: Downsizers
+    value: downsizers
+  - label: Luxury property buyers
+    value: luxury_buyers
+  - label: Commercial property owners
+    value: commercial_owners
+  - label: Other
+    value: other
+- code: BG3
+  kind: checkbox
+  required: true
+  section_name: Guide Overview
+  section_order: 0
+  section_field_order: 2
+  options:
+  - label: Generate appraisal leads
+    value: generate_appraisal_leads
+  - label: Educate buyers
+    value: educate_buyers
+  - label: Educate sellers
+    value: educate_sellers
+  - label: Build trust and authority
+    value: build_trust_authority
+  - label: Generate consultation bookings
+    value: generate_consultations
+  - label: Capture email leads
+    value: capture_email_leads
+  - label: Other
+    value: other
+- code: BG4
+  kind: checkbox
+  required: true
+  section_name: Guide Content
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Buying process
+    value: buying_process
+  - label: Selling process
+    value: selling_process
+  - label: Financing
+    value: financing
+  - label: Property preparation
+    value: property_preparation
+  - label: Market insights
+    value: market_insights
+  - label: Common mistakes
+    value: common_mistakes
+  - label: FAQs
+    value: faqs
+  - label: Checklist
+    value: checklist
+  - label: Agent services
+    value: agent_services
+  - label: Other
+    value: other
+- code: BG5
+  kind: radio
+  required: true
+  section_name: Guide Content
+  section_order: 1
+  section_field_order: 1
+  options:
+  - label: Yes, final content ready
+    value: final_ready
+  - label: Partial content available
+    value: partial
+  - label: Need help organising content
+    value: need_help_organising
+  - label: Need help writing content
+    value: need_help_writing
+- code: BG6
+  kind: file
+  required: false
+  section_name: Guide Content
+  section_order: 1
+  section_field_order: 2
+- code: BG7
+  kind: radio
+  required: true
+  section_name: Guide Content
+  section_order: 1
+  section_field_order: 3
+  options:
+  - label: 4 Pages
+    value: '4'
+  - label: 8 Pages
+    value: '8'
+  - label: 12 Pages
+    value: '12'
+  - label: 16+ Pages
+    value: 16+
+- code: BG8
+  kind: file
+  required: true
+  section_name: Photography & Assets
+  section_order: 2
+  section_field_order: 0
+- code: BG9
+  kind: checkbox
+  required: true
+  section_name: Photography & Assets
+  section_order: 2
+  section_field_order: 1
+  options:
+  - label: Agent photos
+    value: agent_photos
+  - label: Testimonials
+    value: testimonials
+  - label: Case studies
+    value: case_studies
+  - label: Checklists
+    value: checklists
+  - label: Infographics
+    value: infographics
+  - label: Maps
+    value: maps
+  - label: Property imagery
+    value: property_imagery
+  - label: Other
+    value: other
+  - label: None
+    value: none
+- code: BG10
+  kind: radio
+  required: true
+  section_name: Lead Generation & CTA
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: Request an appraisal
+    value: request_appraisal
+  - label: Book a consultation
+    value: book_consultation
+  - label: Contact an agent
+    value: contact_agent
+  - label: Download additional resources
+    value: download_resources
+  - label: Visit the website
+    value: visit_website
+  - label: Other
+    value: other
+- code: BG11
+  kind: radio
+  required: true
+  section_name: Lead Generation & CTA
+  section_order: 3
+  section_field_order: 1
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: BG12
+  kind: text
+  required: false
+  section_name: Lead Generation & CTA
+  section_order: 3
+  section_field_order: 2
+- code: BG13
+  kind: radio
+  required: true
+  section_name: Distribution Format
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Printed Guide
+    value: printed
+  - label: Downloadable PDF
+    value: downloadable_pdf
+  - label: Lead Magnet
+    value: lead_magnet
+  - label: Email Attachment
+    value: email_attachment
+  - label: LinkedIn PDF Carousel
+    value: linkedin_carousel
+  - label: Both Print & Digital
+    value: both
+- code: BG14
+  kind: file
+  required: false
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 0
+- code: BG15
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 1
+  options:
+  - label: Luxury Real Estate
+    value: luxury_real_estate
+  - label: Premium Residential
+    value: premium_residential
+  - label: Educational
+    value: educational
+  - label: Editorial
+    value: editorial
+  - label: Corporate
+    value: corporate
+  - label: Modern Minimal
+    value: modern_minimal
+  - label: Other
+    value: other
+- code: BG16
+  kind: text
+  required: false
+  section_name: Technical Requirements
+  section_order: 6
+  section_field_order: 0

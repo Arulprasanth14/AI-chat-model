@@ -1,0 +1,182 @@
+template_key: technology_services_product_one_pager
+template_label: Product One-Pager
+vertical: technology
+template_name_match:
+- product one-pager
+- product one pager
+- sell sheet
+- one-pager
+- one pager
+fields:
+- code: PP1
+  kind: text
+  required: true
+  section_name: One-Pager Overview
+  section_order: 0
+  section_field_order: 0
+- code: PP2
+  kind: text
+  required: true
+  section_name: One-Pager Overview
+  section_order: 0
+  section_field_order: 1
+- code: PP3
+  kind: checkbox
+  required: true
+  section_name: One-Pager Overview
+  section_order: 0
+  section_field_order: 2
+  options:
+  - label: Consumers
+    value: consumers
+  - label: Retailers
+    value: retailers
+  - label: Distributors
+    value: distributors
+  - label: Investors
+    value: investors
+  - label: Enterprise Buyers
+    value: enterprise_buyers
+  - label: Healthcare Professionals
+    value: healthcare_professionals
+  - label: Other
+    value: other
+- code: PP4
+  kind: radio
+  required: true
+  section_name: Offer Details (Optional)
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: PP5
+  kind: text
+  required: false
+  section_name: Offer Details (Optional)
+  section_order: 1
+  section_field_order: 1
+- code: PP6
+  kind: text
+  required: true
+  section_name: Content & Assets
+  section_order: 2
+  section_field_order: 0
+- code: PP7
+  kind: radio
+  required: true
+  section_name: Content & Assets
+  section_order: 2
+  section_field_order: 1
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: PP8
+  kind: file
+  required: false
+  section_name: Content & Assets
+  section_order: 2
+  section_field_order: 2
+- code: PP9
+  kind: radio
+  required: true
+  section_name: Call to Action
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: Visit Website
+    value: visit_website
+  - label: Request a Demo
+    value: request_a_demo
+  - label: Contact Sales
+    value: contact_sales
+  - label: Call Now
+    value: call_now
+  - label: Scan QR Code
+    value: scan_qr_code
+  - label: Other
+    value: other
+- code: PP10
+  kind: text
+  required: false
+  section_name: Call to Action
+  section_order: 3
+  section_field_order: 1
+- code: PP11
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: PP12
+  kind: file
+  required: false
+  section_name: Design Direction
+  section_order: 4
+  section_field_order: 1
+- code: PP13
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 4
+  section_field_order: 2
+  options:
+  - label: Premium
+    value: premium
+  - label: Corporate
+    value: corporate
+  - label: Modern
+    value: modern
+  - label: Bold
+    value: bold
+  - label: Minimal
+    value: minimal
+  - label: Technical
+    value: technical
+  - label: Luxury
+    value: luxury
+  - label: Retail-Focused
+    value: retail_focused
+  - label: Other
+    value: other
+- code: PP14
+  kind: radio
+  required: true
+  section_name: Production Requirements
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: A4
+    value: a4
+  - label: US Letter
+    value: us_letter
+  - label: A5
+    value: a5
+  - label: Custom
+    value: custom
+- code: PP15
+  kind: radio
+  required: true
+  section_name: Production Requirements
+  section_order: 5
+  section_field_order: 1
+  options:
+  - label: Single-Sided
+    value: single_sided
+  - label: Double-Sided
+    value: double_sided
+- code: PP16
+  kind: text
+  required: false
+  section_name: Production Requirements
+  section_order: 5
+  section_field_order: 2

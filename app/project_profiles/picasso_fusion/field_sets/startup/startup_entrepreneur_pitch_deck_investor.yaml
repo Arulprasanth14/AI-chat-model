@@ -1,0 +1,243 @@
+template_key: startup_entrepreneur_pitch_deck_investor
+template_label: Pitch Deck — Investor
+vertical: startup
+template_name_match:
+- pitch deck
+- investor deck
+- pitch / investor deck
+- investor pitch
+fields:
+- code: PD1
+  kind: radio
+  required: true
+  section_name: Deck Overview
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Pre-Seed
+    value: pre_seed
+  - label: Seed
+    value: seed
+  - label: Series A
+    value: series_a
+  - label: Series B+
+    value: series_b_plus
+  - label: Angel Investment
+    value: angel_investment
+  - label: Accelerator / Incubator
+    value: accelerator_incubator
+  - label: Other
+    value: other
+- code: PD2
+  kind: text
+  required: true
+  section_name: Deck Overview
+  section_order: 0
+  section_field_order: 1
+- code: PD3
+  kind: checkbox
+  required: true
+  section_name: Deck Overview
+  section_order: 0
+  section_field_order: 2
+  options:
+  - label: Angel Investors
+    value: angel_investors
+  - label: Venture Capital Firms
+    value: vc_firms
+  - label: Accelerators
+    value: accelerators
+  - label: Strategic Partners
+    value: strategic_partners
+  - label: Family Offices
+    value: family_offices
+  - label: Corporate Investors
+    value: corporate_investors
+  - label: Other
+    value: other
+- code: PD4
+  kind: text
+  required: true
+  section_name: Business Fundamentals
+  section_order: 1
+  section_field_order: 0
+- code: PD5
+  kind: text
+  required: true
+  section_name: Business Fundamentals
+  section_order: 1
+  section_field_order: 1
+- code: PD6
+  kind: checkbox
+  required: true
+  section_name: Business Fundamentals
+  section_order: 1
+  section_field_order: 2
+  options:
+  - label: SaaS Subscription
+    value: saas_subscription
+  - label: Marketplace
+    value: marketplace
+  - label: Transaction Fees
+    value: transaction_fees
+  - label: Licensing
+    value: licensing
+  - label: Services
+    value: services
+  - label: E-commerce
+    value: ecommerce
+  - label: Other
+    value: other
+- code: PD7
+  kind: text
+  required: true
+  section_name: Market & Competition
+  section_order: 2
+  section_field_order: 0
+- code: PD8
+  kind: text
+  required: true
+  section_name: Market & Competition
+  section_order: 2
+  section_field_order: 1
+- code: PD9
+  kind: checkbox
+  required: true
+  section_name: Traction & Funding Ask
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: Revenue
+    value: revenue
+  - label: Users
+    value: users
+  - label: Growth Rate
+    value: growth_rate
+  - label: Customers
+    value: customers
+  - label: Partnerships
+    value: partnerships
+  - label: Retention
+    value: retention
+  - label: Waitlist
+    value: waitlist
+  - label: Other
+    value: other
+- code: PD10
+  kind: text
+  required: true
+  section_name: Traction & Funding Ask
+  section_order: 3
+  section_field_order: 1
+- code: PD11
+  kind: checkbox
+  required: true
+  section_name: Traction & Funding Ask
+  section_order: 3
+  section_field_order: 2
+  options:
+  - label: Product Development
+    value: product_development
+  - label: Hiring
+    value: hiring
+  - label: Marketing
+    value: marketing
+  - label: Expansion
+    value: expansion
+  - label: Operations
+    value: operations
+  - label: Other
+    value: other
+- code: PD12
+  kind: radio
+  required: true
+  section_name: Existing Content
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Yes, complete deck
+    value: complete_deck
+  - label: Partial content available
+    value: partial_content
+  - label: Need help structuring content
+    value: need_structuring
+  - label: Need help creating content
+    value: need_creation
+- code: PD13
+  kind: file
+  required: false
+  section_name: Existing Content
+  section_order: 4
+  section_field_order: 1
+- code: PD14
+  kind: radio
+  required: true
+  section_name: Branding & Assets
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+  - label: Partial
+    value: partial
+- code: PD15
+  kind: file
+  required: false
+  section_name: Branding & Assets
+  section_order: 5
+  section_field_order: 1
+- code: PD16
+  kind: radio
+  required: true
+  section_name: Delivery & Presentation Style
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Live Presentation
+    value: live_presentation
+  - label: Send-Ahead Deck
+    value: send_ahead_deck
+  - label: Both
+    value: both
+- code: PD17
+  kind: radio
+  required: true
+  section_name: Delivery & Presentation Style
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: PD18
+  kind: file
+  required: false
+  section_name: Delivery & Presentation Style
+  section_order: 6
+  section_field_order: 2
+- code: PD19
+  kind: radio
+  required: true
+  section_name: Delivery & Presentation Style
+  section_order: 6
+  section_field_order: 3
+  options:
+  - label: Investor-Grade
+    value: investor_grade
+  - label: Minimal
+    value: minimal
+  - label: Premium
+    value: premium
+  - label: SaaS
+    value: saas
+  - label: Data-Driven
+    value: data_driven
+  - label: Bold Startup
+    value: bold_startup
+  - label: Corporate
+    value: corporate
+  - label: Other
+    value: other

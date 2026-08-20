@@ -1,0 +1,354 @@
+{
+  "key": "fitness_wellness_print_addon",
+  "label": "Print Design",
+  "verticalKey": "fitness",
+  "templateNameMatch": ["print design", "print add-on", "print addon", "print brief", "print material"],
+  "sections": [
+    {
+      "name": "Print Item & Message",
+      "questions": [
+        {
+          "code": "PT1",
+          "kind": "radio",
+          "question": "What are we creating today?",
+          "hint": "Select the print item.",
+          "options": [
+            { "label": "Flyer", "value": "flyer" },
+            { "label": "Poster", "value": "poster" },
+            { "label": "Brochure", "value": "brochure" },
+            { "label": "Bifold Brochure", "value": "bifold_brochure" },
+            { "label": "Trifold Brochure", "value": "trifold_brochure" },
+            { "label": "Catalogue", "value": "catalogue" },
+            { "label": "Business Card", "value": "business_card" },
+            { "label": "Menu", "value": "menu" },
+            { "label": "Roll-up Standee", "value": "roll_up_standee" },
+            { "label": "Banner", "value": "banner" },
+            { "label": "Newspaper Advertisement", "value": "newspaper_advertisement" },
+            { "label": "Magazine Advertisement", "value": "magazine_advertisement" },
+            { "label": "Packaging Insert", "value": "packaging_insert" },
+            { "label": "Sticker / Label", "value": "sticker_label" },
+            { "label": "Invitation", "value": "invitation" },
+            { "label": "Certificate", "value": "certificate" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT2",
+          "kind": "text",
+          "question": "What's the one message people should remember?",
+          "hint": "Describe the main purpose of this print piece. Example: \"Grand opening this Saturday.\", \"Introducing our new premium apartment project.\", \"Summer sale up to 50% off.\"",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Goal & Audience",
+      "questions": [
+        {
+          "code": "PT3",
+          "kind": "checkbox",
+          "question": "What's the goal of this print piece?",
+          "options": [
+            { "label": "Promote a Product", "value": "promote_a_product" },
+            { "label": "Promote a Service", "value": "promote_a_service" },
+            { "label": "Announce an Event", "value": "announce_an_event" },
+            { "label": "Generate Leads", "value": "generate_leads" },
+            { "label": "Increase Sales", "value": "increase_sales" },
+            { "label": "Drive Store Visits", "value": "drive_store_visits" },
+            { "label": "Share Information", "value": "share_information" },
+            { "label": "Build Brand Awareness", "value": "build_brand_awareness" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT4",
+          "kind": "text",
+          "question": "Who is this for?",
+          "hint": "Describe your target audience.",
+          "required": true
+        },
+        {
+          "code": "PT5",
+          "kind": "radio",
+          "question": "What action should people take?",
+          "options": [
+            { "label": "Visit Website", "value": "visit_website" },
+            { "label": "Call Us", "value": "call_us" },
+            { "label": "Visit Store", "value": "visit_store" },
+            { "label": "Scan QR Code", "value": "scan_qr_code" },
+            { "label": "Book Appointment", "value": "book_appointment" },
+            { "label": "Buy Now", "value": "buy_now" },
+            { "label": "Contact Us", "value": "contact_us" },
+            { "label": "Attend Event", "value": "attend_event" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Content",
+      "questions": [
+        {
+          "code": "PT6",
+          "kind": "text",
+          "question": "What are you promoting?",
+          "hint": "Provide the key information: Product/Service Name, Price (if applicable), Key Benefits, Offer Details, Event Date & Time, Terms & Conditions.",
+          "required": true
+        },
+        {
+          "code": "PT7",
+          "kind": "radio",
+          "question": "Do you already have the final content?",
+          "options": [
+            { "label": "Yes, Final Copy Is Ready", "value": "final_copy_ready" },
+            { "label": "I Have Rough Points", "value": "rough_points" },
+            { "label": "I Need Copywriting Support", "value": "need_copywriting_support" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT8",
+          "kind": "text",
+          "question": "Provide your final copy or rough points.",
+          "hint": "Only if you have final copy ready or rough points.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Requirements",
+      "questions": [
+        {
+          "code": "PT9",
+          "kind": "checkbox",
+          "question": "Is there anything that must appear?",
+          "hint": "Select all that apply.",
+          "options": [
+            { "label": "Logo", "value": "logo" },
+            { "label": "Phone Number", "value": "phone_number" },
+            { "label": "Website", "value": "website" },
+            { "label": "Address", "value": "address" },
+            { "label": "QR Code", "value": "qr_code" },
+            { "label": "Product Price", "value": "product_price" },
+            { "label": "Offer Details", "value": "offer_details" },
+            { "label": "Social Media Handles", "value": "social_media_handles" },
+            { "label": "Contact Person", "value": "contact_person" },
+            { "label": "Legal Disclaimer", "value": "legal_disclaimer" },
+            { "label": "Sponsor Logos", "value": "sponsor_logos" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Images & Assets",
+      "questions": [
+        {
+          "code": "PT10",
+          "kind": "checkbox",
+          "question": "Do you have images or artwork?",
+          "options": [
+            { "label": "I'll Upload Photos", "value": "ill_upload_photos" },
+            { "label": "I'll Upload Product Images", "value": "ill_upload_product_images" },
+            { "label": "I'll Upload Illustrations", "value": "ill_upload_illustrations" },
+            { "label": "Use Stock Images", "value": "use_stock_images" },
+            { "label": "Use Only Brand Assets", "value": "use_only_brand_assets" },
+            { "label": "Graphics & Typography Only", "value": "graphics_typography_only" },
+            { "label": "Designer Can Decide", "value": "designer_can_decide" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT11",
+          "kind": "file",
+          "question": "Upload your files.",
+          "hint": "Upload logos, photos, illustrations, product images, or supporting assets. For best print quality, high-resolution images (300 DPI or higher) are recommended.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Brand Assets",
+      "questions": [
+        {
+          "code": "PT12",
+          "kind": "radio",
+          "question": "Would you like us to follow your existing brand identity?",
+          "hint": "Brand Assets & Guidelines.",
+          "options": [
+            { "label": "Use My Saved Brand Kit", "value": "use_my_saved_brand_kit" },
+            { "label": "Upload Brand Guidelines", "value": "upload_brand_guidelines" },
+            { "label": "Upload Logo & Assets", "value": "upload_logo_assets" },
+            { "label": "Customize This Project", "value": "customize_this_project" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT13",
+          "kind": "checkbox",
+          "question": "What should we customize?",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "options": [
+            { "label": "Brand Colors", "value": "brand_colors" },
+            { "label": "Brand Fonts", "value": "brand_fonts" },
+            { "label": "Additional Brand Instructions", "value": "additional_brand_instructions" }
+          ],
+          "required": false
+        },
+        {
+          "code": "PT14",
+          "kind": "text",
+          "question": "Provide any additional brand customization details.",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "PT15",
+          "kind": "checkbox",
+          "question": "What style should this print design have?",
+          "hint": "Choose up to 3.",
+          "options": [
+            { "label": "Premium", "value": "premium" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Bold", "value": "bold" },
+            { "label": "Elegant", "value": "elegant" },
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Professional", "value": "professional" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "High Impact", "value": "high_impact" },
+            { "label": "Traditional", "value": "traditional" },
+            { "label": "Playful", "value": "playful" },
+            { "label": "Clean", "value": "clean" },
+            { "label": "Match My Brand Style", "value": "match_my_brand_style" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT16",
+          "kind": "checkbox",
+          "question": "Do you have any inspiration?",
+          "hint": "Share examples you like.",
+          "options": [
+            { "label": "Upload Images", "value": "upload_images" },
+            { "label": "Pinterest Link", "value": "pinterest_link" },
+            { "label": "Website Link", "value": "website_link" },
+            { "label": "PDF Reference", "value": "pdf_reference" },
+            { "label": "Skip", "value": "skip" }
+          ],
+          "required": false
+        },
+        {
+          "code": "PT17",
+          "kind": "text",
+          "question": "Provide the reference link(s), or note that you're uploading files.",
+          "hint": "Only if you selected a reference option above (not Skip).",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Print Specifications",
+      "questions": [
+        {
+          "code": "PT18",
+          "kind": "radio",
+          "question": "What print size do you need?",
+          "options": [
+            { "label": "Standard Size", "value": "standard_size" },
+            { "label": "Custom Size", "value": "custom_size" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT19",
+          "kind": "text",
+          "question": "Provide the width, height, and unit.",
+          "hint": "Only if you selected Custom Size above.",
+          "required": false
+        },
+        {
+          "code": "PT20",
+          "kind": "radio",
+          "question": "What orientation should the design be?",
+          "options": [
+            { "label": "Portrait", "value": "portrait" },
+            { "label": "Landscape", "value": "landscape" },
+            { "label": "Square", "value": "square" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT21",
+          "kind": "radio",
+          "question": "Single-sided or double-sided printing?",
+          "options": [
+            { "label": "Single-Sided", "value": "single_sided" },
+            { "label": "Double-Sided", "value": "double_sided" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT22",
+          "kind": "text",
+          "question": "Any additional print specifications?",
+          "hint": "Examples: Number of pages (for brochures, catalogues, booklets), Fold type (Bi-fold, Tri-fold, Z-fold, Gate fold), bleed/dieline supplied, printer specifications available. Leave blank if not applicable.",
+          "required": false
+        },
+        {
+          "code": "PT23",
+          "kind": "file",
+          "question": "Upload your bleed/dieline or printer specifications.",
+          "hint": "Only if you have these available.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Language & Notes",
+      "questions": [
+        {
+          "code": "PT24",
+          "kind": "radio",
+          "question": "What language should the design use?",
+          "options": [
+            { "label": "English", "value": "english" },
+            { "label": "Hindi", "value": "hindi" },
+            { "label": "Tamil", "value": "tamil" },
+            { "label": "Telugu", "value": "telugu" },
+            { "label": "Malayalam", "value": "malayalam" },
+            { "label": "Kannada", "value": "kannada" },
+            { "label": "Arabic", "value": "arabic" },
+            { "label": "Spanish", "value": "spanish" },
+            { "label": "French", "value": "french" },
+            { "label": "German", "value": "german" },
+            { "label": "Portuguese", "value": "portuguese" },
+            { "label": "Chinese", "value": "chinese" },
+            { "label": "Japanese", "value": "japanese" },
+            { "label": "Korean", "value": "korean" },
+            { "label": "Urdu", "value": "urdu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT25",
+          "kind": "text",
+          "question": "Is there anything you'd like us to avoid?",
+          "hint": "Mention any colors, imagery, wording, styles, or competitors you'd prefer not to reference.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

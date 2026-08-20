@@ -1,0 +1,347 @@
+{
+  "key": "restaurant_cafe_digital_addon",
+  "label": "Digital Asset",
+  "verticalKey": "restaurant",
+  "templateNameMatch": ["digital design", "digital add-on", "digital addon", "digital brief", "digital asset"],
+  "sections": [
+    {
+      "name": "Digital Asset & Message",
+      "questions": [
+        {
+          "code": "DG1",
+          "kind": "radio",
+          "question": "What are we creating today?",
+          "hint": "Select the digital asset.",
+          "options": [
+            { "label": "Website Banner", "value": "website_banner" },
+            { "label": "Homepage Hero Banner", "value": "homepage_hero_banner" },
+            { "label": "Email Newsletter (EDM)", "value": "email_newsletter_edm" },
+            { "label": "Email Header", "value": "email_header" },
+            { "label": "Google Display Ads", "value": "google_display_ads" },
+            { "label": "Meta Ad Creative", "value": "meta_ad_creative" },
+            { "label": "Instagram Story Set", "value": "instagram_story_set" },
+            { "label": "WhatsApp Promotional Graphic", "value": "whatsapp_promotional_graphic" },
+            { "label": "Digital Menu Board", "value": "digital_menu_board" },
+            { "label": "Digital Signage", "value": "digital_signage" },
+            { "label": "Presentation Deck", "value": "presentation_deck" },
+            { "label": "Website Popup", "value": "website_popup" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG2",
+          "kind": "text",
+          "question": "What are we promoting?",
+          "hint": "Provide the key details: Dish/Menu/Event Name, Category, Price (Optional), Key Ingredients/Highlights.",
+          "required": true
+        },
+        {
+          "code": "DG3",
+          "kind": "text",
+          "question": "What's the ONE message customers should remember?",
+          "hint": "Describe the biggest takeaway after seeing this digital asset. Example: \"Try our new wood-fired pizzas.\", \"Weekend brunch is now available.\", \"Order directly and enjoy exclusive offers.\"",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Goal & Audience",
+      "questions": [
+        {
+          "code": "DG4",
+          "kind": "checkbox",
+          "question": "What's the goal of this digital asset?",
+          "options": [
+            { "label": "Increase Restaurant Visits", "value": "increase_restaurant_visits" },
+            { "label": "Increase Online Orders", "value": "increase_online_orders" },
+            { "label": "Promote a Dish", "value": "promote_a_dish" },
+            { "label": "Launch a New Menu", "value": "launch_a_new_menu" },
+            { "label": "Promote an Offer", "value": "promote_an_offer" },
+            { "label": "Increase Reservations", "value": "increase_reservations" },
+            { "label": "Build Brand Awareness", "value": "build_brand_awareness" },
+            { "label": "Event Promotion", "value": "event_promotion" },
+            { "label": "Drive Website Traffic", "value": "drive_website_traffic" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG5",
+          "kind": "text",
+          "question": "Who is this campaign for?",
+          "hint": "Describe your ideal customer.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Offer",
+      "questions": [
+        {
+          "code": "DG6",
+          "kind": "radio",
+          "question": "Are you running an offer?",
+          "options": [
+            { "label": "No Offer", "value": "no_offer" },
+            { "label": "Percentage Discount", "value": "percentage_discount" },
+            { "label": "Combo Offer", "value": "combo_offer" },
+            { "label": "Happy Hour", "value": "happy_hour" },
+            { "label": "Buy One Get One", "value": "buy_one_get_one" },
+            { "label": "Free Dessert", "value": "free_dessert" },
+            { "label": "Limited-Time Menu", "value": "limited_time_menu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG7",
+          "kind": "text",
+          "question": "Provide the offer details, start & end date, and terms & conditions.",
+          "hint": "Only if you are running an offer.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Content",
+      "questions": [
+        {
+          "code": "DG8",
+          "kind": "radio",
+          "question": "Do you already have the content?",
+          "options": [
+            { "label": "Final Copy Ready", "value": "final_copy_ready" },
+            { "label": "Rough Points", "value": "rough_points" },
+            { "label": "Need Copywriting Support", "value": "need_copywriting_support" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG9",
+          "kind": "text",
+          "question": "Provide your copy or rough points.",
+          "hint": "Only if you have final copy ready or rough points.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Requirements",
+      "questions": [
+        {
+          "code": "DG10",
+          "kind": "checkbox",
+          "question": "Is there anything that must appear?",
+          "hint": "Select all that apply.",
+          "options": [
+            { "label": "Dish Name", "value": "dish_name" },
+            { "label": "Menu Name", "value": "menu_name" },
+            { "label": "Price", "value": "price" },
+            { "label": "Offer", "value": "offer" },
+            { "label": "Brand Logo", "value": "brand_logo" },
+            { "label": "Restaurant Address", "value": "restaurant_address" },
+            { "label": "Contact Number", "value": "contact_number" },
+            { "label": "QR Code", "value": "qr_code" },
+            { "label": "Website", "value": "website" },
+            { "label": "Reservation Link", "value": "reservation_link" },
+            { "label": "Delivery Partner Logos", "value": "delivery_partner_logos" },
+            { "label": "Social Media Handles", "value": "social_media_handles" },
+            { "label": "CTA Button", "value": "cta_button" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Images & Assets",
+      "questions": [
+        {
+          "code": "DG11",
+          "kind": "checkbox",
+          "question": "Do you have images or assets?",
+          "options": [
+            { "label": "I'll Upload Food Photos", "value": "ill_upload_food_photos" },
+            { "label": "I'll Upload Restaurant Ambience Photos", "value": "ill_upload_restaurant_ambience_photos" },
+            { "label": "I'll Upload Menu Graphics", "value": "ill_upload_menu_graphics" },
+            { "label": "I'll Upload Logos and Brand Assets", "value": "ill_upload_logos_and_brand_assets" },
+            { "label": "Use Stock Images Where Suitable", "value": "use_stock_images_where_suitable" },
+            { "label": "Use Only Brand Assets", "value": "use_only_brand_assets" },
+            { "label": "Designer Can Recommend", "value": "designer_can_recommend" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG12",
+          "kind": "file",
+          "question": "Upload your files.",
+          "hint": "Upload food photography, restaurant images, menus, logos, or supporting assets. Recommended formats: PNG, JPG, SVG, PDF.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Brand Assets",
+      "questions": [
+        {
+          "code": "DG13",
+          "kind": "radio",
+          "question": "Would you like us to follow your existing brand identity?",
+          "hint": "Brand Assets & Guidelines.",
+          "options": [
+            { "label": "Use My Saved Brand Kit", "value": "use_my_saved_brand_kit" },
+            { "label": "Upload Brand Guidelines", "value": "upload_brand_guidelines" },
+            { "label": "Upload Logo & Assets", "value": "upload_logo_assets" },
+            { "label": "Customize This Project", "value": "customize_this_project" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG14",
+          "kind": "checkbox",
+          "question": "What should we customize?",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "options": [
+            { "label": "Brand Colors", "value": "brand_colors" },
+            { "label": "Brand Fonts", "value": "brand_fonts" },
+            { "label": "Additional Instructions", "value": "additional_instructions" }
+          ],
+          "required": false
+        },
+        {
+          "code": "DG15",
+          "kind": "text",
+          "question": "Provide any additional brand customization details.",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "DG16",
+          "kind": "checkbox",
+          "question": "How should this digital asset feel?",
+          "hint": "Choose up to 3.",
+          "options": [
+            { "label": "Premium", "value": "premium" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Rustic", "value": "rustic" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Warm", "value": "warm" },
+            { "label": "Cozy", "value": "cozy" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Vibrant", "value": "vibrant" },
+            { "label": "Fresh & Bright", "value": "fresh_bright" },
+            { "label": "Dark & Moody", "value": "dark_moody" },
+            { "label": "Match My Brand Style", "value": "match_my_brand_style" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG17",
+          "kind": "checkbox",
+          "question": "Do you have any inspiration?",
+          "hint": "Share digital designs you like.",
+          "options": [
+            { "label": "Website Link", "value": "website_link" },
+            { "label": "Instagram Link", "value": "instagram_link" },
+            { "label": "Pinterest Link", "value": "pinterest_link" },
+            { "label": "Upload Images", "value": "upload_images" },
+            { "label": "Skip", "value": "skip" }
+          ],
+          "required": false
+        },
+        {
+          "code": "DG18",
+          "kind": "text",
+          "question": "Provide the reference link(s), or note that you're uploading images.",
+          "hint": "Only if you selected a reference option above (not Skip).",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Placement & Format",
+      "questions": [
+        {
+          "code": "DG19",
+          "kind": "checkbox",
+          "question": "Where will this asset be used?",
+          "options": [
+            { "label": "Website", "value": "website" },
+            { "label": "Email Campaign", "value": "email_campaign" },
+            { "label": "Google Ads", "value": "google_ads" },
+            { "label": "Meta Ads", "value": "meta_ads" },
+            { "label": "Instagram Stories", "value": "instagram_stories" },
+            { "label": "Facebook", "value": "facebook" },
+            { "label": "WhatsApp", "value": "whatsapp" },
+            { "label": "Digital Menu Board", "value": "digital_menu_board" },
+            { "label": "In-Restaurant Display", "value": "in_restaurant_display" },
+            { "label": "Presentation", "value": "presentation" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG20",
+          "kind": "radio",
+          "question": "What size or format do you need?",
+          "options": [
+            { "label": "Standard Platform Size", "value": "standard_platform_size" },
+            { "label": "Multiple Platform Sizes", "value": "multiple_platform_sizes" },
+            { "label": "Custom Dimensions", "value": "custom_dimensions" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG21",
+          "kind": "text",
+          "question": "Provide the width × height in pixels.",
+          "hint": "Only if you selected Custom Dimensions above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Language & Notes",
+      "questions": [
+        {
+          "code": "DG22",
+          "kind": "radio",
+          "question": "What language should the design use?",
+          "options": [
+            { "label": "English", "value": "english" },
+            { "label": "Hindi", "value": "hindi" },
+            { "label": "Tamil", "value": "tamil" },
+            { "label": "Telugu", "value": "telugu" },
+            { "label": "Malayalam", "value": "malayalam" },
+            { "label": "Kannada", "value": "kannada" },
+            { "label": "Arabic", "value": "arabic" },
+            { "label": "Spanish", "value": "spanish" },
+            { "label": "French", "value": "french" },
+            { "label": "German", "value": "german" },
+            { "label": "Portuguese", "value": "portuguese" },
+            { "label": "Chinese", "value": "chinese" },
+            { "label": "Japanese", "value": "japanese" },
+            { "label": "Korean", "value": "korean" },
+            { "label": "Urdu", "value": "urdu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG23",
+          "kind": "text",
+          "question": "Is there anything you'd like us to avoid?",
+          "hint": "Mention any colours, imagery, wording, or visual styles you'd prefer not to use.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

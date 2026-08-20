@@ -1,0 +1,175 @@
+[
+  {
+    "id": "case_01_single_field",
+    "description": "Single-field extraction: user provides client name clearly",
+    "profile_id": "eval_test",
+    "required_fields": [
+      {"code": "client_name", "description": "Full legal name of the client or company commissioning the project.", "required": true},
+      {"code": "project_type", "description": "The type of creative project, e.g. brand identity, social campaign, pitch deck.", "required": true},
+      {"code": "budget_range", "description": "Approximate budget or budget range available for this project.", "required": true}
+    ],
+    "user_messages": ["My company is called Acme Corp."],
+    "expected_extractions": {
+      "client_name": "Acme Corp"
+    },
+    "expected_missing_after": ["project_type", "budget_range"],
+    "expected_captured_after": ["client_name"],
+    "expected_next_topic": "project_type",
+    "expected_completion": false,
+    "acceptable_turn_range": [1, 5],
+    "rag_query": "how to ask about client name",
+    "expected_relevant_doc_types": ["question_guidance"],
+    "irrelevant_query": "how to bake chocolate cake"
+  },
+  {
+    "id": "case_02_multi_field",
+    "description": "Multiple-field extraction: user provides two fields in one message",
+    "profile_id": "eval_test",
+    "required_fields": [
+      {"code": "client_name", "description": "Full legal name of the client or company commissioning the project.", "required": true},
+      {"code": "project_type", "description": "The type of creative project, e.g. brand identity, social campaign, pitch deck.", "required": true},
+      {"code": "budget_range", "description": "Approximate budget or budget range available for this project.", "required": true}
+    ],
+    "user_messages": ["I'm Acme Corp and our budget is around $10,000."],
+    "expected_extractions": {
+      "client_name": "Acme Corp",
+      "budget_range": "$10,000"
+    },
+    "expected_missing_after": ["project_type"],
+    "expected_captured_after": ["client_name", "budget_range"],
+    "expected_next_topic": "project_type",
+    "expected_completion": false,
+    "acceptable_turn_range": [1, 4]
+  },
+  {
+    "id": "case_03_multi_turn",
+    "description": "Information spread across multiple turns",
+    "profile_id": "eval_test",
+    "required_fields": [
+      {"code": "client_name", "description": "Full legal name of the client or company commissioning the project.", "required": true},
+      {"code": "project_type", "description": "The type of creative project, e.g. brand identity, social campaign, pitch deck.", "required": true},
+      {"code": "budget_range", "description": "Approximate budget or budget range available for this project.", "required": true}
+    ],
+    "user_messages": [
+      "Hi, I need help with a project.",
+      "Oh sorry, my name is Stellar Studios.",
+      "We need a brand identity package.",
+      "Our budget is about $25,000."
+    ],
+    "expected_final_extractions": {
+      "client_name": "Stellar Studios",
+      "project_type": "brand identity package",
+      "budget_range": "$25,000"
+    },
+    "expected_completion": true,
+    "acceptable_turn_range": [4, 8]
+  },
+  {
+    "id": "case_04_missing_info",
+    "description": "User gives a vague answer that does not satisfy the required field",
+    "profile_id": "eval_test",
+    "required_fields": [
+      {"code": "client_name", "description": "Full legal name of the client or company commissioning the project.", "required": true},
+      {"code": "project_type", "description": "The type of creative project, e.g. brand identity, social campaign, pitch deck.", "required": true},
+      {"code": "budget_range", "description": "Approximate budget or budget range available for this project.", "required": true}
+    ],
+    "user_messages": ["Hmm, not really sure about the budget. Something flexible."],
+    "expected_extractions": {},
+    "expected_missing_after": ["client_name", "project_type", "budget_range"],
+    "expected_captured_after": [],
+    "expected_completion": false,
+    "acceptable_turn_range": [1, 6]
+  },
+  {
+    "id": "case_05_irrelevant_info",
+    "description": "User provides off-topic information unrelated to required fields",
+    "profile_id": "eval_test",
+    "required_fields": [
+      {"code": "client_name", "description": "Full legal name of the client or company commissioning the project.", "required": true},
+      {"code": "project_type", "description": "The type of creative project, e.g. brand identity, social campaign, pitch deck.", "required": true},
+      {"code": "budget_range", "description": "Approximate budget or budget range available for this project.", "required": true}
+    ],
+    "user_messages": ["The weather today is absolutely beautiful, isn't it?"],
+    "expected_extractions": {},
+    "expected_missing_after": ["client_name", "project_type", "budget_range"],
+    "expected_captured_after": [],
+    "expected_completion": false,
+    "acceptable_turn_range": [1, 6]
+  },
+  {
+    "id": "case_06_ambiguous",
+    "description": "User provides an ambiguous response that may or may not relate to a field",
+    "profile_id": "eval_test",
+    "required_fields": [
+      {"code": "client_name", "description": "Full legal name of the client or company commissioning the project.", "required": true},
+      {"code": "project_type", "description": "The type of creative project, e.g. brand identity, social campaign, pitch deck.", "required": true},
+      {"code": "budget_range", "description": "Approximate budget or budget range available for this project.", "required": true}
+    ],
+    "user_messages": ["Something in the mid-range, I suppose."],
+    "expected_extractions_keys_present": [],
+    "expected_completion": false,
+    "note": "Ambiguous — the model may or may not extract budget_range at low confidence. Test verifies no high-confidence incorrect extraction.",
+    "acceptable_turn_range": [1, 6]
+  },
+  {
+    "id": "case_07_rag_relevant",
+    "description": "RAG-relevant query: a query about budget that should retrieve budget-related guidance chunks",
+    "profile_id": "eval_test",
+    "rag_query": "how should I ask about the project budget",
+    "expected_relevant_doc_types": ["question_guidance", "example"],
+    "min_expected_score": 0.30,
+    "top_k": 5,
+    "note": "Tests that semantic search returns chunks with a positive similarity score for a relevant domain query."
+  },
+  {
+    "id": "case_08_rag_irrelevant",
+    "description": "RAG-irrelevant query: a clearly off-topic query that should produce low or zero similarity scores",
+    "profile_id": "eval_test",
+    "rag_query": "how to cook pasta carbonara",
+    "max_expected_score": 0.65,
+    "top_k": 5,
+    "note": "Tests that vector search does not hallucinate highly relevant chunks for completely off-topic queries."
+  },
+  {
+    "id": "case_09_faithfulness",
+    "description": "Faithfulness test: verifies the generated assistant message is grounded in retrieved context",
+    "profile_id": "eval_test",
+    "required_fields": [
+      {"code": "client_name", "description": "Full legal name of the client or company commissioning the project.", "required": true},
+      {"code": "project_type", "description": "The type of creative project, e.g. brand identity, social campaign, pitch deck.", "required": true},
+      {"code": "budget_range", "description": "Approximate budget or budget range available for this project.", "required": true}
+    ],
+    "grounded_context": [
+      "When asking about budget, use open-ended questions. Avoid suggesting numbers first.",
+      "Creative briefs typically require: client name, project type, budget, and timeline."
+    ],
+    "unsupported_claim_example": "Our system guarantees a 300% ROI on all creative campaigns.",
+    "user_messages": ["Hi, I'd like to start a creative brief."],
+    "note": "Tests that the LLM response does not make up domain facts not present in the retrieved context."
+  },
+  {
+    "id": "case_10_complete_conversation",
+    "description": "Complete end-to-end conversation: user provides all required fields across turns",
+    "profile_id": "eval_test",
+    "required_fields": [
+      {"code": "client_name", "description": "Full legal name of the client or company commissioning the project.", "required": true},
+      {"code": "project_type", "description": "The type of creative project, e.g. brand identity, social campaign, pitch deck.", "required": true},
+      {"code": "budget_range", "description": "Approximate budget or budget range available for this project.", "required": true}
+    ],
+    "conversation": [
+      {"role": "user", "message": "Hello, I want to create a creative brief."},
+      {"role": "user", "message": "The company name is BrightPath Inc."},
+      {"role": "user", "message": "We need a full brand identity redesign."},
+      {"role": "user", "message": "Our budget is $50,000 to $75,000."}
+    ],
+    "expected_final_extractions": {
+      "client_name": "BrightPath Inc.",
+      "project_type": "brand identity redesign",
+      "budget_range": "$50,000 to $75,000"
+    },
+    "expected_completion": true,
+    "expected_status": "complete",
+    "acceptable_turn_range": [4, 10],
+    "note": "Full happy-path test. All required fields must be captured and is_complete must return True."
+  }
+]

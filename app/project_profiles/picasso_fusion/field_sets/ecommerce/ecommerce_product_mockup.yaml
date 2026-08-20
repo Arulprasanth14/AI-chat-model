@@ -1,0 +1,338 @@
+template_key: ecommerce_product_mockup
+template_label: Product Mockup
+vertical: ecommerce
+template_name_match:
+- product mockup
+- mockup
+- packaging mockup
+fields:
+- code: MK1
+  kind: radio
+  required: true
+  section_name: Mockup Type & Product
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Product Mockup
+    value: product_mockup
+  - label: Packaging Mockup
+    value: packaging_mockup
+  - label: Bottle Mockup
+    value: bottle_mockup
+  - label: Jar / Tube Mockup
+    value: jar_tube_mockup
+  - label: Box Mockup
+    value: box_mockup
+  - label: Apparel Mockup
+    value: apparel_mockup
+  - label: Device Mockup
+    value: device_mockup
+  - label: Cosmetic Mockup
+    value: cosmetic_mockup
+  - label: Food & Beverage Mockup
+    value: food_beverage_mockup
+  - label: Flat Lay Composition
+    value: flat_lay_composition
+  - label: Lifestyle Product Scene
+    value: lifestyle_product_scene
+  - label: Gift Box Presentation
+    value: gift_box_presentation
+  - label: Product Collection
+    value: product_collection
+  - label: Other
+    value: other
+- code: MK2
+  kind: text
+  required: true
+  section_name: Mockup Type & Product
+  section_order: 0
+  section_field_order: 1
+- code: MK3
+  kind: text
+  required: true
+  section_name: Mockup Type & Product
+  section_order: 0
+  section_field_order: 2
+- code: MK4
+  kind: radio
+  required: true
+  section_name: Goal & Placement
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Product Launch
+    value: product_launch
+  - label: Website Listing
+    value: website_listing
+  - label: Online Store
+    value: online_store
+  - label: Social Media
+    value: social_media
+  - label: Advertisement
+    value: advertisement
+  - label: Packaging Preview
+    value: packaging_preview
+  - label: Sales Presentation
+    value: sales_presentation
+  - label: Catalogue
+    value: catalogue
+  - label: Marketplace Listing
+    value: marketplace_listing
+  - label: Other
+    value: other
+- code: MK5
+  kind: checkbox
+  required: true
+  section_name: Goal & Placement
+  section_order: 1
+  section_field_order: 1
+  options:
+  - label: Website
+    value: website
+  - label: Shopify Store
+    value: shopify_store
+  - label: Amazon / Marketplace
+    value: amazon_marketplace
+  - label: Instagram
+    value: instagram
+  - label: Facebook
+    value: facebook
+  - label: LinkedIn
+    value: linkedin
+  - label: Print Catalogue
+    value: print_catalogue
+  - label: Presentation
+    value: presentation
+  - label: Multiple Platforms
+    value: multiple_platforms
+  - label: Other
+    value: other
+- code: MK6
+  kind: checkbox
+  required: true
+  section_name: Style & Presentation
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: Premium
+    value: premium
+  - label: Luxury
+    value: luxury
+  - label: Modern
+    value: modern
+  - label: Minimal
+    value: minimal
+  - label: Lifestyle
+    value: lifestyle
+  - label: Editorial
+    value: editorial
+  - label: Clean Studio
+    value: clean_studio
+  - label: Bold
+    value: bold
+  - label: High Contrast
+    value: high_contrast
+  - label: Organic
+    value: organic
+  - label: Natural
+    value: natural
+  - label: Vibrant
+    value: vibrant
+  - label: Match My Brand Style
+    value: match_my_brand_style
+- code: MK7
+  kind: radio
+  required: true
+  section_name: Style & Presentation
+  section_order: 2
+  section_field_order: 1
+  options:
+  - label: Studio Product Shot
+    value: studio_product_shot
+  - label: Lifestyle Scene
+    value: lifestyle_scene
+  - label: Flat Lay
+    value: flat_lay
+  - label: Floating Product
+    value: floating_product
+  - label: Product in Use
+    value: product_in_use
+  - label: Packaging Focus
+    value: packaging_focus
+  - label: Collection Display
+    value: collection_display
+  - label: Designer Can Recommend
+    value: designer_can_recommend
+- code: MK8
+  kind: checkbox
+  required: true
+  section_name: Images & Assets
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: I'll Upload Product Photos
+    value: ill_upload_product_photos
+  - label: I'll Upload Packaging Artwork
+    value: ill_upload_packaging_artwork
+  - label: I'll Upload Labels
+    value: ill_upload_labels
+  - label: I'll Upload 3D Renders
+    value: ill_upload_3d_renders
+  - label: I Have Multiple Angles
+    value: i_have_multiple_angles
+  - label: Designer Can Work with Available Assets
+    value: designer_can_work_with_available_assets
+- code: MK9
+  kind: file
+  required: false
+  section_name: Images & Assets
+  section_order: 3
+  section_field_order: 1
+- code: MK10
+  kind: checkbox
+  required: false
+  section_name: Design Requirements
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Product Logo
+    value: product_logo
+  - label: Product Name
+    value: product_name
+  - label: Packaging Design
+    value: packaging_design
+  - label: Price
+    value: price
+  - label: Offer Badge
+    value: offer_badge
+  - label: Brand Logo
+    value: brand_logo
+  - label: Tagline
+    value: tagline
+  - label: QR Code
+    value: qr_code
+  - label: CTA
+    value: cta
+  - label: Other
+    value: other
+- code: MK11
+  kind: radio
+  required: true
+  section_name: Brand Assets
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: Use My Saved Brand Kit
+    value: use_my_saved_brand_kit
+  - label: Upload Brand Guidelines
+    value: upload_brand_guidelines
+  - label: Upload Logo & Assets
+    value: upload_logo_assets
+  - label: Customize This Project
+    value: customize_this_project
+- code: MK12
+  kind: checkbox
+  required: false
+  section_name: Brand Assets
+  section_order: 5
+  section_field_order: 1
+  options:
+  - label: Brand Colors
+    value: brand_colors
+  - label: Brand Fonts
+    value: brand_fonts
+  - label: Additional Instructions
+    value: additional_instructions
+- code: MK13
+  kind: text
+  required: false
+  section_name: Brand Assets
+  section_order: 5
+  section_field_order: 2
+- code: MK14
+  kind: checkbox
+  required: false
+  section_name: References & Notes
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Website Link
+    value: website_link
+  - label: Pinterest Link
+    value: pinterest_link
+  - label: Instagram Link
+    value: instagram_link
+  - label: Upload Images
+    value: upload_images
+  - label: Skip
+    value: skip
+- code: MK15
+  kind: text
+  required: false
+  section_name: References & Notes
+  section_order: 6
+  section_field_order: 1
+- code: MK16
+  kind: text
+  required: false
+  section_name: References & Notes
+  section_order: 6
+  section_field_order: 2
+- code: MK17
+  kind: checkbox
+  required: true
+  section_name: Output & Language
+  section_order: 7
+  section_field_order: 0
+  options:
+  - label: Web Optimized
+    value: web_optimized
+  - label: High Resolution
+    value: high_resolution
+  - label: Print Ready
+    value: print_ready
+  - label: Transparent Background
+    value: transparent_background
+  - label: Multiple Versions
+    value: multiple_versions
+  - label: Let the Creative Team Recommend
+    value: let_the_creative_team_recommend
+- code: MK18
+  kind: radio
+  required: true
+  section_name: Output & Language
+  section_order: 7
+  section_field_order: 1
+  options:
+  - label: English
+    value: english
+  - label: Hindi
+    value: hindi
+  - label: Tamil
+    value: tamil
+  - label: Telugu
+    value: telugu
+  - label: Malayalam
+    value: malayalam
+  - label: Kannada
+    value: kannada
+  - label: Arabic
+    value: arabic
+  - label: Spanish
+    value: spanish
+  - label: French
+    value: french
+  - label: German
+    value: german
+  - label: Portuguese
+    value: portuguese
+  - label: Chinese
+    value: chinese
+  - label: Japanese
+    value: japanese
+  - label: Korean
+    value: korean
+  - label: Urdu
+    value: urdu
+  - label: Other
+    value: other

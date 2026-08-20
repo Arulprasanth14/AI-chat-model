@@ -1,0 +1,361 @@
+{
+  "key": "restaurant_cafe_reel",
+  "label": "Reel",
+  "verticalKey": "restaurant",
+  "templateNameMatch": ["reel", "reels", "reel creative brief"],
+  "sections": [
+    {
+      "name": "Reel Purpose & Product",
+      "questions": [
+        {
+          "code": "RL1",
+          "kind": "radio",
+          "question": "What are we creating today?",
+          "hint": "Select the purpose of this reel.",
+          "options": [
+            { "label": "Featured Dish", "value": "featured_dish" },
+            { "label": "New Menu Launch", "value": "new_menu_launch" },
+            { "label": "Chef's Special", "value": "chefs_special" },
+            { "label": "Cooking Process", "value": "cooking_process" },
+            { "label": "Behind the Kitchen", "value": "behind_the_kitchen" },
+            { "label": "Restaurant Tour", "value": "restaurant_tour" },
+            { "label": "Customer Experience", "value": "customer_experience" },
+            { "label": "Combo / Meal Offer", "value": "combo_meal_offer" },
+            { "label": "Happy Hour", "value": "happy_hour" },
+            { "label": "Event Promotion", "value": "event_promotion" },
+            { "label": "Brand Story", "value": "brand_story" },
+            { "label": "Delivery Promotion", "value": "delivery_promotion" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL2",
+          "kind": "text",
+          "question": "What are we featuring?",
+          "hint": "Provide the key details: Dish/Menu/Event Name, Category, Price (Optional), Key Ingredients/Highlights.",
+          "required": true
+        },
+        {
+          "code": "RL3",
+          "kind": "text",
+          "question": "What's the ONE message customers should remember?",
+          "hint": "Describe the biggest reason someone should visit or order. Example: \"Fresh pasta made from scratch every day.\", \"Our biggest burger is finally here.\", \"Weekend brunch starts this Saturday.\"",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Goal & Audience",
+      "questions": [
+        {
+          "code": "RL4",
+          "kind": "checkbox",
+          "question": "What's the goal of this reel?",
+          "options": [
+            { "label": "Increase Restaurant Visits", "value": "increase_restaurant_visits" },
+            { "label": "Increase Online Orders", "value": "increase_online_orders" },
+            { "label": "Promote a Dish", "value": "promote_a_dish" },
+            { "label": "Launch a New Menu", "value": "launch_a_new_menu" },
+            { "label": "Promote an Offer", "value": "promote_an_offer" },
+            { "label": "Build Brand Awareness", "value": "build_brand_awareness" },
+            { "label": "Increase Reservations", "value": "increase_reservations" },
+            { "label": "Promote an Event", "value": "promote_an_event" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL5",
+          "kind": "text",
+          "question": "Who is this reel for?",
+          "hint": "Describe your ideal customer.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Offer",
+      "questions": [
+        {
+          "code": "RL6",
+          "kind": "radio",
+          "question": "Are you running an offer?",
+          "options": [
+            { "label": "No Offer", "value": "no_offer" },
+            { "label": "Percentage Discount", "value": "percentage_discount" },
+            { "label": "Combo Offer", "value": "combo_offer" },
+            { "label": "Happy Hour", "value": "happy_hour" },
+            { "label": "Buy One Get One", "value": "buy_one_get_one" },
+            { "label": "Free Dessert", "value": "free_dessert" },
+            { "label": "Limited-Time Menu", "value": "limited_time_menu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL7",
+          "kind": "text",
+          "question": "Provide the offer details, start & end date, and terms & conditions.",
+          "hint": "Only if you are running an offer.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Footage & Key Shots",
+      "questions": [
+        {
+          "code": "RL8",
+          "kind": "checkbox",
+          "question": "What footage do you have?",
+          "options": [
+            { "label": "I'll Upload Food Preparation Videos", "value": "ill_upload_food_preparation_videos" },
+            { "label": "I'll Upload Finished Dish Videos", "value": "ill_upload_finished_dish_videos" },
+            { "label": "I'll Upload Restaurant Ambience", "value": "ill_upload_restaurant_ambience" },
+            { "label": "I'll Upload Customer Experience Footage", "value": "ill_upload_customer_experience_footage" },
+            { "label": "I Have Both Videos & Photos", "value": "i_have_both_videos_photos" },
+            { "label": "Share via Google Drive", "value": "share_via_google_drive" },
+            { "label": "Use Stock Footage Where Suitable", "value": "use_stock_footage_where_suitable" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL9",
+          "kind": "file",
+          "question": "Upload your files.",
+          "hint": "Upload videos, photos, logos, menus, or supporting assets. Recommended: MP4/MOV, Vertical (9:16) preferred, 1080p or higher.",
+          "required": false
+        },
+        {
+          "code": "RL10",
+          "kind": "text",
+          "question": "Are there any moments that must appear?",
+          "hint": "Examples: Ingredients, Cooking process, Flames/Grilling, Cheese pull, Sauce pour, Plating, Steam, Chef preparing the dish, Customer reaction, Restaurant ambience, Offer announcement.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Length & Script",
+      "questions": [
+        {
+          "code": "RL11",
+          "kind": "radio",
+          "question": "Approximately how long should the reel be?",
+          "options": [
+            { "label": "Under 15 Seconds", "value": "under_15_seconds" },
+            { "label": "15–30 Seconds", "value": "15_30_seconds" },
+            { "label": "30–60 Seconds", "value": "30_60_seconds" },
+            { "label": "Let the Creative Team Decide", "value": "let_the_creative_team_decide" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL12",
+          "kind": "radio",
+          "question": "Do you already have a script?",
+          "options": [
+            { "label": "Final Script Ready", "value": "final_script_ready" },
+            { "label": "Rough Talking Points", "value": "rough_talking_points" },
+            { "label": "Need Scriptwriting Support", "value": "need_scriptwriting_support" },
+            { "label": "No Voiceover Required", "value": "no_voiceover_required" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL13",
+          "kind": "text",
+          "question": "Provide your script or rough talking points.",
+          "hint": "Only if you selected \"Final Script Ready\" or \"Rough Talking Points\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Tone & Music",
+      "questions": [
+        {
+          "code": "RL14",
+          "kind": "checkbox",
+          "question": "How should the reel feel?",
+          "hint": "Choose up to 3.",
+          "options": [
+            { "label": "Premium", "value": "premium" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Rustic", "value": "rustic" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Warm", "value": "warm" },
+            { "label": "Cozy", "value": "cozy" },
+            { "label": "Energetic", "value": "energetic" },
+            { "label": "Cinematic", "value": "cinematic" },
+            { "label": "Vibrant", "value": "vibrant" },
+            { "label": "Dark & Moody", "value": "dark_moody" },
+            { "label": "Fresh & Bright", "value": "fresh_bright" },
+            { "label": "Match My Brand Style", "value": "match_my_brand_style" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL15",
+          "kind": "radio",
+          "question": "What kind of music would you prefer?",
+          "options": [
+            { "label": "Trending Instagram Audio", "value": "trending_instagram_audio" },
+            { "label": "Upbeat", "value": "upbeat" },
+            { "label": "Acoustic", "value": "acoustic" },
+            { "label": "Jazz", "value": "jazz" },
+            { "label": "Cinematic", "value": "cinematic" },
+            { "label": "Ambient", "value": "ambient" },
+            { "label": "No Music", "value": "no_music" },
+            { "label": "I'll Upload My Own Music", "value": "ill_upload_my_own_music" },
+            { "label": "Designer Can Choose", "value": "designer_can_choose" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Brand Assets",
+      "questions": [
+        {
+          "code": "RL16",
+          "kind": "radio",
+          "question": "Would you like us to follow your existing brand identity?",
+          "hint": "Brand Assets & Guidelines.",
+          "options": [
+            { "label": "Use My Saved Brand Kit", "value": "use_my_saved_brand_kit" },
+            { "label": "Upload Brand Guidelines", "value": "upload_brand_guidelines" },
+            { "label": "Upload Logo & Assets", "value": "upload_logo_assets" },
+            { "label": "Customize This Project", "value": "customize_this_project" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL17",
+          "kind": "checkbox",
+          "question": "What should we customize?",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "options": [
+            { "label": "Brand Colors", "value": "brand_colors" },
+            { "label": "Brand Fonts", "value": "brand_fonts" },
+            { "label": "Logo Placement", "value": "logo_placement" },
+            { "label": "Additional Instructions", "value": "additional_instructions" }
+          ],
+          "required": false
+        },
+        {
+          "code": "RL18",
+          "kind": "text",
+          "question": "Provide any additional brand customization details.",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "RL19",
+          "kind": "checkbox",
+          "question": "Do you have any inspiration?",
+          "hint": "Share reels or videos you like.",
+          "options": [
+            { "label": "Instagram Link", "value": "instagram_link" },
+            { "label": "TikTok Link", "value": "tiktok_link" },
+            { "label": "YouTube Link", "value": "youtube_link" },
+            { "label": "Upload Reference Videos", "value": "upload_reference_videos" },
+            { "label": "Skip", "value": "skip" }
+          ],
+          "required": false
+        },
+        {
+          "code": "RL20",
+          "kind": "text",
+          "question": "Provide the reference link(s).",
+          "hint": "Only if you selected Instagram Link, TikTok Link, or YouTube Link above.",
+          "required": false
+        },
+        {
+          "code": "RL21",
+          "kind": "file",
+          "question": "Upload reference videos.",
+          "hint": "Only if you selected \"Upload Reference Videos\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Publishing & Language",
+      "questions": [
+        {
+          "code": "RL22",
+          "kind": "checkbox",
+          "question": "Where will this reel be published?",
+          "options": [
+            { "label": "Instagram Reels", "value": "instagram_reels" },
+            { "label": "Facebook Reels", "value": "facebook_reels" },
+            { "label": "TikTok", "value": "tiktok" },
+            { "label": "YouTube Shorts", "value": "youtube_shorts" },
+            { "label": "Multiple Platforms", "value": "multiple_platforms" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL23",
+          "kind": "radio",
+          "question": "What language should the reel use?",
+          "options": [
+            { "label": "English", "value": "english" },
+            { "label": "Hindi", "value": "hindi" },
+            { "label": "Tamil", "value": "tamil" },
+            { "label": "Telugu", "value": "telugu" },
+            { "label": "Malayalam", "value": "malayalam" },
+            { "label": "Kannada", "value": "kannada" },
+            { "label": "Arabic", "value": "arabic" },
+            { "label": "Spanish", "value": "spanish" },
+            { "label": "French", "value": "french" },
+            { "label": "German", "value": "german" },
+            { "label": "Portuguese", "value": "portuguese" },
+            { "label": "Chinese", "value": "chinese" },
+            { "label": "Japanese", "value": "japanese" },
+            { "label": "Korean", "value": "korean" },
+            { "label": "Urdu", "value": "urdu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Call to Action & Notes",
+      "questions": [
+        {
+          "code": "RL24",
+          "kind": "radio",
+          "question": "What should customers do after watching?",
+          "options": [
+            { "label": "Visit Our Restaurant", "value": "visit_our_restaurant" },
+            { "label": "Order Online", "value": "order_online" },
+            { "label": "Reserve a Table", "value": "reserve_a_table" },
+            { "label": "Call Us", "value": "call_us" },
+            { "label": "Send Us a DM", "value": "send_us_a_dm" },
+            { "label": "View the Full Menu", "value": "view_the_full_menu" },
+            { "label": "Follow Our Page", "value": "follow_our_page" },
+            { "label": "Learn More", "value": "learn_more" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL25",
+          "kind": "text",
+          "question": "Is there anything you'd like us to avoid?",
+          "hint": "Mention any editing styles, colours, music, wording, or visual directions you'd prefer not to use.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

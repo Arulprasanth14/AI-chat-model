@@ -1,0 +1,220 @@
+template_key: startup_entrepreneur_email_signature
+template_label: Email Signature
+vertical: startup
+template_name_match:
+- email signature
+- signature template
+fields:
+- code: ES1
+  kind: radio
+  required: true
+  section_name: Signature Type
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Individual Signature
+    value: individual_signature
+  - label: Team Template
+    value: team_template
+  - label: Company-Wide Template
+    value: company_wide_template
+- code: ES2
+  kind: checkbox
+  required: true
+  section_name: Contact & Social
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Full Name
+    value: full_name
+  - label: Job Title
+    value: job_title
+  - label: Department
+    value: department
+  - label: Phone Number
+    value: phone_number
+  - label: Mobile Number
+    value: mobile_number
+  - label: Email Address
+    value: email_address
+  - label: Website
+    value: website
+  - label: Office Address
+    value: office_address
+  - label: Other
+    value: other
+- code: ES3
+  kind: checkbox
+  required: true
+  section_name: Contact & Social
+  section_order: 1
+  section_field_order: 1
+  options:
+  - label: LinkedIn
+    value: linkedin
+  - label: X / Twitter
+    value: x_twitter
+  - label: Instagram
+    value: instagram
+  - label: Facebook
+    value: facebook
+  - label: YouTube
+    value: youtube
+  - label: TikTok
+    value: tiktok
+  - label: Other
+    value: other
+- code: ES4
+  kind: text
+  required: false
+  section_name: Contact & Social
+  section_order: 1
+  section_field_order: 2
+- code: ES5
+  kind: radio
+  required: true
+  section_name: Call to Action
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: Book a Call
+    value: book_a_call
+  - label: Visit Website
+    value: visit_website
+  - label: Download Resource
+    value: download_resource
+  - label: Event Promotion
+    value: event_promotion
+  - label: Product Promotion
+    value: product_promotion
+  - label: No CTA
+    value: no_cta
+- code: ES6
+  kind: text
+  required: false
+  section_name: Call to Action
+  section_order: 2
+  section_field_order: 1
+- code: ES7
+  kind: radio
+  required: true
+  section_name: Branding & Assets
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: Logo Only
+    value: logo_only
+  - label: Full Brand Guidelines
+    value: full_brand_guidelines
+  - label: Existing Signature
+    value: existing_signature
+  - label: No Assets
+    value: no_assets
+- code: ES8
+  kind: file
+  required: false
+  section_name: Branding & Assets
+  section_order: 3
+  section_field_order: 1
+- code: ES9
+  kind: radio
+  required: true
+  section_name: Style & People
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Corporate
+    value: corporate
+  - label: Minimal
+    value: minimal
+  - label: Modern
+    value: modern
+  - label: Premium
+    value: premium
+  - label: Startup
+    value: startup
+  - label: Creative
+    value: creative
+  - label: Sales-Focused
+    value: sales_focused
+- code: ES10
+  kind: radio
+  required: true
+  section_name: Style & People
+  section_order: 4
+  section_field_order: 1
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+  - label: Optional
+    value: optional
+- code: ES11
+  kind: radio
+  required: true
+  section_name: Legal & Compliance
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: ES12
+  kind: text
+  required: false
+  section_name: Legal & Compliance
+  section_order: 5
+  section_field_order: 1
+- code: ES13
+  kind: checkbox
+  required: true
+  section_name: Platform & Technical
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Outlook
+    value: outlook
+  - label: Gmail
+    value: gmail
+  - label: Microsoft 365
+    value: microsoft_365
+  - label: Apple Mail
+    value: apple_mail
+  - label: Thunderbird
+    value: thunderbird
+  - label: Multiple Platforms
+    value: multiple_platforms
+- code: ES14
+  kind: radio
+  required: true
+  section_name: Platform & Technical
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: HTML Signature
+    value: html_signature
+  - label: Design Mockup Only
+    value: design_mockup_only
+  - label: Both
+    value: both
+  - label: Not Sure
+    value: not_sure
+- code: ES15
+  kind: radio
+  required: true
+  section_name: References
+  section_order: 7
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: ES16
+  kind: file
+  required: false
+  section_name: References
+  section_order: 7
+  section_field_order: 1

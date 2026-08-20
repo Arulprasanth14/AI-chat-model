@@ -1,0 +1,225 @@
+template_key: startup_entrepreneur_sales_deck
+template_label: Sales Deck — Presentation
+vertical: startup
+template_name_match:
+- sales deck
+- sales presentation
+- presentation deck — sales
+- sales pitch deck
+fields:
+- code: SD1
+  kind: text
+  required: true
+  section_name: Deck Overview
+  section_order: 0
+  section_field_order: 0
+- code: SD2
+  kind: text
+  required: true
+  section_name: Deck Overview
+  section_order: 0
+  section_field_order: 1
+- code: SD3
+  kind: checkbox
+  required: true
+  section_name: Deck Overview
+  section_order: 0
+  section_field_order: 2
+  options:
+  - label: Founders
+    value: founders
+  - label: SMB Owners
+    value: smb_owners
+  - label: Enterprise Buyers
+    value: enterprise_buyers
+  - label: Marketing Teams
+    value: marketing_teams
+  - label: Real Estate Developers
+    value: real_estate_developers
+  - label: Investors
+    value: investors
+  - label: HR Leaders
+    value: hr_leaders
+  - label: Other
+    value: other
+- code: SD4
+  kind: text
+  required: true
+  section_name: Problem & Solution
+  section_order: 1
+  section_field_order: 0
+- code: SD5
+  kind: text
+  required: true
+  section_name: Problem & Solution
+  section_order: 1
+  section_field_order: 1
+- code: SD6
+  kind: checkbox
+  required: true
+  section_name: Differentiation & Proof
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: Faster Implementation
+    value: faster_implementation
+  - label: Lower Cost
+    value: lower_cost
+  - label: Better Results
+    value: better_results
+  - label: Proprietary Technology
+    value: proprietary_technology
+  - label: Industry Expertise
+    value: industry_expertise
+  - label: Other
+    value: other
+- code: SD7
+  kind: checkbox
+  required: true
+  section_name: Differentiation & Proof
+  section_order: 2
+  section_field_order: 1
+  options:
+  - label: Client Success Stories
+    value: client_success_stories
+  - label: Testimonials
+    value: testimonials
+  - label: Revenue Growth
+    value: revenue_growth
+  - label: Cost Savings
+    value: cost_savings
+  - label: Customer Metrics
+    value: customer_metrics
+  - label: Awards
+    value: awards
+  - label: Partnerships
+    value: partnerships
+  - label: Other
+    value: other
+- code: SD8
+  kind: radio
+  required: true
+  section_name: Offer & Call to Action
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: Include Pricing
+    value: include_pricing
+  - label: Include Starting Price
+    value: include_starting_price
+  - label: Contact for Pricing
+    value: contact_for_pricing
+  - label: Not Required
+    value: not_required
+- code: SD9
+  kind: radio
+  required: true
+  section_name: Offer & Call to Action
+  section_order: 3
+  section_field_order: 1
+  options:
+  - label: Book a Demo
+    value: book_a_demo
+  - label: Schedule a Call
+    value: schedule_a_call
+  - label: Request a Proposal
+    value: request_a_proposal
+  - label: Start Free Trial
+    value: start_free_trial
+  - label: Contact Sales
+    value: contact_sales
+  - label: Other
+    value: other
+- code: SD10
+  kind: radio
+  required: true
+  section_name: Existing Content
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Complete Deck Available
+    value: complete_deck_available
+  - label: Partial Content Available
+    value: partial_content_available
+  - label: Need Help Structuring Content
+    value: need_structuring
+  - label: Need Help Creating Content
+    value: need_creation
+- code: SD11
+  kind: file
+  required: false
+  section_name: Existing Content
+  section_order: 4
+  section_field_order: 1
+- code: SD12
+  kind: radio
+  required: true
+  section_name: Branding & Assets
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+  - label: Partial
+    value: partial
+- code: SD13
+  kind: file
+  required: false
+  section_name: Branding & Assets
+  section_order: 5
+  section_field_order: 1
+- code: SD14
+  kind: radio
+  required: true
+  section_name: Delivery & Presentation Style
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Live Sales Presentation
+    value: live_sales_presentation
+  - label: Send as PDF
+    value: send_as_pdf
+  - label: Both
+    value: both
+- code: SD15
+  kind: radio
+  required: true
+  section_name: Delivery & Presentation Style
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: SD16
+  kind: file
+  required: false
+  section_name: Delivery & Presentation Style
+  section_order: 6
+  section_field_order: 2
+- code: SD17
+  kind: radio
+  required: true
+  section_name: Delivery & Presentation Style
+  section_order: 6
+  section_field_order: 3
+  options:
+  - label: Modern SaaS
+    value: modern_saas
+  - label: Corporate
+    value: corporate
+  - label: Premium
+    value: premium
+  - label: Startup
+    value: startup
+  - label: Data-Driven
+    value: data_driven
+  - label: Minimal
+    value: minimal
+  - label: High-Impact Sales
+    value: high_impact_sales
+  - label: Other
+    value: other

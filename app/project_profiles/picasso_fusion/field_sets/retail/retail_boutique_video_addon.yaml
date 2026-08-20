@@ -1,0 +1,411 @@
+template_key: retail_boutique_video_addon
+template_label: Video
+vertical: retail
+template_name_match:
+- video add-on
+- video addon
+- video brief
+- brand video
+- product video
+fields:
+- code: VD1
+  kind: radio
+  required: true
+  section_name: Video Purpose & Product
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Brand Film
+    value: brand_film
+  - label: Store Tour
+    value: store_tour
+  - label: Collection Launch
+    value: collection_launch
+  - label: Product Showcase
+    value: product_showcase
+  - label: Seasonal Campaign
+    value: seasonal_campaign
+  - label: Sale / Offer
+    value: sale_offer
+  - label: Event Promotion
+    value: event_promotion
+  - label: Customer Testimonial
+    value: customer_testimonial
+  - label: Behind the Scenes
+    value: behind_the_scenes
+  - label: Store Experience
+    value: store_experience
+  - label: Advertisement
+    value: advertisement
+  - label: Other
+    value: other
+- code: VD2
+  kind: text
+  required: true
+  section_name: Video Purpose & Product
+  section_order: 0
+  section_field_order: 1
+- code: VD3
+  kind: text
+  required: true
+  section_name: Video Purpose & Product
+  section_order: 0
+  section_field_order: 2
+- code: VD4
+  kind: checkbox
+  required: true
+  section_name: Goal & Audience
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Increase Store Visits
+    value: increase_store_visits
+  - label: Promote a Collection
+    value: promote_a_collection
+  - label: Showcase Products
+    value: showcase_products
+  - label: Build Brand Awareness
+    value: build_brand_awareness
+  - label: Promote a Sale
+    value: promote_a_sale
+  - label: Event Promotion
+    value: event_promotion
+  - label: Generate Enquiries
+    value: generate_enquiries
+  - label: Highlight Store Experience
+    value: highlight_store_experience
+  - label: Other
+    value: other
+- code: VD5
+  kind: text
+  required: true
+  section_name: Goal & Audience
+  section_order: 1
+  section_field_order: 1
+- code: VD6
+  kind: radio
+  required: true
+  section_name: Offer
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: No Offer
+    value: no_offer
+  - label: Percentage Discount
+    value: percentage_discount
+  - label: Flat Discount
+    value: flat_discount
+  - label: Buy One Get One
+    value: buy_one_get_one
+  - label: Free Gift
+    value: free_gift
+  - label: Limited-Time Offer
+    value: limited_time_offer
+  - label: Other
+    value: other
+- code: VD7
+  kind: text
+  required: false
+  section_name: Offer
+  section_order: 2
+  section_field_order: 1
+- code: VD8
+  kind: checkbox
+  required: true
+  section_name: Footage & Key Shots
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: I'll Upload Store Videos
+    value: ill_upload_store_videos
+  - label: I'll Upload Product Videos
+    value: ill_upload_product_videos
+  - label: I'll Upload Customer/Lifestyle Footage
+    value: ill_upload_customer_lifestyle_footage
+  - label: I Have Both Videos & Photos
+    value: i_have_both_videos_photos
+  - label: Share via Google Drive
+    value: share_via_google_drive
+  - label: Use Stock Footage Where Suitable
+    value: use_stock_footage_where_suitable
+- code: VD9
+  kind: file
+  required: false
+  section_name: Footage & Key Shots
+  section_order: 3
+  section_field_order: 1
+- code: VD10
+  kind: text
+  required: false
+  section_name: Footage & Key Shots
+  section_order: 3
+  section_field_order: 2
+- code: VD11
+  kind: radio
+  required: true
+  section_name: Length & Script
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Under 30 Seconds
+    value: under_30_seconds
+  - label: 30–60 Seconds
+    value: 30_60_seconds
+  - label: 1–3 Minutes
+    value: 1_3_minutes
+  - label: 3–5 Minutes
+    value: 3_5_minutes
+  - label: Let the Creative Team Decide
+    value: let_the_creative_team_decide
+- code: VD12
+  kind: radio
+  required: true
+  section_name: Length & Script
+  section_order: 4
+  section_field_order: 1
+  options:
+  - label: Final Script Ready
+    value: final_script_ready
+  - label: Rough Talking Points
+    value: rough_talking_points
+  - label: Need Scriptwriting Support
+    value: need_scriptwriting_support
+  - label: No Narration Required
+    value: no_narration_required
+- code: VD13
+  kind: text
+  required: false
+  section_name: Length & Script
+  section_order: 4
+  section_field_order: 2
+- code: VD14
+  kind: checkbox
+  required: true
+  section_name: Tone & Music
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: Premium
+    value: premium
+  - label: Luxury
+    value: luxury
+  - label: Modern
+    value: modern
+  - label: Lifestyle
+    value: lifestyle
+  - label: Editorial
+    value: editorial
+  - label: Minimal
+    value: minimal
+  - label: Elegant
+    value: elegant
+  - label: Energetic
+    value: energetic
+  - label: Warm
+    value: warm
+  - label: Vibrant
+    value: vibrant
+  - label: Cinematic
+    value: cinematic
+  - label: Match My Brand Style
+    value: match_my_brand_style
+- code: VD15
+  kind: radio
+  required: true
+  section_name: Tone & Music
+  section_order: 5
+  section_field_order: 1
+  options:
+  - label: Upbeat
+    value: upbeat
+  - label: Cinematic
+    value: cinematic
+  - label: Ambient
+    value: ambient
+  - label: Electronic
+    value: electronic
+  - label: Acoustic
+    value: acoustic
+  - label: Luxury
+    value: luxury
+  - label: Motivational
+    value: motivational
+  - label: I'll Upload My Own Music
+    value: ill_upload_my_own_music
+  - label: No Music
+    value: no_music
+  - label: Designer Can Choose
+    value: designer_can_choose
+- code: VD16
+  kind: radio
+  required: true
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Use My Saved Brand Kit
+    value: use_my_saved_brand_kit
+  - label: Upload Brand Guidelines
+    value: upload_brand_guidelines
+  - label: Upload Logo & Assets
+    value: upload_logo_assets
+  - label: Customize This Project
+    value: customize_this_project
+- code: VD17
+  kind: checkbox
+  required: false
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: Brand Colors
+    value: brand_colors
+  - label: Brand Fonts
+    value: brand_fonts
+  - label: Logo Placement
+    value: logo_placement
+  - label: Additional Instructions
+    value: additional_instructions
+- code: VD18
+  kind: text
+  required: false
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 2
+- code: VD19
+  kind: checkbox
+  required: false
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 0
+  options:
+  - label: Instagram Link
+    value: instagram_link
+  - label: YouTube Link
+    value: youtube_link
+  - label: TikTok Link
+    value: tiktok_link
+  - label: Upload Reference Videos
+    value: upload_reference_videos
+  - label: Skip
+    value: skip
+- code: VD20
+  kind: text
+  required: false
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 1
+- code: VD21
+  kind: file
+  required: false
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 2
+- code: VD22
+  kind: checkbox
+  required: true
+  section_name: Publishing & Format
+  section_order: 8
+  section_field_order: 0
+  options:
+  - label: Instagram
+    value: instagram
+  - label: Facebook
+    value: facebook
+  - label: YouTube
+    value: youtube
+  - label: Website
+    value: website
+  - label: In-store Display
+    value: in_store_display
+  - label: Digital Advertising
+    value: digital_advertising
+  - label: Multiple Platforms
+    value: multiple_platforms
+- code: VD23
+  kind: checkbox
+  required: true
+  section_name: Publishing & Format
+  section_order: 8
+  section_field_order: 1
+  options:
+  - label: Vertical (9:16)
+    value: vertical_9_16
+  - label: Square (1:1)
+    value: square_1_1
+  - label: Landscape (16:9)
+    value: landscape_16_9
+  - label: Multiple Formats
+    value: multiple_formats
+  - label: Let the Creative Team Recommend
+    value: let_the_creative_team_recommend
+- code: VD24
+  kind: radio
+  required: true
+  section_name: Publishing & Format
+  section_order: 8
+  section_field_order: 2
+  options:
+  - label: English
+    value: english
+  - label: Hindi
+    value: hindi
+  - label: Tamil
+    value: tamil
+  - label: Telugu
+    value: telugu
+  - label: Malayalam
+    value: malayalam
+  - label: Kannada
+    value: kannada
+  - label: Arabic
+    value: arabic
+  - label: Spanish
+    value: spanish
+  - label: French
+    value: french
+  - label: German
+    value: german
+  - label: Portuguese
+    value: portuguese
+  - label: Chinese
+    value: chinese
+  - label: Japanese
+    value: japanese
+  - label: Korean
+    value: korean
+  - label: Urdu
+    value: urdu
+  - label: Other
+    value: other
+- code: VD25
+  kind: radio
+  required: true
+  section_name: Call to Action & Notes
+  section_order: 9
+  section_field_order: 0
+  options:
+  - label: Visit Our Store
+    value: visit_our_store
+  - label: Explore the Collection
+    value: explore_the_collection
+  - label: Shop Now
+    value: shop_now
+  - label: Contact Us
+    value: contact_us
+  - label: Call Us
+    value: call_us
+  - label: Send Us a DM
+    value: send_us_a_dm
+  - label: Follow Our Page
+    value: follow_our_page
+  - label: Learn More
+    value: learn_more
+  - label: Other
+    value: other
+- code: VD26
+  kind: text
+  required: false
+  section_name: Call to Action & Notes
+  section_order: 9
+  section_field_order: 1

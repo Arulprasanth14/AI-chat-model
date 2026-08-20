@@ -1,0 +1,17 @@
+---
+brief_type: retail_boutique_static_post
+doc_type: question_guidance
+industry: retail
+section: Images & Assets
+template_label: Static Post
+---
+
+## Images & Assets
+
+When conducting the Static Post brief for a Retail client, the **Images & Assets** section covers the following key information.
+
+Ask the client: Do you have images or assets? The client may select one or more from: "I'll Upload Product Photos", "I'll Upload Store Photos", "I'll Upload Lifestyle Photos", "I'll Upload All Available Assets", "Use Stock Lifestyle Images", among others.
+
+Optionally, ask the client: Upload your files. (this is not required) Upload product photos, store images, logos, or supporting assets.
+
+In this section, 1 question(s) are required and 1 are optional — follow up on optional items only when contextually appropriate.

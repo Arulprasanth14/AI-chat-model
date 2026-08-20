@@ -1,0 +1,237 @@
+{
+  "key": "technology_services_email_template",
+  "label": "Email Template",
+  "verticalKey": "technology",
+  "templateNameMatch": ["email template"],
+  "sections": [
+    {
+      "name": "Email Purpose",
+      "questions": [
+        {
+          "code": "ET1",
+          "kind": "radio",
+          "question": "What type of email template do you need?",
+          "options": [
+            { "label": "Newsletter", "value": "newsletter" },
+            { "label": "Product Updates", "value": "product_updates" },
+            { "label": "Promotional Emails", "value": "promotional_emails" },
+            { "label": "Event Invitations", "value": "event_invitations" },
+            { "label": "Customer Onboarding", "value": "customer_onboarding" },
+            { "label": "Customer Retention", "value": "customer_retention" },
+            { "label": "Transactional Emails", "value": "transactional_emails" },
+            { "label": "Internal Communications", "value": "internal_communications" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Template Goal",
+      "questions": [
+        {
+          "code": "ET2",
+          "kind": "checkbox",
+          "question": "What is the primary goal of this email template?",
+          "hint": "Examples: Drive website traffic, Generate leads, Promote products, Share company updates, Register for events, Educate customers.",
+          "options": [
+            { "label": "Drive Website Traffic", "value": "drive_website_traffic" },
+            { "label": "Generate Leads", "value": "generate_leads" },
+            { "label": "Promote Products", "value": "promote_products" },
+            { "label": "Share Company Updates", "value": "share_company_updates" },
+            { "label": "Register for Events", "value": "register_for_events" },
+            { "label": "Educate Customers", "value": "educate_customers" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Email Platform",
+      "questions": [
+        {
+          "code": "ET3",
+          "kind": "radio",
+          "question": "Which email platform will this template be used in?",
+          "hint": "This should be one of the first questions because it affects how the template is built.",
+          "options": [
+            { "label": "Mailchimp", "value": "mailchimp" },
+            { "label": "Klaviyo", "value": "klaviyo" },
+            { "label": "HubSpot", "value": "hubspot" },
+            { "label": "ActiveCampaign", "value": "activecampaign" },
+            { "label": "Brevo", "value": "brevo" },
+            { "label": "Campaign Monitor", "value": "campaign_monitor" },
+            { "label": "Salesforce Marketing Cloud", "value": "salesforce_marketing_cloud" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Content Structure",
+      "questions": [
+        {
+          "code": "ET4",
+          "kind": "checkbox",
+          "question": "Which sections should be included in the template?",
+          "options": [
+            { "label": "Hero Banner", "value": "hero_banner" },
+            { "label": "Intro Text", "value": "intro_text" },
+            { "label": "Featured Article", "value": "featured_article" },
+            { "label": "Product Grid", "value": "product_grid" },
+            { "label": "Event Section", "value": "event_section" },
+            { "label": "Testimonials", "value": "testimonials" },
+            { "label": "Call-to-Action Section", "value": "cta_section" },
+            { "label": "Social Links", "value": "social_links" },
+            { "label": "Footer", "value": "footer" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Content & Assets",
+      "questions": [
+        {
+          "code": "ET5",
+          "kind": "radio",
+          "question": "Do you have photography, product images, illustrations, or brand assets to use?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ET6",
+          "kind": "file",
+          "question": "Upload assets.",
+          "hint": "Only if you have photography, product images, illustrations, or brand assets.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Calls to Action",
+      "questions": [
+        {
+          "code": "ET7",
+          "kind": "radio",
+          "question": "Will this template include call-to-action buttons?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ET8",
+          "kind": "checkbox",
+          "question": "What CTA buttons should be available in the template?",
+          "hint": "Only if you said yes above.",
+          "options": [
+            { "label": "Learn More", "value": "learn_more" },
+            { "label": "Shop Now", "value": "shop_now" },
+            { "label": "Register", "value": "register" },
+            { "label": "Book a Demo", "value": "book_a_demo" },
+            { "label": "Contact Us", "value": "contact_us" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Tracking Requirements",
+      "questions": [
+        {
+          "code": "ET9",
+          "kind": "radio",
+          "question": "Will links in this template require UTM tracking?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ET10",
+          "kind": "text",
+          "question": "Provide UTM parameters or confirm AI-generated UTMs.",
+          "hint": "Only if you said yes above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Direction",
+      "questions": [
+        {
+          "code": "ET11",
+          "kind": "radio",
+          "question": "Any reference email designs or inspiration?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ET12",
+          "kind": "file",
+          "question": "Upload reference emails, up to 3.",
+          "hint": "Only if you said yes to reference email designs above.",
+          "required": false
+        },
+        {
+          "code": "ET13",
+          "kind": "radio",
+          "question": "Describe the email design style you'd like.",
+          "options": [
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Product-Focused", "value": "product_focused" },
+            { "label": "Modern SaaS", "value": "modern_saas" },
+            { "label": "Bold and Promotional", "value": "bold_and_promotional" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Technical Requirements",
+      "questions": [
+        {
+          "code": "ET14",
+          "kind": "radio",
+          "question": "Do you require a fully coded HTML email or a design-only template?",
+          "hint": "This is a critical question that's currently missing.",
+          "options": [
+            { "label": "Fully Coded HTML Email", "value": "fully_coded_html_email" },
+            { "label": "Design Only", "value": "design_only" },
+            { "label": "Not Sure", "value": "not_sure" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Additional Requirements",
+      "questions": [
+        {
+          "code": "ET15",
+          "kind": "text",
+          "question": "Any technical, accessibility, or platform-specific requirements?",
+          "hint": "Leave blank if unsure.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

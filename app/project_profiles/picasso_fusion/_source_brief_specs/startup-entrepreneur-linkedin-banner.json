@@ -1,0 +1,209 @@
+{
+  "key": "startup_entrepreneur_linkedin_banner",
+  "label": "LinkedIn Banner",
+  "verticalKey": "startup",
+  "templateNameMatch": ["linkedin banner", "linkedin cover"],
+  "sections": [
+    {
+      "name": "Banner Overview",
+      "questions": [
+        {
+          "code": "LB1",
+          "kind": "radio",
+          "question": "Is this banner for a personal profile or company page?",
+          "hint": "Banner content and messaging differ significantly.",
+          "options": [
+            { "label": "Personal Profile", "value": "personal_profile" },
+            { "label": "Company Page", "value": "company_page" }
+          ],
+          "required": true
+        },
+        {
+          "code": "LB2",
+          "kind": "checkbox",
+          "question": "What is the objective of this LinkedIn banner?",
+          "hint": "One banner = one clear message.",
+          "options": [
+            { "label": "Personal Branding", "value": "personal_branding" },
+            { "label": "Thought Leadership", "value": "thought_leadership" },
+            { "label": "Lead Generation", "value": "lead_generation" },
+            { "label": "Company Awareness", "value": "company_awareness" },
+            { "label": "Recruiting", "value": "recruiting" },
+            { "label": "Product/Service Promotion", "value": "product_service_promotion" },
+            { "label": "Event Promotion", "value": "event_promotion" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "LB3",
+          "kind": "checkbox",
+          "question": "Who is the target audience?",
+          "hint": "Tailor the message to the audience.",
+          "options": [
+            { "label": "Founders", "value": "founders" },
+            { "label": "Business Owners", "value": "business_owners" },
+            { "label": "Investors", "value": "investors" },
+            { "label": "Recruiters", "value": "recruiters" },
+            { "label": "Job Seekers", "value": "job_seekers" },
+            { "label": "Enterprise Buyers", "value": "enterprise_buyers" },
+            { "label": "Startups", "value": "startups" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Content",
+      "questions": [
+        {
+          "code": "LB4",
+          "kind": "checkbox",
+          "question": "What key information should appear?",
+          "hint": "Less is more. Include only essentials.",
+          "options": [
+            { "label": "Name", "value": "name" },
+            { "label": "Job Title", "value": "job_title" },
+            { "label": "Company Name", "value": "company_name" },
+            { "label": "Tagline", "value": "tagline" },
+            { "label": "Website", "value": "website" },
+            { "label": "Services", "value": "services" },
+            { "label": "Certifications", "value": "certifications" },
+            { "label": "Awards", "value": "awards" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Assets",
+      "questions": [
+        {
+          "code": "LB5",
+          "kind": "radio",
+          "question": "Do you have imagery or brand assets?",
+          "hint": "Quality visuals improve profile performance.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "LB6",
+          "kind": "file",
+          "question": "Upload logos, photos, headshots, screenshots, or brand assets.",
+          "hint": "High-resolution files preferred. Only if you have imagery or brand assets.",
+          "required": false
+        },
+        {
+          "code": "LB7",
+          "kind": "checkbox",
+          "question": "Should any achievements, awards, certifications, or social proof be featured?",
+          "hint": "Examples: Forbes Featured, 500+ Clients, Google Partner, Industry Awards.",
+          "options": [
+            { "label": "Forbes Featured", "value": "forbes_featured" },
+            { "label": "500+ Clients", "value": "500_clients" },
+            { "label": "Google Partner", "value": "google_partner" },
+            { "label": "Industry Awards", "value": "industry_awards" },
+            { "label": "Other", "value": "other" },
+            { "label": "None", "value": "none" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Personal Profile Only (Conditional)",
+      "questions": [
+        {
+          "code": "LB8",
+          "kind": "text",
+          "question": "What headline or positioning statement should visitors immediately understand?",
+          "hint": "Keep it concise and memorable. Only ask this if the banner is for a Personal Profile (LB1 = Personal Profile).",
+          "required": false
+        },
+        {
+          "code": "LB9",
+          "kind": "text",
+          "question": "What services, expertise, or specialties should be highlighted?",
+          "hint": "Examples: SaaS Growth, Real Estate, Product Design, Marketing Strategy, AI Consulting. Only ask this if the banner is for a Personal Profile (LB1 = Personal Profile).",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Company Page Only (Conditional)",
+      "questions": [
+        {
+          "code": "LB10",
+          "kind": "text",
+          "question": "What key company message should visitors immediately understand?",
+          "hint": "Focus on your value proposition. Only ask this if the banner is for a Company Page (LB1 = Company Page).",
+          "required": false
+        },
+        {
+          "code": "LB11",
+          "kind": "text",
+          "question": "What products, services, or capabilities should be highlighted?",
+          "hint": "Only ask this if the banner is for a Company Page (LB1 = Company Page).",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Direction",
+      "questions": [
+        {
+          "code": "LB12",
+          "kind": "radio",
+          "question": "Any reference banners or inspiration?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "LB13",
+          "kind": "file",
+          "question": "Upload reference banners, up to 3.",
+          "hint": "Only if you said yes to reference banners above.",
+          "required": false
+        },
+        {
+          "code": "LB14",
+          "kind": "radio",
+          "question": "Preferred design style?",
+          "hint": "Choose a visual direction.",
+          "options": [
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Startup", "value": "startup" },
+            { "label": "Technology", "value": "technology" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Personal Brand", "value": "personal_brand" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Technical Requirements",
+      "questions": [
+        {
+          "code": "LB15",
+          "kind": "text",
+          "question": "Any technical requirements?",
+          "hint": "Leave blank if unsure. LinkedIn-recommended dimensions and safe zones will be used.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

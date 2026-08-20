@@ -1,0 +1,234 @@
+template_key: real_estate_open_home_signboard
+template_label: Open Home Signboard
+vertical: realestate
+template_name_match:
+- signboard
+- sign board
+- open home sign
+fields:
+- code: SB1
+  kind: text
+  required: true
+  section_name: Open Home Information
+  section_order: 0
+  section_field_order: 0
+- code: SB2
+  kind: radio
+  required: true
+  section_name: Open Home Information
+  section_order: 0
+  section_field_order: 1
+  options:
+  - label: House
+    value: house
+  - label: Apartment
+    value: apartment
+  - label: Townhouse
+    value: townhouse
+  - label: Villa
+    value: villa
+  - label: Land
+    value: land
+  - label: Commercial Property
+    value: commercial
+  - label: Other
+    value: other
+- code: SB3
+  kind: radio
+  required: true
+  section_name: Open Home Information
+  section_order: 0
+  section_field_order: 2
+  options:
+  - label: Open Home
+    value: open_home
+  - label: Auction
+    value: auction
+  - label: New Listing
+    value: new_listing
+  - label: Sold Property
+    value: sold_property
+  - label: Directional Sign
+    value: directional_sign
+  - label: Custom
+    value: custom
+- code: SB4
+  kind: text
+  required: false
+  section_name: Open Home Information
+  section_order: 0
+  section_field_order: 3
+- code: SB5
+  kind: radio
+  required: true
+  section_name: Signboard Type
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: A-Frame Sign
+    value: a_frame
+  - label: Corflute Sign
+    value: corflute
+  - label: Directional Sign
+    value: directional
+  - label: Open Home Pointer Sign
+    value: pointer_sign
+  - label: Pull-Up Banner
+    value: pull_up_banner
+  - label: Fence Sign
+    value: fence_sign
+  - label: Custom Size
+    value: custom
+- code: SB6
+  kind: text
+  required: true
+  section_name: Signboard Type
+  section_order: 1
+  section_field_order: 1
+- code: SB7
+  kind: text
+  required: true
+  section_name: Property Content
+  section_order: 2
+  section_field_order: 0
+- code: SB8
+  kind: text
+  required: true
+  section_name: Property Content
+  section_order: 2
+  section_field_order: 1
+- code: SB9
+  kind: file
+  required: true
+  section_name: Images & Assets
+  section_order: 3
+  section_field_order: 0
+- code: SB10
+  kind: checkbox
+  required: true
+  section_name: Images & Assets
+  section_order: 3
+  section_field_order: 1
+  options:
+  - label: Agent Photo
+    value: agent_photo
+  - label: Floor Plan
+    value: floor_plan
+  - label: Agency Awards
+    value: agency_awards
+  - label: QR Code
+    value: qr_code
+  - label: Property Logo
+    value: property_logo
+  - label: Other
+    value: other
+  - label: None
+    value: none
+- code: SB11
+  kind: text
+  required: true
+  section_name: Agent Information
+  section_order: 4
+  section_field_order: 0
+- code: SB12
+  kind: radio
+  required: true
+  section_name: Agent Information
+  section_order: 4
+  section_field_order: 1
+  options:
+  - label: Inspect Today
+    value: inspect_today
+  - label: Contact Agent
+    value: contact_agent
+  - label: Register for Auction
+    value: register_auction
+  - label: Scan for Property Details
+    value: scan_for_details
+  - label: Book a Viewing
+    value: book_viewing
+  - label: Other
+    value: other
+- code: SB13
+  kind: radio
+  required: true
+  section_name: Agent Information
+  section_order: 4
+  section_field_order: 2
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: SB14
+  kind: text
+  required: false
+  section_name: Agent Information
+  section_order: 4
+  section_field_order: 3
+- code: SB15
+  kind: radio
+  required: true
+  section_name: Directional Requirements
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: SB16
+  kind: checkbox
+  required: false
+  section_name: Directional Requirements
+  section_order: 5
+  section_field_order: 1
+  options:
+  - label: Left
+    value: left
+  - label: Right
+    value: right
+  - label: Straight Ahead
+    value: straight_ahead
+  - label: Multiple Directions
+    value: multiple_directions
+- code: SB17
+  kind: file
+  required: false
+  section_name: Design Direction
+  section_order: 6
+  section_field_order: 0
+- code: SB18
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: Premium Real Estate
+    value: premium_real_estate
+  - label: Luxury
+    value: luxury
+  - label: Minimal
+    value: minimal
+  - label: Corporate
+    value: corporate
+  - label: High Visibility
+    value: high_visibility
+  - label: Modern
+    value: modern
+  - label: Other
+    value: other
+- code: SB19
+  kind: radio
+  required: true
+  section_name: Production Requirements
+  section_order: 7
+  section_field_order: 0
+  options:
+  - label: Indoor
+    value: indoor
+  - label: Outdoor
+    value: outdoor
+  - label: Both
+    value: both

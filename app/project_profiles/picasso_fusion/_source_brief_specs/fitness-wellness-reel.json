@@ -1,0 +1,371 @@
+{
+  "key": "fitness_wellness_reel",
+  "label": "Reel",
+  "verticalKey": "fitness",
+  "templateNameMatch": ["reel", "reels", "reel creative brief"],
+  "sections": [
+    {
+      "name": "Reel Topic & Message",
+      "questions": [
+        {
+          "code": "RL1",
+          "kind": "radio",
+          "question": "What is this Reel about?",
+          "hint": "Choose the purpose.",
+          "options": [
+            { "label": "Workout Demonstration", "value": "workout_demonstration" },
+            { "label": "Exercise Tutorial", "value": "exercise_tutorial" },
+            { "label": "Client Transformation", "value": "client_transformation" },
+            { "label": "Fitness Tips", "value": "fitness_tips" },
+            { "label": "Nutrition Advice", "value": "nutrition_advice" },
+            { "label": "Gym Promotion", "value": "gym_promotion" },
+            { "label": "Personal Trainer Introduction", "value": "personal_trainer_introduction" },
+            { "label": "Class Promotion", "value": "class_promotion" },
+            { "label": "Challenge", "value": "challenge" },
+            { "label": "Success Story", "value": "success_story" },
+            { "label": "Offer / Discount", "value": "offer_discount" },
+            { "label": "Behind the Scenes", "value": "behind_the_scenes" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL2",
+          "kind": "text",
+          "question": "What's the ONE message viewers should remember?",
+          "hint": "Describe the biggest takeaway. Example: \"Strength training is for everyone.\", \"Join our 8-week fat loss challenge.\", \"Small daily habits create lasting results.\"",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Goal & Audience",
+      "questions": [
+        {
+          "code": "RL3",
+          "kind": "checkbox",
+          "question": "What's the goal of this Reel?",
+          "options": [
+            { "label": "Generate Leads", "value": "generate_leads" },
+            { "label": "Promote Memberships", "value": "promote_memberships" },
+            { "label": "Sell a Program", "value": "sell_a_program" },
+            { "label": "Book a Free Trial", "value": "book_a_free_trial" },
+            { "label": "Build Trust", "value": "build_trust" },
+            { "label": "Educate Followers", "value": "educate_followers" },
+            { "label": "Increase Followers", "value": "increase_followers" },
+            { "label": "Increase Shares", "value": "increase_shares" },
+            { "label": "Brand Awareness", "value": "brand_awareness" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL4",
+          "kind": "text",
+          "question": "Who is this Reel for?",
+          "hint": "Describe your ideal audience. Example: Beginners, women, athletes, busy professionals, weight-loss clients, seniors, etc.",
+          "required": true
+        },
+        {
+          "code": "RL5",
+          "kind": "checkbox",
+          "question": "What should viewers feel after watching?",
+          "hint": "Choose up to 2.",
+          "options": [
+            { "label": "Motivated", "value": "motivated" },
+            { "label": "Inspired", "value": "inspired" },
+            { "label": "Confident", "value": "confident" },
+            { "label": "Excited", "value": "excited" },
+            { "label": "Curious", "value": "curious" },
+            { "label": "Empowered", "value": "empowered" },
+            { "label": "Trusting", "value": "trusting" },
+            { "label": "Entertained", "value": "entertained" },
+            { "label": "Urgent", "value": "urgent" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Footage & Key Shots",
+      "questions": [
+        {
+          "code": "RL6",
+          "kind": "checkbox",
+          "question": "What footage do you have?",
+          "options": [
+            { "label": "I'll Upload Video Clips", "value": "ill_upload_video_clips" },
+            { "label": "I'll Upload Photos", "value": "ill_upload_photos" },
+            { "label": "I Have Both Videos & Photos", "value": "i_have_both_videos_photos" },
+            { "label": "Share via Google Drive", "value": "share_via_google_drive" },
+            { "label": "Use Stock Footage", "value": "use_stock_footage" },
+            { "label": "Designer Can Suggest", "value": "designer_can_suggest" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL7",
+          "kind": "file",
+          "question": "Upload your footage.",
+          "hint": "Upload videos, photos, logos, or supporting assets. Preferred format: Vertical (9:16), MP4/MOV, 1080p or higher. Only if you'll be uploading your own video clips or photos.",
+          "required": false
+        },
+        {
+          "code": "RL8",
+          "kind": "text",
+          "question": "Are there any important shots that must be included?",
+          "hint": "Example: Client transformation reveal, Trainer speaking to camera, Gym equipment, Before & after, Product close-up, Workout demonstration.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Length & Hook",
+      "questions": [
+        {
+          "code": "RL9",
+          "kind": "radio",
+          "question": "How long should the Reel be?",
+          "options": [
+            { "label": "Under 15 Seconds", "value": "under_15_seconds" },
+            { "label": "15–30 Seconds", "value": "15_30_seconds" },
+            { "label": "30–60 Seconds", "value": "30_60_seconds" },
+            { "label": "Let the Creative Team Decide", "value": "let_the_creative_team_decide" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL10",
+          "kind": "text",
+          "question": "What's the most important first 3 seconds?",
+          "hint": "If someone watches only the beginning, what absolutely must they see or understand?",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Script",
+      "questions": [
+        {
+          "code": "RL11",
+          "kind": "radio",
+          "question": "Do you already have a script or talking points?",
+          "options": [
+            { "label": "Final Script Ready", "value": "final_script_ready" },
+            { "label": "Rough Ideas", "value": "rough_ideas" },
+            { "label": "Need Scriptwriting Support", "value": "need_scriptwriting_support" },
+            { "label": "No Voiceover Required", "value": "no_voiceover_required" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL12",
+          "kind": "text",
+          "question": "Provide your script or rough talking points.",
+          "hint": "Only if you selected \"Final Script Ready\" or \"Rough Ideas\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Tone & On-Screen Text",
+      "questions": [
+        {
+          "code": "RL13",
+          "kind": "checkbox",
+          "question": "How should the Reel feel?",
+          "hint": "Choose up to 3.",
+          "options": [
+            { "label": "Premium", "value": "premium" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Energetic", "value": "energetic" },
+            { "label": "Motivational", "value": "motivational" },
+            { "label": "Cinematic", "value": "cinematic" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Bold", "value": "bold" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Documentary", "value": "documentary" },
+            { "label": "Professional", "value": "professional" },
+            { "label": "Fast Paced", "value": "fast_paced" },
+            { "label": "Clean", "value": "clean" },
+            { "label": "Match My Brand Style", "value": "match_my_brand_style" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL14",
+          "kind": "radio",
+          "question": "Should the Reel include text on screen?",
+          "options": [
+            { "label": "Full Captions", "value": "full_captions" },
+            { "label": "Key Highlights", "value": "key_highlights" },
+            { "label": "Animated Headlines", "value": "animated_headlines" },
+            { "label": "Minimal Text", "value": "minimal_text" },
+            { "label": "No Text", "value": "no_text" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL15",
+          "kind": "radio",
+          "question": "What kind of music would you like?",
+          "options": [
+            { "label": "Upbeat Workout", "value": "upbeat_workout" },
+            { "label": "Trending Social Audio", "value": "trending_social_audio" },
+            { "label": "Cinematic", "value": "cinematic" },
+            { "label": "Motivational", "value": "motivational" },
+            { "label": "Electronic", "value": "electronic" },
+            { "label": "Hip-Hop", "value": "hip_hop" },
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "I'll Upload My Own Music", "value": "ill_upload_my_own_music" },
+            { "label": "No Music", "value": "no_music" },
+            { "label": "Designer Can Choose", "value": "designer_can_choose" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Brand Assets",
+      "questions": [
+        {
+          "code": "RL16",
+          "kind": "radio",
+          "question": "Would you like us to follow your existing brand identity?",
+          "hint": "Brand Assets & Guidelines.",
+          "options": [
+            { "label": "Use My Saved Brand Kit", "value": "use_my_saved_brand_kit" },
+            { "label": "Upload Brand Guidelines", "value": "upload_brand_guidelines" },
+            { "label": "Upload Logo & Assets", "value": "upload_logo_assets" },
+            { "label": "Customize This Project", "value": "customize_this_project" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL17",
+          "kind": "checkbox",
+          "question": "What should we customize?",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "options": [
+            { "label": "Brand Colors", "value": "brand_colors" },
+            { "label": "Brand Fonts", "value": "brand_fonts" },
+            { "label": "Logo Placement", "value": "logo_placement" },
+            { "label": "Additional Instructions", "value": "additional_instructions" }
+          ],
+          "required": false
+        },
+        {
+          "code": "RL18",
+          "kind": "text",
+          "question": "Provide any additional brand customization details.",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "RL19",
+          "kind": "checkbox",
+          "question": "Do you have any inspiration?",
+          "hint": "Share Reels or videos you like.",
+          "options": [
+            { "label": "Instagram Reel", "value": "instagram_reel" },
+            { "label": "TikTok", "value": "tiktok" },
+            { "label": "YouTube Shorts", "value": "youtube_shorts" },
+            { "label": "Upload Reference Video", "value": "upload_reference_video" },
+            { "label": "Skip", "value": "skip" }
+          ],
+          "required": false
+        },
+        {
+          "code": "RL20",
+          "kind": "text",
+          "question": "Provide the reference link(s).",
+          "hint": "Only if you selected Instagram Reel, TikTok, or YouTube Shorts above.",
+          "required": false
+        },
+        {
+          "code": "RL21",
+          "kind": "file",
+          "question": "Upload reference video.",
+          "hint": "Only if you selected \"Upload Reference Video\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Publishing & Language",
+      "questions": [
+        {
+          "code": "RL22",
+          "kind": "checkbox",
+          "question": "Where will this Reel be published?",
+          "options": [
+            { "label": "Instagram Reels", "value": "instagram_reels" },
+            { "label": "Facebook Reels", "value": "facebook_reels" },
+            { "label": "TikTok", "value": "tiktok" },
+            { "label": "YouTube Shorts", "value": "youtube_shorts" },
+            { "label": "Multiple Platforms", "value": "multiple_platforms" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL23",
+          "kind": "radio",
+          "question": "What language should the Reel use?",
+          "options": [
+            { "label": "English", "value": "english" },
+            { "label": "Hindi", "value": "hindi" },
+            { "label": "Tamil", "value": "tamil" },
+            { "label": "Telugu", "value": "telugu" },
+            { "label": "Malayalam", "value": "malayalam" },
+            { "label": "Kannada", "value": "kannada" },
+            { "label": "Arabic", "value": "arabic" },
+            { "label": "Spanish", "value": "spanish" },
+            { "label": "French", "value": "french" },
+            { "label": "German", "value": "german" },
+            { "label": "Portuguese", "value": "portuguese" },
+            { "label": "Chinese", "value": "chinese" },
+            { "label": "Japanese", "value": "japanese" },
+            { "label": "Korean", "value": "korean" },
+            { "label": "Urdu", "value": "urdu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Call to Action & Notes",
+      "questions": [
+        {
+          "code": "RL24",
+          "kind": "radio",
+          "question": "What should viewers do after watching?",
+          "options": [
+            { "label": "Join Our Gym", "value": "join_our_gym" },
+            { "label": "Book a Free Trial", "value": "book_a_free_trial" },
+            { "label": "Send Us a DM", "value": "send_us_a_dm" },
+            { "label": "Visit Our Website", "value": "visit_our_website" },
+            { "label": "Follow Our Page", "value": "follow_our_page" },
+            { "label": "Share the Reel", "value": "share_the_reel" },
+            { "label": "Save the Reel", "value": "save_the_reel" },
+            { "label": "Contact Us", "value": "contact_us" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL25",
+          "kind": "text",
+          "question": "Is there anything you'd like us to avoid?",
+          "hint": "Mention any editing styles, transitions, effects, music, wording, or visual directions you'd prefer not to use.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

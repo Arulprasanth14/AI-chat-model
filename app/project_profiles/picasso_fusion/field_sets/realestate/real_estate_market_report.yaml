@@ -1,0 +1,257 @@
+template_key: real_estate_market_report
+template_label: Real Estate Market Report
+vertical: realestate
+template_name_match:
+- market report
+fields:
+- code: MR1
+  kind: radio
+  required: true
+  section_name: Report Overview
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Suburb Market Report
+    value: suburb
+  - label: City Market Report
+    value: city
+  - label: Commercial Property Market
+    value: commercial
+  - label: Rental Market Report
+    value: rental
+  - label: Luxury Property Market
+    value: luxury
+  - label: Investment Market Report
+    value: investment
+  - label: Other
+    value: other
+- code: MR2
+  kind: radio
+  required: true
+  section_name: Report Overview
+  section_order: 0
+  section_field_order: 1
+  options:
+  - label: Monthly
+    value: monthly
+  - label: Quarterly
+    value: quarterly
+  - label: Half-Yearly
+    value: half_yearly
+  - label: Annual
+    value: annual
+  - label: Custom Date Range
+    value: custom_range
+- code: MR3
+  kind: checkbox
+  required: true
+  section_name: Report Overview
+  section_order: 0
+  section_field_order: 2
+  options:
+  - label: Generate seller leads
+    value: generate_seller_leads
+  - label: Position the agency as a market expert
+    value: market_expert_positioning
+  - label: Inform property owners
+    value: inform_owners
+  - label: Attract investors
+    value: attract_investors
+  - label: Support marketing campaigns
+    value: support_campaigns
+  - label: Other
+    value: other
+- code: MR4
+  kind: radio
+  required: true
+  section_name: Report Format
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Printed Report
+    value: printed
+  - label: Digital PDF
+    value: digital_pdf
+  - label: LinkedIn PDF Carousel
+    value: linkedin_carousel
+  - label: Email Attachment
+    value: email_attachment
+  - label: Both Print & Digital
+    value: both
+- code: MR5
+  kind: radio
+  required: true
+  section_name: Report Format
+  section_order: 1
+  section_field_order: 1
+  options:
+  - label: 4 Pages
+    value: '4'
+  - label: 8 Pages
+    value: '8'
+  - label: 12 Pages
+    value: '12'
+  - label: Custom
+    value: custom
+- code: MR6
+  kind: checkbox
+  required: true
+  section_name: Content & Data
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: Median sale price
+    value: median_sale_price
+  - label: Median rent
+    value: median_rent
+  - label: Days on market
+    value: days_on_market
+  - label: Clearance rates
+    value: clearance_rates
+  - label: Sales volume
+    value: sales_volume
+  - label: Rental yield
+    value: rental_yield
+  - label: Market trends
+    value: market_trends
+  - label: Demographic insights
+    value: demographic_insights
+  - label: Other
+    value: other
+- code: MR7
+  kind: radio
+  required: true
+  section_name: Content & Data
+  section_order: 2
+  section_field_order: 1
+  options:
+  - label: Yes, final data ready
+    value: final_ready
+  - label: Partial data available
+    value: partial
+  - label: Need help organising data
+    value: need_help
+- code: MR8
+  kind: file
+  required: true
+  section_name: Content & Data
+  section_order: 2
+  section_field_order: 2
+- code: MR9
+  kind: text
+  required: true
+  section_name: Content & Data
+  section_order: 2
+  section_field_order: 3
+- code: MR10
+  kind: radio
+  required: true
+  section_name: Charts & Visuals
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: MR11
+  kind: radio
+  required: false
+  section_name: Charts & Visuals
+  section_order: 3
+  section_field_order: 1
+  options:
+  - label: I have existing charts to provide
+    value: existing_charts
+  - label: Design from the supplied data
+    value: design_from_data
+  - label: Other
+    value: other
+- code: MR12
+  kind: file
+  required: false
+  section_name: Charts & Visuals
+  section_order: 3
+  section_field_order: 2
+- code: MR13
+  kind: radio
+  required: true
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Request a property appraisal
+    value: request_appraisal
+  - label: Contact an agent
+    value: contact_agent
+  - label: Download a full report
+    value: download_report
+  - label: Book a consultation
+    value: book_consultation
+  - label: Visit the website
+    value: visit_website
+  - label: Other
+    value: other
+- code: MR14
+  kind: radio
+  required: true
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 1
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: MR15
+  kind: text
+  required: false
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 2
+- code: MR16
+  kind: file
+  required: false
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 0
+- code: MR17
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 1
+  options:
+  - label: Corporate
+    value: corporate
+  - label: Premium Real Estate
+    value: premium_real_estate
+  - label: Editorial
+    value: editorial
+  - label: Investor-Focused
+    value: investor_focused
+  - label: Data-Driven
+    value: data_driven
+  - label: Modern Minimal
+    value: modern_minimal
+  - label: Other
+    value: other
+- code: MR18
+  kind: radio
+  required: true
+  section_name: Technical Requirements
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Print Only
+    value: print_only
+  - label: Digital Only
+    value: digital_only
+  - label: Both
+    value: both
+- code: MR19
+  kind: text
+  required: false
+  section_name: Technical Requirements
+  section_order: 6
+  section_field_order: 1

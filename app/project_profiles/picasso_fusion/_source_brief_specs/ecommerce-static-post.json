@@ -1,0 +1,317 @@
+{
+  "key": "ecommerce_static_post",
+  "label": "Static Post",
+  "verticalKey": "ecommerce",
+  "templateNameMatch": ["static post", "static post set", "social media post", "post set"],
+  "sections": [
+    {
+      "name": "Post Purpose & Product",
+      "questions": [
+        {
+          "code": "SP1",
+          "kind": "radio",
+          "question": "What are we creating today?",
+          "hint": "Select the purpose of this post.",
+          "options": [
+            { "label": "Product Launch", "value": "product_launch" },
+            { "label": "Product Promotion", "value": "product_promotion" },
+            { "label": "New Arrival", "value": "new_arrival" },
+            { "label": "Best Seller", "value": "best_seller" },
+            { "label": "Limited-Time Offer", "value": "limited_time_offer" },
+            { "label": "Seasonal Campaign", "value": "seasonal_campaign" },
+            { "label": "Collection Showcase", "value": "collection_showcase" },
+            { "label": "Product Benefits", "value": "product_benefits" },
+            { "label": "Customer Review", "value": "customer_review" },
+            { "label": "Brand Awareness", "value": "brand_awareness" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP2",
+          "kind": "text",
+          "question": "Which product are we featuring?",
+          "hint": "Provide the key product details: Product Name, Category, Price (Optional), Key Benefits/Features, Available Colours, Sizes or Variants (Optional).",
+          "required": true
+        },
+        {
+          "code": "SP3",
+          "kind": "text",
+          "question": "What's the one message customers should remember?",
+          "hint": "Describe the biggest reason someone should buy this product. Example: \"Ultra-light running shoes designed for all-day comfort.\", \"Organic skincare made for sensitive skin.\"",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Goal & Audience",
+      "questions": [
+        {
+          "code": "SP4",
+          "kind": "checkbox",
+          "question": "What's the goal of this post?",
+          "options": [
+            { "label": "Increase Sales", "value": "increase_sales" },
+            { "label": "Drive Website Traffic", "value": "drive_website_traffic" },
+            { "label": "Promote an Offer", "value": "promote_an_offer" },
+            { "label": "Launch a New Product", "value": "launch_a_new_product" },
+            { "label": "Build Brand Awareness", "value": "build_brand_awareness" },
+            { "label": "Collect Enquiries", "value": "collect_enquiries" },
+            { "label": "Grow Followers", "value": "grow_followers" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP5",
+          "kind": "text",
+          "question": "Who is this product for?",
+          "hint": "Describe your ideal customer.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Offer",
+      "questions": [
+        {
+          "code": "SP6",
+          "kind": "radio",
+          "question": "Are you running an offer?",
+          "options": [
+            { "label": "No Offer", "value": "no_offer" },
+            { "label": "Discount", "value": "discount" },
+            { "label": "Buy One Get One", "value": "buy_one_get_one" },
+            { "label": "Bundle Offer", "value": "bundle_offer" },
+            { "label": "Free Shipping", "value": "free_shipping" },
+            { "label": "Limited-Time Offer", "value": "limited_time_offer" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP7",
+          "kind": "text",
+          "question": "Provide the offer details, start & end date, and terms & conditions.",
+          "hint": "Only if you are running an offer.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Copy",
+      "questions": [
+        {
+          "code": "SP8",
+          "kind": "radio",
+          "question": "Do you already have the copy?",
+          "options": [
+            { "label": "Final Copy Ready", "value": "final_copy_ready" },
+            { "label": "Rough Points", "value": "rough_points" },
+            { "label": "Need Copywriting Support", "value": "need_copywriting_support" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP9",
+          "kind": "text",
+          "question": "Provide your copy or rough points.",
+          "hint": "Only if you have final copy ready or rough points.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Requirements",
+      "questions": [
+        {
+          "code": "SP10",
+          "kind": "checkbox",
+          "question": "Is there anything that must appear?",
+          "hint": "Select all that apply.",
+          "options": [
+            { "label": "Product Name", "value": "product_name" },
+            { "label": "Product Price", "value": "product_price" },
+            { "label": "Discount", "value": "discount" },
+            { "label": "Logo", "value": "logo" },
+            { "label": "Website", "value": "website" },
+            { "label": "QR Code", "value": "qr_code" },
+            { "label": "Promo Code", "value": "promo_code" },
+            { "label": "Social Media Handle", "value": "social_media_handle" },
+            { "label": "Product Rating", "value": "product_rating" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Images & Assets",
+      "questions": [
+        {
+          "code": "SP11",
+          "kind": "checkbox",
+          "question": "Do you have product photos?",
+          "options": [
+            { "label": "I'll Upload Product Photos", "value": "ill_upload_product_photos" },
+            { "label": "I'll Upload Lifestyle Photos", "value": "ill_upload_lifestyle_photos" },
+            { "label": "I'll Upload Both", "value": "ill_upload_both" },
+            { "label": "Use Stock Lifestyle Images", "value": "use_stock_lifestyle_images" },
+            { "label": "Use Only Brand Assets", "value": "use_only_brand_assets" },
+            { "label": "Designer Can Suggest", "value": "designer_can_suggest" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP12",
+          "kind": "file",
+          "question": "Upload your files.",
+          "hint": "Upload product images, logos, packaging, or supporting assets.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Brand Assets",
+      "questions": [
+        {
+          "code": "SP13",
+          "kind": "radio",
+          "question": "Would you like us to follow your existing brand identity?",
+          "hint": "Brand Assets & Guidelines.",
+          "options": [
+            { "label": "Use My Saved Brand Kit", "value": "use_my_saved_brand_kit" },
+            { "label": "Upload Brand Guidelines", "value": "upload_brand_guidelines" },
+            { "label": "Upload Logo & Assets", "value": "upload_logo_assets" },
+            { "label": "Customize This Project", "value": "customize_this_project" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP14",
+          "kind": "checkbox",
+          "question": "What should we customize?",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "options": [
+            { "label": "Brand Colors", "value": "brand_colors" },
+            { "label": "Brand Fonts", "value": "brand_fonts" },
+            { "label": "Additional Instructions", "value": "additional_instructions" }
+          ],
+          "required": false
+        },
+        {
+          "code": "SP15",
+          "kind": "text",
+          "question": "Provide any additional brand customization details.",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "SP16",
+          "kind": "checkbox",
+          "question": "What visual style should this post have?",
+          "hint": "Choose up to 3.",
+          "options": [
+            { "label": "Premium", "value": "premium" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Clean", "value": "clean" },
+            { "label": "Bold", "value": "bold" },
+            { "label": "Lifestyle", "value": "lifestyle" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Vibrant", "value": "vibrant" },
+            { "label": "Elegant", "value": "elegant" },
+            { "label": "High Contrast", "value": "high_contrast" },
+            { "label": "Playful", "value": "playful" },
+            { "label": "Match My Brand Style", "value": "match_my_brand_style" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP17",
+          "kind": "checkbox",
+          "question": "Do you have any inspiration?",
+          "hint": "Share examples you like.",
+          "options": [
+            { "label": "Instagram Link", "value": "instagram_link" },
+            { "label": "Pinterest Link", "value": "pinterest_link" },
+            { "label": "Website Link", "value": "website_link" },
+            { "label": "Upload Reference Images", "value": "upload_reference_images" },
+            { "label": "Skip", "value": "skip" }
+          ],
+          "required": false
+        },
+        {
+          "code": "SP18",
+          "kind": "text",
+          "question": "Provide the reference link(s), or note that you're uploading images.",
+          "hint": "Only if you selected a reference option above (not Skip).",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Publishing & Language",
+      "questions": [
+        {
+          "code": "SP19",
+          "kind": "checkbox",
+          "question": "Where will this post be published?",
+          "options": [
+            { "label": "Instagram Feed (1:1)", "value": "instagram_feed_1_1" },
+            { "label": "Instagram Portrait (4:5)", "value": "instagram_portrait_4_5" },
+            { "label": "Facebook", "value": "facebook" },
+            { "label": "LinkedIn", "value": "linkedin" },
+            { "label": "Pinterest", "value": "pinterest" },
+            { "label": "X", "value": "x" },
+            { "label": "Multiple Platforms", "value": "multiple_platforms" },
+            { "label": "Custom Size", "value": "custom_size" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP20",
+          "kind": "radio",
+          "question": "What language should the copy use?",
+          "options": [
+            { "label": "English", "value": "english" },
+            { "label": "Hindi", "value": "hindi" },
+            { "label": "Tamil", "value": "tamil" },
+            { "label": "Telugu", "value": "telugu" },
+            { "label": "Malayalam", "value": "malayalam" },
+            { "label": "Kannada", "value": "kannada" },
+            { "label": "Arabic", "value": "arabic" },
+            { "label": "Spanish", "value": "spanish" },
+            { "label": "French", "value": "french" },
+            { "label": "German", "value": "german" },
+            { "label": "Portuguese", "value": "portuguese" },
+            { "label": "Chinese", "value": "chinese" },
+            { "label": "Japanese", "value": "japanese" },
+            { "label": "Korean", "value": "korean" },
+            { "label": "Urdu", "value": "urdu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Additional Notes",
+      "questions": [
+        {
+          "code": "SP21",
+          "kind": "text",
+          "question": "Is there anything you'd like us to avoid?",
+          "hint": "Mention any colours, imagery, wording, styles, or competitor references you'd prefer not to use.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

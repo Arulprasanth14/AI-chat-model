@@ -1,0 +1,292 @@
+template_key: startup_entrepreneur_press_kit
+template_label: Press Kit
+vertical: startup
+template_name_match:
+- press kit
+- media kit
+- press release kit
+fields:
+- code: PK1
+  kind: radio
+  required: true
+  section_name: Press Kit Overview
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Startup Launch
+    value: startup_launch
+  - label: Product Launch
+    value: product_launch
+  - label: Funding Announcement
+    value: funding_announcement
+  - label: Company Milestone
+    value: company_milestone
+  - label: Partnership Announcement
+    value: partnership_announcement
+  - label: Event Announcement
+    value: event_announcement
+  - label: General Media Kit
+    value: general_media_kit
+- code: PK2
+  kind: text
+  required: true
+  section_name: Press Kit Overview
+  section_order: 0
+  section_field_order: 1
+- code: PK3
+  kind: checkbox
+  required: true
+  section_name: Press Kit Overview
+  section_order: 0
+  section_field_order: 2
+  options:
+  - label: Journalists
+    value: journalists
+  - label: Industry Publications
+    value: industry_publications
+  - label: Investors
+    value: investors
+  - label: Partners
+    value: partners
+  - label: Influencers
+    value: influencers
+  - label: Event Organisers
+    value: event_organisers
+  - label: Other
+    value: other
+- code: PK4
+  kind: checkbox
+  required: true
+  section_name: Content & Highlights
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Company Overview
+    value: company_overview
+  - label: Founder Biography
+    value: founder_biography
+  - label: Leadership Team
+    value: leadership_team
+  - label: Product Overview
+    value: product_overview
+  - label: Funding Information
+    value: funding_information
+  - label: Company Timeline
+    value: company_timeline
+  - label: Key Statistics
+    value: key_statistics
+  - label: Awards & Recognition
+    value: awards_recognition
+  - label: Partnerships
+    value: partnerships
+  - label: Media Coverage
+    value: media_coverage
+  - label: FAQs
+    value: faqs
+  - label: Press Release
+    value: press_release
+  - label: Contact Information
+    value: contact_information
+- code: PK5
+  kind: checkbox
+  required: true
+  section_name: Content & Highlights
+  section_order: 1
+  section_field_order: 1
+  options:
+  - label: Funding Raised
+    value: funding_raised
+  - label: Customers
+    value: customers
+  - label: Users
+    value: users
+  - label: Revenue Milestones
+    value: revenue_milestones
+  - label: Growth Metrics
+    value: growth_metrics
+  - label: Geographic Reach
+    value: geographic_reach
+  - label: Team Size
+    value: team_size
+  - label: Other
+    value: other
+- code: PK6
+  kind: radio
+  required: true
+  section_name: Media Assets
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: PK7
+  kind: file
+  required: false
+  section_name: Media Assets
+  section_order: 2
+  section_field_order: 1
+- code: PK8
+  kind: text
+  required: true
+  section_name: Company & People
+  section_order: 3
+  section_field_order: 0
+- code: PK9
+  kind: radio
+  required: true
+  section_name: Company & People
+  section_order: 3
+  section_field_order: 1
+  options:
+  - label: Founder Only
+    value: founder_only
+  - label: Leadership Team
+    value: leadership_team
+  - label: No Profiles Required
+    value: no_profiles_required
+- code: PK10
+  kind: text
+  required: false
+  section_name: Company & People
+  section_order: 3
+  section_field_order: 2
+- code: PK11
+  kind: radio
+  required: true
+  section_name: Quotes & Contact
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: PK12
+  kind: text
+  required: false
+  section_name: Quotes & Contact
+  section_order: 4
+  section_field_order: 1
+- code: PK13
+  kind: checkbox
+  required: true
+  section_name: Quotes & Contact
+  section_order: 4
+  section_field_order: 2
+  options:
+  - label: PR Contact
+    value: pr_contact
+  - label: Founder
+    value: founder
+  - label: Marketing Team
+    value: marketing_team
+  - label: Agency Representative
+    value: agency_representative
+  - label: Other
+    value: other
+- code: PK14
+  kind: radio
+  required: true
+  section_name: Media Coverage & Distribution
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: PK15
+  kind: text
+  required: false
+  section_name: Media Coverage & Distribution
+  section_order: 5
+  section_field_order: 1
+- code: PK16
+  kind: radio
+  required: true
+  section_name: Media Coverage & Distribution
+  section_order: 5
+  section_field_order: 2
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: PK17
+  kind: radio
+  required: true
+  section_name: Timing
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Immediate Release
+    value: immediate_release
+  - label: Scheduled Release Date
+    value: scheduled_release_date
+  - label: Embargoed Announcement
+    value: embargoed_announcement
+- code: PK18
+  kind: text
+  required: false
+  section_name: Timing
+  section_order: 6
+  section_field_order: 1
+- code: PK19
+  kind: radio
+  required: true
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: PK20
+  kind: file
+  required: false
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 1
+- code: PK21
+  kind: radio
+  required: true
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 2
+  options:
+  - label: Startup
+    value: startup
+  - label: Corporate
+    value: corporate
+  - label: Investor-Grade
+    value: investor_grade
+  - label: Minimal
+    value: minimal
+  - label: Premium
+    value: premium
+  - label: Technology-Focused
+    value: technology_focused
+  - label: Other
+    value: other
+- code: PK22
+  kind: checkbox
+  required: false
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 3
+  options:
+  - label: PDF Only
+    value: pdf_only
+  - label: Print-Ready
+    value: print_ready
+  - label: Interactive PDF
+    value: interactive_pdf
+  - label: Press Download Folder
+    value: press_download_folder
+  - label: Editable Source Files
+    value: editable_source_files
+  - label: Other
+    value: other

@@ -1,0 +1,335 @@
+template_key: ecommerce_static_post
+template_label: Static Post
+vertical: ecommerce
+template_name_match:
+- static post
+- static post set
+- social media post
+- post set
+fields:
+- code: SP1
+  kind: radio
+  required: true
+  section_name: Post Purpose & Product
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Product Launch
+    value: product_launch
+  - label: Product Promotion
+    value: product_promotion
+  - label: New Arrival
+    value: new_arrival
+  - label: Best Seller
+    value: best_seller
+  - label: Limited-Time Offer
+    value: limited_time_offer
+  - label: Seasonal Campaign
+    value: seasonal_campaign
+  - label: Collection Showcase
+    value: collection_showcase
+  - label: Product Benefits
+    value: product_benefits
+  - label: Customer Review
+    value: customer_review
+  - label: Brand Awareness
+    value: brand_awareness
+  - label: Other
+    value: other
+- code: SP2
+  kind: text
+  required: true
+  section_name: Post Purpose & Product
+  section_order: 0
+  section_field_order: 1
+- code: SP3
+  kind: text
+  required: true
+  section_name: Post Purpose & Product
+  section_order: 0
+  section_field_order: 2
+- code: SP4
+  kind: checkbox
+  required: true
+  section_name: Goal & Audience
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Increase Sales
+    value: increase_sales
+  - label: Drive Website Traffic
+    value: drive_website_traffic
+  - label: Promote an Offer
+    value: promote_an_offer
+  - label: Launch a New Product
+    value: launch_a_new_product
+  - label: Build Brand Awareness
+    value: build_brand_awareness
+  - label: Collect Enquiries
+    value: collect_enquiries
+  - label: Grow Followers
+    value: grow_followers
+  - label: Other
+    value: other
+- code: SP5
+  kind: text
+  required: true
+  section_name: Goal & Audience
+  section_order: 1
+  section_field_order: 1
+- code: SP6
+  kind: radio
+  required: true
+  section_name: Offer
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: No Offer
+    value: no_offer
+  - label: Discount
+    value: discount
+  - label: Buy One Get One
+    value: buy_one_get_one
+  - label: Bundle Offer
+    value: bundle_offer
+  - label: Free Shipping
+    value: free_shipping
+  - label: Limited-Time Offer
+    value: limited_time_offer
+  - label: Other
+    value: other
+- code: SP7
+  kind: text
+  required: false
+  section_name: Offer
+  section_order: 2
+  section_field_order: 1
+- code: SP8
+  kind: radio
+  required: true
+  section_name: Copy
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: Final Copy Ready
+    value: final_copy_ready
+  - label: Rough Points
+    value: rough_points
+  - label: Need Copywriting Support
+    value: need_copywriting_support
+- code: SP9
+  kind: text
+  required: false
+  section_name: Copy
+  section_order: 3
+  section_field_order: 1
+- code: SP10
+  kind: checkbox
+  required: false
+  section_name: Design Requirements
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Product Name
+    value: product_name
+  - label: Product Price
+    value: product_price
+  - label: Discount
+    value: discount
+  - label: Logo
+    value: logo
+  - label: Website
+    value: website
+  - label: QR Code
+    value: qr_code
+  - label: Promo Code
+    value: promo_code
+  - label: Social Media Handle
+    value: social_media_handle
+  - label: Product Rating
+    value: product_rating
+  - label: Other
+    value: other
+- code: SP11
+  kind: checkbox
+  required: true
+  section_name: Images & Assets
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: I'll Upload Product Photos
+    value: ill_upload_product_photos
+  - label: I'll Upload Lifestyle Photos
+    value: ill_upload_lifestyle_photos
+  - label: I'll Upload Both
+    value: ill_upload_both
+  - label: Use Stock Lifestyle Images
+    value: use_stock_lifestyle_images
+  - label: Use Only Brand Assets
+    value: use_only_brand_assets
+  - label: Designer Can Suggest
+    value: designer_can_suggest
+- code: SP12
+  kind: file
+  required: false
+  section_name: Images & Assets
+  section_order: 5
+  section_field_order: 1
+- code: SP13
+  kind: radio
+  required: true
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Use My Saved Brand Kit
+    value: use_my_saved_brand_kit
+  - label: Upload Brand Guidelines
+    value: upload_brand_guidelines
+  - label: Upload Logo & Assets
+    value: upload_logo_assets
+  - label: Customize This Project
+    value: customize_this_project
+- code: SP14
+  kind: checkbox
+  required: false
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: Brand Colors
+    value: brand_colors
+  - label: Brand Fonts
+    value: brand_fonts
+  - label: Additional Instructions
+    value: additional_instructions
+- code: SP15
+  kind: text
+  required: false
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 2
+- code: SP16
+  kind: checkbox
+  required: true
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 0
+  options:
+  - label: Premium
+    value: premium
+  - label: Luxury
+    value: luxury
+  - label: Modern
+    value: modern
+  - label: Minimal
+    value: minimal
+  - label: Clean
+    value: clean
+  - label: Bold
+    value: bold
+  - label: Lifestyle
+    value: lifestyle
+  - label: Editorial
+    value: editorial
+  - label: Vibrant
+    value: vibrant
+  - label: Elegant
+    value: elegant
+  - label: High Contrast
+    value: high_contrast
+  - label: Playful
+    value: playful
+  - label: Match My Brand Style
+    value: match_my_brand_style
+- code: SP17
+  kind: checkbox
+  required: false
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 1
+  options:
+  - label: Instagram Link
+    value: instagram_link
+  - label: Pinterest Link
+    value: pinterest_link
+  - label: Website Link
+    value: website_link
+  - label: Upload Reference Images
+    value: upload_reference_images
+  - label: Skip
+    value: skip
+- code: SP18
+  kind: text
+  required: false
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 2
+- code: SP19
+  kind: checkbox
+  required: true
+  section_name: Publishing & Language
+  section_order: 8
+  section_field_order: 0
+  options:
+  - label: Instagram Feed (1:1)
+    value: instagram_feed_1_1
+  - label: Instagram Portrait (4:5)
+    value: instagram_portrait_4_5
+  - label: Facebook
+    value: facebook
+  - label: LinkedIn
+    value: linkedin
+  - label: Pinterest
+    value: pinterest
+  - label: X
+    value: x
+  - label: Multiple Platforms
+    value: multiple_platforms
+  - label: Custom Size
+    value: custom_size
+- code: SP20
+  kind: radio
+  required: true
+  section_name: Publishing & Language
+  section_order: 8
+  section_field_order: 1
+  options:
+  - label: English
+    value: english
+  - label: Hindi
+    value: hindi
+  - label: Tamil
+    value: tamil
+  - label: Telugu
+    value: telugu
+  - label: Malayalam
+    value: malayalam
+  - label: Kannada
+    value: kannada
+  - label: Arabic
+    value: arabic
+  - label: Spanish
+    value: spanish
+  - label: French
+    value: french
+  - label: German
+    value: german
+  - label: Portuguese
+    value: portuguese
+  - label: Chinese
+    value: chinese
+  - label: Japanese
+    value: japanese
+  - label: Korean
+    value: korean
+  - label: Urdu
+    value: urdu
+  - label: Other
+    value: other
+- code: SP21
+  kind: text
+  required: false
+  section_name: Additional Notes
+  section_order: 9
+  section_field_order: 0

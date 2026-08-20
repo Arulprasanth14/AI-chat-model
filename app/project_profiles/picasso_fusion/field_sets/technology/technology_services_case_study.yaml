@@ -1,0 +1,148 @@
+template_key: technology_services_case_study
+template_label: Case Study
+vertical: technology
+template_name_match:
+- case study
+fields:
+- code: CS1
+  kind: text
+  required: true
+  section_name: Story Overview
+  section_order: 0
+  section_field_order: 0
+- code: CS2
+  kind: text
+  required: true
+  section_name: Story Overview
+  section_order: 0
+  section_field_order: 1
+- code: CS3
+  kind: text
+  required: true
+  section_name: Story Overview
+  section_order: 0
+  section_field_order: 2
+- code: CS4
+  kind: text
+  required: true
+  section_name: Story Overview
+  section_order: 0
+  section_field_order: 3
+- code: CS5
+  kind: text
+  required: true
+  section_name: Content & Assets
+  section_order: 1
+  section_field_order: 0
+- code: CS6
+  kind: radio
+  required: true
+  section_name: Content & Assets
+  section_order: 1
+  section_field_order: 1
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: CS7
+  kind: file
+  required: false
+  section_name: Content & Assets
+  section_order: 1
+  section_field_order: 2
+- code: CS8
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: CS9
+  kind: file
+  required: false
+  section_name: Design Direction
+  section_order: 2
+  section_field_order: 1
+- code: CS10
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 2
+  section_field_order: 2
+  options:
+  - label: Professional
+    value: professional
+  - label: Corporate
+    value: corporate
+  - label: Premium
+    value: premium
+  - label: Modern
+    value: modern
+  - label: Minimal
+    value: minimal
+  - label: Bold
+    value: bold
+  - label: Data-Focused
+    value: data_focused
+  - label: Other
+    value: other
+- code: CS11
+  kind: radio
+  required: true
+  section_name: Call to Action
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: Contact Us
+    value: contact_us
+  - label: Book a Consultation
+    value: book_a_consultation
+  - label: Visit Our Website
+    value: visit_our_website
+  - label: Scan a QR Code
+    value: scan_a_qr_code
+  - label: Other
+    value: other
+- code: CS12
+  kind: text
+  required: false
+  section_name: Call to Action
+  section_order: 3
+  section_field_order: 1
+- code: CS13
+  kind: radio
+  required: true
+  section_name: Production Requirements
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: A4
+    value: a4
+  - label: US Letter
+    value: us_letter
+  - label: A5
+    value: a5
+  - label: Custom
+    value: custom
+- code: CS14
+  kind: radio
+  required: true
+  section_name: Production Requirements
+  section_order: 4
+  section_field_order: 1
+  options:
+  - label: Single-Sided
+    value: single_sided
+  - label: Double-Sided
+    value: double_sided
+- code: CS15
+  kind: text
+  required: false
+  section_name: Production Requirements
+  section_order: 4
+  section_field_order: 2

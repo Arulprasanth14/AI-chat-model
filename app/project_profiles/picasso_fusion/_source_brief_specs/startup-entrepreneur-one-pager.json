@@ -1,0 +1,254 @@
+{
+  "key": "startup_entrepreneur_one_pager",
+  "label": "One-Pager — Company Overview",
+  "verticalKey": "startup",
+  "templateNameMatch": ["one-pager", "one pager", "company overview"],
+  "sections": [
+    {
+      "name": "One-Pager Overview",
+      "questions": [
+        {
+          "code": "OP1",
+          "kind": "radio",
+          "question": "What is the purpose of this one-pager?",
+          "hint": "One-pager = one clear business story.",
+          "options": [
+            { "label": "Investor Introduction", "value": "investor_introduction" },
+            { "label": "Partnership Outreach", "value": "partnership_outreach" },
+            { "label": "Sales Leave-Behind", "value": "sales_leave_behind" },
+            { "label": "Accelerator Application", "value": "accelerator_application" },
+            { "label": "Media / PR", "value": "media_pr" },
+            { "label": "General Company Overview", "value": "general_company_overview" }
+          ],
+          "required": true
+        },
+        {
+          "code": "OP2",
+          "kind": "text",
+          "question": "What company, product, or startup are we presenting?",
+          "hint": "Briefly describe what the business does.",
+          "required": true
+        },
+        {
+          "code": "OP3",
+          "kind": "checkbox",
+          "question": "Who is the target audience?",
+          "hint": "Content and messaging should match the reader.",
+          "options": [
+            { "label": "Investors", "value": "investors" },
+            { "label": "Venture Capital Firms", "value": "vc_firms" },
+            { "label": "Partners", "value": "partners" },
+            { "label": "Customers", "value": "customers" },
+            { "label": "Enterprise Buyers", "value": "enterprise_buyers" },
+            { "label": "Accelerators", "value": "accelerators" },
+            { "label": "Media", "value": "media" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Problem & Solution",
+      "questions": [
+        {
+          "code": "OP4",
+          "kind": "text",
+          "question": "What problem does the company solve?",
+          "hint": "Keep it concise and outcome-focused.",
+          "required": true
+        },
+        {
+          "code": "OP5",
+          "kind": "text",
+          "question": "What is the solution or offering?",
+          "hint": "Describe the product, service, or platform being presented.",
+          "required": true
+        },
+        {
+          "code": "OP6",
+          "kind": "checkbox",
+          "question": "What makes the company different?",
+          "hint": "Highlight your competitive advantage or unique value proposition.",
+          "options": [
+            { "label": "Proprietary Technology", "value": "proprietary_technology" },
+            { "label": "Faster Delivery", "value": "faster_delivery" },
+            { "label": "Lower Costs", "value": "lower_costs" },
+            { "label": "Industry Expertise", "value": "industry_expertise" },
+            { "label": "Better Customer Experience", "value": "better_customer_experience" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Content & Traction",
+      "questions": [
+        {
+          "code": "OP7",
+          "kind": "checkbox",
+          "question": "What key information should appear on the one-pager?",
+          "hint": "Select the most important sections. Multi-select.",
+          "options": [
+            { "label": "Company Overview", "value": "company_overview" },
+            { "label": "Product Overview", "value": "product_overview" },
+            { "label": "Services", "value": "services" },
+            { "label": "Market Opportunity", "value": "market_opportunity" },
+            { "label": "Business Model", "value": "business_model" },
+            { "label": "Key Features", "value": "key_features" },
+            { "label": "Team", "value": "team" },
+            { "label": "Traction & Metrics", "value": "traction_metrics" },
+            { "label": "Testimonials", "value": "testimonials" },
+            { "label": "Partnerships", "value": "partnerships" },
+            { "label": "Awards", "value": "awards" },
+            { "label": "Contact Information", "value": "contact_information" }
+          ],
+          "required": true
+        },
+        {
+          "code": "OP8",
+          "kind": "checkbox",
+          "question": "What traction, results, or proof points should be highlighted?",
+          "hint": "Credibility is often the most valuable section on a startup one-pager.",
+          "options": [
+            { "label": "Revenue", "value": "revenue" },
+            { "label": "Customers", "value": "customers" },
+            { "label": "User Growth", "value": "user_growth" },
+            { "label": "Funding Raised", "value": "funding_raised" },
+            { "label": "Partnerships", "value": "partnerships" },
+            { "label": "Retention Metrics", "value": "retention_metrics" },
+            { "label": "Awards", "value": "awards" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Assets & Copy",
+      "questions": [
+        {
+          "code": "OP9",
+          "kind": "radio",
+          "question": "Do you have company assets and imagery?",
+          "hint": "Visuals improve engagement and credibility.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" },
+            { "label": "Partial", "value": "partial" }
+          ],
+          "required": true
+        },
+        {
+          "code": "OP10",
+          "kind": "file",
+          "question": "Upload logos, screenshots, product visuals, team photos, or marketing assets.",
+          "hint": "PNG, SVG, JPG preferred. Only if you have assets available.",
+          "required": false
+        },
+        {
+          "code": "OP11",
+          "kind": "text",
+          "question": "What copy or text should appear?",
+          "hint": "Provide approved content, key messages, or existing company descriptions.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Call to Action & Format",
+      "questions": [
+        {
+          "code": "OP12",
+          "kind": "radio",
+          "question": "What is the primary call to action?",
+          "hint": "Every one-pager should encourage a clear next step.",
+          "options": [
+            { "label": "Book a Meeting", "value": "book_a_meeting" },
+            { "label": "Request a Demo", "value": "request_a_demo" },
+            { "label": "Contact Us", "value": "contact_us" },
+            { "label": "Invest", "value": "invest" },
+            { "label": "Visit Website", "value": "visit_website" },
+            { "label": "Partner With Us", "value": "partner_with_us" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "OP13",
+          "kind": "text",
+          "question": "Custom CTA text.",
+          "hint": "Only if you selected Other above.",
+          "required": false
+        },
+        {
+          "code": "OP14",
+          "kind": "radio",
+          "question": "Will this one-pager be printed, shared digitally, or both?",
+          "hint": "This affects layout, readability, and interactivity.",
+          "options": [
+            { "label": "Print", "value": "print" },
+            { "label": "Digital PDF", "value": "digital_pdf" },
+            { "label": "Both", "value": "both" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "OP15",
+          "kind": "radio",
+          "question": "Any reference one-pagers or company profiles you'd like us to reference?",
+          "hint": "Share examples you admire or competitors you like.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "OP16",
+          "kind": "file",
+          "question": "Upload reference documents, up to 3.",
+          "hint": "Only if you said yes to reference one-pagers above.",
+          "required": false
+        },
+        {
+          "code": "OP17",
+          "kind": "radio",
+          "question": "Describe the visual style you'd like.",
+          "options": [
+            { "label": "Startup", "value": "startup" },
+            { "label": "Investor-Grade", "value": "investor_grade" },
+            { "label": "Modern SaaS", "value": "modern_saas" },
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Data-Driven", "value": "data_driven" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "OP18",
+          "kind": "checkbox",
+          "question": "Any technical requirements?",
+          "hint": "Leave blank if unsure.",
+          "options": [
+            { "label": "A4", "value": "a4" },
+            { "label": "US Letter", "value": "us_letter" },
+            { "label": "Interactive PDF", "value": "interactive_pdf" },
+            { "label": "Print-Ready PDF", "value": "print_ready_pdf" },
+            { "label": "Editable Source File", "value": "editable_source_file" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": false
+        }
+      ]
+    }
+  ]
+}

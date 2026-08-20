@@ -1,0 +1,338 @@
+{
+  "key": "ecommerce_ad_banner",
+  "label": "Ad Banner",
+  "verticalKey": "ecommerce",
+  "templateNameMatch": ["ad banner", "banner ad", "display banner", "display ad"],
+  "sections": [
+    {
+      "name": "Banner Type & Message",
+      "questions": [
+        {
+          "code": "AB1",
+          "kind": "radio",
+          "question": "What are we creating today?",
+          "hint": "Select the banner type.",
+          "options": [
+            { "label": "Meta Ad Banner", "value": "meta_ad_banner" },
+            { "label": "Google Display Banner", "value": "google_display_banner" },
+            { "label": "Website Promotional Banner", "value": "website_promotional_banner" },
+            { "label": "Homepage Hero Banner", "value": "homepage_hero_banner" },
+            { "label": "Retargeting Banner", "value": "retargeting_banner" },
+            { "label": "Seasonal Campaign Banner", "value": "seasonal_campaign_banner" },
+            { "label": "Product Launch Banner", "value": "product_launch_banner" },
+            { "label": "Sale / Offer Banner", "value": "sale_offer_banner" },
+            { "label": "Collection Banner", "value": "collection_banner" },
+            { "label": "Brand Awareness Banner", "value": "brand_awareness_banner" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "AB2",
+          "kind": "text",
+          "question": "What are we promoting?",
+          "hint": "Provide the key product or service information: Product/Service Name, Category, Price (Optional), Key Features/Benefits.",
+          "required": true
+        },
+        {
+          "code": "AB3",
+          "kind": "text",
+          "question": "What's the ONE message customers should remember?",
+          "hint": "Describe the biggest reason someone should click. Example: \"Save up to 50% this weekend.\", \"Premium skincare made for sensitive skin.\", \"Free shipping on all orders.\"",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Goal & Audience",
+      "questions": [
+        {
+          "code": "AB4",
+          "kind": "checkbox",
+          "question": "What's the goal of this campaign?",
+          "options": [
+            { "label": "Increase Sales", "value": "increase_sales" },
+            { "label": "Website Traffic", "value": "website_traffic" },
+            { "label": "Lead Generation", "value": "lead_generation" },
+            { "label": "Product Launch", "value": "product_launch" },
+            { "label": "Promote an Offer", "value": "promote_an_offer" },
+            { "label": "Brand Awareness", "value": "brand_awareness" },
+            { "label": "Retarget Existing Customers", "value": "retarget_existing_customers" },
+            { "label": "Increase App Downloads", "value": "increase_app_downloads" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "AB5",
+          "kind": "text",
+          "question": "Who is this campaign for?",
+          "hint": "Describe your target audience.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Offer",
+      "questions": [
+        {
+          "code": "AB6",
+          "kind": "radio",
+          "question": "Are you running an offer?",
+          "options": [
+            { "label": "No Offer", "value": "no_offer" },
+            { "label": "Percentage Discount", "value": "percentage_discount" },
+            { "label": "Flat Discount", "value": "flat_discount" },
+            { "label": "Buy One Get One", "value": "buy_one_get_one" },
+            { "label": "Bundle Offer", "value": "bundle_offer" },
+            { "label": "Free Shipping", "value": "free_shipping" },
+            { "label": "Free Gift", "value": "free_gift" },
+            { "label": "Limited-Time Offer", "value": "limited_time_offer" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "AB7",
+          "kind": "text",
+          "question": "Provide the offer details, start & end date, and terms & conditions.",
+          "hint": "Only if you are running an offer.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Copy",
+      "questions": [
+        {
+          "code": "AB8",
+          "kind": "radio",
+          "question": "Do you already have the copy?",
+          "options": [
+            { "label": "Final Copy Ready", "value": "final_copy_ready" },
+            { "label": "Rough Points", "value": "rough_points" },
+            { "label": "Need Copywriting Support", "value": "need_copywriting_support" }
+          ],
+          "required": true
+        },
+        {
+          "code": "AB9",
+          "kind": "text",
+          "question": "Provide your copy or rough points.",
+          "hint": "Only if you have final copy ready or rough points.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Requirements",
+      "questions": [
+        {
+          "code": "AB10",
+          "kind": "checkbox",
+          "question": "Is there anything that must appear?",
+          "hint": "Select all that apply.",
+          "options": [
+            { "label": "Product Name", "value": "product_name" },
+            { "label": "Product Price", "value": "product_price" },
+            { "label": "Discount", "value": "discount" },
+            { "label": "Brand Logo", "value": "brand_logo" },
+            { "label": "Website", "value": "website" },
+            { "label": "Promo Code", "value": "promo_code" },
+            { "label": "CTA Button", "value": "cta_button" },
+            { "label": "Product Rating", "value": "product_rating" },
+            { "label": "Trust Badge", "value": "trust_badge" },
+            { "label": "QR Code", "value": "qr_code" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Images & Assets",
+      "questions": [
+        {
+          "code": "AB11",
+          "kind": "checkbox",
+          "question": "Do you have images or assets?",
+          "options": [
+            { "label": "I'll Upload Product Photos", "value": "ill_upload_product_photos" },
+            { "label": "I'll Upload Lifestyle Images", "value": "ill_upload_lifestyle_images" },
+            { "label": "I'll Upload Graphics", "value": "ill_upload_graphics" },
+            { "label": "Use Stock Images", "value": "use_stock_images" },
+            { "label": "Use Only Brand Assets", "value": "use_only_brand_assets" },
+            { "label": "Designer Can Recommend", "value": "designer_can_recommend" }
+          ],
+          "required": true
+        },
+        {
+          "code": "AB12",
+          "kind": "file",
+          "question": "Upload your files.",
+          "hint": "Upload product photos, logos, graphics, or supporting assets. For best results, use high-resolution images (1200px or larger).",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Brand Assets",
+      "questions": [
+        {
+          "code": "AB13",
+          "kind": "radio",
+          "question": "Would you like us to follow your existing brand identity?",
+          "hint": "Brand Assets & Guidelines.",
+          "options": [
+            { "label": "Use My Saved Brand Kit", "value": "use_my_saved_brand_kit" },
+            { "label": "Upload Brand Guidelines", "value": "upload_brand_guidelines" },
+            { "label": "Upload Logo & Assets", "value": "upload_logo_assets" },
+            { "label": "Customize This Project", "value": "customize_this_project" }
+          ],
+          "required": true
+        },
+        {
+          "code": "AB14",
+          "kind": "checkbox",
+          "question": "What should we customize?",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "options": [
+            { "label": "Brand Colors", "value": "brand_colors" },
+            { "label": "Brand Fonts", "value": "brand_fonts" },
+            { "label": "Additional Instructions", "value": "additional_instructions" }
+          ],
+          "required": false
+        },
+        {
+          "code": "AB15",
+          "kind": "text",
+          "question": "Provide any additional brand customization details.",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "AB16",
+          "kind": "checkbox",
+          "question": "What visual style should this banner have?",
+          "hint": "Choose up to 3.",
+          "options": [
+            { "label": "Premium", "value": "premium" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Bold", "value": "bold" },
+            { "label": "High Contrast", "value": "high_contrast" },
+            { "label": "Lifestyle", "value": "lifestyle" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Clean", "value": "clean" },
+            { "label": "Vibrant", "value": "vibrant" },
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Match My Brand Style", "value": "match_my_brand_style" }
+          ],
+          "required": true
+        },
+        {
+          "code": "AB17",
+          "kind": "checkbox",
+          "question": "Do you have any inspiration?",
+          "hint": "Share banner examples you like.",
+          "options": [
+            { "label": "Website Link", "value": "website_link" },
+            { "label": "Pinterest Link", "value": "pinterest_link" },
+            { "label": "Upload Images", "value": "upload_images" },
+            { "label": "Skip", "value": "skip" }
+          ],
+          "required": false
+        },
+        {
+          "code": "AB18",
+          "kind": "text",
+          "question": "Provide the reference link(s), or note that you're uploading images.",
+          "hint": "Only if you selected a reference option above (not Skip).",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Placement & Sizes",
+      "questions": [
+        {
+          "code": "AB19",
+          "kind": "checkbox",
+          "question": "Where will this banner be used?",
+          "options": [
+            { "label": "Meta (Facebook & Instagram)", "value": "meta_facebook_instagram" },
+            { "label": "Google Display Network", "value": "google_display_network" },
+            { "label": "LinkedIn", "value": "linkedin" },
+            { "label": "Website", "value": "website" },
+            { "label": "YouTube Display", "value": "youtube_display" },
+            { "label": "Programmatic Display", "value": "programmatic_display" },
+            { "label": "Multiple Platforms", "value": "multiple_platforms" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "AB20",
+          "kind": "radio",
+          "question": "What banner sizes do you need?",
+          "options": [
+            { "label": "Use Recommended Platform Sizes", "value": "use_recommended_platform_sizes" },
+            { "label": "Single Size", "value": "single_size" },
+            { "label": "Multiple Sizes", "value": "multiple_sizes" },
+            { "label": "Custom Dimensions", "value": "custom_dimensions" }
+          ],
+          "required": true
+        },
+        {
+          "code": "AB21",
+          "kind": "text",
+          "question": "Provide the width × height in pixels.",
+          "hint": "Only if you selected Custom Dimensions above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Language & Notes",
+      "questions": [
+        {
+          "code": "AB22",
+          "kind": "radio",
+          "question": "What language should the banner use?",
+          "options": [
+            { "label": "English", "value": "english" },
+            { "label": "Hindi", "value": "hindi" },
+            { "label": "Tamil", "value": "tamil" },
+            { "label": "Telugu", "value": "telugu" },
+            { "label": "Malayalam", "value": "malayalam" },
+            { "label": "Kannada", "value": "kannada" },
+            { "label": "Arabic", "value": "arabic" },
+            { "label": "Spanish", "value": "spanish" },
+            { "label": "French", "value": "french" },
+            { "label": "German", "value": "german" },
+            { "label": "Portuguese", "value": "portuguese" },
+            { "label": "Chinese", "value": "chinese" },
+            { "label": "Japanese", "value": "japanese" },
+            { "label": "Korean", "value": "korean" },
+            { "label": "Urdu", "value": "urdu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "AB23",
+          "kind": "text",
+          "question": "Is there anything you'd like us to avoid?",
+          "hint": "Mention any colours, imagery, wording, competitor references, or visual directions you'd prefer not to use.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

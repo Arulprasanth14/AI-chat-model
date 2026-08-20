@@ -1,0 +1,267 @@
+template_key: technology_services_pitch_deck_investor
+template_label: Pitch Deck — Investor
+vertical: technology
+template_name_match:
+- pitch deck
+- investor deck
+- pitch / investor deck
+- investor pitch
+fields:
+- code: PD1
+  kind: text
+  required: true
+  section_name: Company Overview
+  section_order: 0
+  section_field_order: 0
+- code: PD2
+  kind: radio
+  required: true
+  section_name: Company Overview
+  section_order: 0
+  section_field_order: 1
+  options:
+  - label: Idea Stage
+    value: idea_stage
+  - label: MVP
+    value: mvp
+  - label: Early Revenue
+    value: early_revenue
+  - label: Growth Stage
+    value: growth_stage
+  - label: Established Business
+    value: established_business
+- code: PD3
+  kind: radio
+  required: true
+  section_name: Investor Deck Goal
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Raise Investment
+    value: raise_investment
+  - label: Secure Partnerships
+    value: secure_partnerships
+  - label: Sales Presentation
+    value: sales_presentation
+  - label: Board Presentation
+    value: board_presentation
+  - label: Accelerator Application
+    value: accelerator_application
+  - label: Internal Strategy Presentation
+    value: internal_strategy_presentation
+  - label: Other
+    value: other
+- code: PD4
+  kind: checkbox
+  required: true
+  section_name: Investor Deck Goal
+  section_order: 1
+  section_field_order: 1
+  options:
+  - label: Angel Investors
+    value: angel_investors
+  - label: Venture Capital Firms
+    value: venture_capital_firms
+  - label: Private Equity
+    value: private_equity
+  - label: Strategic Partners
+    value: strategic_partners
+  - label: Corporate Buyers
+    value: corporate_buyers
+  - label: Customers
+    value: customers
+  - label: Internal Stakeholders
+    value: internal_stakeholders
+  - label: Other
+    value: other
+- code: PD5
+  kind: radio
+  required: true
+  section_name: Deck Content
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: Yes, Complete Content Ready
+    value: complete_content_ready
+  - label: Partial Content Available
+    value: partial_content_available
+  - label: Need Help Structuring Content
+    value: need_help_structuring_content
+  - label: Need Help Writing Content
+    value: need_help_writing_content
+- code: PD6
+  kind: file
+  required: false
+  section_name: Deck Content
+  section_order: 2
+  section_field_order: 1
+- code: PD7
+  kind: text
+  required: true
+  section_name: Business Story
+  section_order: 3
+  section_field_order: 0
+- code: PD8
+  kind: text
+  required: true
+  section_name: Business Story
+  section_order: 3
+  section_field_order: 1
+- code: PD9
+  kind: text
+  required: true
+  section_name: Business Story
+  section_order: 3
+  section_field_order: 2
+- code: PD10
+  kind: checkbox
+  required: true
+  section_name: Business Story
+  section_order: 3
+  section_field_order: 3
+  options:
+  - label: Revenue
+    value: revenue
+  - label: Users
+    value: users
+  - label: Growth Rate
+    value: growth_rate
+  - label: Customers
+    value: customers
+  - label: Retention
+    value: retention
+  - label: Partnerships
+    value: partnerships
+  - label: Market Share
+    value: market_share
+  - label: Other
+    value: other
+- code: PD11
+  kind: radio
+  required: true
+  section_name: Funding Information
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: PD12
+  kind: text
+  required: false
+  section_name: Funding Information
+  section_order: 4
+  section_field_order: 1
+- code: PD13
+  kind: checkbox
+  required: false
+  section_name: Funding Information
+  section_order: 4
+  section_field_order: 2
+  options:
+  - label: Product Development
+    value: product_development
+  - label: Hiring
+    value: hiring
+  - label: Marketing
+    value: marketing
+  - label: Operations
+    value: operations
+  - label: Expansion
+    value: expansion
+  - label: Other
+    value: other
+- code: PD14
+  kind: radio
+  required: true
+  section_name: Visual Assets
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: PD15
+  kind: file
+  required: false
+  section_name: Visual Assets
+  section_order: 5
+  section_field_order: 1
+- code: PD16
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: PD17
+  kind: file
+  required: false
+  section_name: Design Direction
+  section_order: 6
+  section_field_order: 1
+- code: PD18
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 6
+  section_field_order: 2
+  options:
+  - label: Investor-Grade
+    value: investor_grade
+  - label: Premium
+    value: premium
+  - label: Corporate
+    value: corporate
+  - label: Minimal
+    value: minimal
+  - label: Technology-Focused
+    value: technology_focused
+  - label: Bold Startup
+    value: bold_startup
+  - label: Data-Driven
+    value: data_driven
+  - label: Other
+    value: other
+- code: PD19
+  kind: radio
+  required: true
+  section_name: Technical Requirements
+  section_order: 7
+  section_field_order: 0
+  options:
+  - label: PowerPoint (.pptx)
+    value: powerpoint_pptx
+  - label: Google Slides
+    value: google_slides
+  - label: Keynote
+    value: keynote
+  - label: PDF
+    value: pdf
+  - label: Multiple Formats
+    value: multiple_formats
+- code: PD20
+  kind: radio
+  required: true
+  section_name: Technical Requirements
+  section_order: 7
+  section_field_order: 1
+  options:
+  - label: Presented Live
+    value: presented_live
+  - label: Sent as a Standalone Deck
+    value: sent_as_standalone_deck
+  - label: Both
+    value: both
+- code: PD21
+  kind: text
+  required: false
+  section_name: Technical Requirements
+  section_order: 7
+  section_field_order: 2

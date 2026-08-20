@@ -1,0 +1,238 @@
+{
+  "key": "real_estate_flyer_brochure",
+  "label": "Property Flyer / Brochure",
+  "verticalKey": "realestate",
+  "templateNameMatch": ["flyer", "brochure"],
+  "sections": [
+    {
+      "name": "Property Details",
+      "questions": [
+        {
+          "code": "FB1",
+          "kind": "text",
+          "question": "What property is being promoted? Give the property name, address, and suburb/city.",
+          "required": true
+        },
+        {
+          "code": "FB2",
+          "kind": "radio",
+          "question": "What type of property is it?",
+          "options": [
+            { "label": "House", "value": "house" },
+            { "label": "Apartment", "value": "apartment" },
+            { "label": "Villa", "value": "villa" },
+            { "label": "Townhouse", "value": "townhouse" },
+            { "label": "Commercial Property", "value": "commercial" },
+            { "label": "Land", "value": "land" },
+            { "label": "Industrial Property", "value": "industrial" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "FB3",
+          "kind": "radio",
+          "question": "Is the property for sale, lease, or rent?",
+          "options": [
+            { "label": "For Sale", "value": "for_sale" },
+            { "label": "For Lease", "value": "for_lease" },
+            { "label": "For Rent", "value": "for_rent" },
+            { "label": "Auction", "value": "auction" },
+            { "label": "Off-Market Listing", "value": "off_market" }
+          ],
+          "required": true
+        },
+        {
+          "code": "FB4",
+          "kind": "text",
+          "question": "What is the listing price?",
+          "hint": "Price, price range, auction information, or \"Contact Agent\"",
+          "required": true
+        },
+        {
+          "code": "FB5",
+          "kind": "text",
+          "question": "What key property details should be featured?",
+          "hint": "Examples: bedrooms, bathrooms, car spaces, land size, building area, floor area, year built",
+          "required": true
+        },
+        {
+          "code": "FB6",
+          "kind": "checkbox",
+          "question": "What are the property's key selling points? List the most important features buyers should notice immediately.",
+          "options": [
+            { "label": "Waterfront views", "value": "waterfront_views" },
+            { "label": "Premium location", "value": "premium_location" },
+            { "label": "Renovated interiors", "value": "renovated_interiors" },
+            { "label": "Near schools and transport", "value": "near_schools_transport" },
+            { "label": "Luxury finishes", "value": "luxury_finishes" },
+            { "label": "Investment opportunity", "value": "investment_opportunity" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Flyer / Brochure Format",
+      "questions": [
+        {
+          "code": "FB7",
+          "kind": "radio",
+          "question": "What format do you need?",
+          "options": [
+            { "label": "Property Flyer", "value": "property_flyer" },
+            { "label": "Bi-Fold Brochure", "value": "bi_fold" },
+            { "label": "Tri-Fold Brochure", "value": "tri_fold" },
+            { "label": "Multi-Page Property Brochure", "value": "multi_page" }
+          ],
+          "required": true
+        },
+        {
+          "code": "FB8",
+          "kind": "text",
+          "question": "How many pages or panels are required?",
+          "hint": "Required for brochure formats — only ask this if the format above is a Bi-Fold, Tri-Fold, or Multi-Page Brochure, not a single-sheet Property Flyer.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Content",
+      "questions": [
+        {
+          "code": "FB9",
+          "kind": "text",
+          "question": "What property description should appear in the flyer or brochure? Please provide final, approved copy.",
+          "required": true
+        },
+        {
+          "code": "FB10",
+          "kind": "text",
+          "question": "Are there any mandatory disclosures or legal statements?",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Photography & Assets",
+      "questions": [
+        {
+          "code": "FB11",
+          "kind": "file",
+          "question": "Do you have professional property photography? Please upload the images.",
+          "hint": "Minimum 300 DPI at final print size.",
+          "required": true
+        },
+        {
+          "code": "FB12",
+          "kind": "checkbox",
+          "question": "Do you have any additional assets to include?",
+          "options": [
+            { "label": "Floor Plan", "value": "floor_plan" },
+            { "label": "Site Plan", "value": "site_plan" },
+            { "label": "Location Map", "value": "location_map" },
+            { "label": "Agent Photo", "value": "agent_photo" },
+            { "label": "Property Renderings", "value": "property_renderings" },
+            { "label": "Drone Photography", "value": "drone_photography" },
+            { "label": "Other", "value": "other" },
+            { "label": "None", "value": "none" }
+          ],
+          "required": true
+        },
+        {
+          "code": "FB13",
+          "kind": "file",
+          "question": "Please upload the additional assets you selected.",
+          "hint": "Only ask this if the client selected any asset other than \"None\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Agent & Contact Information",
+      "questions": [
+        {
+          "code": "FB14",
+          "kind": "text",
+          "question": "Which agent details should appear? Give the agent name, phone number, email address, website, and agency office.",
+          "required": true
+        },
+        {
+          "code": "FB15",
+          "kind": "radio",
+          "question": "What is the primary call to action?",
+          "options": [
+            { "label": "Contact Agent", "value": "contact_agent" },
+            { "label": "Book an Inspection", "value": "book_inspection" },
+            { "label": "Register for Auction", "value": "register_auction" },
+            { "label": "Schedule a Viewing", "value": "schedule_viewing" },
+            { "label": "Download Full Property Pack", "value": "download_pack" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "FB16",
+          "kind": "radio",
+          "question": "Will a QR code be included?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "FB17",
+          "kind": "text",
+          "question": "What URL should the QR code link to?",
+          "hint": "Only ask this if the client said yes to including a QR code. Examples: property listing page, virtual tour, booking page, agency website",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Direction",
+      "questions": [
+        {
+          "code": "FB18",
+          "kind": "file",
+          "question": "Any reference property flyers or brochures to share?",
+          "hint": "Examples from competitors, previous listings, luxury real estate brands, or styles you admire. Up to 3 references.",
+          "required": false
+        },
+        {
+          "code": "FB19",
+          "kind": "radio",
+          "question": "Describe the design style you'd like.",
+          "options": [
+            { "label": "Luxury Real Estate", "value": "luxury_real_estate" },
+            { "label": "Premium Residential", "value": "premium_residential" },
+            { "label": "Commercial Corporate", "value": "commercial_corporate" },
+            { "label": "Modern Minimal", "value": "modern_minimal" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "High-End Lifestyle", "value": "high_end_lifestyle" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Production Requirements",
+      "questions": [
+        {
+          "code": "FB20",
+          "kind": "radio",
+          "question": "Will this be used for print, digital PDF distribution, or both?",
+          "options": [
+            { "label": "Print only", "value": "print_only" },
+            { "label": "Digital PDF only", "value": "digital_only" },
+            { "label": "Both", "value": "both" }
+          ],
+          "required": true
+        }
+      ]
+    }
+  ]
+}

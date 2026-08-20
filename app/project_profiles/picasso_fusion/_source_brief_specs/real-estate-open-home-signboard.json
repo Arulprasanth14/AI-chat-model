@@ -1,0 +1,242 @@
+{
+  "key": "real_estate_open_home_signboard",
+  "label": "Open Home Signboard",
+  "verticalKey": "realestate",
+  "templateNameMatch": ["signboard", "sign board", "open home sign"],
+  "sections": [
+    {
+      "name": "Open Home Information",
+      "questions": [
+        {
+          "code": "SB1",
+          "kind": "text",
+          "question": "What property is this signboard promoting? Give the property address.",
+          "required": true
+        },
+        {
+          "code": "SB2",
+          "kind": "radio",
+          "question": "What type of property is it?",
+          "options": [
+            { "label": "House", "value": "house" },
+            { "label": "Apartment", "value": "apartment" },
+            { "label": "Townhouse", "value": "townhouse" },
+            { "label": "Villa", "value": "villa" },
+            { "label": "Land", "value": "land" },
+            { "label": "Commercial Property", "value": "commercial" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SB3",
+          "kind": "radio",
+          "question": "What is the purpose of the signboard?",
+          "options": [
+            { "label": "Open Home", "value": "open_home" },
+            { "label": "Auction", "value": "auction" },
+            { "label": "New Listing", "value": "new_listing" },
+            { "label": "Sold Property", "value": "sold_property" },
+            { "label": "Directional Sign", "value": "directional_sign" },
+            { "label": "Custom", "value": "custom" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SB4",
+          "kind": "text",
+          "question": "What date and time is the open home?",
+          "hint": "Required if promoting an inspection — only ask this if the purpose above is Open Home or Auction.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Signboard Type",
+      "questions": [
+        {
+          "code": "SB5",
+          "kind": "radio",
+          "question": "What type of signboard is required?",
+          "options": [
+            { "label": "A-Frame Sign", "value": "a_frame" },
+            { "label": "Corflute Sign", "value": "corflute" },
+            { "label": "Directional Sign", "value": "directional" },
+            { "label": "Open Home Pointer Sign", "value": "pointer_sign" },
+            { "label": "Pull-Up Banner", "value": "pull_up_banner" },
+            { "label": "Fence Sign", "value": "fence_sign" },
+            { "label": "Custom Size", "value": "custom" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SB6",
+          "kind": "text",
+          "question": "What are the dimensions?",
+          "hint": "Provide printer specifications if available.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Property Content",
+      "questions": [
+        {
+          "code": "SB7",
+          "kind": "text",
+          "question": "What property details should appear?",
+          "hint": "Examples: bedrooms, bathrooms, car spaces, land size, price guide, auction date.",
+          "required": true
+        },
+        {
+          "code": "SB8",
+          "kind": "text",
+          "question": "What key message should the signboard communicate?",
+          "hint": "Examples: \"Open Home Today\", \"Auction This Saturday\", \"New Listing\", \"Luxury Waterfront Living\", \"Contact Agent\".",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Images & Assets",
+      "questions": [
+        {
+          "code": "SB9",
+          "kind": "file",
+          "question": "Do you have property photography to include? Please upload the images.",
+          "hint": "Minimum 300 DPI at final print size.",
+          "required": true
+        },
+        {
+          "code": "SB10",
+          "kind": "checkbox",
+          "question": "Do you have any additional assets?",
+          "options": [
+            { "label": "Agent Photo", "value": "agent_photo" },
+            { "label": "Floor Plan", "value": "floor_plan" },
+            { "label": "Agency Awards", "value": "agency_awards" },
+            { "label": "QR Code", "value": "qr_code" },
+            { "label": "Property Logo", "value": "property_logo" },
+            { "label": "Other", "value": "other" },
+            { "label": "None", "value": "none" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Agent Information",
+      "questions": [
+        {
+          "code": "SB11",
+          "kind": "text",
+          "question": "Which agent details should appear? Give the agent name, phone number, email, and website.",
+          "required": true
+        },
+        {
+          "code": "SB12",
+          "kind": "radio",
+          "question": "What is the primary call to action?",
+          "options": [
+            { "label": "Inspect Today", "value": "inspect_today" },
+            { "label": "Contact Agent", "value": "contact_agent" },
+            { "label": "Register for Auction", "value": "register_auction" },
+            { "label": "Scan for Property Details", "value": "scan_for_details" },
+            { "label": "Book a Viewing", "value": "book_viewing" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SB13",
+          "kind": "radio",
+          "question": "Will a QR code be included?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SB14",
+          "kind": "text",
+          "question": "What URL should the QR code link to?",
+          "hint": "Only ask this if the client said yes to including a QR code. Examples: property listing, virtual tour, agency website, inspection registration.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Directional Requirements",
+      "questions": [
+        {
+          "code": "SB15",
+          "kind": "radio",
+          "question": "Does the signboard need directional arrows?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SB16",
+          "kind": "checkbox",
+          "question": "What direction should be shown?",
+          "hint": "One of the most commonly missed questions for open home signage — only ask this if the client said yes to directional arrows above.",
+          "options": [
+            { "label": "Left", "value": "left" },
+            { "label": "Right", "value": "right" },
+            { "label": "Straight Ahead", "value": "straight_ahead" },
+            { "label": "Multiple Directions", "value": "multiple_directions" }
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Direction",
+      "questions": [
+        {
+          "code": "SB17",
+          "kind": "file",
+          "question": "Any reference signboards or inspiration?",
+          "hint": "Competitors, previous campaigns, or styles you admire. Upload references, up to 3.",
+          "required": false
+        },
+        {
+          "code": "SB18",
+          "kind": "radio",
+          "question": "Describe the visual style you'd like.",
+          "options": [
+            { "label": "Premium Real Estate", "value": "premium_real_estate" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "High Visibility", "value": "high_visibility" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Production Requirements",
+      "questions": [
+        {
+          "code": "SB19",
+          "kind": "radio",
+          "question": "Will the signboard be used indoors or outdoors?",
+          "hint": "This affects readability and production specifications.",
+          "options": [
+            { "label": "Indoor", "value": "indoor" },
+            { "label": "Outdoor", "value": "outdoor" },
+            { "label": "Both", "value": "both" }
+          ],
+          "required": true
+        }
+      ]
+    }
+  ]
+}

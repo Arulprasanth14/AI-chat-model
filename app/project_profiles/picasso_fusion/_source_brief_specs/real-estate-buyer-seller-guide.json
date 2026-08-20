@@ -1,0 +1,237 @@
+{
+  "key": "real_estate_buyer_seller_guide",
+  "label": "Buyer / Seller Guide",
+  "verticalKey": "realestate",
+  "templateNameMatch": ["buyer guide", "seller guide", "buyer/seller", "buyer seller"],
+  "sections": [
+    {
+      "name": "Guide Overview",
+      "questions": [
+        {
+          "code": "BG1",
+          "kind": "radio",
+          "question": "What type of guide is this?",
+          "options": [
+            { "label": "First Home Buyer Guide", "value": "first_home_buyer" },
+            { "label": "Property Buyer Guide", "value": "property_buyer" },
+            { "label": "Property Seller Guide", "value": "property_seller" },
+            { "label": "Investor Guide", "value": "investor" },
+            { "label": "Downsizer Guide", "value": "downsizer" },
+            { "label": "Suburb Guide", "value": "suburb" },
+            { "label": "Custom Guide", "value": "custom" }
+          ],
+          "required": true
+        },
+        {
+          "code": "BG2",
+          "kind": "checkbox",
+          "question": "Who is the target audience?",
+          "hint": "This is one of the most important questions — it affects the tone, content hierarchy, and visual style.",
+          "options": [
+            { "label": "First-time buyers", "value": "first_time_buyers" },
+            { "label": "Property investors", "value": "property_investors" },
+            { "label": "Homeowners preparing to sell", "value": "homeowners_selling" },
+            { "label": "Downsizers", "value": "downsizers" },
+            { "label": "Luxury property buyers", "value": "luxury_buyers" },
+            { "label": "Commercial property owners", "value": "commercial_owners" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "BG3",
+          "kind": "checkbox",
+          "question": "What is the primary goal of this guide?",
+          "options": [
+            { "label": "Generate appraisal leads", "value": "generate_appraisal_leads" },
+            { "label": "Educate buyers", "value": "educate_buyers" },
+            { "label": "Educate sellers", "value": "educate_sellers" },
+            { "label": "Build trust and authority", "value": "build_trust_authority" },
+            { "label": "Generate consultation bookings", "value": "generate_consultations" },
+            { "label": "Capture email leads", "value": "capture_email_leads" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Guide Content",
+      "questions": [
+        {
+          "code": "BG4",
+          "kind": "checkbox",
+          "question": "What topics or sections should be included?",
+          "options": [
+            { "label": "Buying process", "value": "buying_process" },
+            { "label": "Selling process", "value": "selling_process" },
+            { "label": "Financing", "value": "financing" },
+            { "label": "Property preparation", "value": "property_preparation" },
+            { "label": "Market insights", "value": "market_insights" },
+            { "label": "Common mistakes", "value": "common_mistakes" },
+            { "label": "FAQs", "value": "faqs" },
+            { "label": "Checklist", "value": "checklist" },
+            { "label": "Agent services", "value": "agent_services" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "BG5",
+          "kind": "radio",
+          "question": "Do you already have the content prepared?",
+          "options": [
+            { "label": "Yes, final content ready", "value": "final_ready" },
+            { "label": "Partial content available", "value": "partial" },
+            { "label": "Need help organising content", "value": "need_help_organising" },
+            { "label": "Need help writing content", "value": "need_help_writing" }
+          ],
+          "required": true
+        },
+        {
+          "code": "BG6",
+          "kind": "file",
+          "question": "Please upload your content files.",
+          "hint": "Accepted formats: DOCX, PDF, Google Docs export.",
+          "required": false
+        },
+        {
+          "code": "BG7",
+          "kind": "radio",
+          "question": "Approximately how many pages should the guide contain?",
+          "options": [
+            { "label": "4 Pages", "value": "4" },
+            { "label": "8 Pages", "value": "8" },
+            { "label": "12 Pages", "value": "12" },
+            { "label": "16+ Pages", "value": "16+" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Photography & Assets",
+      "questions": [
+        {
+          "code": "BG8",
+          "kind": "file",
+          "question": "Do you have photography, illustrations, or visuals for the guide? Please upload images and assets.",
+          "hint": "Minimum 300 DPI for print.",
+          "required": true
+        },
+        {
+          "code": "BG9",
+          "kind": "checkbox",
+          "question": "Are there any additional assets to include?",
+          "options": [
+            { "label": "Agent photos", "value": "agent_photos" },
+            { "label": "Testimonials", "value": "testimonials" },
+            { "label": "Case studies", "value": "case_studies" },
+            { "label": "Checklists", "value": "checklists" },
+            { "label": "Infographics", "value": "infographics" },
+            { "label": "Maps", "value": "maps" },
+            { "label": "Property imagery", "value": "property_imagery" },
+            { "label": "Other", "value": "other" },
+            { "label": "None", "value": "none" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Lead Generation & CTA",
+      "questions": [
+        {
+          "code": "BG10",
+          "kind": "radio",
+          "question": "What action should readers take after reading the guide?",
+          "options": [
+            { "label": "Request an appraisal", "value": "request_appraisal" },
+            { "label": "Book a consultation", "value": "book_consultation" },
+            { "label": "Contact an agent", "value": "contact_agent" },
+            { "label": "Download additional resources", "value": "download_resources" },
+            { "label": "Visit the website", "value": "visit_website" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "BG11",
+          "kind": "radio",
+          "question": "Will a QR code be included?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "BG12",
+          "kind": "text",
+          "question": "What URL should the QR code link to?",
+          "hint": "Only ask this if the client said yes to including a QR code.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Distribution Format",
+      "questions": [
+        {
+          "code": "BG13",
+          "kind": "radio",
+          "question": "How will this guide be distributed?",
+          "hint": "This is much more useful to ask than a generic \"what output format is required\" question.",
+          "options": [
+            { "label": "Printed Guide", "value": "printed" },
+            { "label": "Downloadable PDF", "value": "downloadable_pdf" },
+            { "label": "Lead Magnet", "value": "lead_magnet" },
+            { "label": "Email Attachment", "value": "email_attachment" },
+            { "label": "LinkedIn PDF Carousel", "value": "linkedin_carousel" },
+            { "label": "Both Print & Digital", "value": "both" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Design Direction",
+      "questions": [
+        {
+          "code": "BG14",
+          "kind": "file",
+          "question": "Any guide designs or publications you'd like us to reference?",
+          "hint": "Examples: competitor buyer guides, seller guides, real estate magazines, previous editions. Upload reference designs, up to 3.",
+          "required": false
+        },
+        {
+          "code": "BG15",
+          "kind": "radio",
+          "question": "Describe the visual style you'd like.",
+          "options": [
+            { "label": "Luxury Real Estate", "value": "luxury_real_estate" },
+            { "label": "Premium Residential", "value": "premium_residential" },
+            { "label": "Educational", "value": "educational" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Modern Minimal", "value": "modern_minimal" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Technical Requirements",
+      "questions": [
+        {
+          "code": "BG16",
+          "kind": "text",
+          "question": "Any technical or production requirements?",
+          "hint": "Examples: interactive PDF, fillable PDF, print-ready PDF, custom page size. Leave blank if unsure.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

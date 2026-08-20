@@ -1,0 +1,197 @@
+template_key: startup_entrepreneur_linkedin_banner
+template_label: LinkedIn Banner
+vertical: startup
+template_name_match:
+- linkedin banner
+- linkedin cover
+fields:
+- code: LB1
+  kind: radio
+  required: true
+  section_name: Banner Overview
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Personal Profile
+    value: personal_profile
+  - label: Company Page
+    value: company_page
+- code: LB2
+  kind: checkbox
+  required: true
+  section_name: Banner Overview
+  section_order: 0
+  section_field_order: 1
+  options:
+  - label: Personal Branding
+    value: personal_branding
+  - label: Thought Leadership
+    value: thought_leadership
+  - label: Lead Generation
+    value: lead_generation
+  - label: Company Awareness
+    value: company_awareness
+  - label: Recruiting
+    value: recruiting
+  - label: Product/Service Promotion
+    value: product_service_promotion
+  - label: Event Promotion
+    value: event_promotion
+  - label: Other
+    value: other
+- code: LB3
+  kind: checkbox
+  required: true
+  section_name: Banner Overview
+  section_order: 0
+  section_field_order: 2
+  options:
+  - label: Founders
+    value: founders
+  - label: Business Owners
+    value: business_owners
+  - label: Investors
+    value: investors
+  - label: Recruiters
+    value: recruiters
+  - label: Job Seekers
+    value: job_seekers
+  - label: Enterprise Buyers
+    value: enterprise_buyers
+  - label: Startups
+    value: startups
+  - label: Other
+    value: other
+- code: LB4
+  kind: checkbox
+  required: true
+  section_name: Content
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Name
+    value: name
+  - label: Job Title
+    value: job_title
+  - label: Company Name
+    value: company_name
+  - label: Tagline
+    value: tagline
+  - label: Website
+    value: website
+  - label: Services
+    value: services
+  - label: Certifications
+    value: certifications
+  - label: Awards
+    value: awards
+  - label: Other
+    value: other
+- code: LB5
+  kind: radio
+  required: true
+  section_name: Assets
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: LB6
+  kind: file
+  required: false
+  section_name: Assets
+  section_order: 2
+  section_field_order: 1
+- code: LB7
+  kind: checkbox
+  required: true
+  section_name: Assets
+  section_order: 2
+  section_field_order: 2
+  options:
+  - label: Forbes Featured
+    value: forbes_featured
+  - label: 500+ Clients
+    value: 500_clients
+  - label: Google Partner
+    value: google_partner
+  - label: Industry Awards
+    value: industry_awards
+  - label: Other
+    value: other
+  - label: None
+    value: none
+- code: LB8
+  kind: text
+  required: false
+  section_name: Personal Profile Only (Conditional)
+  section_order: 3
+  section_field_order: 0
+- code: LB9
+  kind: text
+  required: false
+  section_name: Personal Profile Only (Conditional)
+  section_order: 3
+  section_field_order: 1
+- code: LB10
+  kind: text
+  required: false
+  section_name: Company Page Only (Conditional)
+  section_order: 4
+  section_field_order: 0
+- code: LB11
+  kind: text
+  required: false
+  section_name: Company Page Only (Conditional)
+  section_order: 4
+  section_field_order: 1
+- code: LB12
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: LB13
+  kind: file
+  required: false
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 1
+- code: LB14
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 2
+  options:
+  - label: Corporate
+    value: corporate
+  - label: Premium
+    value: premium
+  - label: Modern
+    value: modern
+  - label: Minimal
+    value: minimal
+  - label: Startup
+    value: startup
+  - label: Technology
+    value: technology
+  - label: Luxury
+    value: luxury
+  - label: Personal Brand
+    value: personal_brand
+  - label: Other
+    value: other
+- code: LB15
+  kind: text
+  required: false
+  section_name: Technical Requirements
+  section_order: 6
+  section_field_order: 0

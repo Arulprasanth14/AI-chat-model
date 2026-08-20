@@ -1,0 +1,239 @@
+template_key: technology_services_web_banner_set
+template_label: Web Banner Set
+vertical: technology
+template_name_match:
+- web banner
+- web banner set
+- banner set
+fields:
+- code: WB1
+  kind: checkbox
+  required: true
+  section_name: Banner Purpose
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Drive Sales
+    value: drive_sales
+  - label: Promote a Product Launch
+    value: promote_a_product_launch
+  - label: Generate Leads
+    value: generate_leads
+  - label: Increase Sign-Ups
+    value: increase_sign_ups
+  - label: Promote an Event
+    value: promote_an_event
+  - label: Drive Traffic to a Landing Page
+    value: drive_traffic_to_a_landing_page
+  - label: Other
+    value: other
+- code: WB2
+  kind: checkbox
+  required: true
+  section_name: Banner Purpose
+  section_order: 0
+  section_field_order: 1
+  options:
+  - label: Website Homepage
+    value: website_homepage
+  - label: Website Internal Pages
+    value: website_internal_pages
+  - label: Blog/Sidebar
+    value: blog_sidebar
+  - label: Landing Page
+    value: landing_page
+  - label: Display Advertising
+    value: display_advertising
+  - label: Retargeting Campaign
+    value: retargeting_campaign
+  - label: Other
+    value: other
+- code: WB3
+  kind: text
+  required: true
+  section_name: Campaign Information
+  section_order: 1
+  section_field_order: 0
+- code: WB4
+  kind: checkbox
+  required: true
+  section_name: Campaign Information
+  section_order: 1
+  section_field_order: 1
+  options:
+  - label: Existing Customers
+    value: existing_customers
+  - label: New Visitors
+    value: new_visitors
+  - label: Small Businesses
+    value: small_businesses
+  - label: Enterprise Buyers
+    value: enterprise_buyers
+  - label: Students
+    value: students
+  - label: Homeowners
+    value: homeowners
+  - label: Healthcare Professionals
+    value: healthcare_professionals
+  - label: Other
+    value: other
+- code: WB5
+  kind: radio
+  required: true
+  section_name: Banner Sizes
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: Standard Display Ad Sizes
+    value: standard_display_ad_sizes
+  - label: Social Display Sizes
+    value: social_display_sizes
+  - label: Custom Sizes
+    value: custom_sizes
+- code: WB6
+  kind: text
+  required: false
+  section_name: Banner Sizes
+  section_order: 2
+  section_field_order: 1
+- code: WB7
+  kind: text
+  required: true
+  section_name: Content & Assets
+  section_order: 3
+  section_field_order: 0
+- code: WB8
+  kind: radio
+  required: true
+  section_name: Content & Assets
+  section_order: 3
+  section_field_order: 1
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: WB9
+  kind: file
+  required: false
+  section_name: Content & Assets
+  section_order: 3
+  section_field_order: 2
+- code: WB10
+  kind: radio
+  required: true
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Shop Now
+    value: shop_now
+  - label: Learn More
+    value: learn_more
+  - label: Book a Demo
+    value: book_a_demo
+  - label: Register
+    value: register
+  - label: Download
+    value: download
+  - label: Get Started
+    value: get_started
+  - label: Other
+    value: other
+- code: WB11
+  kind: text
+  required: true
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 1
+- code: WB12
+  kind: radio
+  required: true
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 2
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: WB13
+  kind: text
+  required: false
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 3
+- code: WB14
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: WB15
+  kind: file
+  required: false
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 1
+- code: WB16
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 2
+  options:
+  - label: Modern SaaS
+    value: modern_saas
+  - label: Premium
+    value: premium
+  - label: Minimal
+    value: minimal
+  - label: Product-Focused
+    value: product_focused
+  - label: Corporate
+    value: corporate
+  - label: Luxury
+    value: luxury
+  - label: Bold Promotional
+    value: bold_promotional
+  - label: Other
+    value: other
+- code: WB17
+  kind: radio
+  required: true
+  section_name: Technical Requirements
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Static JPG/PNG
+    value: static_jpg_png
+  - label: Animated GIF
+    value: animated_gif
+  - label: HTML5 Banner
+    value: html5_banner
+- code: WB18
+  kind: checkbox
+  required: false
+  section_name: Technical Requirements
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: Google Display Network
+    value: google_display_network
+  - label: Programmatic Ads
+    value: programmatic_ads
+  - label: Internal Website
+    value: internal_website
+  - label: Other
+    value: other
+- code: WB19
+  kind: text
+  required: false
+  section_name: Technical Requirements
+  section_order: 6
+  section_field_order: 2

@@ -1,0 +1,295 @@
+{
+  "key": "startup_entrepreneur_press_kit",
+  "label": "Press Kit",
+  "verticalKey": "startup",
+  "templateNameMatch": ["press kit", "media kit", "press release kit"],
+  "sections": [
+    {
+      "name": "Press Kit Overview",
+      "questions": [
+        {
+          "code": "PK1",
+          "kind": "radio",
+          "question": "What is this press kit for?",
+          "hint": "Press kits should communicate one clear story.",
+          "options": [
+            { "label": "Startup Launch", "value": "startup_launch" },
+            { "label": "Product Launch", "value": "product_launch" },
+            { "label": "Funding Announcement", "value": "funding_announcement" },
+            { "label": "Company Milestone", "value": "company_milestone" },
+            { "label": "Partnership Announcement", "value": "partnership_announcement" },
+            { "label": "Event Announcement", "value": "event_announcement" },
+            { "label": "General Media Kit", "value": "general_media_kit" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PK2",
+          "kind": "text",
+          "question": "What company, product, or announcement are we featuring?",
+          "hint": "Provide a brief summary of the news or story.",
+          "required": true
+        },
+        {
+          "code": "PK3",
+          "kind": "checkbox",
+          "question": "Who is the target audience for this press kit?",
+          "hint": "Different audiences require different messaging.",
+          "options": [
+            { "label": "Journalists", "value": "journalists" },
+            { "label": "Industry Publications", "value": "industry_publications" },
+            { "label": "Investors", "value": "investors" },
+            { "label": "Partners", "value": "partners" },
+            { "label": "Influencers", "value": "influencers" },
+            { "label": "Event Organisers", "value": "event_organisers" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Content & Highlights",
+      "questions": [
+        {
+          "code": "PK4",
+          "kind": "checkbox",
+          "question": "What content should be included?",
+          "hint": "Select all required sections. Multi-select.",
+          "options": [
+            { "label": "Company Overview", "value": "company_overview" },
+            { "label": "Founder Biography", "value": "founder_biography" },
+            { "label": "Leadership Team", "value": "leadership_team" },
+            { "label": "Product Overview", "value": "product_overview" },
+            { "label": "Funding Information", "value": "funding_information" },
+            { "label": "Company Timeline", "value": "company_timeline" },
+            { "label": "Key Statistics", "value": "key_statistics" },
+            { "label": "Awards & Recognition", "value": "awards_recognition" },
+            { "label": "Partnerships", "value": "partnerships" },
+            { "label": "Media Coverage", "value": "media_coverage" },
+            { "label": "FAQs", "value": "faqs" },
+            { "label": "Press Release", "value": "press_release" },
+            { "label": "Contact Information", "value": "contact_information" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PK5",
+          "kind": "checkbox",
+          "question": "What key facts, statistics, or milestones should be highlighted?",
+          "hint": "Journalists often use these directly in articles.",
+          "options": [
+            { "label": "Funding Raised", "value": "funding_raised" },
+            { "label": "Customers", "value": "customers" },
+            { "label": "Users", "value": "users" },
+            { "label": "Revenue Milestones", "value": "revenue_milestones" },
+            { "label": "Growth Metrics", "value": "growth_metrics" },
+            { "label": "Geographic Reach", "value": "geographic_reach" },
+            { "label": "Team Size", "value": "team_size" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Media Assets",
+      "questions": [
+        {
+          "code": "PK6",
+          "kind": "radio",
+          "question": "Do you have photography or imagery?",
+          "hint": "High-quality media assets are essential.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PK7",
+          "kind": "file",
+          "question": "Upload logos, founder photos, executive headshots, team photos, screenshots, and product images.",
+          "hint": "High-resolution files preferred. Only if you have photography or imagery.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Company & People",
+      "questions": [
+        {
+          "code": "PK8",
+          "kind": "text",
+          "question": "What company information should appear?",
+          "hint": "Provide an approved company description or boilerplate.",
+          "required": true
+        },
+        {
+          "code": "PK9",
+          "kind": "radio",
+          "question": "Should founder or executive profiles be included?",
+          "options": [
+            { "label": "Founder Only", "value": "founder_only" },
+            { "label": "Leadership Team", "value": "leadership_team" },
+            { "label": "No Profiles Required", "value": "no_profiles_required" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PK10",
+          "kind": "text",
+          "question": "Provide founder/executive biographies and titles.",
+          "hint": "Only if you selected Founder Only or Leadership Team above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Quotes & Contact",
+      "questions": [
+        {
+          "code": "PK11",
+          "kind": "radio",
+          "question": "Are there approved quotes that media can use?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PK12",
+          "kind": "text",
+          "question": "Provide approved spokesperson quotes.",
+          "hint": "Examples: Founder quote, CEO statement, Investor quote, Customer quote. Only if you said yes above.",
+          "required": false
+        },
+        {
+          "code": "PK13",
+          "kind": "checkbox",
+          "question": "What contact information should media use?",
+          "hint": "Ensure journalists can quickly reach the correct person.",
+          "options": [
+            { "label": "PR Contact", "value": "pr_contact" },
+            { "label": "Founder", "value": "founder" },
+            { "label": "Marketing Team", "value": "marketing_team" },
+            { "label": "Agency Representative", "value": "agency_representative" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Media Coverage & Distribution",
+      "questions": [
+        {
+          "code": "PK14",
+          "kind": "radio",
+          "question": "Has the company received any notable media coverage, awards, or recognition?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PK15",
+          "kind": "text",
+          "question": "Provide links, publications, awards, or recognition details.",
+          "hint": "Only if you said yes above.",
+          "required": false
+        },
+        {
+          "code": "PK16",
+          "kind": "radio",
+          "question": "Will media assets need to be downloadable separately?",
+          "hint": "This affects how the press kit is structured.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Timing",
+      "questions": [
+        {
+          "code": "PK17",
+          "kind": "radio",
+          "question": "Is there an announcement date or embargo?",
+          "hint": "Important for media scheduling.",
+          "options": [
+            { "label": "Immediate Release", "value": "immediate_release" },
+            { "label": "Scheduled Release Date", "value": "scheduled_release_date" },
+            { "label": "Embargoed Announcement", "value": "embargoed_announcement" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PK18",
+          "kind": "text",
+          "question": "Provide announcement date and time.",
+          "hint": "Only if you selected Scheduled Release Date or Embargoed Announcement above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "PK19",
+          "kind": "radio",
+          "question": "Any reference press kits or media kits you'd like us to reference?",
+          "hint": "Share examples you admire.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PK20",
+          "kind": "file",
+          "question": "Upload reference press kits, up to 3.",
+          "hint": "Only if you said yes to reference press kits above.",
+          "required": false
+        },
+        {
+          "code": "PK21",
+          "kind": "radio",
+          "question": "Describe the visual style you'd like.",
+          "options": [
+            { "label": "Startup", "value": "startup" },
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Investor-Grade", "value": "investor_grade" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "Technology-Focused", "value": "technology_focused" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PK22",
+          "kind": "checkbox",
+          "question": "Any technical requirements?",
+          "hint": "Leave blank if unsure.",
+          "options": [
+            { "label": "PDF Only", "value": "pdf_only" },
+            { "label": "Print-Ready", "value": "print_ready" },
+            { "label": "Interactive PDF", "value": "interactive_pdf" },
+            { "label": "Press Download Folder", "value": "press_download_folder" },
+            { "label": "Editable Source Files", "value": "editable_source_files" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,281 @@
+{
+  "key": "startup_entrepreneur_proposal_template",
+  "label": "Proposal Template",
+  "verticalKey": "startup",
+  "templateNameMatch": ["proposal template", "sales proposal", "consulting proposal", "agency proposal"],
+  "sections": [
+    {
+      "name": "Proposal Overview",
+      "questions": [
+        {
+          "code": "PR1",
+          "kind": "radio",
+          "question": "What is this proposal template for?",
+          "hint": "One proposal template = one repeatable sales process.",
+          "options": [
+            { "label": "Service Proposal", "value": "service_proposal" },
+            { "label": "Agency Proposal", "value": "agency_proposal" },
+            { "label": "Consulting Proposal", "value": "consulting_proposal" },
+            { "label": "Software / SaaS Proposal", "value": "software_saas_proposal" },
+            { "label": "Partnership Proposal", "value": "partnership_proposal" },
+            { "label": "Investment Proposal", "value": "investment_proposal" },
+            { "label": "Custom", "value": "custom" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PR2",
+          "kind": "text",
+          "question": "What services, products, or solutions will typically be proposed?",
+          "hint": "Understanding the offering helps structure the template correctly.",
+          "required": true
+        },
+        {
+          "code": "PR3",
+          "kind": "checkbox",
+          "question": "Who is the target audience?",
+          "hint": "Proposal content and tone should match the decision-maker.",
+          "options": [
+            { "label": "Small Business Owners", "value": "small_business_owners" },
+            { "label": "Enterprise Buyers", "value": "enterprise_buyers" },
+            { "label": "Startups", "value": "startups" },
+            { "label": "Corporate Procurement Teams", "value": "corporate_procurement_teams" },
+            { "label": "Investors", "value": "investors" },
+            { "label": "Government Organisations", "value": "government_organisations" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PR4",
+          "kind": "checkbox",
+          "question": "Who will be using this template internally?",
+          "hint": "Template complexity should match the user.",
+          "options": [
+            { "label": "Founder", "value": "founder" },
+            { "label": "Sales Team", "value": "sales_team" },
+            { "label": "Business Development Team", "value": "business_development_team" },
+            { "label": "Account Managers", "value": "account_managers" },
+            { "label": "Entire Company", "value": "entire_company" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Content & Pricing",
+      "questions": [
+        {
+          "code": "PR5",
+          "kind": "checkbox",
+          "question": "Which sections should the template include?",
+          "hint": "Select all required sections. Multi-select.",
+          "options": [
+            { "label": "Cover Page", "value": "cover_page" },
+            { "label": "Executive Summary", "value": "executive_summary" },
+            { "label": "About Us", "value": "about_us" },
+            { "label": "Problem Statement", "value": "problem_statement" },
+            { "label": "Proposed Solution", "value": "proposed_solution" },
+            { "label": "Scope of Work", "value": "scope_of_work" },
+            { "label": "Deliverables", "value": "deliverables" },
+            { "label": "Timeline", "value": "timeline" },
+            { "label": "Pricing", "value": "pricing" },
+            { "label": "Team", "value": "team" },
+            { "label": "Case Studies", "value": "case_studies" },
+            { "label": "Testimonials", "value": "testimonials" },
+            { "label": "FAQs", "value": "faqs" },
+            { "label": "Terms & Conditions", "value": "terms_conditions" },
+            { "label": "Acceptance Page", "value": "acceptance_page" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PR6",
+          "kind": "radio",
+          "question": "What pricing structure should the template support?",
+          "hint": "Proposal layouts vary significantly based on pricing model.",
+          "options": [
+            { "label": "Fixed Price", "value": "fixed_price" },
+            { "label": "Retainer", "value": "retainer" },
+            { "label": "Tiered Packages", "value": "tiered_packages" },
+            { "label": "Hourly", "value": "hourly" },
+            { "label": "Subscription", "value": "subscription" },
+            { "label": "Custom Pricing", "value": "custom_pricing" },
+            { "label": "Multiple Pricing Models", "value": "multiple_pricing_models" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PR7",
+          "kind": "radio",
+          "question": "Should pricing tables be editable?",
+          "hint": "This is one of the most important template questions.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Branding & Assets",
+      "questions": [
+        {
+          "code": "PR8",
+          "kind": "radio",
+          "question": "Do you have branding assets?",
+          "hint": "Templates should align with brand standards.",
+          "options": [
+            { "label": "Full Brand Guidelines", "value": "full_brand_guidelines" },
+            { "label": "Logo Only", "value": "logo_only" },
+            { "label": "Existing Proposal", "value": "existing_proposal" },
+            { "label": "Website Branding", "value": "website_branding" },
+            { "label": "No Brand Assets Yet", "value": "no_brand_assets_yet" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PR9",
+          "kind": "file",
+          "question": "Upload logo, brand guide, fonts, and visual assets.",
+          "hint": "Editable assets preferred. Only if you have branding assets.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Editable Content",
+      "questions": [
+        {
+          "code": "PR10",
+          "kind": "radio",
+          "question": "Should the template include editable case studies, testimonials, and team profiles?",
+          "hint": "These sections are frequently updated and should be designed accordingly.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Call to Action",
+      "questions": [
+        {
+          "code": "PR11",
+          "kind": "radio",
+          "question": "What call to action should appear at the end of the proposal?",
+          "hint": "Every proposal should guide the prospect toward acceptance.",
+          "options": [
+            { "label": "Approve Proposal", "value": "approve_proposal" },
+            { "label": "Schedule a Meeting", "value": "schedule_a_meeting" },
+            { "label": "Sign Agreement", "value": "sign_agreement" },
+            { "label": "Contact Us", "value": "contact_us" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PR12",
+          "kind": "text",
+          "question": "Custom CTA text.",
+          "hint": "Only if you selected Other above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Platform & Format",
+      "questions": [
+        {
+          "code": "PR13",
+          "kind": "radio",
+          "question": "Which platform will the template be used in?",
+          "hint": "This question is critical and currently missing.",
+          "options": [
+            { "label": "PowerPoint", "value": "powerpoint" },
+            { "label": "Google Slides", "value": "google_slides" },
+            { "label": "Canva", "value": "canva" },
+            { "label": "Word", "value": "word" },
+            { "label": "InDesign", "value": "indesign" },
+            { "label": "Figma", "value": "figma" },
+            { "label": "Multiple Platforms", "value": "multiple_platforms" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PR14",
+          "kind": "radio",
+          "question": "Output formats required?",
+          "options": [
+            { "label": "Editable Source File", "value": "editable_source_file" },
+            { "label": "PDF", "value": "pdf" },
+            { "label": "PowerPoint", "value": "powerpoint" },
+            { "label": "Google Slides", "value": "google_slides" },
+            { "label": "Canva Template", "value": "canva_template" },
+            { "label": "Multiple Formats", "value": "multiple_formats" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "PR15",
+          "kind": "radio",
+          "question": "Any reference proposals or inspiration?",
+          "hint": "Share examples you admire or currently use.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PR16",
+          "kind": "file",
+          "question": "Upload proposal examples, up to 3.",
+          "hint": "Only if you said yes to reference proposals above.",
+          "required": false
+        },
+        {
+          "code": "PR17",
+          "kind": "radio",
+          "question": "Describe the desired proposal style.",
+          "options": [
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "Startup", "value": "startup" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Enterprise", "value": "enterprise" },
+            { "label": "Consulting", "value": "consulting" },
+            { "label": "Modern SaaS", "value": "modern_saas" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PR18",
+          "kind": "checkbox",
+          "question": "Any technical requirements?",
+          "hint": "Leave blank if unsure.",
+          "options": [
+            { "label": "A4 Portrait", "value": "a4_portrait" },
+            { "label": "US Letter", "value": "us_letter" },
+            { "label": "Interactive PDF", "value": "interactive_pdf" },
+            { "label": "Digital Signing Section", "value": "digital_signing_section" },
+            { "label": "Proposal Cover Variations", "value": "proposal_cover_variations" },
+            { "label": "Light/Dark Versions", "value": "light_dark_versions" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": false
+        }
+      ]
+    }
+  ]
+}

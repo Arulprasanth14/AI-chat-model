@@ -1,0 +1,345 @@
+{
+  "key": "retail_boutique_digital_addon",
+  "label": "Digital Asset",
+  "verticalKey": "retail",
+  "templateNameMatch": ["digital design", "digital add-on", "digital addon", "digital brief", "digital asset"],
+  "sections": [
+    {
+      "name": "Digital Asset & Message",
+      "questions": [
+        {
+          "code": "DG1",
+          "kind": "radio",
+          "question": "What are we creating today?",
+          "hint": "Select the digital asset.",
+          "options": [
+            { "label": "Website Banner", "value": "website_banner" },
+            { "label": "Homepage Hero Banner", "value": "homepage_hero_banner" },
+            { "label": "Email Newsletter (EDM)", "value": "email_newsletter_edm" },
+            { "label": "Email Header", "value": "email_header" },
+            { "label": "Google Display Ads", "value": "google_display_ads" },
+            { "label": "Meta Ad Creative", "value": "meta_ad_creative" },
+            { "label": "Instagram Story Set", "value": "instagram_story_set" },
+            { "label": "WhatsApp Promotional Graphic", "value": "whatsapp_promotional_graphic" },
+            { "label": "Digital Signage", "value": "digital_signage" },
+            { "label": "Mall Display Screen", "value": "mall_display_screen" },
+            { "label": "Presentation Deck", "value": "presentation_deck" },
+            { "label": "Website Popup", "value": "website_popup" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG2",
+          "kind": "text",
+          "question": "What are we promoting?",
+          "hint": "Provide the key details: Product/Collection/Campaign Name, Category, Price (Optional), Key Features/Benefits.",
+          "required": true
+        },
+        {
+          "code": "DG3",
+          "kind": "text",
+          "question": "What's the ONE message customers should remember?",
+          "hint": "Describe the biggest reason someone should engage with this campaign. Example: \"Visit our store for exclusive festive offers.\", \"Discover our newest furniture collection.\", \"Limited-time sale available this weekend only.\"",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Goal & Audience",
+      "questions": [
+        {
+          "code": "DG4",
+          "kind": "checkbox",
+          "question": "What's the goal of this digital asset?",
+          "options": [
+            { "label": "Increase Store Visits", "value": "increase_store_visits" },
+            { "label": "Promote a Collection", "value": "promote_a_collection" },
+            { "label": "Launch a Product", "value": "launch_a_product" },
+            { "label": "Promote a Sale", "value": "promote_a_sale" },
+            { "label": "Build Brand Awareness", "value": "build_brand_awareness" },
+            { "label": "Generate Enquiries", "value": "generate_enquiries" },
+            { "label": "Event Promotion", "value": "event_promotion" },
+            { "label": "Drive Website Traffic", "value": "drive_website_traffic" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG5",
+          "kind": "text",
+          "question": "Who is this campaign for?",
+          "hint": "Describe your ideal customer.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Offer",
+      "questions": [
+        {
+          "code": "DG6",
+          "kind": "radio",
+          "question": "Are you running an offer?",
+          "options": [
+            { "label": "No Offer", "value": "no_offer" },
+            { "label": "Percentage Discount", "value": "percentage_discount" },
+            { "label": "Flat Discount", "value": "flat_discount" },
+            { "label": "Buy One Get One", "value": "buy_one_get_one" },
+            { "label": "Bundle Offer", "value": "bundle_offer" },
+            { "label": "Free Gift", "value": "free_gift" },
+            { "label": "Limited-Time Offer", "value": "limited_time_offer" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG7",
+          "kind": "text",
+          "question": "Provide the offer details, start & end date, and terms & conditions.",
+          "hint": "Only if you are running an offer.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Content",
+      "questions": [
+        {
+          "code": "DG8",
+          "kind": "radio",
+          "question": "Do you already have the content?",
+          "options": [
+            { "label": "Final Copy Ready", "value": "final_copy_ready" },
+            { "label": "Rough Points", "value": "rough_points" },
+            { "label": "Need Copywriting Support", "value": "need_copywriting_support" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG9",
+          "kind": "text",
+          "question": "Provide your copy or rough points.",
+          "hint": "Only if you have final copy ready or rough points.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Requirements",
+      "questions": [
+        {
+          "code": "DG10",
+          "kind": "checkbox",
+          "question": "Is there anything that must appear?",
+          "hint": "Select all that apply.",
+          "options": [
+            { "label": "Product Name", "value": "product_name" },
+            { "label": "Collection Name", "value": "collection_name" },
+            { "label": "Price", "value": "price" },
+            { "label": "Discount", "value": "discount" },
+            { "label": "Brand Logo", "value": "brand_logo" },
+            { "label": "Store Address", "value": "store_address" },
+            { "label": "Website", "value": "website" },
+            { "label": "QR Code", "value": "qr_code" },
+            { "label": "Contact Number", "value": "contact_number" },
+            { "label": "Social Media Handles", "value": "social_media_handles" },
+            { "label": "CTA Button", "value": "cta_button" },
+            { "label": "Store Timings", "value": "store_timings" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Images & Assets",
+      "questions": [
+        {
+          "code": "DG11",
+          "kind": "checkbox",
+          "question": "Do you have images or assets?",
+          "options": [
+            { "label": "I'll Upload Product Photos", "value": "ill_upload_product_photos" },
+            { "label": "I'll Upload Store Photos", "value": "ill_upload_store_photos" },
+            { "label": "I'll Upload Lifestyle Images", "value": "ill_upload_lifestyle_images" },
+            { "label": "I'll Upload Graphics", "value": "ill_upload_graphics" },
+            { "label": "Use Stock Images", "value": "use_stock_images" },
+            { "label": "Use Only Brand Assets", "value": "use_only_brand_assets" },
+            { "label": "Designer Can Recommend", "value": "designer_can_recommend" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG12",
+          "kind": "file",
+          "question": "Upload your files.",
+          "hint": "Upload product photos, store images, logos, or supporting assets. Recommended formats: PNG, JPG, SVG, PDF.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Brand Assets",
+      "questions": [
+        {
+          "code": "DG13",
+          "kind": "radio",
+          "question": "Would you like us to follow your existing brand identity?",
+          "hint": "Brand Assets & Guidelines.",
+          "options": [
+            { "label": "Use My Saved Brand Kit", "value": "use_my_saved_brand_kit" },
+            { "label": "Upload Brand Guidelines", "value": "upload_brand_guidelines" },
+            { "label": "Upload Logo & Assets", "value": "upload_logo_assets" },
+            { "label": "Customize This Project", "value": "customize_this_project" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG14",
+          "kind": "checkbox",
+          "question": "What should we customize?",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "options": [
+            { "label": "Brand Colors", "value": "brand_colors" },
+            { "label": "Brand Fonts", "value": "brand_fonts" },
+            { "label": "Additional Instructions", "value": "additional_instructions" }
+          ],
+          "required": false
+        },
+        {
+          "code": "DG15",
+          "kind": "text",
+          "question": "Provide any additional brand customization details.",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "DG16",
+          "kind": "checkbox",
+          "question": "What visual style should this asset have?",
+          "hint": "Choose up to 3.",
+          "options": [
+            { "label": "Premium", "value": "premium" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Bold", "value": "bold" },
+            { "label": "Lifestyle", "value": "lifestyle" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Elegant", "value": "elegant" },
+            { "label": "Vibrant", "value": "vibrant" },
+            { "label": "High Contrast", "value": "high_contrast" },
+            { "label": "Clean", "value": "clean" },
+            { "label": "Match My Brand Style", "value": "match_my_brand_style" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG17",
+          "kind": "checkbox",
+          "question": "Do you have any inspiration?",
+          "hint": "Share digital designs you like.",
+          "options": [
+            { "label": "Website Link", "value": "website_link" },
+            { "label": "Instagram Link", "value": "instagram_link" },
+            { "label": "Pinterest Link", "value": "pinterest_link" },
+            { "label": "Upload Images", "value": "upload_images" },
+            { "label": "Skip", "value": "skip" }
+          ],
+          "required": false
+        },
+        {
+          "code": "DG18",
+          "kind": "text",
+          "question": "Provide the reference link(s), or note that you're uploading images.",
+          "hint": "Only if you selected a reference option above (not Skip).",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Placement & Format",
+      "questions": [
+        {
+          "code": "DG19",
+          "kind": "checkbox",
+          "question": "Where will this asset be used?",
+          "options": [
+            { "label": "Website", "value": "website" },
+            { "label": "Email Campaign", "value": "email_campaign" },
+            { "label": "Google Ads", "value": "google_ads" },
+            { "label": "Meta Ads", "value": "meta_ads" },
+            { "label": "Instagram", "value": "instagram" },
+            { "label": "Facebook", "value": "facebook" },
+            { "label": "WhatsApp", "value": "whatsapp" },
+            { "label": "Digital Signage", "value": "digital_signage" },
+            { "label": "Mall Display Screen", "value": "mall_display_screen" },
+            { "label": "Presentation", "value": "presentation" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG20",
+          "kind": "radio",
+          "question": "What size or format do you need?",
+          "options": [
+            { "label": "Standard Platform Size", "value": "standard_platform_size" },
+            { "label": "Multiple Platform Sizes", "value": "multiple_platform_sizes" },
+            { "label": "Custom Dimensions", "value": "custom_dimensions" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG21",
+          "kind": "text",
+          "question": "Provide the width × height in pixels.",
+          "hint": "Only if you selected Custom Dimensions above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Language & Notes",
+      "questions": [
+        {
+          "code": "DG22",
+          "kind": "radio",
+          "question": "What language should the design use?",
+          "options": [
+            { "label": "English", "value": "english" },
+            { "label": "Hindi", "value": "hindi" },
+            { "label": "Tamil", "value": "tamil" },
+            { "label": "Telugu", "value": "telugu" },
+            { "label": "Malayalam", "value": "malayalam" },
+            { "label": "Kannada", "value": "kannada" },
+            { "label": "Arabic", "value": "arabic" },
+            { "label": "Spanish", "value": "spanish" },
+            { "label": "French", "value": "french" },
+            { "label": "German", "value": "german" },
+            { "label": "Portuguese", "value": "portuguese" },
+            { "label": "Chinese", "value": "chinese" },
+            { "label": "Japanese", "value": "japanese" },
+            { "label": "Korean", "value": "korean" },
+            { "label": "Urdu", "value": "urdu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "DG23",
+          "kind": "text",
+          "question": "Is there anything you'd like us to avoid?",
+          "hint": "Mention any colours, imagery, wording, or visual styles you'd prefer not to use.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

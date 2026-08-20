@@ -1,0 +1,375 @@
+{
+  "key": "retail_boutique_video_addon",
+  "label": "Video",
+  "verticalKey": "retail",
+  "templateNameMatch": ["video add-on", "video addon", "video brief", "brand video", "product video"],
+  "sections": [
+    {
+      "name": "Video Purpose & Product",
+      "questions": [
+        {
+          "code": "VD1",
+          "kind": "radio",
+          "question": "What are we creating today?",
+          "hint": "Select the type of video.",
+          "options": [
+            { "label": "Brand Film", "value": "brand_film" },
+            { "label": "Store Tour", "value": "store_tour" },
+            { "label": "Collection Launch", "value": "collection_launch" },
+            { "label": "Product Showcase", "value": "product_showcase" },
+            { "label": "Seasonal Campaign", "value": "seasonal_campaign" },
+            { "label": "Sale / Offer", "value": "sale_offer" },
+            { "label": "Event Promotion", "value": "event_promotion" },
+            { "label": "Customer Testimonial", "value": "customer_testimonial" },
+            { "label": "Behind the Scenes", "value": "behind_the_scenes" },
+            { "label": "Store Experience", "value": "store_experience" },
+            { "label": "Advertisement", "value": "advertisement" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD2",
+          "kind": "text",
+          "question": "What are we featuring?",
+          "hint": "Provide the key details: Product/Collection/Campaign Name, Category, Key Features/Benefits, Price (Optional).",
+          "required": true
+        },
+        {
+          "code": "VD3",
+          "kind": "text",
+          "question": "What's the ONE message customers should remember?",
+          "hint": "Describe the biggest reason someone should visit your store or choose your brand. Example: \"Experience our newest collection in-store.\", \"Luxury furniture designed for modern living.\", \"Visit us this weekend for exclusive offers.\"",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Goal & Audience",
+      "questions": [
+        {
+          "code": "VD4",
+          "kind": "checkbox",
+          "question": "What's the goal of this video?",
+          "options": [
+            { "label": "Increase Store Visits", "value": "increase_store_visits" },
+            { "label": "Promote a Collection", "value": "promote_a_collection" },
+            { "label": "Showcase Products", "value": "showcase_products" },
+            { "label": "Build Brand Awareness", "value": "build_brand_awareness" },
+            { "label": "Promote a Sale", "value": "promote_a_sale" },
+            { "label": "Event Promotion", "value": "event_promotion" },
+            { "label": "Generate Enquiries", "value": "generate_enquiries" },
+            { "label": "Highlight Store Experience", "value": "highlight_store_experience" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD5",
+          "kind": "text",
+          "question": "Who is this video for?",
+          "hint": "Describe your ideal customer.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Offer",
+      "questions": [
+        {
+          "code": "VD6",
+          "kind": "radio",
+          "question": "Are you running an offer?",
+          "options": [
+            { "label": "No Offer", "value": "no_offer" },
+            { "label": "Percentage Discount", "value": "percentage_discount" },
+            { "label": "Flat Discount", "value": "flat_discount" },
+            { "label": "Buy One Get One", "value": "buy_one_get_one" },
+            { "label": "Free Gift", "value": "free_gift" },
+            { "label": "Limited-Time Offer", "value": "limited_time_offer" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD7",
+          "kind": "text",
+          "question": "Provide the offer details, start & end date, and terms & conditions.",
+          "hint": "Only if you are running an offer.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Footage & Key Shots",
+      "questions": [
+        {
+          "code": "VD8",
+          "kind": "checkbox",
+          "question": "What footage do you have?",
+          "options": [
+            { "label": "I'll Upload Store Videos", "value": "ill_upload_store_videos" },
+            { "label": "I'll Upload Product Videos", "value": "ill_upload_product_videos" },
+            { "label": "I'll Upload Customer/Lifestyle Footage", "value": "ill_upload_customer_lifestyle_footage" },
+            { "label": "I Have Both Videos & Photos", "value": "i_have_both_videos_photos" },
+            { "label": "Share via Google Drive", "value": "share_via_google_drive" },
+            { "label": "Use Stock Footage Where Suitable", "value": "use_stock_footage_where_suitable" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD9",
+          "kind": "file",
+          "question": "Upload your files.",
+          "hint": "Upload videos, photos, logos, or supporting assets. Recommended: MP4/MOV, 1080p or higher.",
+          "required": false
+        },
+        {
+          "code": "VD10",
+          "kind": "text",
+          "question": "Are there any moments that must appear?",
+          "hint": "Examples: Store entrance, Product close-ups, Staff interaction, Customer experience, Collection reveal, Checkout experience, Store ambience, Offer announcement.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Length & Script",
+      "questions": [
+        {
+          "code": "VD11",
+          "kind": "radio",
+          "question": "Approximately how long should the final video be?",
+          "options": [
+            { "label": "Under 30 Seconds", "value": "under_30_seconds" },
+            { "label": "30–60 Seconds", "value": "30_60_seconds" },
+            { "label": "1–3 Minutes", "value": "1_3_minutes" },
+            { "label": "3–5 Minutes", "value": "3_5_minutes" },
+            { "label": "Let the Creative Team Decide", "value": "let_the_creative_team_decide" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD12",
+          "kind": "radio",
+          "question": "Do you already have a script?",
+          "options": [
+            { "label": "Final Script Ready", "value": "final_script_ready" },
+            { "label": "Rough Talking Points", "value": "rough_talking_points" },
+            { "label": "Need Scriptwriting Support", "value": "need_scriptwriting_support" },
+            { "label": "No Narration Required", "value": "no_narration_required" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD13",
+          "kind": "text",
+          "question": "Provide your script or rough talking points.",
+          "hint": "Only if you selected \"Final Script Ready\" or \"Rough Talking Points\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Tone & Music",
+      "questions": [
+        {
+          "code": "VD14",
+          "kind": "checkbox",
+          "question": "How should the video feel?",
+          "hint": "Choose up to 3.",
+          "options": [
+            { "label": "Premium", "value": "premium" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Lifestyle", "value": "lifestyle" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Elegant", "value": "elegant" },
+            { "label": "Energetic", "value": "energetic" },
+            { "label": "Warm", "value": "warm" },
+            { "label": "Vibrant", "value": "vibrant" },
+            { "label": "Cinematic", "value": "cinematic" },
+            { "label": "Match My Brand Style", "value": "match_my_brand_style" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD15",
+          "kind": "radio",
+          "question": "What kind of music would you prefer?",
+          "options": [
+            { "label": "Upbeat", "value": "upbeat" },
+            { "label": "Cinematic", "value": "cinematic" },
+            { "label": "Ambient", "value": "ambient" },
+            { "label": "Electronic", "value": "electronic" },
+            { "label": "Acoustic", "value": "acoustic" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Motivational", "value": "motivational" },
+            { "label": "I'll Upload My Own Music", "value": "ill_upload_my_own_music" },
+            { "label": "No Music", "value": "no_music" },
+            { "label": "Designer Can Choose", "value": "designer_can_choose" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Brand Assets",
+      "questions": [
+        {
+          "code": "VD16",
+          "kind": "radio",
+          "question": "Would you like us to follow your existing brand identity?",
+          "hint": "Brand Assets & Guidelines.",
+          "options": [
+            { "label": "Use My Saved Brand Kit", "value": "use_my_saved_brand_kit" },
+            { "label": "Upload Brand Guidelines", "value": "upload_brand_guidelines" },
+            { "label": "Upload Logo & Assets", "value": "upload_logo_assets" },
+            { "label": "Customize This Project", "value": "customize_this_project" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD17",
+          "kind": "checkbox",
+          "question": "What should we customize?",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "options": [
+            { "label": "Brand Colors", "value": "brand_colors" },
+            { "label": "Brand Fonts", "value": "brand_fonts" },
+            { "label": "Logo Placement", "value": "logo_placement" },
+            { "label": "Additional Instructions", "value": "additional_instructions" }
+          ],
+          "required": false
+        },
+        {
+          "code": "VD18",
+          "kind": "text",
+          "question": "Provide any additional brand customization details.",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "VD19",
+          "kind": "checkbox",
+          "question": "Do you have any inspiration?",
+          "hint": "Share videos you like.",
+          "options": [
+            { "label": "Instagram Link", "value": "instagram_link" },
+            { "label": "YouTube Link", "value": "youtube_link" },
+            { "label": "TikTok Link", "value": "tiktok_link" },
+            { "label": "Upload Reference Videos", "value": "upload_reference_videos" },
+            { "label": "Skip", "value": "skip" }
+          ],
+          "required": false
+        },
+        {
+          "code": "VD20",
+          "kind": "text",
+          "question": "Provide the reference link(s).",
+          "hint": "Only if you selected Instagram Link, YouTube Link, or TikTok Link above.",
+          "required": false
+        },
+        {
+          "code": "VD21",
+          "kind": "file",
+          "question": "Upload reference videos.",
+          "hint": "Only if you selected \"Upload Reference Videos\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Publishing & Format",
+      "questions": [
+        {
+          "code": "VD22",
+          "kind": "checkbox",
+          "question": "Where will this video be published?",
+          "options": [
+            { "label": "Instagram", "value": "instagram" },
+            { "label": "Facebook", "value": "facebook" },
+            { "label": "YouTube", "value": "youtube" },
+            { "label": "Website", "value": "website" },
+            { "label": "In-store Display", "value": "in_store_display" },
+            { "label": "Digital Advertising", "value": "digital_advertising" },
+            { "label": "Multiple Platforms", "value": "multiple_platforms" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD23",
+          "kind": "checkbox",
+          "question": "What output formats do you need?",
+          "options": [
+            { "label": "Vertical (9:16)", "value": "vertical_9_16" },
+            { "label": "Square (1:1)", "value": "square_1_1" },
+            { "label": "Landscape (16:9)", "value": "landscape_16_9" },
+            { "label": "Multiple Formats", "value": "multiple_formats" },
+            { "label": "Let the Creative Team Recommend", "value": "let_the_creative_team_recommend" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD24",
+          "kind": "radio",
+          "question": "What language should the video use?",
+          "options": [
+            { "label": "English", "value": "english" },
+            { "label": "Hindi", "value": "hindi" },
+            { "label": "Tamil", "value": "tamil" },
+            { "label": "Telugu", "value": "telugu" },
+            { "label": "Malayalam", "value": "malayalam" },
+            { "label": "Kannada", "value": "kannada" },
+            { "label": "Arabic", "value": "arabic" },
+            { "label": "Spanish", "value": "spanish" },
+            { "label": "French", "value": "french" },
+            { "label": "German", "value": "german" },
+            { "label": "Portuguese", "value": "portuguese" },
+            { "label": "Chinese", "value": "chinese" },
+            { "label": "Japanese", "value": "japanese" },
+            { "label": "Korean", "value": "korean" },
+            { "label": "Urdu", "value": "urdu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Call to Action & Notes",
+      "questions": [
+        {
+          "code": "VD25",
+          "kind": "radio",
+          "question": "What should viewers do after watching?",
+          "options": [
+            { "label": "Visit Our Store", "value": "visit_our_store" },
+            { "label": "Explore the Collection", "value": "explore_the_collection" },
+            { "label": "Shop Now", "value": "shop_now" },
+            { "label": "Contact Us", "value": "contact_us" },
+            { "label": "Call Us", "value": "call_us" },
+            { "label": "Send Us a DM", "value": "send_us_a_dm" },
+            { "label": "Follow Our Page", "value": "follow_our_page" },
+            { "label": "Learn More", "value": "learn_more" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "VD26",
+          "kind": "text",
+          "question": "Is there anything you'd like us to avoid?",
+          "hint": "Mention any editing styles, colours, music, wording, or visual directions you'd prefer not to use.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,269 @@
+{
+  "key": "real_estate_cma_presentation",
+  "label": "CMA Presentation",
+  "verticalKey": "realestate",
+  "templateNameMatch": ["cma", "comparative market analysis"],
+  "sections": [
+    {
+      "name": "CMA Overview",
+      "questions": [
+        {
+          "code": "CM1",
+          "kind": "text",
+          "question": "What property is this CMA being prepared for? Give the property address and suburb.",
+          "required": true
+        },
+        {
+          "code": "CM2",
+          "kind": "radio",
+          "question": "What type of property is it?",
+          "options": [
+            { "label": "House", "value": "house" },
+            { "label": "Apartment", "value": "apartment" },
+            { "label": "Townhouse", "value": "townhouse" },
+            { "label": "Villa", "value": "villa" },
+            { "label": "Land", "value": "land" },
+            { "label": "Commercial Property", "value": "commercial" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CM3",
+          "kind": "radio",
+          "question": "What is the purpose of this CMA?",
+          "hint": "This is more useful than asking \"What type of presentation is this?\" — the asset is already a CMA.",
+          "options": [
+            { "label": "Listing Appointment", "value": "listing_appointment" },
+            { "label": "Vendor Meeting", "value": "vendor_meeting" },
+            { "label": "Property Valuation Discussion", "value": "valuation_discussion" },
+            { "label": "Market Update", "value": "market_update" },
+            { "label": "Pre-Sale Consultation", "value": "pre_sale_consultation" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Property Information",
+      "questions": [
+        {
+          "code": "CM4",
+          "kind": "text",
+          "question": "What are the key property details?",
+          "hint": "Examples: bedrooms, bathrooms, car spaces, land size, building area, year built.",
+          "required": true
+        },
+        {
+          "code": "CM5",
+          "kind": "checkbox",
+          "question": "What are the property's key selling points?",
+          "options": [
+            { "label": "Renovated", "value": "renovated" },
+            { "label": "Waterfront", "value": "waterfront" },
+            { "label": "School Zone", "value": "school_zone" },
+            { "label": "Corner Block", "value": "corner_block" },
+            { "label": "Development Potential", "value": "development_potential" },
+            { "label": "Luxury Finishes", "value": "luxury_finishes" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Comparable Sales Data",
+      "questions": [
+        {
+          "code": "CM6",
+          "kind": "text",
+          "question": "What comparable sales should be included? Please provide all comparable properties and sale information.",
+          "required": true
+        },
+        {
+          "code": "CM7",
+          "kind": "file",
+          "question": "Please upload comparable sales data.",
+          "hint": "Accepted formats: Excel, PDF, CSV, property reports.",
+          "required": true
+        },
+        {
+          "code": "CM8",
+          "kind": "radio",
+          "question": "Should active listings or pending sales be included?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Market Insights",
+      "questions": [
+        {
+          "code": "CM9",
+          "kind": "checkbox",
+          "question": "What market data should be included?",
+          "options": [
+            { "label": "Median sale price", "value": "median_sale_price" },
+            { "label": "Days on market", "value": "days_on_market" },
+            { "label": "Sales volume", "value": "sales_volume" },
+            { "label": "Auction clearance rates", "value": "clearance_rates" },
+            { "label": "Market trends", "value": "market_trends" },
+            { "label": "Rental data", "value": "rental_data" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CM10",
+          "kind": "file",
+          "question": "Please upload any market data and reports.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Assets",
+      "questions": [
+        {
+          "code": "CM11",
+          "kind": "file",
+          "question": "Do you have property photography to include? Please upload the images.",
+          "required": true
+        },
+        {
+          "code": "CM12",
+          "kind": "checkbox",
+          "question": "Do you have any additional assets?",
+          "options": [
+            { "label": "Maps", "value": "maps" },
+            { "label": "Floor Plans", "value": "floor_plans" },
+            { "label": "Location Highlights", "value": "location_highlights" },
+            { "label": "Lifestyle Photography", "value": "lifestyle_photography" },
+            { "label": "Agent Profile", "value": "agent_profile" },
+            { "label": "Other", "value": "other" },
+            { "label": "None", "value": "none" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Presentation Structure",
+      "questions": [
+        {
+          "code": "CM13",
+          "kind": "radio",
+          "question": "Approximately how many slides are required?",
+          "options": [
+            { "label": "8–12 Slides", "value": "8-12" },
+            { "label": "12–15 Slides", "value": "12-15" },
+            { "label": "Custom", "value": "custom" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CM14",
+          "kind": "file",
+          "question": "Do you have an existing CMA template or previous presentation to follow? Please upload the existing files.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Closing & CTA",
+      "questions": [
+        {
+          "code": "CM15",
+          "kind": "radio",
+          "question": "What should the presentation conclude with?",
+          "options": [
+            { "label": "Recommended Price Range", "value": "recommended_price_range" },
+            { "label": "Suggested Marketing Strategy", "value": "marketing_strategy" },
+            { "label": "Listing Proposal", "value": "listing_proposal" },
+            { "label": "Book Listing Appointment", "value": "book_listing_appointment" },
+            { "label": "Contact Agent", "value": "contact_agent" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CM16",
+          "kind": "radio",
+          "question": "Will a QR code be included?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CM17",
+          "kind": "text",
+          "question": "What should the QR code destination URL be?",
+          "hint": "Only ask this if the client said yes to including a QR code.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Direction",
+      "questions": [
+        {
+          "code": "CM18",
+          "kind": "file",
+          "question": "Any CMA presentations or real estate reports you'd like us to reference?",
+          "hint": "Upload reference presentations, up to 3.",
+          "required": false
+        },
+        {
+          "code": "CM19",
+          "kind": "radio",
+          "question": "Describe the desired presentation style.",
+          "options": [
+            { "label": "Premium Real Estate", "value": "premium_real_estate" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Modern Corporate", "value": "modern_corporate" },
+            { "label": "Data-Driven", "value": "data_driven" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Delivery Requirements",
+      "questions": [
+        {
+          "code": "CM20",
+          "kind": "radio",
+          "question": "What format is required?",
+          "options": [
+            { "label": "PowerPoint (.pptx)", "value": "pptx" },
+            { "label": "Google Slides", "value": "google_slides" },
+            { "label": "PDF", "value": "pdf" },
+            { "label": "Multiple Formats", "value": "multiple" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CM21",
+          "kind": "radio",
+          "question": "Will the CMA be presented live or sent as a standalone document?",
+          "hint": "A critical question that's easy to miss — a live presentation can be visually lighter, while a standalone CMA needs more explanatory content.",
+          "options": [
+            { "label": "Presented Live", "value": "presented_live" },
+            { "label": "Sent as PDF", "value": "sent_as_pdf" },
+            { "label": "Both", "value": "both" }
+          ],
+          "required": true
+        }
+      ]
+    }
+  ]
+}

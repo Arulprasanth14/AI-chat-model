@@ -1,0 +1,223 @@
+template_key: startup_entrepreneur_business_card
+template_label: Business Card
+vertical: startup
+template_name_match:
+- business card
+- namecard
+- name card
+fields:
+- code: BC1
+  kind: text
+  required: true
+  section_name: Card Overview
+  section_order: 0
+  section_field_order: 0
+- code: BC2
+  kind: radio
+  required: true
+  section_name: Card Overview
+  section_order: 0
+  section_field_order: 1
+  options:
+  - label: Networking
+    value: networking
+  - label: Sales & Lead Generation
+    value: sales_lead_generation
+  - label: Client Meetings
+    value: client_meetings
+  - label: Corporate Identity
+    value: corporate_identity
+  - label: Event Distribution
+    value: event_distribution
+  - label: Personal Branding
+    value: personal_branding
+- code: BC3
+  kind: checkbox
+  required: true
+  section_name: Card Overview
+  section_order: 0
+  section_field_order: 2
+  options:
+  - label: Mobile Number
+    value: mobile_number
+  - label: Office Number
+    value: office_number
+  - label: Email Address
+    value: email_address
+  - label: Website
+    value: website
+  - label: Office Address
+    value: office_address
+  - label: LinkedIn Profile
+    value: linkedin_profile
+  - label: Other
+    value: other
+- code: BC4
+  kind: radio
+  required: true
+  section_name: QR Code
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Website
+    value: website
+  - label: Digital Business Card (vCard)
+    value: digital_business_card_vcard
+  - label: LinkedIn Profile
+    value: linkedin_profile
+  - label: Booking Page
+    value: booking_page
+  - label: Portfolio
+    value: portfolio
+  - label: No QR Code
+    value: no_qr_code
+- code: BC5
+  kind: text
+  required: false
+  section_name: QR Code
+  section_order: 1
+  section_field_order: 1
+- code: BC6
+  kind: radio
+  required: true
+  section_name: Branding & Assets
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: Full Brand Guidelines
+    value: full_brand_guidelines
+  - label: Logo Only
+    value: logo_only
+  - label: Existing Business Card
+    value: existing_business_card
+  - label: No Assets Available
+    value: no_assets_available
+- code: BC7
+  kind: file
+  required: false
+  section_name: Branding & Assets
+  section_order: 2
+  section_field_order: 1
+- code: BC8
+  kind: radio
+  required: true
+  section_name: Layout
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: Single-Sided
+    value: single_sided
+  - label: Double-Sided
+    value: double_sided
+- code: BC9
+  kind: checkbox
+  required: false
+  section_name: Layout
+  section_order: 3
+  section_field_order: 1
+  options:
+  - label: Tagline
+    value: tagline
+  - label: Certifications
+    value: certifications
+  - label: Awards
+    value: awards
+  - label: Service Categories
+    value: service_categories
+  - label: Social Media Handles
+    value: social_media_handles
+  - label: Appointment Booking Link
+    value: appointment_booking_link
+  - label: Other
+    value: other
+  - label: None
+    value: none
+- code: BC10
+  kind: radio
+  required: true
+  section_name: Layout
+  section_order: 3
+  section_field_order: 2
+  options:
+  - label: Horizontal
+    value: horizontal
+  - label: Vertical
+    value: vertical
+  - label: Square
+    value: square
+  - label: No Preference
+    value: no_preference
+- code: BC11
+  kind: radio
+  required: true
+  section_name: Style & References
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Corporate
+    value: corporate
+  - label: Minimal
+    value: minimal
+  - label: Premium
+    value: premium
+  - label: Luxury
+    value: luxury
+  - label: Modern
+    value: modern
+  - label: Creative
+    value: creative
+  - label: Bold
+    value: bold
+  - label: Other
+    value: other
+- code: BC12
+  kind: radio
+  required: true
+  section_name: Style & References
+  section_order: 4
+  section_field_order: 1
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: BC13
+  kind: file
+  required: false
+  section_name: Style & References
+  section_order: 4
+  section_field_order: 2
+- code: BC14
+  kind: checkbox
+  required: false
+  section_name: Print & Production
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: Matte Finish
+    value: matte_finish
+  - label: Soft-Touch Lamination
+    value: soft_touch_lamination
+  - label: Spot UV
+    value: spot_uv
+  - label: Foil Stamping
+    value: foil_stamping
+  - label: Embossing
+    value: embossing
+  - label: Rounded Corners
+    value: rounded_corners
+  - label: Recycled Stock
+    value: recycled_stock
+  - label: Other
+    value: other
+- code: BC15
+  kind: radio
+  required: true
+  section_name: Print & Production
+  section_order: 5
+  section_field_order: 1
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'

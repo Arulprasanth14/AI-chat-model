@@ -1,0 +1,322 @@
+{
+  "key": "restaurant_cafe_static_post",
+  "label": "Static Post",
+  "verticalKey": "restaurant",
+  "templateNameMatch": ["static post", "static post set", "social media post", "post set"],
+  "sections": [
+    {
+      "name": "Post Purpose & Product",
+      "questions": [
+        {
+          "code": "SP1",
+          "kind": "radio",
+          "question": "What are we creating today?",
+          "hint": "Select the purpose of this post.",
+          "options": [
+            { "label": "Featured Dish", "value": "featured_dish" },
+            { "label": "New Menu Item", "value": "new_menu_item" },
+            { "label": "Seasonal Special", "value": "seasonal_special" },
+            { "label": "Chef's Recommendation", "value": "chefs_recommendation" },
+            { "label": "Combo / Meal Offer", "value": "combo_meal_offer" },
+            { "label": "Happy Hour", "value": "happy_hour" },
+            { "label": "Festival Special", "value": "festival_special" },
+            { "label": "Event Promotion", "value": "event_promotion" },
+            { "label": "Customer Review", "value": "customer_review" },
+            { "label": "Restaurant Ambience", "value": "restaurant_ambience" },
+            { "label": "Behind the Kitchen", "value": "behind_the_kitchen" },
+            { "label": "Brand Awareness", "value": "brand_awareness" },
+            { "label": "Delivery Promotion", "value": "delivery_promotion" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP2",
+          "kind": "text",
+          "question": "What are we promoting?",
+          "hint": "Provide the key details: Dish/Menu/Event Name, Category, Price (Optional), Key Ingredients/Highlights.",
+          "required": true
+        },
+        {
+          "code": "SP3",
+          "kind": "text",
+          "question": "What's the ONE message customers should remember?",
+          "hint": "Describe the biggest reason someone should visit or order. Example: \"Freshly baked every morning.\", \"Limited-time mango dessert.\", \"Weekend brunch you can't miss.\"",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Goal & Audience",
+      "questions": [
+        {
+          "code": "SP4",
+          "kind": "checkbox",
+          "question": "What's the goal of this post?",
+          "options": [
+            { "label": "Increase Restaurant Visits", "value": "increase_restaurant_visits" },
+            { "label": "Increase Online Orders", "value": "increase_online_orders" },
+            { "label": "Promote a Dish", "value": "promote_a_dish" },
+            { "label": "Launch a New Menu", "value": "launch_a_new_menu" },
+            { "label": "Promote an Offer", "value": "promote_an_offer" },
+            { "label": "Build Brand Awareness", "value": "build_brand_awareness" },
+            { "label": "Increase Reservations", "value": "increase_reservations" },
+            { "label": "Promote an Event", "value": "promote_an_event" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP5",
+          "kind": "text",
+          "question": "Who is this post for?",
+          "hint": "Describe your ideal customer.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Offer",
+      "questions": [
+        {
+          "code": "SP6",
+          "kind": "radio",
+          "question": "Are you running an offer?",
+          "options": [
+            { "label": "No Offer", "value": "no_offer" },
+            { "label": "Percentage Discount", "value": "percentage_discount" },
+            { "label": "Combo Offer", "value": "combo_offer" },
+            { "label": "Happy Hour", "value": "happy_hour" },
+            { "label": "Buy One Get One", "value": "buy_one_get_one" },
+            { "label": "Free Dessert", "value": "free_dessert" },
+            { "label": "Limited-Time Menu", "value": "limited_time_menu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP7",
+          "kind": "text",
+          "question": "Provide the offer details, start & end date, and terms & conditions.",
+          "hint": "Only if you are running an offer.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Copy",
+      "questions": [
+        {
+          "code": "SP8",
+          "kind": "radio",
+          "question": "Do you already have the copy?",
+          "options": [
+            { "label": "Final Copy Ready", "value": "final_copy_ready" },
+            { "label": "Rough Points", "value": "rough_points" },
+            { "label": "Need Copywriting Support", "value": "need_copywriting_support" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP9",
+          "kind": "text",
+          "question": "Provide your copy or rough points.",
+          "hint": "Only if you have final copy ready or rough points.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Requirements",
+      "questions": [
+        {
+          "code": "SP10",
+          "kind": "checkbox",
+          "question": "Is there anything that must appear?",
+          "hint": "Select all that apply.",
+          "options": [
+            { "label": "Dish Name", "value": "dish_name" },
+            { "label": "Price", "value": "price" },
+            { "label": "Offer", "value": "offer" },
+            { "label": "Restaurant Logo", "value": "restaurant_logo" },
+            { "label": "Address", "value": "address" },
+            { "label": "Contact Number", "value": "contact_number" },
+            { "label": "QR Code", "value": "qr_code" },
+            { "label": "Reservation Link", "value": "reservation_link" },
+            { "label": "Delivery Partner Logos", "value": "delivery_partner_logos" },
+            { "label": "Social Media Handles", "value": "social_media_handles" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Images & Assets",
+      "questions": [
+        {
+          "code": "SP11",
+          "kind": "checkbox",
+          "question": "Do you have photos or assets?",
+          "options": [
+            { "label": "I'll Upload Food Photos", "value": "ill_upload_food_photos" },
+            { "label": "I'll Upload Restaurant Ambience Photos", "value": "ill_upload_restaurant_ambience_photos" },
+            { "label": "I'll Upload Chef/Team Photos", "value": "ill_upload_chef_team_photos" },
+            { "label": "I'll Upload All Available Assets", "value": "ill_upload_all_available_assets" },
+            { "label": "Use Stock Images Where Suitable", "value": "use_stock_images_where_suitable" },
+            { "label": "Use Only Brand Assets", "value": "use_only_brand_assets" },
+            { "label": "Designer Can Recommend", "value": "designer_can_recommend" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP12",
+          "kind": "file",
+          "question": "Upload your files.",
+          "hint": "Upload food photography, restaurant images, logos, menus, or supporting assets.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Brand Assets",
+      "questions": [
+        {
+          "code": "SP13",
+          "kind": "radio",
+          "question": "Would you like us to follow your existing brand identity?",
+          "hint": "Brand Assets & Guidelines.",
+          "options": [
+            { "label": "Use My Saved Brand Kit", "value": "use_my_saved_brand_kit" },
+            { "label": "Upload Brand Guidelines", "value": "upload_brand_guidelines" },
+            { "label": "Upload Logo & Assets", "value": "upload_logo_assets" },
+            { "label": "Customize This Project", "value": "customize_this_project" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP14",
+          "kind": "checkbox",
+          "question": "What should we customize?",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "options": [
+            { "label": "Brand Colors", "value": "brand_colors" },
+            { "label": "Brand Fonts", "value": "brand_fonts" },
+            { "label": "Additional Instructions", "value": "additional_instructions" }
+          ],
+          "required": false
+        },
+        {
+          "code": "SP15",
+          "kind": "text",
+          "question": "Provide any additional brand customization details.",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "SP16",
+          "kind": "checkbox",
+          "question": "What visual style should this post have?",
+          "hint": "Choose up to 3.",
+          "options": [
+            { "label": "Premium", "value": "premium" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Rustic", "value": "rustic" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Warm", "value": "warm" },
+            { "label": "Cozy", "value": "cozy" },
+            { "label": "Vibrant", "value": "vibrant" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Dark & Moody", "value": "dark_moody" },
+            { "label": "Fresh & Bright", "value": "fresh_bright" },
+            { "label": "Match My Brand Style", "value": "match_my_brand_style" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP17",
+          "kind": "checkbox",
+          "question": "Do you have any inspiration?",
+          "hint": "Share posts or brands you like.",
+          "options": [
+            { "label": "Instagram Link", "value": "instagram_link" },
+            { "label": "Pinterest Link", "value": "pinterest_link" },
+            { "label": "Website Link", "value": "website_link" },
+            { "label": "Upload Reference Images", "value": "upload_reference_images" },
+            { "label": "Skip", "value": "skip" }
+          ],
+          "required": false
+        },
+        {
+          "code": "SP18",
+          "kind": "text",
+          "question": "Provide the reference link(s), or note that you're uploading images.",
+          "hint": "Only if you selected a reference option above (not Skip).",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Publishing & Language",
+      "questions": [
+        {
+          "code": "SP19",
+          "kind": "checkbox",
+          "question": "Where will this post be published?",
+          "options": [
+            { "label": "Instagram Feed (1:1)", "value": "instagram_feed_1_1" },
+            { "label": "Instagram Portrait (4:5)", "value": "instagram_portrait_4_5" },
+            { "label": "Facebook", "value": "facebook" },
+            { "label": "LinkedIn", "value": "linkedin" },
+            { "label": "X", "value": "x" },
+            { "label": "Multiple Platforms", "value": "multiple_platforms" },
+            { "label": "Custom Size", "value": "custom_size" }
+          ],
+          "required": true
+        },
+        {
+          "code": "SP20",
+          "kind": "radio",
+          "question": "What language should the copy use?",
+          "options": [
+            { "label": "English", "value": "english" },
+            { "label": "Hindi", "value": "hindi" },
+            { "label": "Tamil", "value": "tamil" },
+            { "label": "Telugu", "value": "telugu" },
+            { "label": "Malayalam", "value": "malayalam" },
+            { "label": "Kannada", "value": "kannada" },
+            { "label": "Arabic", "value": "arabic" },
+            { "label": "Spanish", "value": "spanish" },
+            { "label": "French", "value": "french" },
+            { "label": "German", "value": "german" },
+            { "label": "Portuguese", "value": "portuguese" },
+            { "label": "Chinese", "value": "chinese" },
+            { "label": "Japanese", "value": "japanese" },
+            { "label": "Korean", "value": "korean" },
+            { "label": "Urdu", "value": "urdu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Additional Notes",
+      "questions": [
+        {
+          "code": "SP21",
+          "kind": "text",
+          "question": "Is there anything you'd like us to avoid?",
+          "hint": "Mention any colours, imagery, wording, or visual styles you'd prefer not to use.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

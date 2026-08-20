@@ -1,0 +1,345 @@
+template_key: restaurant_cafe_static_post
+template_label: Static Post
+vertical: restaurant
+template_name_match:
+- static post
+- static post set
+- social media post
+- post set
+fields:
+- code: SP1
+  kind: radio
+  required: true
+  section_name: Post Purpose & Product
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Featured Dish
+    value: featured_dish
+  - label: New Menu Item
+    value: new_menu_item
+  - label: Seasonal Special
+    value: seasonal_special
+  - label: Chef's Recommendation
+    value: chefs_recommendation
+  - label: Combo / Meal Offer
+    value: combo_meal_offer
+  - label: Happy Hour
+    value: happy_hour
+  - label: Festival Special
+    value: festival_special
+  - label: Event Promotion
+    value: event_promotion
+  - label: Customer Review
+    value: customer_review
+  - label: Restaurant Ambience
+    value: restaurant_ambience
+  - label: Behind the Kitchen
+    value: behind_the_kitchen
+  - label: Brand Awareness
+    value: brand_awareness
+  - label: Delivery Promotion
+    value: delivery_promotion
+  - label: Other
+    value: other
+- code: SP2
+  kind: text
+  required: true
+  section_name: Post Purpose & Product
+  section_order: 0
+  section_field_order: 1
+- code: SP3
+  kind: text
+  required: true
+  section_name: Post Purpose & Product
+  section_order: 0
+  section_field_order: 2
+- code: SP4
+  kind: checkbox
+  required: true
+  section_name: Goal & Audience
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Increase Restaurant Visits
+    value: increase_restaurant_visits
+  - label: Increase Online Orders
+    value: increase_online_orders
+  - label: Promote a Dish
+    value: promote_a_dish
+  - label: Launch a New Menu
+    value: launch_a_new_menu
+  - label: Promote an Offer
+    value: promote_an_offer
+  - label: Build Brand Awareness
+    value: build_brand_awareness
+  - label: Increase Reservations
+    value: increase_reservations
+  - label: Promote an Event
+    value: promote_an_event
+  - label: Other
+    value: other
+- code: SP5
+  kind: text
+  required: true
+  section_name: Goal & Audience
+  section_order: 1
+  section_field_order: 1
+- code: SP6
+  kind: radio
+  required: true
+  section_name: Offer
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: No Offer
+    value: no_offer
+  - label: Percentage Discount
+    value: percentage_discount
+  - label: Combo Offer
+    value: combo_offer
+  - label: Happy Hour
+    value: happy_hour
+  - label: Buy One Get One
+    value: buy_one_get_one
+  - label: Free Dessert
+    value: free_dessert
+  - label: Limited-Time Menu
+    value: limited_time_menu
+  - label: Other
+    value: other
+- code: SP7
+  kind: text
+  required: false
+  section_name: Offer
+  section_order: 2
+  section_field_order: 1
+- code: SP8
+  kind: radio
+  required: true
+  section_name: Copy
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: Final Copy Ready
+    value: final_copy_ready
+  - label: Rough Points
+    value: rough_points
+  - label: Need Copywriting Support
+    value: need_copywriting_support
+- code: SP9
+  kind: text
+  required: false
+  section_name: Copy
+  section_order: 3
+  section_field_order: 1
+- code: SP10
+  kind: checkbox
+  required: false
+  section_name: Design Requirements
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Dish Name
+    value: dish_name
+  - label: Price
+    value: price
+  - label: Offer
+    value: offer
+  - label: Restaurant Logo
+    value: restaurant_logo
+  - label: Address
+    value: address
+  - label: Contact Number
+    value: contact_number
+  - label: QR Code
+    value: qr_code
+  - label: Reservation Link
+    value: reservation_link
+  - label: Delivery Partner Logos
+    value: delivery_partner_logos
+  - label: Social Media Handles
+    value: social_media_handles
+  - label: Other
+    value: other
+- code: SP11
+  kind: checkbox
+  required: true
+  section_name: Images & Assets
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: I'll Upload Food Photos
+    value: ill_upload_food_photos
+  - label: I'll Upload Restaurant Ambience Photos
+    value: ill_upload_restaurant_ambience_photos
+  - label: I'll Upload Chef/Team Photos
+    value: ill_upload_chef_team_photos
+  - label: I'll Upload All Available Assets
+    value: ill_upload_all_available_assets
+  - label: Use Stock Images Where Suitable
+    value: use_stock_images_where_suitable
+  - label: Use Only Brand Assets
+    value: use_only_brand_assets
+  - label: Designer Can Recommend
+    value: designer_can_recommend
+- code: SP12
+  kind: file
+  required: false
+  section_name: Images & Assets
+  section_order: 5
+  section_field_order: 1
+- code: SP13
+  kind: radio
+  required: true
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Use My Saved Brand Kit
+    value: use_my_saved_brand_kit
+  - label: Upload Brand Guidelines
+    value: upload_brand_guidelines
+  - label: Upload Logo & Assets
+    value: upload_logo_assets
+  - label: Customize This Project
+    value: customize_this_project
+- code: SP14
+  kind: checkbox
+  required: false
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: Brand Colors
+    value: brand_colors
+  - label: Brand Fonts
+    value: brand_fonts
+  - label: Additional Instructions
+    value: additional_instructions
+- code: SP15
+  kind: text
+  required: false
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 2
+- code: SP16
+  kind: checkbox
+  required: true
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 0
+  options:
+  - label: Premium
+    value: premium
+  - label: Luxury
+    value: luxury
+  - label: Rustic
+    value: rustic
+  - label: Modern
+    value: modern
+  - label: Minimal
+    value: minimal
+  - label: Warm
+    value: warm
+  - label: Cozy
+    value: cozy
+  - label: Vibrant
+    value: vibrant
+  - label: Editorial
+    value: editorial
+  - label: Dark & Moody
+    value: dark_moody
+  - label: Fresh & Bright
+    value: fresh_bright
+  - label: Match My Brand Style
+    value: match_my_brand_style
+- code: SP17
+  kind: checkbox
+  required: false
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 1
+  options:
+  - label: Instagram Link
+    value: instagram_link
+  - label: Pinterest Link
+    value: pinterest_link
+  - label: Website Link
+    value: website_link
+  - label: Upload Reference Images
+    value: upload_reference_images
+  - label: Skip
+    value: skip
+- code: SP18
+  kind: text
+  required: false
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 2
+- code: SP19
+  kind: checkbox
+  required: true
+  section_name: Publishing & Language
+  section_order: 8
+  section_field_order: 0
+  options:
+  - label: Instagram Feed (1:1)
+    value: instagram_feed_1_1
+  - label: Instagram Portrait (4:5)
+    value: instagram_portrait_4_5
+  - label: Facebook
+    value: facebook
+  - label: LinkedIn
+    value: linkedin
+  - label: X
+    value: x
+  - label: Multiple Platforms
+    value: multiple_platforms
+  - label: Custom Size
+    value: custom_size
+- code: SP20
+  kind: radio
+  required: true
+  section_name: Publishing & Language
+  section_order: 8
+  section_field_order: 1
+  options:
+  - label: English
+    value: english
+  - label: Hindi
+    value: hindi
+  - label: Tamil
+    value: tamil
+  - label: Telugu
+    value: telugu
+  - label: Malayalam
+    value: malayalam
+  - label: Kannada
+    value: kannada
+  - label: Arabic
+    value: arabic
+  - label: Spanish
+    value: spanish
+  - label: French
+    value: french
+  - label: German
+    value: german
+  - label: Portuguese
+    value: portuguese
+  - label: Chinese
+    value: chinese
+  - label: Japanese
+    value: japanese
+  - label: Korean
+    value: korean
+  - label: Urdu
+    value: urdu
+  - label: Other
+    value: other
+- code: SP21
+  kind: text
+  required: false
+  section_name: Additional Notes
+  section_order: 9
+  section_field_order: 0

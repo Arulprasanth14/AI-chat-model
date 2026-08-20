@@ -1,0 +1,323 @@
+template_key: fitness_wellness_carousel_set
+template_label: Carousel Set
+vertical: fitness
+template_name_match:
+- carousel set
+- carousel
+- carousel post
+fields:
+- code: CR1
+  kind: radio
+  required: true
+  section_name: Carousel Topic & Message
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Workout Guide
+    value: workout_guide
+  - label: Exercise Technique
+    value: exercise_technique
+  - label: Fitness Tips
+    value: fitness_tips
+  - label: Nutrition Advice
+    value: nutrition_advice
+  - label: Transformation Story
+    value: transformation_story
+  - label: Client Success Story
+    value: client_success_story
+  - label: Common Mistakes
+    value: common_mistakes
+  - label: Myth vs Fact
+    value: myth_vs_fact
+  - label: Challenge / Program
+    value: challenge_program
+  - label: Product Showcase
+    value: product_showcase
+  - label: Offer / Promotion
+    value: offer_promotion
+  - label: Other
+    value: other
+- code: CR2
+  kind: text
+  required: true
+  section_name: Carousel Topic & Message
+  section_order: 0
+  section_field_order: 1
+- code: CR3
+  kind: checkbox
+  required: true
+  section_name: Goal & Audience
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Get More Enquiries
+    value: get_more_enquiries
+  - label: Sell a Program
+    value: sell_a_program
+  - label: Promote Personal Training
+    value: promote_personal_training
+  - label: Educate Followers
+    value: educate_followers
+  - label: Build Trust
+    value: build_trust
+  - label: Increase Saves
+    value: increase_saves
+  - label: Increase Shares
+    value: increase_shares
+  - label: Build Brand Awareness
+    value: build_brand_awareness
+  - label: Other
+    value: other
+- code: CR4
+  kind: checkbox
+  required: true
+  section_name: Goal & Audience
+  section_order: 1
+  section_field_order: 1
+  options:
+  - label: Beginners
+    value: beginners
+  - label: Weight Loss Clients
+    value: weight_loss_clients
+  - label: Women
+    value: women
+  - label: Men
+    value: men
+  - label: Athletes
+    value: athletes
+  - label: Busy Professionals
+    value: busy_professionals
+  - label: Seniors
+    value: seniors
+  - label: Everyone
+    value: everyone
+  - label: Other
+    value: other
+- code: CR5
+  kind: radio
+  required: true
+  section_name: Structure & Content
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: Tips & Tricks
+    value: tips_tricks
+  - label: Step-by-Step Guide
+    value: step_by_step_guide
+  - label: Common Mistakes
+    value: common_mistakes
+  - label: Before → After
+    value: before_after
+  - label: Transformation Story
+    value: transformation_story
+  - label: Myth vs Fact
+    value: myth_vs_fact
+  - label: Workout Routine
+    value: workout_routine
+  - label: Nutrition Plan
+    value: nutrition_plan
+  - label: Designer Can Suggest
+    value: designer_can_suggest
+- code: CR6
+  kind: radio
+  required: true
+  section_name: Structure & Content
+  section_order: 2
+  section_field_order: 1
+  options:
+  - label: Final Content Ready
+    value: final_content_ready
+  - label: I Have Rough Points
+    value: i_have_rough_points
+  - label: I Need Help Writing It
+    value: i_need_help_writing_it
+- code: CR7
+  kind: text
+  required: false
+  section_name: Structure & Content
+  section_order: 2
+  section_field_order: 2
+- code: CR8
+  kind: text
+  required: true
+  section_name: Structure & Content
+  section_order: 2
+  section_field_order: 3
+- code: CR9
+  kind: radio
+  required: true
+  section_name: Slide Count & Key Slides
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: '5'
+    value: '5'
+  - label: '6'
+    value: '6'
+  - label: '7'
+    value: '7'
+  - label: Let the Creative Team Decide
+    value: let_the_creative_team_decide
+- code: CR10
+  kind: text
+  required: true
+  section_name: Slide Count & Key Slides
+  section_order: 3
+  section_field_order: 1
+- code: CR11
+  kind: radio
+  required: true
+  section_name: Slide Count & Key Slides
+  section_order: 3
+  section_field_order: 2
+  options:
+  - label: Follow for More
+    value: follow_for_more
+  - label: Save This Post
+    value: save_this_post
+  - label: Share with a Friend
+    value: share_with_a_friend
+  - label: Book a Consultation
+    value: book_a_consultation
+  - label: Join Our Program
+    value: join_our_program
+  - label: Visit Our Gym
+    value: visit_our_gym
+  - label: Send Us a DM
+    value: send_us_a_dm
+  - label: Other
+    value: other
+- code: CR12
+  kind: checkbox
+  required: true
+  section_name: Images & Assets
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: I'll Upload Photos
+    value: ill_upload_photos
+  - label: Use Stock Fitness Images
+    value: use_stock_fitness_images
+  - label: Use Only Brand Assets
+    value: use_only_brand_assets
+  - label: Graphics & Icons Only
+    value: graphics_icons_only
+  - label: Designer Can Decide
+    value: designer_can_decide
+- code: CR13
+  kind: file
+  required: false
+  section_name: Images & Assets
+  section_order: 4
+  section_field_order: 1
+- code: CR14
+  kind: checkbox
+  required: true
+  section_name: Images & Assets
+  section_order: 4
+  section_field_order: 2
+  options:
+  - label: Use My Brand Kit
+    value: use_my_brand_kit
+  - label: Upload Logo
+    value: upload_logo
+  - label: Upload Brand Guidelines
+    value: upload_brand_guidelines
+  - label: Customize for This Project
+    value: customize_for_this_project
+- code: CR15
+  kind: file
+  required: false
+  section_name: Images & Assets
+  section_order: 4
+  section_field_order: 3
+- code: CR16
+  kind: checkbox
+  required: true
+  section_name: Style & References
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: Modern
+    value: modern
+  - label: Premium
+    value: premium
+  - label: Minimal
+    value: minimal
+  - label: Bold
+    value: bold
+  - label: Energetic
+    value: energetic
+  - label: Luxury
+    value: luxury
+  - label: Clean
+    value: clean
+  - label: Editorial
+    value: editorial
+  - label: Dark & Moody
+    value: dark_moody
+  - label: Bright & Fresh
+    value: bright_fresh
+  - label: High Contrast
+    value: high_contrast
+  - label: Match My Brand
+    value: match_my_brand
+- code: CR17
+  kind: checkbox
+  required: false
+  section_name: Style & References
+  section_order: 5
+  section_field_order: 1
+  options:
+  - label: Instagram Link
+    value: instagram_link
+  - label: Pinterest
+    value: pinterest
+  - label: Upload Images
+    value: upload_images
+  - label: Skip
+    value: skip
+- code: CR18
+  kind: text
+  required: false
+  section_name: Style & References
+  section_order: 5
+  section_field_order: 2
+- code: CR19
+  kind: radio
+  required: true
+  section_name: Publishing & Language
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Instagram (1:1)
+    value: instagram_1_1
+  - label: Instagram (4:5)
+    value: instagram_4_5
+  - label: Facebook
+    value: facebook
+  - label: LinkedIn PDF
+    value: linkedin_pdf
+  - label: Custom
+    value: custom
+- code: CR20
+  kind: radio
+  required: true
+  section_name: Publishing & Language
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: English
+    value: english
+  - label: Hindi
+    value: hindi
+  - label: Tamil
+    value: tamil
+  - label: Telugu
+    value: telugu
+  - label: Malayalam
+    value: malayalam
+  - label: Kannada
+    value: kannada
+  - label: Other
+    value: other

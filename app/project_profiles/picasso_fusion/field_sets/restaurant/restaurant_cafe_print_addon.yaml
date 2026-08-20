@@ -1,0 +1,401 @@
+template_key: restaurant_cafe_print_addon
+template_label: Print Design
+vertical: restaurant
+template_name_match:
+- print design
+- print add-on
+- print addon
+- print brief
+- print material
+fields:
+- code: PT1
+  kind: radio
+  required: true
+  section_name: Print Item & Message
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Restaurant Menu
+    value: restaurant_menu
+  - label: Menu Insert / Seasonal Menu
+    value: menu_insert_seasonal_menu
+  - label: Table Tent
+    value: table_tent
+  - label: Table Mat
+    value: table_mat
+  - label: Poster
+    value: poster
+  - label: Flyer
+    value: flyer
+  - label: Roll-up Standee
+    value: roll_up_standee
+  - label: Window Graphic
+    value: window_graphic
+  - label: Restaurant Banner
+    value: restaurant_banner
+  - label: Event Signage
+    value: event_signage
+  - label: Tent Card
+    value: tent_card
+  - label: Sticker / Label
+    value: sticker_label
+  - label: Other
+    value: other
+- code: PT2
+  kind: text
+  required: true
+  section_name: Print Item & Message
+  section_order: 0
+  section_field_order: 1
+- code: PT3
+  kind: text
+  required: true
+  section_name: Print Item & Message
+  section_order: 0
+  section_field_order: 2
+- code: PT4
+  kind: checkbox
+  required: true
+  section_name: Goal & Audience
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Increase Restaurant Visits
+    value: increase_restaurant_visits
+  - label: Promote a Dish
+    value: promote_a_dish
+  - label: Launch a New Menu
+    value: launch_a_new_menu
+  - label: Promote an Offer
+    value: promote_an_offer
+  - label: Increase Reservations
+    value: increase_reservations
+  - label: Event Promotion
+    value: event_promotion
+  - label: Build Brand Awareness
+    value: build_brand_awareness
+  - label: Guide Customers In-Restaurant
+    value: guide_customers_in_restaurant
+  - label: Other
+    value: other
+- code: PT5
+  kind: text
+  required: true
+  section_name: Goal & Audience
+  section_order: 1
+  section_field_order: 1
+- code: PT6
+  kind: radio
+  required: true
+  section_name: Offer
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: No Offer
+    value: no_offer
+  - label: Percentage Discount
+    value: percentage_discount
+  - label: Combo Offer
+    value: combo_offer
+  - label: Happy Hour
+    value: happy_hour
+  - label: Buy One Get One
+    value: buy_one_get_one
+  - label: Free Dessert
+    value: free_dessert
+  - label: Limited-Time Menu
+    value: limited_time_menu
+  - label: Other
+    value: other
+- code: PT7
+  kind: text
+  required: false
+  section_name: Offer
+  section_order: 2
+  section_field_order: 1
+- code: PT8
+  kind: radio
+  required: true
+  section_name: Content
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: Final Copy Ready
+    value: final_copy_ready
+  - label: Rough Points
+    value: rough_points
+  - label: Need Copywriting Support
+    value: need_copywriting_support
+- code: PT9
+  kind: text
+  required: false
+  section_name: Content
+  section_order: 3
+  section_field_order: 1
+- code: PT10
+  kind: checkbox
+  required: false
+  section_name: Design Requirements
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Dish Name
+    value: dish_name
+  - label: Menu Items
+    value: menu_items
+  - label: Prices
+    value: prices
+  - label: Offer
+    value: offer
+  - label: Dietary Icons
+    value: dietary_icons
+  - label: Brand Logo
+    value: brand_logo
+  - label: Restaurant Address
+    value: restaurant_address
+  - label: Contact Number
+    value: contact_number
+  - label: QR Code
+    value: qr_code
+  - label: Reservation Details
+    value: reservation_details
+  - label: Social Media Handles
+    value: social_media_handles
+  - label: Terms & Conditions
+    value: terms_conditions
+  - label: Other
+    value: other
+- code: PT11
+  kind: checkbox
+  required: true
+  section_name: Images & Assets
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: I'll Upload Food Photos
+    value: ill_upload_food_photos
+  - label: I'll Upload Restaurant Ambience Photos
+    value: ill_upload_restaurant_ambience_photos
+  - label: I'll Upload Menu Images
+    value: ill_upload_menu_images
+  - label: I'll Upload Illustrations or Graphics
+    value: ill_upload_illustrations_or_graphics
+  - label: Use Stock Images Where Suitable
+    value: use_stock_images_where_suitable
+  - label: Use Only Brand Assets
+    value: use_only_brand_assets
+  - label: Designer Can Recommend
+    value: designer_can_recommend
+- code: PT12
+  kind: file
+  required: false
+  section_name: Images & Assets
+  section_order: 5
+  section_field_order: 1
+- code: PT13
+  kind: radio
+  required: true
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Use My Saved Brand Kit
+    value: use_my_saved_brand_kit
+  - label: Upload Brand Guidelines
+    value: upload_brand_guidelines
+  - label: Upload Logo & Assets
+    value: upload_logo_assets
+  - label: Customize This Project
+    value: customize_this_project
+- code: PT14
+  kind: checkbox
+  required: false
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: Brand Colors
+    value: brand_colors
+  - label: Brand Fonts
+    value: brand_fonts
+  - label: Additional Instructions
+    value: additional_instructions
+- code: PT15
+  kind: text
+  required: false
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 2
+- code: PT16
+  kind: checkbox
+  required: true
+  section_name: Placement
+  section_order: 7
+  section_field_order: 0
+  options:
+  - label: Inside Restaurant
+    value: inside_restaurant
+  - label: Storefront / Entrance
+    value: storefront_entrance
+  - label: Outdoor
+    value: outdoor
+  - label: Tabletop
+    value: tabletop
+  - label: Checkout Counter
+    value: checkout_counter
+  - label: Shopping Mall
+    value: shopping_mall
+  - label: Event Venue
+    value: event_venue
+  - label: Food Festival
+    value: food_festival
+  - label: Other
+    value: other
+- code: PT17
+  kind: checkbox
+  required: true
+  section_name: Style & References
+  section_order: 8
+  section_field_order: 0
+  options:
+  - label: Premium
+    value: premium
+  - label: Luxury
+    value: luxury
+  - label: Rustic
+    value: rustic
+  - label: Modern
+    value: modern
+  - label: Minimal
+    value: minimal
+  - label: Warm
+    value: warm
+  - label: Cozy
+    value: cozy
+  - label: Elegant
+    value: elegant
+  - label: Vibrant
+    value: vibrant
+  - label: Dark & Moody
+    value: dark_moody
+  - label: Fresh & Bright
+    value: fresh_bright
+  - label: Match My Brand Style
+    value: match_my_brand_style
+- code: PT18
+  kind: checkbox
+  required: false
+  section_name: Style & References
+  section_order: 8
+  section_field_order: 1
+  options:
+  - label: Website Link
+    value: website_link
+  - label: Pinterest Link
+    value: pinterest_link
+  - label: Upload Images
+    value: upload_images
+  - label: Skip
+    value: skip
+- code: PT19
+  kind: text
+  required: false
+  section_name: Style & References
+  section_order: 8
+  section_field_order: 2
+- code: PT20
+  kind: radio
+  required: true
+  section_name: Print Specifications
+  section_order: 9
+  section_field_order: 0
+  options:
+  - label: Standard Size
+    value: standard_size
+  - label: Custom Size
+    value: custom_size
+- code: PT21
+  kind: text
+  required: false
+  section_name: Print Specifications
+  section_order: 9
+  section_field_order: 1
+- code: PT22
+  kind: radio
+  required: true
+  section_name: Print Specifications
+  section_order: 9
+  section_field_order: 2
+  options:
+  - label: Portrait
+    value: portrait
+  - label: Landscape
+    value: landscape
+- code: PT23
+  kind: radio
+  required: true
+  section_name: Print Specifications
+  section_order: 9
+  section_field_order: 3
+  options:
+  - label: Single-Sided
+    value: single_sided
+  - label: Double-Sided
+    value: double_sided
+- code: PT24
+  kind: text
+  required: false
+  section_name: Print Specifications
+  section_order: 9
+  section_field_order: 4
+- code: PT25
+  kind: file
+  required: false
+  section_name: Print Specifications
+  section_order: 9
+  section_field_order: 5
+- code: PT26
+  kind: radio
+  required: true
+  section_name: Language & Notes
+  section_order: 10
+  section_field_order: 0
+  options:
+  - label: English
+    value: english
+  - label: Hindi
+    value: hindi
+  - label: Tamil
+    value: tamil
+  - label: Telugu
+    value: telugu
+  - label: Malayalam
+    value: malayalam
+  - label: Kannada
+    value: kannada
+  - label: Arabic
+    value: arabic
+  - label: Spanish
+    value: spanish
+  - label: French
+    value: french
+  - label: German
+    value: german
+  - label: Portuguese
+    value: portuguese
+  - label: Chinese
+    value: chinese
+  - label: Japanese
+    value: japanese
+  - label: Korean
+    value: korean
+  - label: Urdu
+    value: urdu
+  - label: Other
+    value: other
+- code: PT27
+  kind: text
+  required: false
+  section_name: Language & Notes
+  section_order: 10
+  section_field_order: 1

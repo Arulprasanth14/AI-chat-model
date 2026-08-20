@@ -1,0 +1,265 @@
+template_key: startup_entrepreneur_one_pager
+template_label: One-Pager — Company Overview
+vertical: startup
+template_name_match:
+- one-pager
+- one pager
+- company overview
+fields:
+- code: OP1
+  kind: radio
+  required: true
+  section_name: One-Pager Overview
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Investor Introduction
+    value: investor_introduction
+  - label: Partnership Outreach
+    value: partnership_outreach
+  - label: Sales Leave-Behind
+    value: sales_leave_behind
+  - label: Accelerator Application
+    value: accelerator_application
+  - label: Media / PR
+    value: media_pr
+  - label: General Company Overview
+    value: general_company_overview
+- code: OP2
+  kind: text
+  required: true
+  section_name: One-Pager Overview
+  section_order: 0
+  section_field_order: 1
+- code: OP3
+  kind: checkbox
+  required: true
+  section_name: One-Pager Overview
+  section_order: 0
+  section_field_order: 2
+  options:
+  - label: Investors
+    value: investors
+  - label: Venture Capital Firms
+    value: vc_firms
+  - label: Partners
+    value: partners
+  - label: Customers
+    value: customers
+  - label: Enterprise Buyers
+    value: enterprise_buyers
+  - label: Accelerators
+    value: accelerators
+  - label: Media
+    value: media
+  - label: Other
+    value: other
+- code: OP4
+  kind: text
+  required: true
+  section_name: Problem & Solution
+  section_order: 1
+  section_field_order: 0
+- code: OP5
+  kind: text
+  required: true
+  section_name: Problem & Solution
+  section_order: 1
+  section_field_order: 1
+- code: OP6
+  kind: checkbox
+  required: true
+  section_name: Problem & Solution
+  section_order: 1
+  section_field_order: 2
+  options:
+  - label: Proprietary Technology
+    value: proprietary_technology
+  - label: Faster Delivery
+    value: faster_delivery
+  - label: Lower Costs
+    value: lower_costs
+  - label: Industry Expertise
+    value: industry_expertise
+  - label: Better Customer Experience
+    value: better_customer_experience
+  - label: Other
+    value: other
+- code: OP7
+  kind: checkbox
+  required: true
+  section_name: Content & Traction
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: Company Overview
+    value: company_overview
+  - label: Product Overview
+    value: product_overview
+  - label: Services
+    value: services
+  - label: Market Opportunity
+    value: market_opportunity
+  - label: Business Model
+    value: business_model
+  - label: Key Features
+    value: key_features
+  - label: Team
+    value: team
+  - label: Traction & Metrics
+    value: traction_metrics
+  - label: Testimonials
+    value: testimonials
+  - label: Partnerships
+    value: partnerships
+  - label: Awards
+    value: awards
+  - label: Contact Information
+    value: contact_information
+- code: OP8
+  kind: checkbox
+  required: true
+  section_name: Content & Traction
+  section_order: 2
+  section_field_order: 1
+  options:
+  - label: Revenue
+    value: revenue
+  - label: Customers
+    value: customers
+  - label: User Growth
+    value: user_growth
+  - label: Funding Raised
+    value: funding_raised
+  - label: Partnerships
+    value: partnerships
+  - label: Retention Metrics
+    value: retention_metrics
+  - label: Awards
+    value: awards
+  - label: Other
+    value: other
+- code: OP9
+  kind: radio
+  required: true
+  section_name: Assets & Copy
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+  - label: Partial
+    value: partial
+- code: OP10
+  kind: file
+  required: false
+  section_name: Assets & Copy
+  section_order: 3
+  section_field_order: 1
+- code: OP11
+  kind: text
+  required: true
+  section_name: Assets & Copy
+  section_order: 3
+  section_field_order: 2
+- code: OP12
+  kind: radio
+  required: true
+  section_name: Call to Action & Format
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Book a Meeting
+    value: book_a_meeting
+  - label: Request a Demo
+    value: request_a_demo
+  - label: Contact Us
+    value: contact_us
+  - label: Invest
+    value: invest
+  - label: Visit Website
+    value: visit_website
+  - label: Partner With Us
+    value: partner_with_us
+  - label: Other
+    value: other
+- code: OP13
+  kind: text
+  required: false
+  section_name: Call to Action & Format
+  section_order: 4
+  section_field_order: 1
+- code: OP14
+  kind: radio
+  required: true
+  section_name: Call to Action & Format
+  section_order: 4
+  section_field_order: 2
+  options:
+  - label: Print
+    value: print
+  - label: Digital PDF
+    value: digital_pdf
+  - label: Both
+    value: both
+- code: OP15
+  kind: radio
+  required: true
+  section_name: Style & References
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: OP16
+  kind: file
+  required: false
+  section_name: Style & References
+  section_order: 5
+  section_field_order: 1
+- code: OP17
+  kind: radio
+  required: true
+  section_name: Style & References
+  section_order: 5
+  section_field_order: 2
+  options:
+  - label: Startup
+    value: startup
+  - label: Investor-Grade
+    value: investor_grade
+  - label: Modern SaaS
+    value: modern_saas
+  - label: Corporate
+    value: corporate
+  - label: Premium
+    value: premium
+  - label: Minimal
+    value: minimal
+  - label: Data-Driven
+    value: data_driven
+  - label: Other
+    value: other
+- code: OP18
+  kind: checkbox
+  required: false
+  section_name: Style & References
+  section_order: 5
+  section_field_order: 3
+  options:
+  - label: A4
+    value: a4
+  - label: US Letter
+    value: us_letter
+  - label: Interactive PDF
+    value: interactive_pdf
+  - label: Print-Ready PDF
+    value: print_ready_pdf
+  - label: Editable Source File
+    value: editable_source_file
+  - label: Other
+    value: other

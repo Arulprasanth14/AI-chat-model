@@ -1,0 +1,303 @@
+template_key: startup_entrepreneur_proposal_template
+template_label: Proposal Template
+vertical: startup
+template_name_match:
+- proposal template
+- sales proposal
+- consulting proposal
+- agency proposal
+fields:
+- code: PR1
+  kind: radio
+  required: true
+  section_name: Proposal Overview
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Service Proposal
+    value: service_proposal
+  - label: Agency Proposal
+    value: agency_proposal
+  - label: Consulting Proposal
+    value: consulting_proposal
+  - label: Software / SaaS Proposal
+    value: software_saas_proposal
+  - label: Partnership Proposal
+    value: partnership_proposal
+  - label: Investment Proposal
+    value: investment_proposal
+  - label: Custom
+    value: custom
+- code: PR2
+  kind: text
+  required: true
+  section_name: Proposal Overview
+  section_order: 0
+  section_field_order: 1
+- code: PR3
+  kind: checkbox
+  required: true
+  section_name: Proposal Overview
+  section_order: 0
+  section_field_order: 2
+  options:
+  - label: Small Business Owners
+    value: small_business_owners
+  - label: Enterprise Buyers
+    value: enterprise_buyers
+  - label: Startups
+    value: startups
+  - label: Corporate Procurement Teams
+    value: corporate_procurement_teams
+  - label: Investors
+    value: investors
+  - label: Government Organisations
+    value: government_organisations
+  - label: Other
+    value: other
+- code: PR4
+  kind: checkbox
+  required: true
+  section_name: Proposal Overview
+  section_order: 0
+  section_field_order: 3
+  options:
+  - label: Founder
+    value: founder
+  - label: Sales Team
+    value: sales_team
+  - label: Business Development Team
+    value: business_development_team
+  - label: Account Managers
+    value: account_managers
+  - label: Entire Company
+    value: entire_company
+  - label: Other
+    value: other
+- code: PR5
+  kind: checkbox
+  required: true
+  section_name: Content & Pricing
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Cover Page
+    value: cover_page
+  - label: Executive Summary
+    value: executive_summary
+  - label: About Us
+    value: about_us
+  - label: Problem Statement
+    value: problem_statement
+  - label: Proposed Solution
+    value: proposed_solution
+  - label: Scope of Work
+    value: scope_of_work
+  - label: Deliverables
+    value: deliverables
+  - label: Timeline
+    value: timeline
+  - label: Pricing
+    value: pricing
+  - label: Team
+    value: team
+  - label: Case Studies
+    value: case_studies
+  - label: Testimonials
+    value: testimonials
+  - label: FAQs
+    value: faqs
+  - label: Terms & Conditions
+    value: terms_conditions
+  - label: Acceptance Page
+    value: acceptance_page
+- code: PR6
+  kind: radio
+  required: true
+  section_name: Content & Pricing
+  section_order: 1
+  section_field_order: 1
+  options:
+  - label: Fixed Price
+    value: fixed_price
+  - label: Retainer
+    value: retainer
+  - label: Tiered Packages
+    value: tiered_packages
+  - label: Hourly
+    value: hourly
+  - label: Subscription
+    value: subscription
+  - label: Custom Pricing
+    value: custom_pricing
+  - label: Multiple Pricing Models
+    value: multiple_pricing_models
+- code: PR7
+  kind: radio
+  required: true
+  section_name: Content & Pricing
+  section_order: 1
+  section_field_order: 2
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: PR8
+  kind: radio
+  required: true
+  section_name: Branding & Assets
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: Full Brand Guidelines
+    value: full_brand_guidelines
+  - label: Logo Only
+    value: logo_only
+  - label: Existing Proposal
+    value: existing_proposal
+  - label: Website Branding
+    value: website_branding
+  - label: No Brand Assets Yet
+    value: no_brand_assets_yet
+- code: PR9
+  kind: file
+  required: false
+  section_name: Branding & Assets
+  section_order: 2
+  section_field_order: 1
+- code: PR10
+  kind: radio
+  required: true
+  section_name: Editable Content
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: PR11
+  kind: radio
+  required: true
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Approve Proposal
+    value: approve_proposal
+  - label: Schedule a Meeting
+    value: schedule_a_meeting
+  - label: Sign Agreement
+    value: sign_agreement
+  - label: Contact Us
+    value: contact_us
+  - label: Other
+    value: other
+- code: PR12
+  kind: text
+  required: false
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 1
+- code: PR13
+  kind: radio
+  required: true
+  section_name: Platform & Format
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: PowerPoint
+    value: powerpoint
+  - label: Google Slides
+    value: google_slides
+  - label: Canva
+    value: canva
+  - label: Word
+    value: word
+  - label: InDesign
+    value: indesign
+  - label: Figma
+    value: figma
+  - label: Multiple Platforms
+    value: multiple_platforms
+- code: PR14
+  kind: radio
+  required: true
+  section_name: Platform & Format
+  section_order: 5
+  section_field_order: 1
+  options:
+  - label: Editable Source File
+    value: editable_source_file
+  - label: PDF
+    value: pdf
+  - label: PowerPoint
+    value: powerpoint
+  - label: Google Slides
+    value: google_slides
+  - label: Canva Template
+    value: canva_template
+  - label: Multiple Formats
+    value: multiple_formats
+- code: PR15
+  kind: radio
+  required: true
+  section_name: Style & References
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: PR16
+  kind: file
+  required: false
+  section_name: Style & References
+  section_order: 6
+  section_field_order: 1
+- code: PR17
+  kind: radio
+  required: true
+  section_name: Style & References
+  section_order: 6
+  section_field_order: 2
+  options:
+  - label: Corporate
+    value: corporate
+  - label: Premium
+    value: premium
+  - label: Startup
+    value: startup
+  - label: Minimal
+    value: minimal
+  - label: Enterprise
+    value: enterprise
+  - label: Consulting
+    value: consulting
+  - label: Modern SaaS
+    value: modern_saas
+  - label: Other
+    value: other
+- code: PR18
+  kind: checkbox
+  required: false
+  section_name: Style & References
+  section_order: 6
+  section_field_order: 3
+  options:
+  - label: A4 Portrait
+    value: a4_portrait
+  - label: US Letter
+    value: us_letter
+  - label: Interactive PDF
+    value: interactive_pdf
+  - label: Digital Signing Section
+    value: digital_signing_section
+  - label: Proposal Cover Variations
+    value: proposal_cover_variations
+  - label: Light/Dark Versions
+    value: light_dark_versions
+  - label: Other
+    value: other

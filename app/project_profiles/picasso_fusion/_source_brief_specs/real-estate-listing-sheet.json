@@ -1,0 +1,251 @@
+{
+  "key": "real_estate_listing_sheet",
+  "label": "Real Estate Listing Sheet",
+  "verticalKey": "realestate",
+  "templateNameMatch": ["listing sheet"],
+  "sections": [
+    {
+      "name": "Property Details",
+      "questions": [
+        {
+          "code": "RE1",
+          "kind": "text",
+          "question": "What property is being promoted? Give the property name, address, and suburb/city.",
+          "required": true
+        },
+        {
+          "code": "RE2",
+          "kind": "radio",
+          "question": "What type of property is it?",
+          "options": [
+            { "label": "Residential House", "value": "residential_house" },
+            { "label": "Apartment", "value": "apartment" },
+            { "label": "Villa", "value": "villa" },
+            { "label": "Townhouse", "value": "townhouse" },
+            { "label": "Commercial Property", "value": "commercial" },
+            { "label": "Land", "value": "land" },
+            { "label": "Industrial Property", "value": "industrial" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RE3",
+          "kind": "radio",
+          "question": "Is this property for sale, lease, or rent?",
+          "options": [
+            { "label": "For Sale", "value": "for_sale" },
+            { "label": "For Lease", "value": "for_lease" },
+            { "label": "For Rent", "value": "for_rent" },
+            { "label": "Off-Market Listing", "value": "off_market" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RE4",
+          "kind": "text",
+          "question": "What is the listing price?",
+          "hint": "Asking price, price range, auction details, or \"Contact Agent\"",
+          "required": true
+        },
+        {
+          "code": "RE5",
+          "kind": "text",
+          "question": "What are the key property details — bedrooms, bathrooms, car spaces, land size, building size, and year built?",
+          "required": true
+        },
+        {
+          "code": "RE6",
+          "kind": "checkbox",
+          "question": "What are the property's key selling points — the features buyers should notice first?",
+          "hint": "Examples: ocean views, recently renovated, near schools, premium location, smart home features, investment opportunity",
+          "options": [
+            { "label": "Ocean views", "value": "ocean_views" },
+            { "label": "Recently renovated", "value": "recently_renovated" },
+            { "label": "Near schools", "value": "near_schools" },
+            { "label": "Premium location", "value": "premium_location" },
+            { "label": "Smart home features", "value": "smart_home" },
+            { "label": "Investment opportunity", "value": "investment_opportunity" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Content",
+      "questions": [
+        {
+          "code": "RE7",
+          "kind": "text",
+          "question": "What property description should appear on the listing sheet? Please provide final, approved copy.",
+          "required": true
+        },
+        {
+          "code": "RE8",
+          "kind": "text",
+          "question": "Are there any disclaimers, legal notices, or compliance statements required?",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Images & Assets",
+      "questions": [
+        {
+          "code": "RE9",
+          "kind": "file",
+          "question": "Do you have professional property photography? Please upload the images.",
+          "hint": "Minimum 300 DPI for print. High-resolution JPG preferred.",
+          "required": true
+        },
+        {
+          "code": "RE10",
+          "kind": "checkbox",
+          "question": "Do you have any additional assets to include?",
+          "options": [
+            { "label": "Floor plan", "value": "floor_plan" },
+            { "label": "Site plan", "value": "site_plan" },
+            { "label": "Location map", "value": "location_map" },
+            { "label": "Agent photo", "value": "agent_photo" },
+            { "label": "Agency awards", "value": "agency_awards" },
+            { "label": "Property renders", "value": "property_renders" },
+            { "label": "Other", "value": "other" },
+            { "label": "None", "value": "none" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RE11",
+          "kind": "file",
+          "question": "Please upload the additional assets you selected.",
+          "hint": "Only ask this if the client selected any asset other than \"None\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Contact Information",
+      "questions": [
+        {
+          "code": "RE12",
+          "kind": "text",
+          "question": "Which agent's details should appear on the listing sheet? Give the agent name, phone number, email address, and website.",
+          "required": true
+        },
+        {
+          "code": "RE13",
+          "kind": "radio",
+          "question": "What is the primary call to action?",
+          "options": [
+            { "label": "Book an inspection", "value": "book_inspection" },
+            { "label": "Contact the agent", "value": "contact_agent" },
+            { "label": "Scan to view listing", "value": "scan_to_view" },
+            { "label": "Register for auction", "value": "register_auction" },
+            { "label": "Schedule a viewing", "value": "schedule_viewing" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RE14",
+          "kind": "radio",
+          "question": "Will a QR code be included?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RE15",
+          "kind": "text",
+          "question": "What URL should the QR code link to?",
+          "hint": "Only ask this if the client said yes to including a QR code. Examples: property listing page, virtual tour, booking page, agency website",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Layout Requirements",
+      "questions": [
+        {
+          "code": "RE16",
+          "kind": "radio",
+          "question": "What format should the listing sheet be?",
+          "options": [
+            { "label": "A4 Single-sided", "value": "a4_single" },
+            { "label": "A4 Double-sided", "value": "a4_double" },
+            { "label": "US Letter", "value": "us_letter" },
+            { "label": "Custom Size", "value": "custom" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RE17",
+          "kind": "radio",
+          "question": "Approximately how many property images should be featured? This dramatically affects layout decisions.",
+          "options": [
+            { "label": "1–3", "value": "1-3" },
+            { "label": "4–6", "value": "4-6" },
+            { "label": "7–10", "value": "7-10" },
+            { "label": "10+", "value": "10+" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Design Direction",
+      "questions": [
+        {
+          "code": "RE18",
+          "kind": "file",
+          "question": "Any reference designs or inspiration to share? Competitors, agency examples, previous listings, or styles you admire.",
+          "hint": "Up to 3 references",
+          "required": false
+        },
+        {
+          "code": "RE19",
+          "kind": "radio",
+          "question": "Describe the design style you'd like.",
+          "options": [
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Premium Residential", "value": "premium_residential" },
+            { "label": "Commercial Corporate", "value": "commercial_corporate" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "High-End Real Estate", "value": "high_end" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Technical Requirements",
+      "questions": [
+        {
+          "code": "RE20",
+          "kind": "radio",
+          "question": "Will this listing sheet be used for print, digital distribution, or both?",
+          "hint": "This is surprisingly important — digital listing sheets often need clickable links and different layouts.",
+          "options": [
+            { "label": "Print only", "value": "print_only" },
+            { "label": "Digital PDF only", "value": "digital_only" },
+            { "label": "Both", "value": "both" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RE21",
+          "kind": "text",
+          "question": "Any other technical or production requirements?",
+          "hint": "Leave blank if unsure.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

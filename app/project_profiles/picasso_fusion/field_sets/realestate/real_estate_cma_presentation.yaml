@@ -1,0 +1,265 @@
+template_key: real_estate_cma_presentation
+template_label: CMA Presentation
+vertical: realestate
+template_name_match:
+- cma
+- comparative market analysis
+fields:
+- code: CM1
+  kind: text
+  required: true
+  section_name: CMA Overview
+  section_order: 0
+  section_field_order: 0
+- code: CM2
+  kind: radio
+  required: true
+  section_name: CMA Overview
+  section_order: 0
+  section_field_order: 1
+  options:
+  - label: House
+    value: house
+  - label: Apartment
+    value: apartment
+  - label: Townhouse
+    value: townhouse
+  - label: Villa
+    value: villa
+  - label: Land
+    value: land
+  - label: Commercial Property
+    value: commercial
+  - label: Other
+    value: other
+- code: CM3
+  kind: radio
+  required: true
+  section_name: CMA Overview
+  section_order: 0
+  section_field_order: 2
+  options:
+  - label: Listing Appointment
+    value: listing_appointment
+  - label: Vendor Meeting
+    value: vendor_meeting
+  - label: Property Valuation Discussion
+    value: valuation_discussion
+  - label: Market Update
+    value: market_update
+  - label: Pre-Sale Consultation
+    value: pre_sale_consultation
+  - label: Other
+    value: other
+- code: CM4
+  kind: text
+  required: true
+  section_name: Property Information
+  section_order: 1
+  section_field_order: 0
+- code: CM5
+  kind: checkbox
+  required: true
+  section_name: Property Information
+  section_order: 1
+  section_field_order: 1
+  options:
+  - label: Renovated
+    value: renovated
+  - label: Waterfront
+    value: waterfront
+  - label: School Zone
+    value: school_zone
+  - label: Corner Block
+    value: corner_block
+  - label: Development Potential
+    value: development_potential
+  - label: Luxury Finishes
+    value: luxury_finishes
+  - label: Other
+    value: other
+- code: CM6
+  kind: text
+  required: true
+  section_name: Comparable Sales Data
+  section_order: 2
+  section_field_order: 0
+- code: CM7
+  kind: file
+  required: true
+  section_name: Comparable Sales Data
+  section_order: 2
+  section_field_order: 1
+- code: CM8
+  kind: radio
+  required: true
+  section_name: Comparable Sales Data
+  section_order: 2
+  section_field_order: 2
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: CM9
+  kind: checkbox
+  required: true
+  section_name: Market Insights
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: Median sale price
+    value: median_sale_price
+  - label: Days on market
+    value: days_on_market
+  - label: Sales volume
+    value: sales_volume
+  - label: Auction clearance rates
+    value: clearance_rates
+  - label: Market trends
+    value: market_trends
+  - label: Rental data
+    value: rental_data
+  - label: Other
+    value: other
+- code: CM10
+  kind: file
+  required: false
+  section_name: Market Insights
+  section_order: 3
+  section_field_order: 1
+- code: CM11
+  kind: file
+  required: true
+  section_name: Assets
+  section_order: 4
+  section_field_order: 0
+- code: CM12
+  kind: checkbox
+  required: true
+  section_name: Assets
+  section_order: 4
+  section_field_order: 1
+  options:
+  - label: Maps
+    value: maps
+  - label: Floor Plans
+    value: floor_plans
+  - label: Location Highlights
+    value: location_highlights
+  - label: Lifestyle Photography
+    value: lifestyle_photography
+  - label: Agent Profile
+    value: agent_profile
+  - label: Other
+    value: other
+  - label: None
+    value: none
+- code: CM13
+  kind: radio
+  required: true
+  section_name: Presentation Structure
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: 8–12 Slides
+    value: 8-12
+  - label: 12–15 Slides
+    value: 12-15
+  - label: Custom
+    value: custom
+- code: CM14
+  kind: file
+  required: false
+  section_name: Presentation Structure
+  section_order: 5
+  section_field_order: 1
+- code: CM15
+  kind: radio
+  required: true
+  section_name: Closing & CTA
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Recommended Price Range
+    value: recommended_price_range
+  - label: Suggested Marketing Strategy
+    value: marketing_strategy
+  - label: Listing Proposal
+    value: listing_proposal
+  - label: Book Listing Appointment
+    value: book_listing_appointment
+  - label: Contact Agent
+    value: contact_agent
+  - label: Other
+    value: other
+- code: CM16
+  kind: radio
+  required: true
+  section_name: Closing & CTA
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: CM17
+  kind: text
+  required: false
+  section_name: Closing & CTA
+  section_order: 6
+  section_field_order: 2
+- code: CM18
+  kind: file
+  required: false
+  section_name: Design Direction
+  section_order: 7
+  section_field_order: 0
+- code: CM19
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 7
+  section_field_order: 1
+  options:
+  - label: Premium Real Estate
+    value: premium_real_estate
+  - label: Luxury
+    value: luxury
+  - label: Modern Corporate
+    value: modern_corporate
+  - label: Data-Driven
+    value: data_driven
+  - label: Editorial
+    value: editorial
+  - label: Other
+    value: other
+- code: CM20
+  kind: radio
+  required: true
+  section_name: Delivery Requirements
+  section_order: 8
+  section_field_order: 0
+  options:
+  - label: PowerPoint (.pptx)
+    value: pptx
+  - label: Google Slides
+    value: google_slides
+  - label: PDF
+    value: pdf
+  - label: Multiple Formats
+    value: multiple
+- code: CM21
+  kind: radio
+  required: true
+  section_name: Delivery Requirements
+  section_order: 8
+  section_field_order: 1
+  options:
+  - label: Presented Live
+    value: presented_live
+  - label: Sent as PDF
+    value: sent_as_pdf
+  - label: Both
+    value: both

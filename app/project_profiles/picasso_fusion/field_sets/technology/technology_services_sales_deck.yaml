@@ -1,0 +1,234 @@
+template_key: technology_services_sales_deck
+template_label: Sales Deck — Presentation
+vertical: technology
+template_name_match:
+- sales deck
+- sales presentation
+- presentation deck — sales
+- sales pitch deck
+fields:
+- code: SD1
+  kind: checkbox
+  required: true
+  section_name: Presentation Goal
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Generate Leads
+    value: generate_leads
+  - label: Close a Sale
+    value: close_a_sale
+  - label: Secure a Meeting
+    value: secure_a_meeting
+  - label: Pitch a Service
+    value: pitch_a_service
+  - label: Introduce a Product
+    value: introduce_a_product
+  - label: Win a Contract
+    value: win_a_contract
+  - label: Other
+    value: other
+- code: SD2
+  kind: checkbox
+  required: true
+  section_name: Presentation Goal
+  section_order: 0
+  section_field_order: 1
+  options:
+  - label: Small Business Owners
+    value: small_business_owners
+  - label: Enterprise Buyers
+    value: enterprise_buyers
+  - label: HR Managers
+    value: hr_managers
+  - label: Procurement Teams
+    value: procurement_teams
+  - label: Retailers
+    value: retailers
+  - label: Investors
+    value: investors
+  - label: Healthcare Professionals
+    value: healthcare_professionals
+  - label: Other
+    value: other
+- code: SD3
+  kind: text
+  required: true
+  section_name: Product / Service Information
+  section_order: 1
+  section_field_order: 0
+- code: SD4
+  kind: text
+  required: true
+  section_name: Product / Service Information
+  section_order: 1
+  section_field_order: 1
+- code: SD5
+  kind: radio
+  required: true
+  section_name: Product / Service Information
+  section_order: 1
+  section_field_order: 2
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: SD6
+  kind: text
+  required: false
+  section_name: Product / Service Information
+  section_order: 1
+  section_field_order: 3
+- code: SD7
+  kind: radio
+  required: true
+  section_name: Content
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: Yes, Complete Content Ready
+    value: complete_content_ready
+  - label: Partial Content Available
+    value: partial_content_available
+  - label: Need Help Structuring Content
+    value: need_help_structuring_content
+  - label: Need Help Writing Content
+    value: need_help_writing_content
+- code: SD8
+  kind: file
+  required: false
+  section_name: Content
+  section_order: 2
+  section_field_order: 1
+- code: SD9
+  kind: radio
+  required: true
+  section_name: Assets
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: SD10
+  kind: file
+  required: false
+  section_name: Assets
+  section_order: 3
+  section_field_order: 1
+- code: SD11
+  kind: radio
+  required: true
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Book a Demo
+    value: book_a_demo
+  - label: Request a Proposal
+    value: request_a_proposal
+  - label: Contact Sales
+    value: contact_sales
+  - label: Start a Trial
+    value: start_a_trial
+  - label: Schedule a Meeting
+    value: schedule_a_meeting
+  - label: Other
+    value: other
+- code: SD12
+  kind: radio
+  required: true
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 1
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: SD13
+  kind: text
+  required: false
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 2
+- code: SD14
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: SD15
+  kind: file
+  required: false
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 1
+- code: SD16
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 2
+  options:
+  - label: Corporate
+    value: corporate
+  - label: Premium
+    value: premium
+  - label: Modern SaaS
+    value: modern_saas
+  - label: Bold
+    value: bold
+  - label: Minimal
+    value: minimal
+  - label: Enterprise
+    value: enterprise
+  - label: Data-Driven
+    value: data_driven
+  - label: Luxury
+    value: luxury
+  - label: Other
+    value: other
+- code: SD17
+  kind: radio
+  required: true
+  section_name: Delivery Requirements
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Presented Live
+    value: presented_live
+  - label: Shared for Reading
+    value: shared_for_reading
+  - label: Both
+    value: both
+- code: SD18
+  kind: radio
+  required: true
+  section_name: Delivery Requirements
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: PowerPoint (.pptx)
+    value: powerpoint_pptx
+  - label: Google Slides
+    value: google_slides
+  - label: Keynote
+    value: keynote
+  - label: PDF
+    value: pdf
+  - label: Multiple Formats
+    value: multiple_formats
+- code: SD19
+  kind: text
+  required: false
+  section_name: Delivery Requirements
+  section_order: 6
+  section_field_order: 2

@@ -1,0 +1,224 @@
+template_key: real_estate_email_template
+template_label: Email Template
+vertical: realestate
+template_name_match:
+- email template
+fields:
+- code: ET1
+  kind: radio
+  required: true
+  section_name: Email Template Overview
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Newsletter
+    value: newsletter
+  - label: Promotional Email
+    value: promotional
+  - label: Product Updates
+    value: product_updates
+  - label: Event Invitations
+    value: event_invitations
+  - label: Customer Onboarding
+    value: onboarding
+  - label: Customer Retention
+    value: retention
+  - label: Lead Nurture
+    value: lead_nurture
+  - label: Transactional Email
+    value: transactional
+  - label: Internal Communications
+    value: internal_comms
+  - label: Other
+    value: other
+- code: ET2
+  kind: checkbox
+  required: true
+  section_name: Email Template Overview
+  section_order: 0
+  section_field_order: 1
+  options:
+  - label: Drive website traffic
+    value: drive_traffic
+  - label: Generate leads
+    value: generate_leads
+  - label: Promote products
+    value: promote_products
+  - label: Share company updates
+    value: share_updates
+  - label: Register for events
+    value: register_events
+  - label: Educate customers
+    value: educate_customers
+  - label: Other
+    value: other
+- code: ET3
+  kind: radio
+  required: true
+  section_name: Email Platform
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Mailchimp
+    value: mailchimp
+  - label: Klaviyo
+    value: klaviyo
+  - label: HubSpot
+    value: hubspot
+  - label: ActiveCampaign
+    value: activecampaign
+  - label: Brevo
+    value: brevo
+  - label: Campaign Monitor
+    value: campaign_monitor
+  - label: Salesforce Marketing Cloud
+    value: salesforce_marketing_cloud
+  - label: Other
+    value: other
+- code: ET4
+  kind: checkbox
+  required: true
+  section_name: Content Structure
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: Hero Banner
+    value: hero_banner
+  - label: Intro Section
+    value: intro_section
+  - label: Featured Content
+    value: featured_content
+  - label: Product Grid
+    value: product_grid
+  - label: Offer Section
+    value: offer_section
+  - label: Testimonials
+    value: testimonials
+  - label: Event Block
+    value: event_block
+  - label: CTA Section
+    value: cta_section
+  - label: Social Links
+    value: social_links
+  - label: Footer
+    value: footer
+  - label: Other
+    value: other
+- code: ET5
+  kind: radio
+  required: true
+  section_name: Content Structure
+  section_order: 2
+  section_field_order: 1
+  options:
+  - label: Yes, final content ready
+    value: final_ready
+  - label: Partial content available
+    value: partial
+  - label: Need help organising content
+    value: need_help_organising
+- code: ET6
+  kind: text
+  required: true
+  section_name: Content Structure
+  section_order: 2
+  section_field_order: 2
+- code: ET7
+  kind: file
+  required: true
+  section_name: Assets
+  section_order: 3
+  section_field_order: 0
+- code: ET8
+  kind: checkbox
+  required: true
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Learn More
+    value: learn_more
+  - label: Shop Now
+    value: shop_now
+  - label: Book a Demo
+    value: book_demo
+  - label: Register
+    value: register
+  - label: Contact Us
+    value: contact_us
+  - label: Other
+    value: other
+- code: ET9
+  kind: radio
+  required: true
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 1
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: ET10
+  kind: text
+  required: false
+  section_name: Call to Action
+  section_order: 4
+  section_field_order: 2
+- code: ET11
+  kind: file
+  required: false
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 0
+- code: ET12
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 1
+  options:
+  - label: Modern SaaS
+    value: modern_saas
+  - label: Corporate
+    value: corporate
+  - label: Premium
+    value: premium
+  - label: Minimal
+    value: minimal
+  - label: Product-Focused
+    value: product_focused
+  - label: Editorial
+    value: editorial
+  - label: Promotional
+    value: promotional
+  - label: Other
+    value: other
+- code: ET13
+  kind: radio
+  required: true
+  section_name: Delivery Requirements
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Fully coded HTML email
+    value: fully_coded_html
+  - label: Design-only template
+    value: design_only
+  - label: Both
+    value: both
+  - label: Not sure
+    value: not_sure
+- code: ET14
+  kind: radio
+  required: true
+  section_name: Delivery Requirements
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: Desktop
+    value: desktop
+  - label: Mobile
+    value: mobile
+  - label: Responsive (Both)
+    value: responsive_both

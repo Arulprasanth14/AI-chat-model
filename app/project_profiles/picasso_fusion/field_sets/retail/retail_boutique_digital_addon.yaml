@@ -1,0 +1,375 @@
+template_key: retail_boutique_digital_addon
+template_label: Digital Asset
+vertical: retail
+template_name_match:
+- digital design
+- digital add-on
+- digital addon
+- digital brief
+- digital asset
+fields:
+- code: DG1
+  kind: radio
+  required: true
+  section_name: Digital Asset & Message
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Website Banner
+    value: website_banner
+  - label: Homepage Hero Banner
+    value: homepage_hero_banner
+  - label: Email Newsletter (EDM)
+    value: email_newsletter_edm
+  - label: Email Header
+    value: email_header
+  - label: Google Display Ads
+    value: google_display_ads
+  - label: Meta Ad Creative
+    value: meta_ad_creative
+  - label: Instagram Story Set
+    value: instagram_story_set
+  - label: WhatsApp Promotional Graphic
+    value: whatsapp_promotional_graphic
+  - label: Digital Signage
+    value: digital_signage
+  - label: Mall Display Screen
+    value: mall_display_screen
+  - label: Presentation Deck
+    value: presentation_deck
+  - label: Website Popup
+    value: website_popup
+  - label: Other
+    value: other
+- code: DG2
+  kind: text
+  required: true
+  section_name: Digital Asset & Message
+  section_order: 0
+  section_field_order: 1
+- code: DG3
+  kind: text
+  required: true
+  section_name: Digital Asset & Message
+  section_order: 0
+  section_field_order: 2
+- code: DG4
+  kind: checkbox
+  required: true
+  section_name: Goal & Audience
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Increase Store Visits
+    value: increase_store_visits
+  - label: Promote a Collection
+    value: promote_a_collection
+  - label: Launch a Product
+    value: launch_a_product
+  - label: Promote a Sale
+    value: promote_a_sale
+  - label: Build Brand Awareness
+    value: build_brand_awareness
+  - label: Generate Enquiries
+    value: generate_enquiries
+  - label: Event Promotion
+    value: event_promotion
+  - label: Drive Website Traffic
+    value: drive_website_traffic
+  - label: Other
+    value: other
+- code: DG5
+  kind: text
+  required: true
+  section_name: Goal & Audience
+  section_order: 1
+  section_field_order: 1
+- code: DG6
+  kind: radio
+  required: true
+  section_name: Offer
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: No Offer
+    value: no_offer
+  - label: Percentage Discount
+    value: percentage_discount
+  - label: Flat Discount
+    value: flat_discount
+  - label: Buy One Get One
+    value: buy_one_get_one
+  - label: Bundle Offer
+    value: bundle_offer
+  - label: Free Gift
+    value: free_gift
+  - label: Limited-Time Offer
+    value: limited_time_offer
+  - label: Other
+    value: other
+- code: DG7
+  kind: text
+  required: false
+  section_name: Offer
+  section_order: 2
+  section_field_order: 1
+- code: DG8
+  kind: radio
+  required: true
+  section_name: Content
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: Final Copy Ready
+    value: final_copy_ready
+  - label: Rough Points
+    value: rough_points
+  - label: Need Copywriting Support
+    value: need_copywriting_support
+- code: DG9
+  kind: text
+  required: false
+  section_name: Content
+  section_order: 3
+  section_field_order: 1
+- code: DG10
+  kind: checkbox
+  required: false
+  section_name: Design Requirements
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Product Name
+    value: product_name
+  - label: Collection Name
+    value: collection_name
+  - label: Price
+    value: price
+  - label: Discount
+    value: discount
+  - label: Brand Logo
+    value: brand_logo
+  - label: Store Address
+    value: store_address
+  - label: Website
+    value: website
+  - label: QR Code
+    value: qr_code
+  - label: Contact Number
+    value: contact_number
+  - label: Social Media Handles
+    value: social_media_handles
+  - label: CTA Button
+    value: cta_button
+  - label: Store Timings
+    value: store_timings
+  - label: Other
+    value: other
+- code: DG11
+  kind: checkbox
+  required: true
+  section_name: Images & Assets
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: I'll Upload Product Photos
+    value: ill_upload_product_photos
+  - label: I'll Upload Store Photos
+    value: ill_upload_store_photos
+  - label: I'll Upload Lifestyle Images
+    value: ill_upload_lifestyle_images
+  - label: I'll Upload Graphics
+    value: ill_upload_graphics
+  - label: Use Stock Images
+    value: use_stock_images
+  - label: Use Only Brand Assets
+    value: use_only_brand_assets
+  - label: Designer Can Recommend
+    value: designer_can_recommend
+- code: DG12
+  kind: file
+  required: false
+  section_name: Images & Assets
+  section_order: 5
+  section_field_order: 1
+- code: DG13
+  kind: radio
+  required: true
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Use My Saved Brand Kit
+    value: use_my_saved_brand_kit
+  - label: Upload Brand Guidelines
+    value: upload_brand_guidelines
+  - label: Upload Logo & Assets
+    value: upload_logo_assets
+  - label: Customize This Project
+    value: customize_this_project
+- code: DG14
+  kind: checkbox
+  required: false
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: Brand Colors
+    value: brand_colors
+  - label: Brand Fonts
+    value: brand_fonts
+  - label: Additional Instructions
+    value: additional_instructions
+- code: DG15
+  kind: text
+  required: false
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 2
+- code: DG16
+  kind: checkbox
+  required: true
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 0
+  options:
+  - label: Premium
+    value: premium
+  - label: Luxury
+    value: luxury
+  - label: Modern
+    value: modern
+  - label: Minimal
+    value: minimal
+  - label: Bold
+    value: bold
+  - label: Lifestyle
+    value: lifestyle
+  - label: Editorial
+    value: editorial
+  - label: Elegant
+    value: elegant
+  - label: Vibrant
+    value: vibrant
+  - label: High Contrast
+    value: high_contrast
+  - label: Clean
+    value: clean
+  - label: Match My Brand Style
+    value: match_my_brand_style
+- code: DG17
+  kind: checkbox
+  required: false
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 1
+  options:
+  - label: Website Link
+    value: website_link
+  - label: Instagram Link
+    value: instagram_link
+  - label: Pinterest Link
+    value: pinterest_link
+  - label: Upload Images
+    value: upload_images
+  - label: Skip
+    value: skip
+- code: DG18
+  kind: text
+  required: false
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 2
+- code: DG19
+  kind: checkbox
+  required: true
+  section_name: Placement & Format
+  section_order: 8
+  section_field_order: 0
+  options:
+  - label: Website
+    value: website
+  - label: Email Campaign
+    value: email_campaign
+  - label: Google Ads
+    value: google_ads
+  - label: Meta Ads
+    value: meta_ads
+  - label: Instagram
+    value: instagram
+  - label: Facebook
+    value: facebook
+  - label: WhatsApp
+    value: whatsapp
+  - label: Digital Signage
+    value: digital_signage
+  - label: Mall Display Screen
+    value: mall_display_screen
+  - label: Presentation
+    value: presentation
+  - label: Other
+    value: other
+- code: DG20
+  kind: radio
+  required: true
+  section_name: Placement & Format
+  section_order: 8
+  section_field_order: 1
+  options:
+  - label: Standard Platform Size
+    value: standard_platform_size
+  - label: Multiple Platform Sizes
+    value: multiple_platform_sizes
+  - label: Custom Dimensions
+    value: custom_dimensions
+- code: DG21
+  kind: text
+  required: false
+  section_name: Placement & Format
+  section_order: 8
+  section_field_order: 2
+- code: DG22
+  kind: radio
+  required: true
+  section_name: Language & Notes
+  section_order: 9
+  section_field_order: 0
+  options:
+  - label: English
+    value: english
+  - label: Hindi
+    value: hindi
+  - label: Tamil
+    value: tamil
+  - label: Telugu
+    value: telugu
+  - label: Malayalam
+    value: malayalam
+  - label: Kannada
+    value: kannada
+  - label: Arabic
+    value: arabic
+  - label: Spanish
+    value: spanish
+  - label: French
+    value: french
+  - label: German
+    value: german
+  - label: Portuguese
+    value: portuguese
+  - label: Chinese
+    value: chinese
+  - label: Japanese
+    value: japanese
+  - label: Korean
+    value: korean
+  - label: Urdu
+    value: urdu
+  - label: Other
+    value: other
+- code: DG23
+  kind: text
+  required: false
+  section_name: Language & Notes
+  section_order: 9
+  section_field_order: 1

@@ -1,0 +1,250 @@
+template_key: real_estate_listing_sheet
+template_label: Real Estate Listing Sheet
+vertical: realestate
+template_name_match:
+- listing sheet
+fields:
+- code: RE1
+  kind: text
+  required: true
+  section_name: Property Details
+  section_order: 0
+  section_field_order: 0
+- code: RE2
+  kind: radio
+  required: true
+  section_name: Property Details
+  section_order: 0
+  section_field_order: 1
+  options:
+  - label: Residential House
+    value: residential_house
+  - label: Apartment
+    value: apartment
+  - label: Villa
+    value: villa
+  - label: Townhouse
+    value: townhouse
+  - label: Commercial Property
+    value: commercial
+  - label: Land
+    value: land
+  - label: Industrial Property
+    value: industrial
+  - label: Other
+    value: other
+- code: RE3
+  kind: radio
+  required: true
+  section_name: Property Details
+  section_order: 0
+  section_field_order: 2
+  options:
+  - label: For Sale
+    value: for_sale
+  - label: For Lease
+    value: for_lease
+  - label: For Rent
+    value: for_rent
+  - label: Off-Market Listing
+    value: off_market
+- code: RE4
+  kind: text
+  required: true
+  section_name: Property Details
+  section_order: 0
+  section_field_order: 3
+- code: RE5
+  kind: text
+  required: true
+  section_name: Property Details
+  section_order: 0
+  section_field_order: 4
+- code: RE6
+  kind: checkbox
+  required: true
+  section_name: Property Details
+  section_order: 0
+  section_field_order: 5
+  options:
+  - label: Ocean views
+    value: ocean_views
+  - label: Recently renovated
+    value: recently_renovated
+  - label: Near schools
+    value: near_schools
+  - label: Premium location
+    value: premium_location
+  - label: Smart home features
+    value: smart_home
+  - label: Investment opportunity
+    value: investment_opportunity
+  - label: Other
+    value: other
+- code: RE7
+  kind: text
+  required: true
+  section_name: Content
+  section_order: 1
+  section_field_order: 0
+- code: RE8
+  kind: text
+  required: false
+  section_name: Content
+  section_order: 1
+  section_field_order: 1
+- code: RE9
+  kind: file
+  required: true
+  section_name: Images & Assets
+  section_order: 2
+  section_field_order: 0
+- code: RE10
+  kind: checkbox
+  required: true
+  section_name: Images & Assets
+  section_order: 2
+  section_field_order: 1
+  options:
+  - label: Floor plan
+    value: floor_plan
+  - label: Site plan
+    value: site_plan
+  - label: Location map
+    value: location_map
+  - label: Agent photo
+    value: agent_photo
+  - label: Agency awards
+    value: agency_awards
+  - label: Property renders
+    value: property_renders
+  - label: Other
+    value: other
+  - label: None
+    value: none
+- code: RE11
+  kind: file
+  required: false
+  section_name: Images & Assets
+  section_order: 2
+  section_field_order: 2
+- code: RE12
+  kind: text
+  required: true
+  section_name: Contact Information
+  section_order: 3
+  section_field_order: 0
+- code: RE13
+  kind: radio
+  required: true
+  section_name: Contact Information
+  section_order: 3
+  section_field_order: 1
+  options:
+  - label: Book an inspection
+    value: book_inspection
+  - label: Contact the agent
+    value: contact_agent
+  - label: Scan to view listing
+    value: scan_to_view
+  - label: Register for auction
+    value: register_auction
+  - label: Schedule a viewing
+    value: schedule_viewing
+  - label: Other
+    value: other
+- code: RE14
+  kind: radio
+  required: true
+  section_name: Contact Information
+  section_order: 3
+  section_field_order: 2
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: RE15
+  kind: text
+  required: false
+  section_name: Contact Information
+  section_order: 3
+  section_field_order: 3
+- code: RE16
+  kind: radio
+  required: true
+  section_name: Layout Requirements
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: A4 Single-sided
+    value: a4_single
+  - label: A4 Double-sided
+    value: a4_double
+  - label: US Letter
+    value: us_letter
+  - label: Custom Size
+    value: custom
+- code: RE17
+  kind: radio
+  required: true
+  section_name: Layout Requirements
+  section_order: 4
+  section_field_order: 1
+  options:
+  - label: 1–3
+    value: 1-3
+  - label: 4–6
+    value: 4-6
+  - label: 7–10
+    value: 7-10
+  - label: 10+
+    value: 10+
+- code: RE18
+  kind: file
+  required: false
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 0
+- code: RE19
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 1
+  options:
+  - label: Luxury
+    value: luxury
+  - label: Modern
+    value: modern
+  - label: Premium Residential
+    value: premium_residential
+  - label: Commercial Corporate
+    value: commercial_corporate
+  - label: Minimal
+    value: minimal
+  - label: High-End Real Estate
+    value: high_end
+  - label: Editorial
+    value: editorial
+  - label: Other
+    value: other
+- code: RE20
+  kind: radio
+  required: true
+  section_name: Technical Requirements
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Print only
+    value: print_only
+  - label: Digital PDF only
+    value: digital_only
+  - label: Both
+    value: both
+- code: RE21
+  kind: text
+  required: false
+  section_name: Technical Requirements
+  section_order: 6
+  section_field_order: 1

@@ -1,0 +1,214 @@
+{
+  "key": "real_estate_email_template",
+  "label": "Email Template",
+  "verticalKey": "realestate",
+  "templateNameMatch": ["email template"],
+  "sections": [
+    {
+      "name": "Email Template Overview",
+      "questions": [
+        {
+          "code": "ET1",
+          "kind": "radio",
+          "question": "What type of email template do you need? Select the template's primary purpose.",
+          "options": [
+            { "label": "Newsletter", "value": "newsletter" },
+            { "label": "Promotional Email", "value": "promotional" },
+            { "label": "Product Updates", "value": "product_updates" },
+            { "label": "Event Invitations", "value": "event_invitations" },
+            { "label": "Customer Onboarding", "value": "onboarding" },
+            { "label": "Customer Retention", "value": "retention" },
+            { "label": "Lead Nurture", "value": "lead_nurture" },
+            { "label": "Transactional Email", "value": "transactional" },
+            { "label": "Internal Communications", "value": "internal_comms" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ET2",
+          "kind": "checkbox",
+          "question": "What is the primary goal of this email template?",
+          "options": [
+            { "label": "Drive website traffic", "value": "drive_traffic" },
+            { "label": "Generate leads", "value": "generate_leads" },
+            { "label": "Promote products", "value": "promote_products" },
+            { "label": "Share company updates", "value": "share_updates" },
+            { "label": "Register for events", "value": "register_events" },
+            { "label": "Educate customers", "value": "educate_customers" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Email Platform",
+      "questions": [
+        {
+          "code": "ET3",
+          "kind": "radio",
+          "question": "Which email platform will this template be used in?",
+          "hint": "This should be one of the first questions — it affects how the template is built.",
+          "options": [
+            { "label": "Mailchimp", "value": "mailchimp" },
+            { "label": "Klaviyo", "value": "klaviyo" },
+            { "label": "HubSpot", "value": "hubspot" },
+            { "label": "ActiveCampaign", "value": "activecampaign" },
+            { "label": "Brevo", "value": "brevo" },
+            { "label": "Campaign Monitor", "value": "campaign_monitor" },
+            { "label": "Salesforce Marketing Cloud", "value": "salesforce_marketing_cloud" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Content Structure",
+      "questions": [
+        {
+          "code": "ET4",
+          "kind": "checkbox",
+          "question": "Which sections should be included in the template?",
+          "options": [
+            { "label": "Hero Banner", "value": "hero_banner" },
+            { "label": "Intro Section", "value": "intro_section" },
+            { "label": "Featured Content", "value": "featured_content" },
+            { "label": "Product Grid", "value": "product_grid" },
+            { "label": "Offer Section", "value": "offer_section" },
+            { "label": "Testimonials", "value": "testimonials" },
+            { "label": "Event Block", "value": "event_block" },
+            { "label": "CTA Section", "value": "cta_section" },
+            { "label": "Social Links", "value": "social_links" },
+            { "label": "Footer", "value": "footer" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ET5",
+          "kind": "radio",
+          "question": "Do you already have content prepared?",
+          "options": [
+            { "label": "Yes, final content ready", "value": "final_ready" },
+            { "label": "Partial content available", "value": "partial" },
+            { "label": "Need help organising content", "value": "need_help_organising" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ET6",
+          "kind": "text",
+          "question": "What copy or placeholder content should appear in the template? Provide approved content or indicate which sections should use editable placeholders.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Assets",
+      "questions": [
+        {
+          "code": "ET7",
+          "kind": "file",
+          "question": "Do you have imagery, graphics, or brand assets to include? Please upload images and assets.",
+          "hint": "PNG or JPG preferred. Web-optimised assets are acceptable.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Call to Action",
+      "questions": [
+        {
+          "code": "ET8",
+          "kind": "checkbox",
+          "question": "What CTA buttons should be available in the template?",
+          "options": [
+            { "label": "Learn More", "value": "learn_more" },
+            { "label": "Shop Now", "value": "shop_now" },
+            { "label": "Book a Demo", "value": "book_demo" },
+            { "label": "Register", "value": "register" },
+            { "label": "Contact Us", "value": "contact_us" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ET9",
+          "kind": "radio",
+          "question": "Will CTA links require UTM tracking?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ET10",
+          "kind": "text",
+          "question": "Please provide the UTM parameters, or confirm you'd like AI-generated UTMs.",
+          "hint": "Only ask this if the client said yes to UTM tracking above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Direction",
+      "questions": [
+        {
+          "code": "ET11",
+          "kind": "file",
+          "question": "Any email designs or inspiration you'd like us to reference?",
+          "hint": "Share examples from competitors, favourite brands, or previous campaigns. Upload reference emails, up to 3.",
+          "required": false
+        },
+        {
+          "code": "ET12",
+          "kind": "radio",
+          "question": "Describe the email design style you'd like.",
+          "options": [
+            { "label": "Modern SaaS", "value": "modern_saas" },
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Product-Focused", "value": "product_focused" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Promotional", "value": "promotional" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Delivery Requirements",
+      "questions": [
+        {
+          "code": "ET13",
+          "kind": "radio",
+          "question": "Do you need a fully coded HTML email or a design-only template?",
+          "hint": "One of the most important questions here — easy to miss.",
+          "options": [
+            { "label": "Fully coded HTML email", "value": "fully_coded_html" },
+            { "label": "Design-only template", "value": "design_only" },
+            { "label": "Both", "value": "both" },
+            { "label": "Not sure", "value": "not_sure" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ET14",
+          "kind": "radio",
+          "question": "Will this template be used on desktop, mobile, or both?",
+          "options": [
+            { "label": "Desktop", "value": "desktop" },
+            { "label": "Mobile", "value": "mobile" },
+            { "label": "Responsive (Both)", "value": "responsive_both" }
+          ],
+          "required": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,380 @@
+{
+  "key": "restaurant_cafe_print_addon",
+  "label": "Print Design",
+  "verticalKey": "restaurant",
+  "templateNameMatch": ["print design", "print add-on", "print addon", "print brief", "print material"],
+  "sections": [
+    {
+      "name": "Print Item & Message",
+      "questions": [
+        {
+          "code": "PT1",
+          "kind": "radio",
+          "question": "What are we creating today?",
+          "hint": "Select the print item.",
+          "options": [
+            { "label": "Restaurant Menu", "value": "restaurant_menu" },
+            { "label": "Menu Insert / Seasonal Menu", "value": "menu_insert_seasonal_menu" },
+            { "label": "Table Tent", "value": "table_tent" },
+            { "label": "Table Mat", "value": "table_mat" },
+            { "label": "Poster", "value": "poster" },
+            { "label": "Flyer", "value": "flyer" },
+            { "label": "Roll-up Standee", "value": "roll_up_standee" },
+            { "label": "Window Graphic", "value": "window_graphic" },
+            { "label": "Restaurant Banner", "value": "restaurant_banner" },
+            { "label": "Event Signage", "value": "event_signage" },
+            { "label": "Tent Card", "value": "tent_card" },
+            { "label": "Sticker / Label", "value": "sticker_label" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT2",
+          "kind": "text",
+          "question": "What are we promoting?",
+          "hint": "Provide the key details: Dish/Menu/Event Name, Category, Price (Optional), Key Ingredients/Highlights.",
+          "required": true
+        },
+        {
+          "code": "PT3",
+          "kind": "text",
+          "question": "What's the ONE message customers should remember?",
+          "hint": "Describe the biggest takeaway after seeing this print piece. Example: \"Try our new summer menu.\", \"Weekend brunch is now available.\", \"Book your table for Valentine's Dinner.\"",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Goal & Audience",
+      "questions": [
+        {
+          "code": "PT4",
+          "kind": "checkbox",
+          "question": "What's the goal of this print piece?",
+          "options": [
+            { "label": "Increase Restaurant Visits", "value": "increase_restaurant_visits" },
+            { "label": "Promote a Dish", "value": "promote_a_dish" },
+            { "label": "Launch a New Menu", "value": "launch_a_new_menu" },
+            { "label": "Promote an Offer", "value": "promote_an_offer" },
+            { "label": "Increase Reservations", "value": "increase_reservations" },
+            { "label": "Event Promotion", "value": "event_promotion" },
+            { "label": "Build Brand Awareness", "value": "build_brand_awareness" },
+            { "label": "Guide Customers In-Restaurant", "value": "guide_customers_in_restaurant" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT5",
+          "kind": "text",
+          "question": "Who is this for?",
+          "hint": "Describe your ideal customer.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Offer",
+      "questions": [
+        {
+          "code": "PT6",
+          "kind": "radio",
+          "question": "Are you running an offer?",
+          "options": [
+            { "label": "No Offer", "value": "no_offer" },
+            { "label": "Percentage Discount", "value": "percentage_discount" },
+            { "label": "Combo Offer", "value": "combo_offer" },
+            { "label": "Happy Hour", "value": "happy_hour" },
+            { "label": "Buy One Get One", "value": "buy_one_get_one" },
+            { "label": "Free Dessert", "value": "free_dessert" },
+            { "label": "Limited-Time Menu", "value": "limited_time_menu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT7",
+          "kind": "text",
+          "question": "Provide the offer details, start & end date, and terms & conditions.",
+          "hint": "Only if you are running an offer.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Content",
+      "questions": [
+        {
+          "code": "PT8",
+          "kind": "radio",
+          "question": "Do you already have the final content?",
+          "options": [
+            { "label": "Final Copy Ready", "value": "final_copy_ready" },
+            { "label": "Rough Points", "value": "rough_points" },
+            { "label": "Need Copywriting Support", "value": "need_copywriting_support" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT9",
+          "kind": "text",
+          "question": "Provide your final copy or rough points.",
+          "hint": "Only if you have final copy ready or rough points.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Requirements",
+      "questions": [
+        {
+          "code": "PT10",
+          "kind": "checkbox",
+          "question": "Is there anything that must appear?",
+          "hint": "Select all that apply.",
+          "options": [
+            { "label": "Dish Name", "value": "dish_name" },
+            { "label": "Menu Items", "value": "menu_items" },
+            { "label": "Prices", "value": "prices" },
+            { "label": "Offer", "value": "offer" },
+            { "label": "Dietary Icons", "value": "dietary_icons" },
+            { "label": "Brand Logo", "value": "brand_logo" },
+            { "label": "Restaurant Address", "value": "restaurant_address" },
+            { "label": "Contact Number", "value": "contact_number" },
+            { "label": "QR Code", "value": "qr_code" },
+            { "label": "Reservation Details", "value": "reservation_details" },
+            { "label": "Social Media Handles", "value": "social_media_handles" },
+            { "label": "Terms & Conditions", "value": "terms_conditions" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Images & Assets",
+      "questions": [
+        {
+          "code": "PT11",
+          "kind": "checkbox",
+          "question": "Do you have photography or artwork?",
+          "options": [
+            { "label": "I'll Upload Food Photos", "value": "ill_upload_food_photos" },
+            { "label": "I'll Upload Restaurant Ambience Photos", "value": "ill_upload_restaurant_ambience_photos" },
+            { "label": "I'll Upload Menu Images", "value": "ill_upload_menu_images" },
+            { "label": "I'll Upload Illustrations or Graphics", "value": "ill_upload_illustrations_or_graphics" },
+            { "label": "Use Stock Images Where Suitable", "value": "use_stock_images_where_suitable" },
+            { "label": "Use Only Brand Assets", "value": "use_only_brand_assets" },
+            { "label": "Designer Can Recommend", "value": "designer_can_recommend" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT12",
+          "kind": "file",
+          "question": "Upload your files.",
+          "hint": "Upload food photography, restaurant images, logos, menus, or supporting artwork. For the best print quality, high-resolution images (300 DPI or higher) are recommended.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Brand Assets",
+      "questions": [
+        {
+          "code": "PT13",
+          "kind": "radio",
+          "question": "Would you like us to follow your existing brand identity?",
+          "hint": "Brand Assets & Guidelines.",
+          "options": [
+            { "label": "Use My Saved Brand Kit", "value": "use_my_saved_brand_kit" },
+            { "label": "Upload Brand Guidelines", "value": "upload_brand_guidelines" },
+            { "label": "Upload Logo & Assets", "value": "upload_logo_assets" },
+            { "label": "Customize This Project", "value": "customize_this_project" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT14",
+          "kind": "checkbox",
+          "question": "What should we customize?",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "options": [
+            { "label": "Brand Colors", "value": "brand_colors" },
+            { "label": "Brand Fonts", "value": "brand_fonts" },
+            { "label": "Additional Instructions", "value": "additional_instructions" }
+          ],
+          "required": false
+        },
+        {
+          "code": "PT15",
+          "kind": "text",
+          "question": "Provide any additional brand customization details.",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Placement",
+      "questions": [
+        {
+          "code": "PT16",
+          "kind": "checkbox",
+          "question": "Where will this print piece be displayed?",
+          "options": [
+            { "label": "Inside Restaurant", "value": "inside_restaurant" },
+            { "label": "Storefront / Entrance", "value": "storefront_entrance" },
+            { "label": "Outdoor", "value": "outdoor" },
+            { "label": "Tabletop", "value": "tabletop" },
+            { "label": "Checkout Counter", "value": "checkout_counter" },
+            { "label": "Shopping Mall", "value": "shopping_mall" },
+            { "label": "Event Venue", "value": "event_venue" },
+            { "label": "Food Festival", "value": "food_festival" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "PT17",
+          "kind": "checkbox",
+          "question": "How should this print design feel?",
+          "hint": "Choose up to 3.",
+          "options": [
+            { "label": "Premium", "value": "premium" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Rustic", "value": "rustic" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Warm", "value": "warm" },
+            { "label": "Cozy", "value": "cozy" },
+            { "label": "Elegant", "value": "elegant" },
+            { "label": "Vibrant", "value": "vibrant" },
+            { "label": "Dark & Moody", "value": "dark_moody" },
+            { "label": "Fresh & Bright", "value": "fresh_bright" },
+            { "label": "Match My Brand Style", "value": "match_my_brand_style" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT18",
+          "kind": "checkbox",
+          "question": "Do you have any inspiration?",
+          "hint": "Share print designs you like.",
+          "options": [
+            { "label": "Website Link", "value": "website_link" },
+            { "label": "Pinterest Link", "value": "pinterest_link" },
+            { "label": "Upload Images", "value": "upload_images" },
+            { "label": "Skip", "value": "skip" }
+          ],
+          "required": false
+        },
+        {
+          "code": "PT19",
+          "kind": "text",
+          "question": "Provide the reference link(s), or note that you're uploading images.",
+          "hint": "Only if you selected a reference option above (not Skip).",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Print Specifications",
+      "questions": [
+        {
+          "code": "PT20",
+          "kind": "radio",
+          "question": "What print size do you need?",
+          "options": [
+            { "label": "Standard Size", "value": "standard_size" },
+            { "label": "Custom Size", "value": "custom_size" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT21",
+          "kind": "text",
+          "question": "Provide the width and height.",
+          "hint": "Only if you selected Custom Size above.",
+          "required": false
+        },
+        {
+          "code": "PT22",
+          "kind": "radio",
+          "question": "What orientation should the design be?",
+          "options": [
+            { "label": "Portrait", "value": "portrait" },
+            { "label": "Landscape", "value": "landscape" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT23",
+          "kind": "radio",
+          "question": "Single-sided or double-sided printing?",
+          "options": [
+            { "label": "Single-Sided", "value": "single_sided" },
+            { "label": "Double-Sided", "value": "double_sided" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT24",
+          "kind": "text",
+          "question": "Any additional print specifications?",
+          "hint": "Examples: Number of pages, Fold type (Bi-fold, Tri-fold, Z-fold), printer specifications available, dieline available. Leave blank if not applicable.",
+          "required": false
+        },
+        {
+          "code": "PT25",
+          "kind": "file",
+          "question": "Upload your printer specifications or dieline.",
+          "hint": "Only if you have these available.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Language & Notes",
+      "questions": [
+        {
+          "code": "PT26",
+          "kind": "radio",
+          "question": "What language should the design use?",
+          "options": [
+            { "label": "English", "value": "english" },
+            { "label": "Hindi", "value": "hindi" },
+            { "label": "Tamil", "value": "tamil" },
+            { "label": "Telugu", "value": "telugu" },
+            { "label": "Malayalam", "value": "malayalam" },
+            { "label": "Kannada", "value": "kannada" },
+            { "label": "Arabic", "value": "arabic" },
+            { "label": "Spanish", "value": "spanish" },
+            { "label": "French", "value": "french" },
+            { "label": "German", "value": "german" },
+            { "label": "Portuguese", "value": "portuguese" },
+            { "label": "Chinese", "value": "chinese" },
+            { "label": "Japanese", "value": "japanese" },
+            { "label": "Korean", "value": "korean" },
+            { "label": "Urdu", "value": "urdu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "PT27",
+          "kind": "text",
+          "question": "Is there anything you'd like us to avoid?",
+          "hint": "Mention any colours, imagery, wording, or visual styles you'd prefer not to use.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

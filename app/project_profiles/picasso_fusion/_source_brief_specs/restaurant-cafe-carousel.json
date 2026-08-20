@@ -1,0 +1,327 @@
+{
+  "key": "restaurant_cafe_carousel",
+  "label": "Carousel",
+  "verticalKey": "restaurant",
+  "templateNameMatch": ["carousel set", "carousel", "carousel post"],
+  "sections": [
+    {
+      "name": "Carousel Purpose & Product",
+      "questions": [
+        {
+          "code": "CR1",
+          "kind": "radio",
+          "question": "What are we creating today?",
+          "hint": "Select the purpose of this carousel.",
+          "options": [
+            { "label": "Menu Showcase", "value": "menu_showcase" },
+            { "label": "Featured Dishes", "value": "featured_dishes" },
+            { "label": "New Menu Launch", "value": "new_menu_launch" },
+            { "label": "Combo Meal", "value": "combo_meal" },
+            { "label": "Chef's Recommendation", "value": "chefs_recommendation" },
+            { "label": "Recipe / Behind the Kitchen", "value": "recipe_behind_the_kitchen" },
+            { "label": "Food Tips", "value": "food_tips" },
+            { "label": "Customer Reviews", "value": "customer_reviews" },
+            { "label": "Event Promotion", "value": "event_promotion" },
+            { "label": "Seasonal Specials", "value": "seasonal_specials" },
+            { "label": "Brand Story", "value": "brand_story" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR2",
+          "kind": "text",
+          "question": "What are we showcasing?",
+          "hint": "Provide the key details: Dish/Menu/Campaign Name, Category, Price (Optional), Key Ingredients/Highlights.",
+          "required": true
+        },
+        {
+          "code": "CR3",
+          "kind": "text",
+          "question": "What's the ONE message customers should remember?",
+          "hint": "Describe the biggest takeaway after they've finished the carousel. Example: \"Our new brunch menu is now available.\", \"Five must-try desserts this summer.\", \"Discover how we prepare our signature pizza.\"",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Goal & Audience",
+      "questions": [
+        {
+          "code": "CR4",
+          "kind": "checkbox",
+          "question": "What's the goal of this carousel?",
+          "options": [
+            { "label": "Increase Restaurant Visits", "value": "increase_restaurant_visits" },
+            { "label": "Increase Online Orders", "value": "increase_online_orders" },
+            { "label": "Promote a Menu", "value": "promote_a_menu" },
+            { "label": "Showcase Multiple Dishes", "value": "showcase_multiple_dishes" },
+            { "label": "Build Brand Awareness", "value": "build_brand_awareness" },
+            { "label": "Educate Customers", "value": "educate_customers" },
+            { "label": "Promote an Event", "value": "promote_an_event" },
+            { "label": "Increase Reservations", "value": "increase_reservations" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR5",
+          "kind": "text",
+          "question": "Who is this carousel for?",
+          "hint": "Describe your ideal customer.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Structure & Content",
+      "questions": [
+        {
+          "code": "CR6",
+          "kind": "radio",
+          "question": "What type of carousel is this?",
+          "options": [
+            { "label": "Menu Showcase", "value": "menu_showcase" },
+            { "label": "Listicle (Top 5 / Top 10)", "value": "listicle_top_5_top_10" },
+            { "label": "Storytelling", "value": "storytelling" },
+            { "label": "Step-by-Step Process", "value": "step_by_step_process" },
+            { "label": "Tips & Facts", "value": "tips_facts" },
+            { "label": "Before & After", "value": "before_after" },
+            { "label": "Customer Journey", "value": "customer_journey" },
+            { "label": "Designer Can Recommend", "value": "designer_can_recommend" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR7",
+          "kind": "radio",
+          "question": "How many slides would you like?",
+          "options": [
+            { "label": "5 Slides", "value": "5_slides" },
+            { "label": "6 Slides", "value": "6_slides" },
+            { "label": "7 Slides", "value": "7_slides" },
+            { "label": "Let the Creative Team Decide", "value": "let_the_creative_team_decide" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR8",
+          "kind": "text",
+          "question": "What content should each slide include?",
+          "hint": "Provide the information for each slide. Examples: Cover, Slide 2, Slide 3, Slide 4, Slide 5, Final CTA.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Offer",
+      "questions": [
+        {
+          "code": "CR9",
+          "kind": "radio",
+          "question": "Are you running an offer?",
+          "options": [
+            { "label": "No Offer", "value": "no_offer" },
+            { "label": "Percentage Discount", "value": "percentage_discount" },
+            { "label": "Combo Offer", "value": "combo_offer" },
+            { "label": "Happy Hour", "value": "happy_hour" },
+            { "label": "Buy One Get One", "value": "buy_one_get_one" },
+            { "label": "Free Dessert", "value": "free_dessert" },
+            { "label": "Limited-Time Menu", "value": "limited_time_menu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR10",
+          "kind": "text",
+          "question": "Provide the offer details, start & end date, and terms & conditions.",
+          "hint": "Only if you are running an offer.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Images & Assets",
+      "questions": [
+        {
+          "code": "CR11",
+          "kind": "checkbox",
+          "question": "Do you have photos or assets?",
+          "options": [
+            { "label": "I'll Upload Food Photos", "value": "ill_upload_food_photos" },
+            { "label": "I'll Upload Restaurant Ambience Photos", "value": "ill_upload_restaurant_ambience_photos" },
+            { "label": "I'll Upload Chef/Team Photos", "value": "ill_upload_chef_team_photos" },
+            { "label": "I'll Upload All Available Assets", "value": "ill_upload_all_available_assets" },
+            { "label": "Use Stock Images Where Suitable", "value": "use_stock_images_where_suitable" },
+            { "label": "Use Only Brand Assets", "value": "use_only_brand_assets" },
+            { "label": "Designer Can Recommend", "value": "designer_can_recommend" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR12",
+          "kind": "file",
+          "question": "Upload your files.",
+          "hint": "Upload food photography, restaurant images, logos, menus, or supporting assets.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Brand Assets",
+      "questions": [
+        {
+          "code": "CR13",
+          "kind": "radio",
+          "question": "Would you like us to follow your existing brand identity?",
+          "hint": "Brand Assets & Guidelines.",
+          "options": [
+            { "label": "Use My Saved Brand Kit", "value": "use_my_saved_brand_kit" },
+            { "label": "Upload Brand Guidelines", "value": "upload_brand_guidelines" },
+            { "label": "Upload Logo & Assets", "value": "upload_logo_assets" },
+            { "label": "Customize This Project", "value": "customize_this_project" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR14",
+          "kind": "checkbox",
+          "question": "What should we customize?",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "options": [
+            { "label": "Brand Colors", "value": "brand_colors" },
+            { "label": "Brand Fonts", "value": "brand_fonts" },
+            { "label": "Additional Instructions", "value": "additional_instructions" }
+          ],
+          "required": false
+        },
+        {
+          "code": "CR15",
+          "kind": "text",
+          "question": "Provide any additional brand customization details.",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "CR16",
+          "kind": "checkbox",
+          "question": "How should the carousel feel?",
+          "hint": "Choose up to 3.",
+          "options": [
+            { "label": "Premium", "value": "premium" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Rustic", "value": "rustic" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Warm", "value": "warm" },
+            { "label": "Cozy", "value": "cozy" },
+            { "label": "Vibrant", "value": "vibrant" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Dark & Moody", "value": "dark_moody" },
+            { "label": "Fresh & Bright", "value": "fresh_bright" },
+            { "label": "Match My Brand Style", "value": "match_my_brand_style" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR17",
+          "kind": "checkbox",
+          "question": "Do you have any inspiration?",
+          "hint": "Share carousel posts you like.",
+          "options": [
+            { "label": "Instagram Link", "value": "instagram_link" },
+            { "label": "Pinterest Link", "value": "pinterest_link" },
+            { "label": "Upload Reference Images", "value": "upload_reference_images" },
+            { "label": "Skip", "value": "skip" }
+          ],
+          "required": false
+        },
+        {
+          "code": "CR18",
+          "kind": "text",
+          "question": "Provide the reference link(s), or note that you're uploading images.",
+          "hint": "Only if you selected a reference option above (not Skip).",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Publishing & Language",
+      "questions": [
+        {
+          "code": "CR19",
+          "kind": "checkbox",
+          "question": "Where will this carousel be published?",
+          "options": [
+            { "label": "Instagram (1:1)", "value": "instagram_1_1" },
+            { "label": "Instagram (4:5)", "value": "instagram_4_5" },
+            { "label": "LinkedIn PDF Carousel", "value": "linkedin_pdf_carousel" },
+            { "label": "Facebook", "value": "facebook" },
+            { "label": "Multiple Platforms", "value": "multiple_platforms" },
+            { "label": "Custom Size", "value": "custom_size" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR20",
+          "kind": "radio",
+          "question": "What should customers do after the final slide?",
+          "options": [
+            { "label": "Visit Our Restaurant", "value": "visit_our_restaurant" },
+            { "label": "Order Online", "value": "order_online" },
+            { "label": "Reserve a Table", "value": "reserve_a_table" },
+            { "label": "Call Us", "value": "call_us" },
+            { "label": "Send Us a DM", "value": "send_us_a_dm" },
+            { "label": "View the Full Menu", "value": "view_the_full_menu" },
+            { "label": "Follow Our Page", "value": "follow_our_page" },
+            { "label": "Learn More", "value": "learn_more" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR21",
+          "kind": "radio",
+          "question": "What language should the carousel use?",
+          "options": [
+            { "label": "English", "value": "english" },
+            { "label": "Hindi", "value": "hindi" },
+            { "label": "Tamil", "value": "tamil" },
+            { "label": "Telugu", "value": "telugu" },
+            { "label": "Malayalam", "value": "malayalam" },
+            { "label": "Kannada", "value": "kannada" },
+            { "label": "Arabic", "value": "arabic" },
+            { "label": "Spanish", "value": "spanish" },
+            { "label": "French", "value": "french" },
+            { "label": "German", "value": "german" },
+            { "label": "Portuguese", "value": "portuguese" },
+            { "label": "Chinese", "value": "chinese" },
+            { "label": "Japanese", "value": "japanese" },
+            { "label": "Korean", "value": "korean" },
+            { "label": "Urdu", "value": "urdu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Additional Notes",
+      "questions": [
+        {
+          "code": "CR22",
+          "kind": "text",
+          "question": "Is there anything you'd like us to avoid?",
+          "hint": "Mention any colours, imagery, wording, or visual styles you'd prefer not to use.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

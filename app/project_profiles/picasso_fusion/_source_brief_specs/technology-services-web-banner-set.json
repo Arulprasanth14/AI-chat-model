@@ -1,0 +1,248 @@
+{
+  "key": "technology_services_web_banner_set",
+  "label": "Web Banner Set",
+  "verticalKey": "technology",
+  "templateNameMatch": ["web banner", "web banner set", "banner set"],
+  "sections": [
+    {
+      "name": "Banner Purpose",
+      "questions": [
+        {
+          "code": "WB1",
+          "kind": "checkbox",
+          "question": "What is the primary goal of these web banners?",
+          "hint": "Examples: Drive sales, Promote a product launch, Generate leads, Increase sign-ups, Promote an event, Drive traffic to a landing page.",
+          "options": [
+            { "label": "Drive Sales", "value": "drive_sales" },
+            { "label": "Promote a Product Launch", "value": "promote_a_product_launch" },
+            { "label": "Generate Leads", "value": "generate_leads" },
+            { "label": "Increase Sign-Ups", "value": "increase_sign_ups" },
+            { "label": "Promote an Event", "value": "promote_an_event" },
+            { "label": "Drive Traffic to a Landing Page", "value": "drive_traffic_to_a_landing_page" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "WB2",
+          "kind": "checkbox",
+          "question": "Where will these banners appear?",
+          "hint": "This is more useful than asking about homepage hero vs sidebar first.",
+          "options": [
+            { "label": "Website Homepage", "value": "website_homepage" },
+            { "label": "Website Internal Pages", "value": "website_internal_pages" },
+            { "label": "Blog/Sidebar", "value": "blog_sidebar" },
+            { "label": "Landing Page", "value": "landing_page" },
+            { "label": "Display Advertising", "value": "display_advertising" },
+            { "label": "Retargeting Campaign", "value": "retargeting_campaign" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Campaign Information",
+      "questions": [
+        {
+          "code": "WB3",
+          "kind": "text",
+          "question": "What is being promoted?",
+          "hint": "Provide the product, service, feature, offer, event, or campaign details.",
+          "required": true
+        },
+        {
+          "code": "WB4",
+          "kind": "checkbox",
+          "question": "Who is the target audience?",
+          "hint": "Examples: Existing customers, New visitors, Small businesses, Enterprise buyers, Students, Homeowners, Healthcare professionals.",
+          "options": [
+            { "label": "Existing Customers", "value": "existing_customers" },
+            { "label": "New Visitors", "value": "new_visitors" },
+            { "label": "Small Businesses", "value": "small_businesses" },
+            { "label": "Enterprise Buyers", "value": "enterprise_buyers" },
+            { "label": "Students", "value": "students" },
+            { "label": "Homeowners", "value": "homeowners" },
+            { "label": "Healthcare Professionals", "value": "healthcare_professionals" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Banner Sizes",
+      "questions": [
+        {
+          "code": "WB5",
+          "kind": "radio",
+          "question": "What banner sizes are required?",
+          "hint": "This is a 3-size package by default — confirm the standard set works, or request custom sizes.",
+          "options": [
+            { "label": "Standard Display Ad Sizes", "value": "standard_display_ad_sizes" },
+            { "label": "Social Display Sizes", "value": "social_display_sizes" },
+            { "label": "Custom Sizes", "value": "custom_sizes" }
+          ],
+          "required": true
+        },
+        {
+          "code": "WB6",
+          "kind": "text",
+          "question": "Please provide the exact pixel dimensions.",
+          "hint": "Only if you selected Custom Sizes above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Content & Assets",
+      "questions": [
+        {
+          "code": "WB7",
+          "kind": "text",
+          "question": "What copy should appear on the banners?",
+          "hint": "Headline, supporting text, offer details, and CTA copy.",
+          "required": true
+        },
+        {
+          "code": "WB8",
+          "kind": "radio",
+          "question": "Do you have images, product screenshots, or visuals to use?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "WB9",
+          "kind": "file",
+          "question": "Upload assets.",
+          "hint": "PNG or JPG preferred. Minimum 1200px wide. Only if you have images, product screenshots, or visuals.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Call to Action",
+      "questions": [
+        {
+          "code": "WB10",
+          "kind": "radio",
+          "question": "What action should users take after clicking the banner?",
+          "hint": "Examples: Shop Now, Learn More, Book a Demo, Register, Download, Get Started.",
+          "options": [
+            { "label": "Shop Now", "value": "shop_now" },
+            { "label": "Learn More", "value": "learn_more" },
+            { "label": "Book a Demo", "value": "book_a_demo" },
+            { "label": "Register", "value": "register" },
+            { "label": "Download", "value": "download" },
+            { "label": "Get Started", "value": "get_started" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "WB11",
+          "kind": "text",
+          "question": "What is the destination URL?",
+          "required": true
+        },
+        {
+          "code": "WB12",
+          "kind": "radio",
+          "question": "Will UTM tracking be required?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "WB13",
+          "kind": "text",
+          "question": "Provide UTM parameters or confirm AI-generated UTMs.",
+          "hint": "Only if you said yes above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Direction",
+      "questions": [
+        {
+          "code": "WB14",
+          "kind": "radio",
+          "question": "Any reference banners or inspiration?",
+          "hint": "Share examples, competitors, or campaigns you admire.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "WB15",
+          "kind": "file",
+          "question": "Upload references, up to 3.",
+          "hint": "Only if you said yes to reference banners above.",
+          "required": false
+        },
+        {
+          "code": "WB16",
+          "kind": "radio",
+          "question": "Describe the visual style you'd like.",
+          "hint": "Examples: Modern SaaS, Premium, Minimal, Product-focused, Corporate, Luxury, Bold promotional.",
+          "options": [
+            { "label": "Modern SaaS", "value": "modern_saas" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Product-Focused", "value": "product_focused" },
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Bold Promotional", "value": "bold_promotional" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Technical Requirements",
+      "questions": [
+        {
+          "code": "WB17",
+          "kind": "radio",
+          "question": "Will these banners be static or animated?",
+          "hint": "This is a critical question currently missing.",
+          "options": [
+            { "label": "Static JPG/PNG", "value": "static_jpg_png" },
+            { "label": "Animated GIF", "value": "animated_gif" },
+            { "label": "HTML5 Banner", "value": "html5_banner" }
+          ],
+          "required": true
+        },
+        {
+          "code": "WB18",
+          "kind": "checkbox",
+          "question": "Any platform-specific requirements?",
+          "hint": "Examples: Google Display Network, Programmatic Ads, Internal Website.",
+          "options": [
+            { "label": "Google Display Network", "value": "google_display_network" },
+            { "label": "Programmatic Ads", "value": "programmatic_ads" },
+            { "label": "Internal Website", "value": "internal_website" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": false
+        },
+        {
+          "code": "WB19",
+          "kind": "text",
+          "question": "Any technical requirements?",
+          "hint": "Leave blank if unsure.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

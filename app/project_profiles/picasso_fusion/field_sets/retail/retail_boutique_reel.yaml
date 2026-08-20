@@ -1,0 +1,384 @@
+template_key: retail_boutique_reel
+template_label: Reel
+vertical: retail
+template_name_match:
+- reel
+- reels
+- reel creative brief
+fields:
+- code: RL1
+  kind: radio
+  required: true
+  section_name: Reel Purpose & Product
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: New Collection Launch
+    value: new_collection_launch
+  - label: New Arrivals
+    value: new_arrivals
+  - label: Product Showcase
+    value: product_showcase
+  - label: Store Tour
+    value: store_tour
+  - label: Seasonal Campaign
+    value: seasonal_campaign
+  - label: Sale / Offer
+    value: sale_offer
+  - label: Styling Tips
+    value: styling_tips
+  - label: Behind the Scenes
+    value: behind_the_scenes
+  - label: Customer Experience
+    value: customer_experience
+  - label: Event Promotion
+    value: event_promotion
+  - label: Brand Story
+    value: brand_story
+  - label: Other
+    value: other
+- code: RL2
+  kind: text
+  required: true
+  section_name: Reel Purpose & Product
+  section_order: 0
+  section_field_order: 1
+- code: RL3
+  kind: text
+  required: true
+  section_name: Reel Purpose & Product
+  section_order: 0
+  section_field_order: 2
+- code: RL4
+  kind: checkbox
+  required: true
+  section_name: Goal & Audience
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Increase Store Visits
+    value: increase_store_visits
+  - label: Promote a Collection
+    value: promote_a_collection
+  - label: Showcase Products
+    value: showcase_products
+  - label: Build Brand Awareness
+    value: build_brand_awareness
+  - label: Promote an Offer
+    value: promote_an_offer
+  - label: Generate Enquiries
+    value: generate_enquiries
+  - label: Highlight Store Experience
+    value: highlight_store_experience
+  - label: Event Promotion
+    value: event_promotion
+  - label: Other
+    value: other
+- code: RL5
+  kind: text
+  required: true
+  section_name: Goal & Audience
+  section_order: 1
+  section_field_order: 1
+- code: RL6
+  kind: radio
+  required: true
+  section_name: Offer
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: No Offer
+    value: no_offer
+  - label: Percentage Discount
+    value: percentage_discount
+  - label: Flat Discount
+    value: flat_discount
+  - label: Buy One Get One
+    value: buy_one_get_one
+  - label: Free Gift
+    value: free_gift
+  - label: Limited-Time Offer
+    value: limited_time_offer
+  - label: Other
+    value: other
+- code: RL7
+  kind: text
+  required: false
+  section_name: Offer
+  section_order: 2
+  section_field_order: 1
+- code: RL8
+  kind: checkbox
+  required: true
+  section_name: Footage & Key Shots
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: I'll Upload Product Videos
+    value: ill_upload_product_videos
+  - label: I'll Upload Store Walkthroughs
+    value: ill_upload_store_walkthroughs
+  - label: I'll Upload Customer/Lifestyle Footage
+    value: ill_upload_customer_lifestyle_footage
+  - label: I Have Both Videos & Photos
+    value: i_have_both_videos_photos
+  - label: Share via Google Drive
+    value: share_via_google_drive
+  - label: Use Stock Footage Where Suitable
+    value: use_stock_footage_where_suitable
+- code: RL9
+  kind: file
+  required: false
+  section_name: Footage & Key Shots
+  section_order: 3
+  section_field_order: 1
+- code: RL10
+  kind: text
+  required: false
+  section_name: Footage & Key Shots
+  section_order: 3
+  section_field_order: 2
+- code: RL11
+  kind: radio
+  required: true
+  section_name: Length & Script
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: Under 15 Seconds
+    value: under_15_seconds
+  - label: 15–30 Seconds
+    value: 15_30_seconds
+  - label: 30–60 Seconds
+    value: 30_60_seconds
+  - label: Let the Creative Team Decide
+    value: let_the_creative_team_decide
+- code: RL12
+  kind: radio
+  required: true
+  section_name: Length & Script
+  section_order: 4
+  section_field_order: 1
+  options:
+  - label: Final Script Ready
+    value: final_script_ready
+  - label: Rough Talking Points
+    value: rough_talking_points
+  - label: Need Scriptwriting Support
+    value: need_scriptwriting_support
+  - label: No Voiceover Required
+    value: no_voiceover_required
+- code: RL13
+  kind: text
+  required: false
+  section_name: Length & Script
+  section_order: 4
+  section_field_order: 2
+- code: RL14
+  kind: checkbox
+  required: true
+  section_name: Tone & Music
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: Premium
+    value: premium
+  - label: Luxury
+    value: luxury
+  - label: Modern
+    value: modern
+  - label: Minimal
+    value: minimal
+  - label: Lifestyle
+    value: lifestyle
+  - label: Editorial
+    value: editorial
+  - label: Energetic
+    value: energetic
+  - label: Trendy
+    value: trendy
+  - label: Elegant
+    value: elegant
+  - label: Fun
+    value: fun
+  - label: Vibrant
+    value: vibrant
+  - label: Match My Brand Style
+    value: match_my_brand_style
+- code: RL15
+  kind: radio
+  required: true
+  section_name: Tone & Music
+  section_order: 5
+  section_field_order: 1
+  options:
+  - label: Trending Instagram Audio
+    value: trending_instagram_audio
+  - label: Upbeat
+    value: upbeat
+  - label: Pop
+    value: pop
+  - label: Electronic
+    value: electronic
+  - label: Ambient
+    value: ambient
+  - label: Cinematic
+    value: cinematic
+  - label: Acoustic
+    value: acoustic
+  - label: I'll Upload My Own Music
+    value: ill_upload_my_own_music
+  - label: No Music
+    value: no_music
+  - label: Designer Can Choose
+    value: designer_can_choose
+- code: RL16
+  kind: radio
+  required: true
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Use My Saved Brand Kit
+    value: use_my_saved_brand_kit
+  - label: Upload Brand Guidelines
+    value: upload_brand_guidelines
+  - label: Upload Logo & Assets
+    value: upload_logo_assets
+  - label: Customize This Project
+    value: customize_this_project
+- code: RL17
+  kind: checkbox
+  required: false
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: Brand Colors
+    value: brand_colors
+  - label: Brand Fonts
+    value: brand_fonts
+  - label: Logo Placement
+    value: logo_placement
+  - label: Additional Instructions
+    value: additional_instructions
+- code: RL18
+  kind: text
+  required: false
+  section_name: Brand Assets
+  section_order: 6
+  section_field_order: 2
+- code: RL19
+  kind: checkbox
+  required: false
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 0
+  options:
+  - label: Instagram Link
+    value: instagram_link
+  - label: TikTok Link
+    value: tiktok_link
+  - label: YouTube Link
+    value: youtube_link
+  - label: Upload Reference Videos
+    value: upload_reference_videos
+  - label: Skip
+    value: skip
+- code: RL20
+  kind: text
+  required: false
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 1
+- code: RL21
+  kind: file
+  required: false
+  section_name: Style & References
+  section_order: 7
+  section_field_order: 2
+- code: RL22
+  kind: checkbox
+  required: true
+  section_name: Publishing & Language
+  section_order: 8
+  section_field_order: 0
+  options:
+  - label: Instagram Reels
+    value: instagram_reels
+  - label: Facebook Reels
+    value: facebook_reels
+  - label: TikTok
+    value: tiktok
+  - label: YouTube Shorts
+    value: youtube_shorts
+  - label: Multiple Platforms
+    value: multiple_platforms
+- code: RL23
+  kind: radio
+  required: true
+  section_name: Publishing & Language
+  section_order: 8
+  section_field_order: 1
+  options:
+  - label: English
+    value: english
+  - label: Hindi
+    value: hindi
+  - label: Tamil
+    value: tamil
+  - label: Telugu
+    value: telugu
+  - label: Malayalam
+    value: malayalam
+  - label: Kannada
+    value: kannada
+  - label: Arabic
+    value: arabic
+  - label: Spanish
+    value: spanish
+  - label: French
+    value: french
+  - label: German
+    value: german
+  - label: Portuguese
+    value: portuguese
+  - label: Chinese
+    value: chinese
+  - label: Japanese
+    value: japanese
+  - label: Korean
+    value: korean
+  - label: Urdu
+    value: urdu
+  - label: Other
+    value: other
+- code: RL24
+  kind: radio
+  required: true
+  section_name: Call to Action & Notes
+  section_order: 9
+  section_field_order: 0
+  options:
+  - label: Visit Our Store
+    value: visit_our_store
+  - label: Explore the Collection
+    value: explore_the_collection
+  - label: Shop Now
+    value: shop_now
+  - label: Contact Us
+    value: contact_us
+  - label: Send Us a DM
+    value: send_us_a_dm
+  - label: Follow Our Page
+    value: follow_our_page
+  - label: Learn More
+    value: learn_more
+  - label: Other
+    value: other
+- code: RL25
+  kind: text
+  required: false
+  section_name: Call to Action & Notes
+  section_order: 9
+  section_field_order: 1

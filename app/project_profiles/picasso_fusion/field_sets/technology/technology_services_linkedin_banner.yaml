@@ -1,0 +1,128 @@
+template_key: technology_services_linkedin_banner
+template_label: LinkedIn Banner
+vertical: technology
+template_name_match:
+- linkedin banner
+- linkedin cover
+fields:
+- code: LB1
+  kind: checkbox
+  required: true
+  section_name: Banner Purpose
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Personal Branding
+    value: personal_branding
+  - label: Thought Leadership
+    value: thought_leadership
+  - label: Lead Generation
+    value: lead_generation
+  - label: Recruiting
+    value: recruiting
+  - label: Company Awareness
+    value: company_awareness
+  - label: Product Promotion
+    value: product_promotion
+  - label: Event Promotion
+    value: event_promotion
+  - label: Other
+    value: other
+- code: LB2
+  kind: radio
+  required: true
+  section_name: Banner Type
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Personal LinkedIn Banner
+    value: personal_linkedin_banner
+  - label: Company LinkedIn Banner
+    value: company_linkedin_banner
+- code: LB3
+  kind: text
+  required: true
+  section_name: Core Message
+  section_order: 2
+  section_field_order: 0
+- code: LB4
+  kind: text
+  required: true
+  section_name: Content
+  section_order: 3
+  section_field_order: 0
+- code: LB5
+  kind: radio
+  required: true
+  section_name: Images & Assets
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: LB6
+  kind: file
+  required: false
+  section_name: Images & Assets
+  section_order: 4
+  section_field_order: 1
+- code: LB7
+  kind: text
+  required: false
+  section_name: Personal Profile Only (Conditional)
+  section_order: 5
+  section_field_order: 0
+- code: LB8
+  kind: text
+  required: false
+  section_name: Company Page Only (Conditional)
+  section_order: 6
+  section_field_order: 0
+- code: LB9
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 7
+  section_field_order: 0
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: LB10
+  kind: file
+  required: false
+  section_name: Design Direction
+  section_order: 7
+  section_field_order: 1
+- code: LB11
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 7
+  section_field_order: 2
+  options:
+  - label: Corporate
+    value: corporate
+  - label: Modern
+    value: modern
+  - label: Premium
+    value: premium
+  - label: Minimal
+    value: minimal
+  - label: Technology-Focused
+    value: technology_focused
+  - label: Bold
+    value: bold
+  - label: Personal Brand-Driven
+    value: personal_brand_driven
+  - label: Other
+    value: other
+- code: LB12
+  kind: text
+  required: false
+  section_name: Technical Requirements
+  section_order: 8
+  section_field_order: 0

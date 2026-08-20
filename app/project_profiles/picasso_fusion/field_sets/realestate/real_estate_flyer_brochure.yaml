@@ -1,0 +1,236 @@
+template_key: real_estate_flyer_brochure
+template_label: Property Flyer / Brochure
+vertical: realestate
+template_name_match:
+- flyer
+- brochure
+fields:
+- code: FB1
+  kind: text
+  required: true
+  section_name: Property Details
+  section_order: 0
+  section_field_order: 0
+- code: FB2
+  kind: radio
+  required: true
+  section_name: Property Details
+  section_order: 0
+  section_field_order: 1
+  options:
+  - label: House
+    value: house
+  - label: Apartment
+    value: apartment
+  - label: Villa
+    value: villa
+  - label: Townhouse
+    value: townhouse
+  - label: Commercial Property
+    value: commercial
+  - label: Land
+    value: land
+  - label: Industrial Property
+    value: industrial
+  - label: Other
+    value: other
+- code: FB3
+  kind: radio
+  required: true
+  section_name: Property Details
+  section_order: 0
+  section_field_order: 2
+  options:
+  - label: For Sale
+    value: for_sale
+  - label: For Lease
+    value: for_lease
+  - label: For Rent
+    value: for_rent
+  - label: Auction
+    value: auction
+  - label: Off-Market Listing
+    value: off_market
+- code: FB4
+  kind: text
+  required: true
+  section_name: Property Details
+  section_order: 0
+  section_field_order: 3
+- code: FB5
+  kind: text
+  required: true
+  section_name: Property Details
+  section_order: 0
+  section_field_order: 4
+- code: FB6
+  kind: checkbox
+  required: true
+  section_name: Property Details
+  section_order: 0
+  section_field_order: 5
+  options:
+  - label: Waterfront views
+    value: waterfront_views
+  - label: Premium location
+    value: premium_location
+  - label: Renovated interiors
+    value: renovated_interiors
+  - label: Near schools and transport
+    value: near_schools_transport
+  - label: Luxury finishes
+    value: luxury_finishes
+  - label: Investment opportunity
+    value: investment_opportunity
+  - label: Other
+    value: other
+- code: FB7
+  kind: radio
+  required: true
+  section_name: Flyer / Brochure Format
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Property Flyer
+    value: property_flyer
+  - label: Bi-Fold Brochure
+    value: bi_fold
+  - label: Tri-Fold Brochure
+    value: tri_fold
+  - label: Multi-Page Property Brochure
+    value: multi_page
+- code: FB8
+  kind: text
+  required: false
+  section_name: Flyer / Brochure Format
+  section_order: 1
+  section_field_order: 1
+- code: FB9
+  kind: text
+  required: true
+  section_name: Content
+  section_order: 2
+  section_field_order: 0
+- code: FB10
+  kind: text
+  required: false
+  section_name: Content
+  section_order: 2
+  section_field_order: 1
+- code: FB11
+  kind: file
+  required: true
+  section_name: Photography & Assets
+  section_order: 3
+  section_field_order: 0
+- code: FB12
+  kind: checkbox
+  required: true
+  section_name: Photography & Assets
+  section_order: 3
+  section_field_order: 1
+  options:
+  - label: Floor Plan
+    value: floor_plan
+  - label: Site Plan
+    value: site_plan
+  - label: Location Map
+    value: location_map
+  - label: Agent Photo
+    value: agent_photo
+  - label: Property Renderings
+    value: property_renderings
+  - label: Drone Photography
+    value: drone_photography
+  - label: Other
+    value: other
+  - label: None
+    value: none
+- code: FB13
+  kind: file
+  required: false
+  section_name: Photography & Assets
+  section_order: 3
+  section_field_order: 2
+- code: FB14
+  kind: text
+  required: true
+  section_name: Agent & Contact Information
+  section_order: 4
+  section_field_order: 0
+- code: FB15
+  kind: radio
+  required: true
+  section_name: Agent & Contact Information
+  section_order: 4
+  section_field_order: 1
+  options:
+  - label: Contact Agent
+    value: contact_agent
+  - label: Book an Inspection
+    value: book_inspection
+  - label: Register for Auction
+    value: register_auction
+  - label: Schedule a Viewing
+    value: schedule_viewing
+  - label: Download Full Property Pack
+    value: download_pack
+  - label: Other
+    value: other
+- code: FB16
+  kind: radio
+  required: true
+  section_name: Agent & Contact Information
+  section_order: 4
+  section_field_order: 2
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+- code: FB17
+  kind: text
+  required: false
+  section_name: Agent & Contact Information
+  section_order: 4
+  section_field_order: 3
+- code: FB18
+  kind: file
+  required: false
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 0
+- code: FB19
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 5
+  section_field_order: 1
+  options:
+  - label: Luxury Real Estate
+    value: luxury_real_estate
+  - label: Premium Residential
+    value: premium_residential
+  - label: Commercial Corporate
+    value: commercial_corporate
+  - label: Modern Minimal
+    value: modern_minimal
+  - label: Editorial
+    value: editorial
+  - label: High-End Lifestyle
+    value: high_end_lifestyle
+  - label: Other
+    value: other
+- code: FB20
+  kind: radio
+  required: true
+  section_name: Production Requirements
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Print only
+    value: print_only
+  - label: Digital PDF only
+    value: digital_only
+  - label: Both
+    value: both

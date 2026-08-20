@@ -1,0 +1,167 @@
+{
+  "key": "technology_services_linkedin_banner",
+  "label": "LinkedIn Banner",
+  "verticalKey": "technology",
+  "templateNameMatch": ["linkedin banner", "linkedin cover"],
+  "sections": [
+    {
+      "name": "Banner Purpose",
+      "questions": [
+        {
+          "code": "LB1",
+          "kind": "checkbox",
+          "question": "What is the primary goal of this LinkedIn banner?",
+          "hint": "Examples: Personal branding, thought leadership, lead generation, recruiting, company awareness, product promotion, event promotion.",
+          "options": [
+            { "label": "Personal Branding", "value": "personal_branding" },
+            { "label": "Thought Leadership", "value": "thought_leadership" },
+            { "label": "Lead Generation", "value": "lead_generation" },
+            { "label": "Recruiting", "value": "recruiting" },
+            { "label": "Company Awareness", "value": "company_awareness" },
+            { "label": "Product Promotion", "value": "product_promotion" },
+            { "label": "Event Promotion", "value": "event_promotion" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Banner Type",
+      "questions": [
+        {
+          "code": "LB2",
+          "kind": "radio",
+          "question": "Is this for a personal profile or a company page?",
+          "options": [
+            { "label": "Personal LinkedIn Banner", "value": "personal_linkedin_banner" },
+            { "label": "Company LinkedIn Banner", "value": "company_linkedin_banner" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Core Message",
+      "questions": [
+        {
+          "code": "LB3",
+          "kind": "text",
+          "question": "What key message should people remember after seeing this banner?",
+          "hint": "Keep it concise — one clear message works best.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Content",
+      "questions": [
+        {
+          "code": "LB4",
+          "kind": "text",
+          "question": "What text should appear on the banner?",
+          "hint": "Examples: Headline, tagline, services, credentials, company positioning, website URL.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Images & Assets",
+      "questions": [
+        {
+          "code": "LB5",
+          "kind": "radio",
+          "question": "Do you have photography, headshots, product visuals, or brand assets to use?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "LB6",
+          "kind": "file",
+          "question": "Upload images and assets.",
+          "hint": "PNG or JPG format recommended. Only if you have photography, headshots, product visuals, or brand assets.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Personal Profile Only (Conditional)",
+      "questions": [
+        {
+          "code": "LB7",
+          "kind": "text",
+          "question": "What do you want to be known for professionally?",
+          "hint": "Examples: Fractional CMO, SaaS Founder, Leadership Coach, Real Estate Advisor. Only ask this if the banner is for a Personal LinkedIn profile (LB2 = Personal LinkedIn Banner).",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Company Page Only (Conditional)",
+      "questions": [
+        {
+          "code": "LB8",
+          "kind": "text",
+          "question": "What products, services, or capabilities should be highlighted?",
+          "hint": "List the most important offerings to showcase. Only ask this if the banner is for a Company LinkedIn page (LB2 = Company LinkedIn Banner).",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Direction",
+      "questions": [
+        {
+          "code": "LB9",
+          "kind": "radio",
+          "question": "Any reference designs or inspiration?",
+          "hint": "Share LinkedIn banners, personal brands, or company pages you admire.",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "LB10",
+          "kind": "file",
+          "question": "Upload reference designs, up to 3.",
+          "hint": "Only if you said yes to reference designs above.",
+          "required": false
+        },
+        {
+          "code": "LB11",
+          "kind": "radio",
+          "question": "Describe the visual style you'd like.",
+          "hint": "Examples: Corporate, modern, premium, minimal, technology-focused, bold, personal brand-driven.",
+          "options": [
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Technology-Focused", "value": "technology_focused" },
+            { "label": "Bold", "value": "bold" },
+            { "label": "Personal Brand-Driven", "value": "personal_brand_driven" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Technical Requirements",
+      "questions": [
+        {
+          "code": "LB12",
+          "kind": "text",
+          "question": "Any technical or platform-specific requirements?",
+          "hint": "Leave blank if unsure — we'll use LinkedIn-recommended dimensions and safe zones.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,386 @@
+template_key: fitness_wellness_print_addon
+template_label: Print Design
+vertical: fitness
+template_name_match:
+- print design
+- print add-on
+- print addon
+- print brief
+- print material
+fields:
+- code: PT1
+  kind: radio
+  required: true
+  section_name: Print Item & Message
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Flyer
+    value: flyer
+  - label: Poster
+    value: poster
+  - label: Brochure
+    value: brochure
+  - label: Bifold Brochure
+    value: bifold_brochure
+  - label: Trifold Brochure
+    value: trifold_brochure
+  - label: Catalogue
+    value: catalogue
+  - label: Business Card
+    value: business_card
+  - label: Menu
+    value: menu
+  - label: Roll-up Standee
+    value: roll_up_standee
+  - label: Banner
+    value: banner
+  - label: Newspaper Advertisement
+    value: newspaper_advertisement
+  - label: Magazine Advertisement
+    value: magazine_advertisement
+  - label: Packaging Insert
+    value: packaging_insert
+  - label: Sticker / Label
+    value: sticker_label
+  - label: Invitation
+    value: invitation
+  - label: Certificate
+    value: certificate
+  - label: Other
+    value: other
+- code: PT2
+  kind: text
+  required: true
+  section_name: Print Item & Message
+  section_order: 0
+  section_field_order: 1
+- code: PT3
+  kind: checkbox
+  required: true
+  section_name: Goal & Audience
+  section_order: 1
+  section_field_order: 0
+  options:
+  - label: Promote a Product
+    value: promote_a_product
+  - label: Promote a Service
+    value: promote_a_service
+  - label: Announce an Event
+    value: announce_an_event
+  - label: Generate Leads
+    value: generate_leads
+  - label: Increase Sales
+    value: increase_sales
+  - label: Drive Store Visits
+    value: drive_store_visits
+  - label: Share Information
+    value: share_information
+  - label: Build Brand Awareness
+    value: build_brand_awareness
+  - label: Other
+    value: other
+- code: PT4
+  kind: text
+  required: true
+  section_name: Goal & Audience
+  section_order: 1
+  section_field_order: 1
+- code: PT5
+  kind: radio
+  required: true
+  section_name: Goal & Audience
+  section_order: 1
+  section_field_order: 2
+  options:
+  - label: Visit Website
+    value: visit_website
+  - label: Call Us
+    value: call_us
+  - label: Visit Store
+    value: visit_store
+  - label: Scan QR Code
+    value: scan_qr_code
+  - label: Book Appointment
+    value: book_appointment
+  - label: Buy Now
+    value: buy_now
+  - label: Contact Us
+    value: contact_us
+  - label: Attend Event
+    value: attend_event
+  - label: Other
+    value: other
+- code: PT6
+  kind: text
+  required: true
+  section_name: Content
+  section_order: 2
+  section_field_order: 0
+- code: PT7
+  kind: radio
+  required: true
+  section_name: Content
+  section_order: 2
+  section_field_order: 1
+  options:
+  - label: Yes, Final Copy Is Ready
+    value: final_copy_ready
+  - label: I Have Rough Points
+    value: rough_points
+  - label: I Need Copywriting Support
+    value: need_copywriting_support
+- code: PT8
+  kind: text
+  required: false
+  section_name: Content
+  section_order: 2
+  section_field_order: 2
+- code: PT9
+  kind: checkbox
+  required: false
+  section_name: Design Requirements
+  section_order: 3
+  section_field_order: 0
+  options:
+  - label: Logo
+    value: logo
+  - label: Phone Number
+    value: phone_number
+  - label: Website
+    value: website
+  - label: Address
+    value: address
+  - label: QR Code
+    value: qr_code
+  - label: Product Price
+    value: product_price
+  - label: Offer Details
+    value: offer_details
+  - label: Social Media Handles
+    value: social_media_handles
+  - label: Contact Person
+    value: contact_person
+  - label: Legal Disclaimer
+    value: legal_disclaimer
+  - label: Sponsor Logos
+    value: sponsor_logos
+  - label: Other
+    value: other
+- code: PT10
+  kind: checkbox
+  required: true
+  section_name: Images & Assets
+  section_order: 4
+  section_field_order: 0
+  options:
+  - label: I'll Upload Photos
+    value: ill_upload_photos
+  - label: I'll Upload Product Images
+    value: ill_upload_product_images
+  - label: I'll Upload Illustrations
+    value: ill_upload_illustrations
+  - label: Use Stock Images
+    value: use_stock_images
+  - label: Use Only Brand Assets
+    value: use_only_brand_assets
+  - label: Graphics & Typography Only
+    value: graphics_typography_only
+  - label: Designer Can Decide
+    value: designer_can_decide
+- code: PT11
+  kind: file
+  required: false
+  section_name: Images & Assets
+  section_order: 4
+  section_field_order: 1
+- code: PT12
+  kind: radio
+  required: true
+  section_name: Brand Assets
+  section_order: 5
+  section_field_order: 0
+  options:
+  - label: Use My Saved Brand Kit
+    value: use_my_saved_brand_kit
+  - label: Upload Brand Guidelines
+    value: upload_brand_guidelines
+  - label: Upload Logo & Assets
+    value: upload_logo_assets
+  - label: Customize This Project
+    value: customize_this_project
+- code: PT13
+  kind: checkbox
+  required: false
+  section_name: Brand Assets
+  section_order: 5
+  section_field_order: 1
+  options:
+  - label: Brand Colors
+    value: brand_colors
+  - label: Brand Fonts
+    value: brand_fonts
+  - label: Additional Brand Instructions
+    value: additional_brand_instructions
+- code: PT14
+  kind: text
+  required: false
+  section_name: Brand Assets
+  section_order: 5
+  section_field_order: 2
+- code: PT15
+  kind: checkbox
+  required: true
+  section_name: Style & References
+  section_order: 6
+  section_field_order: 0
+  options:
+  - label: Premium
+    value: premium
+  - label: Luxury
+    value: luxury
+  - label: Modern
+    value: modern
+  - label: Minimal
+    value: minimal
+  - label: Bold
+    value: bold
+  - label: Elegant
+    value: elegant
+  - label: Corporate
+    value: corporate
+  - label: Professional
+    value: professional
+  - label: Editorial
+    value: editorial
+  - label: High Impact
+    value: high_impact
+  - label: Traditional
+    value: traditional
+  - label: Playful
+    value: playful
+  - label: Clean
+    value: clean
+  - label: Match My Brand Style
+    value: match_my_brand_style
+- code: PT16
+  kind: checkbox
+  required: false
+  section_name: Style & References
+  section_order: 6
+  section_field_order: 1
+  options:
+  - label: Upload Images
+    value: upload_images
+  - label: Pinterest Link
+    value: pinterest_link
+  - label: Website Link
+    value: website_link
+  - label: PDF Reference
+    value: pdf_reference
+  - label: Skip
+    value: skip
+- code: PT17
+  kind: text
+  required: false
+  section_name: Style & References
+  section_order: 6
+  section_field_order: 2
+- code: PT18
+  kind: radio
+  required: true
+  section_name: Print Specifications
+  section_order: 7
+  section_field_order: 0
+  options:
+  - label: Standard Size
+    value: standard_size
+  - label: Custom Size
+    value: custom_size
+- code: PT19
+  kind: text
+  required: false
+  section_name: Print Specifications
+  section_order: 7
+  section_field_order: 1
+- code: PT20
+  kind: radio
+  required: true
+  section_name: Print Specifications
+  section_order: 7
+  section_field_order: 2
+  options:
+  - label: Portrait
+    value: portrait
+  - label: Landscape
+    value: landscape
+  - label: Square
+    value: square
+- code: PT21
+  kind: radio
+  required: true
+  section_name: Print Specifications
+  section_order: 7
+  section_field_order: 3
+  options:
+  - label: Single-Sided
+    value: single_sided
+  - label: Double-Sided
+    value: double_sided
+- code: PT22
+  kind: text
+  required: false
+  section_name: Print Specifications
+  section_order: 7
+  section_field_order: 4
+- code: PT23
+  kind: file
+  required: false
+  section_name: Print Specifications
+  section_order: 7
+  section_field_order: 5
+- code: PT24
+  kind: radio
+  required: true
+  section_name: Language & Notes
+  section_order: 8
+  section_field_order: 0
+  options:
+  - label: English
+    value: english
+  - label: Hindi
+    value: hindi
+  - label: Tamil
+    value: tamil
+  - label: Telugu
+    value: telugu
+  - label: Malayalam
+    value: malayalam
+  - label: Kannada
+    value: kannada
+  - label: Arabic
+    value: arabic
+  - label: Spanish
+    value: spanish
+  - label: French
+    value: french
+  - label: German
+    value: german
+  - label: Portuguese
+    value: portuguese
+  - label: Chinese
+    value: chinese
+  - label: Japanese
+    value: japanese
+  - label: Korean
+    value: korean
+  - label: Urdu
+    value: urdu
+  - label: Other
+    value: other
+- code: PT25
+  kind: text
+  required: false
+  section_name: Language & Notes
+  section_order: 8
+  section_field_order: 1

@@ -1,0 +1,372 @@
+{
+  "key": "ecommerce_reel",
+  "label": "Reel",
+  "verticalKey": "ecommerce",
+  "templateNameMatch": ["reel", "reels", "reel creative brief"],
+  "sections": [
+    {
+      "name": "Reel Purpose & Product",
+      "questions": [
+        {
+          "code": "RL1",
+          "kind": "radio",
+          "question": "What are we creating today?",
+          "hint": "Select the purpose of this Reel.",
+          "options": [
+            { "label": "Product Launch", "value": "product_launch" },
+            { "label": "Product Showcase", "value": "product_showcase" },
+            { "label": "New Arrival", "value": "new_arrival" },
+            { "label": "Best Seller", "value": "best_seller" },
+            { "label": "Product Demonstration", "value": "product_demonstration" },
+            { "label": "Unboxing", "value": "unboxing" },
+            { "label": "How to Use", "value": "how_to_use" },
+            { "label": "Customer Review", "value": "customer_review" },
+            { "label": "Before & After", "value": "before_after" },
+            { "label": "Collection Launch", "value": "collection_launch" },
+            { "label": "Offer / Sale", "value": "offer_sale" },
+            { "label": "Seasonal Campaign", "value": "seasonal_campaign" },
+            { "label": "Brand Awareness", "value": "brand_awareness" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL2",
+          "kind": "text",
+          "question": "Which product are we featuring?",
+          "hint": "Provide the key product details: Product Name, Category, Price (Optional), Key Features/Benefits, Available Colours/Sizes/Variants (Optional).",
+          "required": true
+        },
+        {
+          "code": "RL3",
+          "kind": "text",
+          "question": "What's the ONE message customers should remember?",
+          "hint": "Describe the biggest reason someone should buy this product. Example: \"Keeps drinks cold for 24 hours.\", \"Premium leather built to last.\", \"Designed for everyday comfort.\"",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Goal & Audience",
+      "questions": [
+        {
+          "code": "RL4",
+          "kind": "checkbox",
+          "question": "What's the goal of this Reel?",
+          "options": [
+            { "label": "Increase Sales", "value": "increase_sales" },
+            { "label": "Launch a Product", "value": "launch_a_product" },
+            { "label": "Promote an Offer", "value": "promote_an_offer" },
+            { "label": "Drive Website Traffic", "value": "drive_website_traffic" },
+            { "label": "Build Brand Awareness", "value": "build_brand_awareness" },
+            { "label": "Increase Followers", "value": "increase_followers" },
+            { "label": "Generate Enquiries", "value": "generate_enquiries" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL5",
+          "kind": "text",
+          "question": "Who is this product for?",
+          "hint": "Describe your ideal customer.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Offer",
+      "questions": [
+        {
+          "code": "RL6",
+          "kind": "radio",
+          "question": "Are you running an offer?",
+          "options": [
+            { "label": "No Offer", "value": "no_offer" },
+            { "label": "Discount", "value": "discount" },
+            { "label": "Buy One Get One", "value": "buy_one_get_one" },
+            { "label": "Bundle Offer", "value": "bundle_offer" },
+            { "label": "Free Shipping", "value": "free_shipping" },
+            { "label": "Limited-Time Offer", "value": "limited_time_offer" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL7",
+          "kind": "text",
+          "question": "Provide the offer details, start & end date, and terms & conditions.",
+          "hint": "Only if you are running an offer.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Footage & Key Shots",
+      "questions": [
+        {
+          "code": "RL8",
+          "kind": "checkbox",
+          "question": "What footage do you have?",
+          "options": [
+            { "label": "I'll Upload Product Videos", "value": "ill_upload_product_videos" },
+            { "label": "I'll Upload Lifestyle Videos", "value": "ill_upload_lifestyle_videos" },
+            { "label": "I Have Both Videos & Photos", "value": "i_have_both_videos_photos" },
+            { "label": "Share via Google Drive", "value": "share_via_google_drive" },
+            { "label": "Use Stock Footage", "value": "use_stock_footage" },
+            { "label": "Designer Can Suggest", "value": "designer_can_suggest" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL9",
+          "kind": "file",
+          "question": "Upload your files.",
+          "hint": "Upload product videos, photos, logos, packaging, or supporting assets. Preferred format: Vertical (9:16), MP4/MOV, 1080p or higher.",
+          "required": false
+        },
+        {
+          "code": "RL10",
+          "kind": "text",
+          "question": "Are there any shots that must be included?",
+          "hint": "Example: Product close-up, Packaging, Unboxing, Product in use, Feature demonstration, Customer reaction, Colour options.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Length & Script",
+      "questions": [
+        {
+          "code": "RL11",
+          "kind": "radio",
+          "question": "How long should the Reel be?",
+          "options": [
+            { "label": "Under 15 Seconds", "value": "under_15_seconds" },
+            { "label": "15–30 Seconds", "value": "15_30_seconds" },
+            { "label": "30–60 Seconds", "value": "30_60_seconds" },
+            { "label": "Let the Creative Team Decide", "value": "let_the_creative_team_decide" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL12",
+          "kind": "radio",
+          "question": "Do you already have a script or talking points?",
+          "options": [
+            { "label": "Final Script Ready", "value": "final_script_ready" },
+            { "label": "Rough Ideas", "value": "rough_ideas" },
+            { "label": "Need Copywriting Support", "value": "need_copywriting_support" },
+            { "label": "No Voiceover Required", "value": "no_voiceover_required" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL13",
+          "kind": "text",
+          "question": "Provide your script or rough talking points.",
+          "hint": "Only if you selected \"Final Script Ready\" or \"Rough Ideas\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Tone & On-Screen Text",
+      "questions": [
+        {
+          "code": "RL14",
+          "kind": "checkbox",
+          "question": "How should this Reel feel?",
+          "hint": "Choose up to 3.",
+          "options": [
+            { "label": "Premium", "value": "premium" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Lifestyle", "value": "lifestyle" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Bold", "value": "bold" },
+            { "label": "Clean", "value": "clean" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Fast Paced", "value": "fast_paced" },
+            { "label": "High Energy", "value": "high_energy" },
+            { "label": "Fun", "value": "fun" },
+            { "label": "Elegant", "value": "elegant" },
+            { "label": "Match My Brand Style", "value": "match_my_brand_style" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL15",
+          "kind": "radio",
+          "question": "Should the Reel include text on screen?",
+          "options": [
+            { "label": "Full Captions", "value": "full_captions" },
+            { "label": "Key Highlights", "value": "key_highlights" },
+            { "label": "Animated Headlines", "value": "animated_headlines" },
+            { "label": "Minimal Text", "value": "minimal_text" },
+            { "label": "No Text", "value": "no_text" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL16",
+          "kind": "radio",
+          "question": "What kind of music would you like?",
+          "options": [
+            { "label": "Trending Social Audio", "value": "trending_social_audio" },
+            { "label": "Upbeat", "value": "upbeat" },
+            { "label": "Electronic", "value": "electronic" },
+            { "label": "Cinematic", "value": "cinematic" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Ambient", "value": "ambient" },
+            { "label": "I'll Upload My Own Music", "value": "ill_upload_my_own_music" },
+            { "label": "No Music", "value": "no_music" },
+            { "label": "Designer Can Choose", "value": "designer_can_choose" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Brand Assets",
+      "questions": [
+        {
+          "code": "RL17",
+          "kind": "radio",
+          "question": "Would you like us to follow your existing brand identity?",
+          "hint": "Brand Assets & Guidelines.",
+          "options": [
+            { "label": "Use My Saved Brand Kit", "value": "use_my_saved_brand_kit" },
+            { "label": "Upload Brand Guidelines", "value": "upload_brand_guidelines" },
+            { "label": "Upload Logo & Assets", "value": "upload_logo_assets" },
+            { "label": "Customize This Project", "value": "customize_this_project" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL18",
+          "kind": "checkbox",
+          "question": "What should we customize?",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "options": [
+            { "label": "Brand Colors", "value": "brand_colors" },
+            { "label": "Brand Fonts", "value": "brand_fonts" },
+            { "label": "Logo Placement", "value": "logo_placement" },
+            { "label": "Additional Instructions", "value": "additional_instructions" }
+          ],
+          "required": false
+        },
+        {
+          "code": "RL19",
+          "kind": "text",
+          "question": "Provide any additional brand customization details.",
+          "hint": "Only if you selected \"Customize This Project\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "RL20",
+          "kind": "checkbox",
+          "question": "Do you have any inspiration?",
+          "hint": "Share Reels or videos you like.",
+          "options": [
+            { "label": "Instagram Reel", "value": "instagram_reel" },
+            { "label": "TikTok", "value": "tiktok" },
+            { "label": "YouTube Shorts", "value": "youtube_shorts" },
+            { "label": "Upload Reference Video", "value": "upload_reference_video" },
+            { "label": "Skip", "value": "skip" }
+          ],
+          "required": false
+        },
+        {
+          "code": "RL21",
+          "kind": "text",
+          "question": "Provide the reference link(s).",
+          "hint": "Only if you selected Instagram Reel, TikTok, or YouTube Shorts above.",
+          "required": false
+        },
+        {
+          "code": "RL22",
+          "kind": "file",
+          "question": "Upload reference video.",
+          "hint": "Only if you selected \"Upload Reference Video\" above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Publishing & Language",
+      "questions": [
+        {
+          "code": "RL23",
+          "kind": "checkbox",
+          "question": "Where will this Reel be published?",
+          "options": [
+            { "label": "Instagram Reels", "value": "instagram_reels" },
+            { "label": "Facebook Reels", "value": "facebook_reels" },
+            { "label": "TikTok", "value": "tiktok" },
+            { "label": "YouTube Shorts", "value": "youtube_shorts" },
+            { "label": "Multiple Platforms", "value": "multiple_platforms" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL24",
+          "kind": "radio",
+          "question": "What language should the Reel use?",
+          "options": [
+            { "label": "English", "value": "english" },
+            { "label": "Hindi", "value": "hindi" },
+            { "label": "Tamil", "value": "tamil" },
+            { "label": "Telugu", "value": "telugu" },
+            { "label": "Malayalam", "value": "malayalam" },
+            { "label": "Kannada", "value": "kannada" },
+            { "label": "Arabic", "value": "arabic" },
+            { "label": "Spanish", "value": "spanish" },
+            { "label": "French", "value": "french" },
+            { "label": "German", "value": "german" },
+            { "label": "Portuguese", "value": "portuguese" },
+            { "label": "Chinese", "value": "chinese" },
+            { "label": "Japanese", "value": "japanese" },
+            { "label": "Korean", "value": "korean" },
+            { "label": "Urdu", "value": "urdu" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Call to Action & Notes",
+      "questions": [
+        {
+          "code": "RL25",
+          "kind": "radio",
+          "question": "What should viewers do after watching?",
+          "options": [
+            { "label": "Shop Now", "value": "shop_now" },
+            { "label": "View Product", "value": "view_product" },
+            { "label": "Visit Website", "value": "visit_website" },
+            { "label": "Add to Cart", "value": "add_to_cart" },
+            { "label": "Send Us a DM", "value": "send_us_a_dm" },
+            { "label": "Follow Our Page", "value": "follow_our_page" },
+            { "label": "Learn More", "value": "learn_more" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "RL26",
+          "kind": "text",
+          "question": "Is there anything you'd like us to avoid?",
+          "hint": "Mention any editing styles, music, colours, wording, or visual directions you'd prefer not to use.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

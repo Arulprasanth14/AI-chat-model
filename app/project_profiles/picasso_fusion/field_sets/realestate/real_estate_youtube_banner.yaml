@@ -1,0 +1,199 @@
+template_key: real_estate_youtube_banner
+template_label: YouTube Banner
+vertical: realestate
+template_name_match:
+- youtube banner
+- youtube channel
+fields:
+- code: YB1
+  kind: checkbox
+  required: true
+  section_name: Channel Overview
+  section_order: 0
+  section_field_order: 0
+  options:
+  - label: Business & Entrepreneurship
+    value: business_entrepreneurship
+  - label: Real Estate
+    value: real_estate
+  - label: Gaming
+    value: gaming
+  - label: Education
+    value: education
+  - label: Finance
+    value: finance
+  - label: Technology
+    value: technology
+  - label: Fitness
+    value: fitness
+  - label: Lifestyle
+    value: lifestyle
+  - label: Podcast
+    value: podcast
+  - label: Other
+    value: other
+- code: YB2
+  kind: checkbox
+  required: true
+  section_name: Channel Overview
+  section_order: 0
+  section_field_order: 1
+  options:
+  - label: First Home Buyers
+    value: first_home_buyers
+  - label: Business Owners
+    value: business_owners
+  - label: Investors
+    value: investors
+  - label: Students
+    value: students
+  - label: Developers
+    value: developers
+  - label: Fitness Enthusiasts
+    value: fitness_enthusiasts
+  - label: General Consumers
+    value: general_consumers
+  - label: Other
+    value: other
+- code: YB3
+  kind: checkbox
+  required: true
+  section_name: Channel Overview
+  section_order: 0
+  section_field_order: 2
+  options:
+  - label: Grow Subscribers
+    value: grow_subscribers
+  - label: Build Personal Brand
+    value: build_personal_brand
+  - label: Generate Leads
+    value: generate_leads
+  - label: Educate Audience
+    value: educate_audience
+  - label: Sell Products
+    value: sell_products
+  - label: Build Community
+    value: build_community
+  - label: Other
+    value: other
+- code: YB4
+  kind: text
+  required: true
+  section_name: YouTube Banner
+  section_order: 1
+  section_field_order: 0
+- code: YB5
+  kind: text
+  required: true
+  section_name: YouTube Banner
+  section_order: 1
+  section_field_order: 1
+- code: YB6
+  kind: checkbox
+  required: true
+  section_name: Thumbnail Template System
+  section_order: 2
+  section_field_order: 0
+  options:
+  - label: Tutorials
+    value: tutorials
+  - label: Property Tours
+    value: property_tours
+  - label: Product Reviews
+    value: product_reviews
+  - label: Interviews
+    value: interviews
+  - label: Podcasts
+    value: podcasts
+  - label: News Updates
+    value: news_updates
+  - label: Educational Content
+    value: educational_content
+  - label: Other
+    value: other
+- code: YB7
+  kind: radio
+  required: true
+  section_name: Thumbnail Template System
+  section_order: 2
+  section_field_order: 1
+  options:
+  - label: 1 Universal Template
+    value: 1_universal
+  - label: 3 Content Categories
+    value: 3_categories
+  - label: 5 Content Categories
+    value: 5_categories
+  - label: Custom
+    value: custom
+- code: YB8
+  kind: checkbox
+  required: true
+  section_name: Thumbnail Template System
+  section_order: 2
+  section_field_order: 2
+  options:
+  - label: Presenter Photo
+    value: presenter_photo
+  - label: Logo
+    value: logo
+  - label: Episode Number
+    value: episode_number
+  - label: Category Label
+    value: category_label
+  - label: Brand Colours
+    value: brand_colours
+  - label: Icons
+    value: icons
+  - label: Progress Bars
+    value: progress_bars
+  - label: Other
+    value: other
+- code: YB9
+  kind: file
+  required: true
+  section_name: Assets
+  section_order: 3
+  section_field_order: 0
+- code: YB10
+  kind: radio
+  required: true
+  section_name: Assets
+  section_order: 3
+  section_field_order: 1
+  options:
+  - label: 'Yes'
+    value: 'yes'
+  - label: 'No'
+    value: 'no'
+  - label: Sometimes
+    value: sometimes
+- code: YB11
+  kind: file
+  required: false
+  section_name: Design Direction
+  section_order: 4
+  section_field_order: 0
+- code: YB12
+  kind: radio
+  required: true
+  section_name: Design Direction
+  section_order: 4
+  section_field_order: 1
+  options:
+  - label: Bold Creator Style
+    value: bold_creator_style
+  - label: Premium
+    value: premium
+  - label: Educational
+    value: educational
+  - label: Minimal
+    value: minimal
+  - label: Corporate
+    value: corporate
+  - label: High-Energy
+    value: high_energy
+  - label: Modern Tech
+    value: modern_tech
+  - label: Other
+    value: other

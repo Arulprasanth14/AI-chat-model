@@ -1,0 +1,290 @@
+{
+  "key": "fitness_wellness_carousel_set",
+  "label": "Carousel Set",
+  "verticalKey": "fitness",
+  "templateNameMatch": ["carousel set", "carousel", "carousel post"],
+  "sections": [
+    {
+      "name": "Carousel Topic & Message",
+      "questions": [
+        {
+          "code": "CR1",
+          "kind": "radio",
+          "question": "What is this carousel about?",
+          "hint": "Choose the purpose.",
+          "options": [
+            { "label": "Workout Guide", "value": "workout_guide" },
+            { "label": "Exercise Technique", "value": "exercise_technique" },
+            { "label": "Fitness Tips", "value": "fitness_tips" },
+            { "label": "Nutrition Advice", "value": "nutrition_advice" },
+            { "label": "Transformation Story", "value": "transformation_story" },
+            { "label": "Client Success Story", "value": "client_success_story" },
+            { "label": "Common Mistakes", "value": "common_mistakes" },
+            { "label": "Myth vs Fact", "value": "myth_vs_fact" },
+            { "label": "Challenge / Program", "value": "challenge_program" },
+            { "label": "Product Showcase", "value": "product_showcase" },
+            { "label": "Offer / Promotion", "value": "offer_promotion" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR2",
+          "kind": "text",
+          "question": "What's the ONE message people should remember?",
+          "hint": "Example: \"Progress beats perfection.\", \"5 mistakes preventing fat loss.\", \"Our 12-week transformation program is now open.\"",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Goal & Audience",
+      "questions": [
+        {
+          "code": "CR3",
+          "kind": "checkbox",
+          "question": "What's the goal of this carousel?",
+          "options": [
+            { "label": "Get More Enquiries", "value": "get_more_enquiries" },
+            { "label": "Sell a Program", "value": "sell_a_program" },
+            { "label": "Promote Personal Training", "value": "promote_personal_training" },
+            { "label": "Educate Followers", "value": "educate_followers" },
+            { "label": "Build Trust", "value": "build_trust" },
+            { "label": "Increase Saves", "value": "increase_saves" },
+            { "label": "Increase Shares", "value": "increase_shares" },
+            { "label": "Build Brand Awareness", "value": "build_brand_awareness" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR4",
+          "kind": "checkbox",
+          "question": "Who is this for?",
+          "hint": "Example: Beginners, Weight loss clients, Women, Men, Athletes, Busy professionals, Seniors, Everyone.",
+          "options": [
+            { "label": "Beginners", "value": "beginners" },
+            { "label": "Weight Loss Clients", "value": "weight_loss_clients" },
+            { "label": "Women", "value": "women" },
+            { "label": "Men", "value": "men" },
+            { "label": "Athletes", "value": "athletes" },
+            { "label": "Busy Professionals", "value": "busy_professionals" },
+            { "label": "Seniors", "value": "seniors" },
+            { "label": "Everyone", "value": "everyone" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Structure & Content",
+      "questions": [
+        {
+          "code": "CR5",
+          "kind": "radio",
+          "question": "How should the story be structured?",
+          "options": [
+            { "label": "Tips & Tricks", "value": "tips_tricks" },
+            { "label": "Step-by-Step Guide", "value": "step_by_step_guide" },
+            { "label": "Common Mistakes", "value": "common_mistakes" },
+            { "label": "Before → After", "value": "before_after" },
+            { "label": "Transformation Story", "value": "transformation_story" },
+            { "label": "Myth vs Fact", "value": "myth_vs_fact" },
+            { "label": "Workout Routine", "value": "workout_routine" },
+            { "label": "Nutrition Plan", "value": "nutrition_plan" },
+            { "label": "Designer Can Suggest", "value": "designer_can_suggest" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR6",
+          "kind": "radio",
+          "question": "Do you already have the content?",
+          "options": [
+            { "label": "Final Content Ready", "value": "final_content_ready" },
+            { "label": "I Have Rough Points", "value": "i_have_rough_points" },
+            { "label": "I Need Help Writing It", "value": "i_need_help_writing_it" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR7",
+          "kind": "text",
+          "question": "Provide your rough points.",
+          "hint": "Only if you selected \"I Have Rough Points\" above.",
+          "required": false
+        },
+        {
+          "code": "CR8",
+          "kind": "text",
+          "question": "Tell us the flow of the carousel.",
+          "hint": "Instead of describing every slide separately, walk through the narrative. Example: Cover → \"5 Fat Loss Mistakes\"; Slide 2 → Mistake 1; Slide 3 → Mistake 2; Slide 4 → Mistake 3; Slide 5 → Solution; Slide 6 → Summary; Slide 7 → CTA. This gives designers freedom while still understanding the narrative.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Slide Count & Key Slides",
+      "questions": [
+        {
+          "code": "CR9",
+          "kind": "radio",
+          "question": "How many slides would you like?",
+          "options": [
+            { "label": "5", "value": "5" },
+            { "label": "6", "value": "6" },
+            { "label": "7", "value": "7" },
+            { "label": "Let the Creative Team Decide", "value": "let_the_creative_team_decide" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR10",
+          "kind": "text",
+          "question": "What should the cover slide say?",
+          "hint": "This is the most important slide. Example: \"Stop Making These Gym Mistakes\", \"7 Foods That Build Muscle\", \"The Beginner Workout Guide\".",
+          "required": true
+        },
+        {
+          "code": "CR11",
+          "kind": "radio",
+          "question": "What should the final slide encourage people to do?",
+          "options": [
+            { "label": "Follow for More", "value": "follow_for_more" },
+            { "label": "Save This Post", "value": "save_this_post" },
+            { "label": "Share with a Friend", "value": "share_with_a_friend" },
+            { "label": "Book a Consultation", "value": "book_a_consultation" },
+            { "label": "Join Our Program", "value": "join_our_program" },
+            { "label": "Visit Our Gym", "value": "visit_our_gym" },
+            { "label": "Send Us a DM", "value": "send_us_a_dm" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Images & Assets",
+      "questions": [
+        {
+          "code": "CR12",
+          "kind": "checkbox",
+          "question": "Do you have photos to include?",
+          "options": [
+            { "label": "I'll Upload Photos", "value": "ill_upload_photos" },
+            { "label": "Use Stock Fitness Images", "value": "use_stock_fitness_images" },
+            { "label": "Use Only Brand Assets", "value": "use_only_brand_assets" },
+            { "label": "Graphics & Icons Only", "value": "graphics_icons_only" },
+            { "label": "Designer Can Decide", "value": "designer_can_decide" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR13",
+          "kind": "file",
+          "question": "Upload your images.",
+          "hint": "Label images if they belong to a specific slide. Only if you selected \"I'll Upload Photos\" above.",
+          "required": false
+        },
+        {
+          "code": "CR14",
+          "kind": "checkbox",
+          "question": "What brand assets should be used?",
+          "options": [
+            { "label": "Use My Brand Kit", "value": "use_my_brand_kit" },
+            { "label": "Upload Logo", "value": "upload_logo" },
+            { "label": "Upload Brand Guidelines", "value": "upload_brand_guidelines" },
+            { "label": "Customize for This Project", "value": "customize_for_this_project" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR15",
+          "kind": "file",
+          "question": "Upload your logo and brand guidelines.",
+          "hint": "Only if you selected Upload Logo or Upload Brand Guidelines above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Style & References",
+      "questions": [
+        {
+          "code": "CR16",
+          "kind": "checkbox",
+          "question": "Describe the visual style.",
+          "hint": "Choose up to 3.",
+          "options": [
+            { "label": "Modern", "value": "modern" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Bold", "value": "bold" },
+            { "label": "Energetic", "value": "energetic" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Clean", "value": "clean" },
+            { "label": "Editorial", "value": "editorial" },
+            { "label": "Dark & Moody", "value": "dark_moody" },
+            { "label": "Bright & Fresh", "value": "bright_fresh" },
+            { "label": "High Contrast", "value": "high_contrast" },
+            { "label": "Match My Brand", "value": "match_my_brand" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR17",
+          "kind": "checkbox",
+          "question": "Do you have any inspiration?",
+          "options": [
+            { "label": "Instagram Link", "value": "instagram_link" },
+            { "label": "Pinterest", "value": "pinterest" },
+            { "label": "Upload Images", "value": "upload_images" },
+            { "label": "Skip", "value": "skip" }
+          ],
+          "required": false
+        },
+        {
+          "code": "CR18",
+          "kind": "text",
+          "question": "Provide the reference link(s), or upload the images.",
+          "hint": "Only if you selected a reference option above (not Skip).",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Publishing & Language",
+      "questions": [
+        {
+          "code": "CR19",
+          "kind": "radio",
+          "question": "Where will this carousel be published?",
+          "options": [
+            { "label": "Instagram (1:1)", "value": "instagram_1_1" },
+            { "label": "Instagram (4:5)", "value": "instagram_4_5" },
+            { "label": "Facebook", "value": "facebook" },
+            { "label": "LinkedIn PDF", "value": "linkedin_pdf" },
+            { "label": "Custom", "value": "custom" }
+          ],
+          "required": true
+        },
+        {
+          "code": "CR20",
+          "kind": "radio",
+          "question": "What language should we use?",
+          "options": [
+            { "label": "English", "value": "english" },
+            { "label": "Hindi", "value": "hindi" },
+            { "label": "Tamil", "value": "tamil" },
+            { "label": "Telugu", "value": "telugu" },
+            { "label": "Malayalam", "value": "malayalam" },
+            { "label": "Kannada", "value": "kannada" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    }
+  ]
+}

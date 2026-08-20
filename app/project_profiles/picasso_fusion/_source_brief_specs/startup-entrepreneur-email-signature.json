@@ -1,0 +1,232 @@
+{
+  "key": "startup_entrepreneur_email_signature",
+  "label": "Email Signature",
+  "verticalKey": "startup",
+  "templateNameMatch": ["email signature", "signature template"],
+  "sections": [
+    {
+      "name": "Signature Type",
+      "questions": [
+        {
+          "code": "ES1",
+          "kind": "radio",
+          "question": "Is this email signature for an individual or a company-wide template?",
+          "hint": "This determines how flexible the signature needs to be.",
+          "options": [
+            { "label": "Individual Signature", "value": "individual_signature" },
+            { "label": "Team Template", "value": "team_template" },
+            { "label": "Company-Wide Template", "value": "company_wide_template" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Contact & Social",
+      "questions": [
+        {
+          "code": "ES2",
+          "kind": "checkbox",
+          "question": "What contact information should appear?",
+          "hint": "Only include details recipients should use.",
+          "options": [
+            { "label": "Full Name", "value": "full_name" },
+            { "label": "Job Title", "value": "job_title" },
+            { "label": "Department", "value": "department" },
+            { "label": "Phone Number", "value": "phone_number" },
+            { "label": "Mobile Number", "value": "mobile_number" },
+            { "label": "Email Address", "value": "email_address" },
+            { "label": "Website", "value": "website" },
+            { "label": "Office Address", "value": "office_address" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ES3",
+          "kind": "checkbox",
+          "question": "Should social media links be included?",
+          "hint": "Social links can improve credibility and engagement.",
+          "options": [
+            { "label": "LinkedIn", "value": "linkedin" },
+            { "label": "X / Twitter", "value": "x_twitter" },
+            { "label": "Instagram", "value": "instagram" },
+            { "label": "Facebook", "value": "facebook" },
+            { "label": "YouTube", "value": "youtube" },
+            { "label": "TikTok", "value": "tiktok" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ES4",
+          "kind": "text",
+          "question": "Provide social profile URLs.",
+          "hint": "Please ensure all URLs are correct. Only if you selected social media links above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Call to Action",
+      "questions": [
+        {
+          "code": "ES5",
+          "kind": "radio",
+          "question": "Do you want a call-to-action banner or promotional section?",
+          "hint": "Email signatures can drive leads, bookings, or awareness.",
+          "options": [
+            { "label": "Book a Call", "value": "book_a_call" },
+            { "label": "Visit Website", "value": "visit_website" },
+            { "label": "Download Resource", "value": "download_resource" },
+            { "label": "Event Promotion", "value": "event_promotion" },
+            { "label": "Product Promotion", "value": "product_promotion" },
+            { "label": "No CTA", "value": "no_cta" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ES6",
+          "kind": "text",
+          "question": "Provide CTA text and destination URL.",
+          "hint": "Only if you selected a CTA option above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Branding & Assets",
+      "questions": [
+        {
+          "code": "ES7",
+          "kind": "radio",
+          "question": "Do you have brand assets?",
+          "hint": "Brand consistency improves trust and recognition.",
+          "options": [
+            { "label": "Logo Only", "value": "logo_only" },
+            { "label": "Full Brand Guidelines", "value": "full_brand_guidelines" },
+            { "label": "Existing Signature", "value": "existing_signature" },
+            { "label": "No Assets", "value": "no_assets" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ES8",
+          "kind": "file",
+          "question": "Upload logo and brand assets.",
+          "hint": "SVG or PNG preferred. Only if you have brand assets.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Style & People",
+      "questions": [
+        {
+          "code": "ES9",
+          "kind": "radio",
+          "question": "What style would you prefer?",
+          "hint": "Choose a style that matches your brand.",
+          "options": [
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "Startup", "value": "startup" },
+            { "label": "Creative", "value": "creative" },
+            { "label": "Sales-Focused", "value": "sales_focused" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ES10",
+          "kind": "radio",
+          "question": "Will employee headshots be included?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" },
+            { "label": "Optional", "value": "optional" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Legal & Compliance",
+      "questions": [
+        {
+          "code": "ES11",
+          "kind": "radio",
+          "question": "Should a legal disclaimer or compliance notice be included?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ES12",
+          "kind": "text",
+          "question": "Provide disclaimer text.",
+          "hint": "Only if you said yes above.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Platform & Technical",
+      "questions": [
+        {
+          "code": "ES13",
+          "kind": "checkbox",
+          "question": "Which email platform(s) will use this signature?",
+          "hint": "Rendering differs between platforms.",
+          "options": [
+            { "label": "Outlook", "value": "outlook" },
+            { "label": "Gmail", "value": "gmail" },
+            { "label": "Microsoft 365", "value": "microsoft_365" },
+            { "label": "Apple Mail", "value": "apple_mail" },
+            { "label": "Thunderbird", "value": "thunderbird" },
+            { "label": "Multiple Platforms", "value": "multiple_platforms" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ES14",
+          "kind": "radio",
+          "question": "Do you need HTML email signature files or design-only output?",
+          "hint": "This is probably the most important technical question and is currently missing.",
+          "options": [
+            { "label": "HTML Signature", "value": "html_signature" },
+            { "label": "Design Mockup Only", "value": "design_mockup_only" },
+            { "label": "Both", "value": "both" },
+            { "label": "Not Sure", "value": "not_sure" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "References",
+      "questions": [
+        {
+          "code": "ES15",
+          "kind": "radio",
+          "question": "Any reference signatures or inspiration?",
+          "options": [
+            { "label": "Yes", "value": "yes" },
+            { "label": "No", "value": "no" }
+          ],
+          "required": true
+        },
+        {
+          "code": "ES16",
+          "kind": "file",
+          "question": "Upload reference signatures, up to 3.",
+          "hint": "Only if you said yes to reference signatures above.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

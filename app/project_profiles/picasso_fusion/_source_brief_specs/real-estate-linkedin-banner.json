@@ -1,0 +1,174 @@
+{
+  "key": "real_estate_linkedin_banner",
+  "label": "LinkedIn Banner",
+  "verticalKey": "realestate",
+  "templateNameMatch": ["linkedin banner", "linkedin cover"],
+  "sections": [
+    {
+      "name": "Banner Overview",
+      "questions": [
+        {
+          "code": "LB1",
+          "kind": "radio",
+          "question": "Is this banner for a personal profile or a company page?",
+          "options": [
+            { "label": "Personal LinkedIn Banner", "value": "personal" },
+            { "label": "Company LinkedIn Banner", "value": "company" }
+          ],
+          "required": true
+        },
+        {
+          "code": "LB2",
+          "kind": "checkbox",
+          "question": "What is the primary goal of this banner?",
+          "options": [
+            { "label": "Personal Branding", "value": "personal_branding" },
+            { "label": "Thought Leadership", "value": "thought_leadership" },
+            { "label": "Company Awareness", "value": "company_awareness" },
+            { "label": "Lead Generation", "value": "lead_generation" },
+            { "label": "Recruiting", "value": "recruiting" },
+            { "label": "Product Promotion", "value": "product_promotion" },
+            { "label": "Event Promotion", "value": "event_promotion" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        },
+        {
+          "code": "LB3",
+          "kind": "checkbox",
+          "question": "Who is the target audience?",
+          "hint": "This is one of the most important questions.",
+          "options": [
+            { "label": "Business Owners", "value": "business_owners" },
+            { "label": "Executives", "value": "executives" },
+            { "label": "Recruiters", "value": "recruiters" },
+            { "label": "Job Seekers", "value": "job_seekers" },
+            { "label": "Investors", "value": "investors" },
+            { "label": "Enterprise Buyers", "value": "enterprise_buyers" },
+            { "label": "Startups", "value": "startups" },
+            { "label": "General Industry Audience", "value": "general_industry" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Core Message",
+      "questions": [
+        {
+          "code": "LB4",
+          "kind": "text",
+          "question": "What is the key message this banner should communicate?",
+          "hint": "One clear message works best. Examples: \"Helping businesses scale with AI\", \"Australia's trusted property advisors\", \"Award-winning digital marketing agency\", \"Building the future of fintech\".",
+          "required": true
+        },
+        {
+          "code": "LB5",
+          "kind": "text",
+          "question": "What text should appear on the banner?",
+          "hint": "Examples: tagline, service list, company slogan, credentials, website URL, professional title.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Assets",
+      "questions": [
+        {
+          "code": "LB6",
+          "kind": "file",
+          "question": "Do you have photography, headshots, product visuals, or brand assets to include? Please upload images and assets.",
+          "hint": "PNG or JPG preferred.",
+          "required": true
+        },
+        {
+          "code": "LB7",
+          "kind": "checkbox",
+          "question": "Should any specific logos, certifications, awards, or achievements be featured?",
+          "options": [
+            { "label": "Industry Awards", "value": "industry_awards" },
+            { "label": "Partner Badges", "value": "partner_badges" },
+            { "label": "Certifications", "value": "certifications" },
+            { "label": "Company Logos", "value": "company_logos" },
+            { "label": "Other", "value": "other" },
+            { "label": "None", "value": "none" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Personal Profile Only (Conditional)",
+      "questions": [
+        {
+          "code": "LB8",
+          "kind": "radio",
+          "question": "What do you want to be known for professionally?",
+          "hint": "Only ask this if the banner is for a Personal LinkedIn profile (LB1 = Personal).",
+          "options": [
+            { "label": "Real Estate Advisor", "value": "real_estate_advisor" },
+            { "label": "SaaS Founder", "value": "saas_founder" },
+            { "label": "Fractional CMO", "value": "fractional_cmo" },
+            { "label": "Executive Coach", "value": "executive_coach" },
+            { "label": "Business Consultant", "value": "business_consultant" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Company Page Only (Conditional)",
+      "questions": [
+        {
+          "code": "LB9",
+          "kind": "text",
+          "question": "What products, services, or capabilities should be highlighted? List the most important offerings.",
+          "hint": "Only ask this if the banner is for a Company LinkedIn page (LB1 = Company).",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Design Direction",
+      "questions": [
+        {
+          "code": "LB10",
+          "kind": "file",
+          "question": "Any LinkedIn banners or profiles you'd like us to reference?",
+          "hint": "Upload references, up to 3.",
+          "required": false
+        },
+        {
+          "code": "LB11",
+          "kind": "radio",
+          "question": "Describe the visual style you'd like.",
+          "options": [
+            { "label": "Corporate", "value": "corporate" },
+            { "label": "Premium", "value": "premium" },
+            { "label": "Minimal", "value": "minimal" },
+            { "label": "Modern", "value": "modern" },
+            { "label": "Technology-Focused", "value": "technology_focused" },
+            { "label": "Luxury", "value": "luxury" },
+            { "label": "Personal Brand", "value": "personal_brand" },
+            { "label": "Other", "value": "other" }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Technical Requirements",
+      "questions": [
+        {
+          "code": "LB12",
+          "kind": "text",
+          "question": "Any LinkedIn-specific or technical requirements?",
+          "hint": "Leave blank if unsure — we'll use LinkedIn-recommended dimensions and safe zones.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}
