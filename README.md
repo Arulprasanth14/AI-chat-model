@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # picasso-rag-chat
 
 Model-driven, retrieval-augmented conversational AI service for creative brief capture.
@@ -320,3 +321,7 @@ This shows top-k chunks with similarity scores without making any LLM calls.
 | `EXTRACTION_CONFIDENCE_THRESHOLD` | `0.7` | Min confidence to mark field captured |
 | `LOG_LEVEL` | `INFO` | Log verbosity |
 | `CORS_ORIGINS` | `http://localhost:5173,...` | Allowed CORS origins |
+=======
+# AI-chat-model
+A Python/FastAPI backend paired with a React frontend that conducts a structured, conversational creative-brief intake session on behalf of a creative agency — replacing a manual intake form with an AI-driven conversation that collects the same information without feeling like a form.
+>>>>>>> 20c3b6e424c5b8c0d32e72022b7077fc49143b5a
