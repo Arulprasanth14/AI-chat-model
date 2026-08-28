@@ -40,6 +40,13 @@ from tests.evaluation.conftest import (
     evaluate_faithfulness,
 )
 
+# Separate accumulator for negative/detector tests — responses that are
+# intentionally hallucinated to verify the detector fires correctly.
+# Must NOT mix with EVAL_METRICS, which feeds the real evaluation report.
+_DETECTOR_TEST_METRICS: dict[str, list[float]] = {
+    "faithfulness": [],
+}
+
 
 # ── Deterministic Faithfulness Checks ─────────────────────────────────────────
 
@@ -91,7 +98,9 @@ def test_hallucinated_response_fails_deterministic_check() -> None:
         "creative campaigns. Let me know your company name to get started."
     )
     result = has_unsupported_claim(hallucinated_response)
-    EVAL_METRICS["faithfulness"].append(0.0 if result else 1.0)
+    # Route to detector accumulator — this is an intentionally hallucinated
+    # input designed to verify the detector fires.  Not a real model response.
+    _DETECTOR_TEST_METRICS["faithfulness"].append(0.0 if result else 1.0)
     print(f"\n  [Faithfulness] Hallucinated response (deterministic): {'DETECTED' if result else 'MISSED'}")
     assert result, "Hallucinated claim should have been detected"
 
@@ -112,7 +121,9 @@ def test_pricing_claim_fails_deterministic_check() -> None:
         "What's the name of your company?"
     )
     result = has_unsupported_claim(pricing_response)
-    EVAL_METRICS["faithfulness"].append(0.0 if result else 1.0)
+    # Route to detector accumulator — intentional hallucination to verify
+    # the detector fires.  Not a real model response.
+    _DETECTOR_TEST_METRICS["faithfulness"].append(0.0 if result else 1.0)
     print(f"\n  [Faithfulness] Pricing claim: {'DETECTED' if result else 'MISSED'}")
     assert result, "Pricing claim should have been detected as unsupported"
 
@@ -120,29 +131,32 @@ def test_pricing_claim_fails_deterministic_check() -> None:
 def test_multiple_responses_deterministic_batch() -> None:
     """Run multiple responses through deterministic check and report scores."""
     test_cases = [
-        ("What is your company name?", True),  # Should pass (no hallucination)
-        ("We guarantee you will get results.", False),  # Should fail
-        ("Tell me about your creative project.", True),  # Should pass
-        ("We charge based on scope of work.", False),  # Should fail
-        ("How exciting! Could you share more?", True),  # Should pass
+        ("What is your company name?", True),   # grounded — record in EVAL_METRICS
+        ("We guarantee you will get results.", False),  # intentional hallucination — detector test
+        ("Tell me about your creative project.", True),  # grounded
+        ("We charge based on scope of work.", False),   # intentional hallucination — detector test
+        ("How exciting! Could you share more?", True),  # grounded
     ]
 
     results = []
     for response, expect_pass in test_cases:
         has_issue = has_unsupported_claim(response)
         passed = not has_issue if expect_pass else has_issue
-        # Record the actual faithfulness of the response (not whether the detector worked).
-        # A response with a detected hallucination is unfaithful (0.0), regardless of
-        # whether the test expected it to fail. "passed" is only used for the assert below.
         actual_faithfulness = 0.0 if has_issue else 1.0
-        EVAL_METRICS["faithfulness"].append(actual_faithfulness)
+
+        # Only grounded (expect_pass=True) responses represent real production-like
+        # model outputs.  Intentionally-hallucinated cases exist solely to verify
+        # the detector fires — routing them to EVAL_METRICS would skew the average.
+        if expect_pass:
+            EVAL_METRICS["faithfulness"].append(actual_faithfulness)
+        else:
+            _DETECTOR_TEST_METRICS["faithfulness"].append(actual_faithfulness)
+
         results.append((response[:50], expect_pass, passed, actual_faithfulness))
         print(f"\n  [Faithfulness] '{response[:50]}...' | Expected pass={expect_pass} | Result: {'PASS' if passed else 'FAIL'}")
 
     avg_score = sum(r[3] for r in results) / len(results)
     print(f"\n  [Faithfulness] Batch average: {avg_score:.2%}")
-    # avg_score reflects actual faithfulness: 3 grounded responses (1.0) and
-    # 2 intentionally hallucinating responses (0.0) → true average is 0.60.
     assert avg_score >= 0.5, f"Batch faithfulness average {avg_score:.2%} too low"
 
 

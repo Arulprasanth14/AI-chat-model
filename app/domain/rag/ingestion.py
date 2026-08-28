@@ -27,15 +27,19 @@ from app.domain.rag.vector_store import ChunkToUpsert, VectorStore
 logger = logging.getLogger(__name__)
 
 # Tokenizer for chunk size estimation (cl100k_base ≈ gpt-4 tokenizer)
+# Note: google/embeddinggemma-300m has an 8192-token context window, so these
+# chunk sizes will never cause silent truncation (unlike all-mpnet-base-v2).
 _tokenizer = tiktoken.get_encoding("cl100k_base")
 
-# Target and maximum chunk sizes in tokens
-TARGET_CHUNK_TOKENS = 400
-MAX_CHUNK_TOKENS = 500
-OVERLAP_TOKENS = 50
+# Target and maximum chunk sizes in tokens.
+# embeddinggemma-300m supports 8192 tokens — using 512/600 for high-quality
+# coherent chunks while keeping prompts manageable.
+TARGET_CHUNK_TOKENS = 512
+MAX_CHUNK_TOKENS = 600
+OVERLAP_TOKENS = 64
 
-# Embedding batch size for API calls
-EMBED_BATCH_SIZE = 20
+# Embedding batch size — Gemma is efficient; 32 at once saves inference overhead
+EMBED_BATCH_SIZE = 32
 
 
 def _count_tokens(text: str) -> int:

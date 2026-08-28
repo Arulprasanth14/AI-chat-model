@@ -26,8 +26,12 @@ from app.domain.rag.vector_store import ChunkToUpsert, VectorSearchResult, Vecto
 
 logger = logging.getLogger(__name__)
 
-# Embedding dimension for text-embedding-3-small
-EMBEDDING_DIM = 1536
+# Embedding dimension for google/embedding-gemma-3-300m-it-v0 (EmbeddingGemmaEmbedder)
+# NOTE: Was 1536 for text-embedding-3-small.  The Alembic migration
+#       'fa6751537373_change_embedding_dim_to_768' already dropped+recreated
+#       the pgvector column with the new dimension.  Do NOT change back to
+#       1536 without running the downgrade migration first.
+EMBEDDING_DIM = 768
 
 
 class PgVectorClient:
@@ -63,7 +67,23 @@ class PgVectorClient:
             # Create all tables
             await conn.run_sync(Base.metadata.create_all)
 
-            # Create IVFFlat index for fast similarity search (if not exists)
+            # Drop stale IVFFlat index if it exists (replaced by HNSW below).
+            # IVFFlat requires ~1000+ rows to train centroid lists properly;
+            # HNSW has no minimum dataset size and delivers higher recall.
+            await conn.execute(
+                text(
+                    """
+                    DROP INDEX IF EXISTS knowledge_chunks_embedding_idx;
+                    """
+                )
+            )
+
+            # Create HNSW index for fast, high-recall similarity search.
+            # HNSW advantages over IVFFlat:
+            #   - No minimum row count needed (works on dev-scale datasets)
+            #   - Higher recall (no cluster approximation errors)
+            #   - Faster query time after build
+            # m=16 (connections per node), ef_construction=128 (build quality)
             await conn.execute(
                 text(
                     """
@@ -72,11 +92,11 @@ class PgVectorClient:
                         IF NOT EXISTS (
                             SELECT 1 FROM pg_indexes
                             WHERE tablename = 'knowledge_chunks'
-                            AND indexname = 'knowledge_chunks_embedding_idx'
+                            AND indexname = 'knowledge_chunks_embedding_hnsw_idx'
                         ) THEN
-                            CREATE INDEX knowledge_chunks_embedding_idx
-                            ON knowledge_chunks USING ivfflat (embedding vector_cosine_ops)
-                            WITH (lists = 100);
+                            CREATE INDEX knowledge_chunks_embedding_hnsw_idx
+                            ON knowledge_chunks USING hnsw (embedding vector_cosine_ops)
+                            WITH (m = 16, ef_construction = 128);
                         END IF;
                     END
                     $$;
@@ -85,7 +105,7 @@ class PgVectorClient:
             )
 
         self._table_ready = True
-        logger.info("pgvector table and index initialised")
+        logger.info("pgvector table and HNSW index initialised")
 
     async def upsert(self, chunks: list[ChunkToUpsert]) -> int:
         """Upsert a batch of chunks using Postgres INSERT ... ON CONFLICT.
@@ -144,7 +164,7 @@ class PgVectorClient:
         """Run cosine similarity search with metadata filters.
 
         Args:
-            query_embedding: Query vector (1536-dim for text-embedding-3-small).
+            query_embedding: Query vector (768-dim for EmbeddingGemmaEmbedder).
             profile_id:      Required filter — namespace for this profile.
             top_k:           Maximum results to return.
             industry:        Optional industry filter.
