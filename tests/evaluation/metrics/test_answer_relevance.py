@@ -39,6 +39,13 @@ from tests.evaluation.conftest import (
     evaluate_answer_relevance,
 )
 
+# Separate accumulator for negative/detector tests — intentionally irrelevant
+# responses used to verify the detector fires correctly.  Must NOT mix with
+# EVAL_METRICS, which feeds the real evaluation report.
+_DETECTOR_TEST_METRICS: dict[str, list[float]] = {
+    "answer_relevance": [],
+}
+
 
 # ── Deterministic Relevance Check ─────────────────────────────────────────────
 
@@ -99,7 +106,9 @@ def test_response_ignoring_user_input_detected() -> None:
         user_message, irrelevant_response, key_terms=["XYZ Studios"]
     )
     score = 1.0 if result else 0.0
-    EVAL_METRICS["answer_relevance"].append(score)
+    # Route to detector accumulator — this is an intentionally irrelevant response
+    # to verify the check fires.  Not a real model output.
+    _DETECTOR_TEST_METRICS["answer_relevance"].append(score)
     print(f"\n  [Answer Relevance] Ignored input detected: {'FAIL (detected)' if not result else 'PASS (not detected)'}")
     # The response does NOT mention "XYZ Studios" so result should be False
     assert not result, (
@@ -146,7 +155,9 @@ def test_negative_abrupt_topic_change() -> None:
         user_message, off_topic_response, key_terms=["Acme", "welcome", "hello", "name"]
     )
     score = 1.0 if result else 0.0
-    EVAL_METRICS["answer_relevance"].append(score)
+    # Route to detector accumulator — intentional off-topic response to verify
+    # the check fires correctly.  Not a real model output.
+    _DETECTOR_TEST_METRICS["answer_relevance"].append(score)
     print(f"\n  [Answer Relevance] Abrupt topic change: {'FAIL (detected)' if not result else 'PASS'}")
     # off_topic_response doesn't acknowledge "Acme Corp" or the greeting
     assert not result
@@ -158,9 +169,9 @@ def test_batch_relevance_deterministic() -> None:
         # (user_message, assistant_response, key_terms, expect_relevant)
         ("We are TechFlow Inc.", "Welcome, TechFlow Inc.!", ["TechFlow"], True),
         ("Our budget is $5,000", "Got it, $5,000 budget!", ["5,000", "budget"], True),
-        ("Hello!", "What is your project timeline?", ["hello", "hi", "welcome", "great"], False),
+        ("Hello!", "What is your project timeline?", ["hello", "hi", "welcome", "great"], False),   # detector test
         ("Brand identity project", "Brand identity is exciting!", ["brand", "identity"], True),
-        ("$20,000", "Tell me about your ROI.", ["20,000", "budget"], False),
+        ("$20,000", "Tell me about your ROI.", ["20,000", "budget"], False),  # detector test
     ]
 
     scores = []
@@ -168,7 +179,13 @@ def test_batch_relevance_deterministic() -> None:
         result = check_response_acknowledges_input(user_msg, assistant_msg, key_terms)
         score = 1.0 if (result == expect_relevant) else 0.0
         scores.append(score)
-        EVAL_METRICS["answer_relevance"].append(1.0 if result else 0.0)
+        # Only relevant (expect_relevant=True) pairs represent real production-like
+        # acknowledgement behaviour.  Intentionally-irrelevant pairs exist solely
+        # to verify the detector fires — route them to the detector accumulator.
+        if expect_relevant:
+            EVAL_METRICS["answer_relevance"].append(1.0 if result else 0.0)
+        else:
+            _DETECTOR_TEST_METRICS["answer_relevance"].append(1.0 if result else 0.0)
         print(
             f"\n  [Answer Relevance] '{user_msg[:30]}' -> "
             f"{'relevant' if result else 'irrelevant'} | Expected: {'relevant' if expect_relevant else 'irrelevant'} | {'OK' if result == expect_relevant else 'FAIL'}"

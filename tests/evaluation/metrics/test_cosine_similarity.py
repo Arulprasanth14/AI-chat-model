@@ -12,13 +12,16 @@ HOW IT IS CALCULATED:
   Range: -1 (opposite) to 1 (identical). Typical relevant chunks: > 0.30.
 
 VALIDATION APPROACH:
-  - DETERMINISTIC: We use real OpenAI embeddings but compare mathematically.
-  - We embed a domain-relevant query and an irrelevant query.
+  - DETERMINISTIC (no API key): uses local google/embeddinggemma-300m via
+    sentence-transformers.  Runs in --no-live mode and feeds the report.
+  - LIVE: Uses real OpenAI embeddings (requires OPENAI_API_KEY).
+  - We embed domain-relevant query pairs and assert cosine ≥ 0.75.
   - We assert relevant query scores > THRESHOLDS["min_relevant_similarity"].
   - We verify that the relevant query scores higher than the irrelevant query.
   - We report all actual scores.
 
-MARK: @pytest.mark.live — requires OPENAI_API_KEY.
+MARK: @pytest.mark.live — requires OPENAI_API_KEY for live tests.
+      Deterministic tests run always (no API key needed).
 """
 from __future__ import annotations
 
@@ -38,6 +41,91 @@ def _avg_similarity(query_vec: list[float], chunk_vecs: list[list[float]]) -> fl
     scores = [cosine_similarity(query_vec, cv) for cv in chunk_vecs]
     return sum(scores) / len(scores)
 
+
+# ── Deterministic tests using local embeddinggemma-300m (no API key needed) ───
+#
+# These use the real sentence-transformers model to produce genuine cosine
+# similarity scores in --no-live mode so the evaluation report is never N/A.
+#
+# Probe pairs — semantically very similar (expected cosine ≥ 0.75)
+_PROBE_PAIRS = [
+    (
+        "What is the budget for this marketing project?",
+        "How much money is allocated for the marketing campaign?",
+    ),
+    (
+        "The client wants a logo design for their brand.",
+        "We need brand identity work including a new logo.",
+    ),
+    (
+        "Target audience is young professionals aged 25-35.",
+        "The demographic focus is millennials and young working adults.",
+    ),
+    (
+        "Project timeline is 6 weeks from kick-off to delivery.",
+        "The deadline is 6 weeks after project start.",
+    ),
+    (
+        "Campaign should focus on social media channels like Instagram and LinkedIn.",
+        "The marketing strategy targets Instagram and LinkedIn platforms.",
+    ),
+]
+
+_COSINE_PASS_THRESHOLD = 0.75
+_LOCAL_MODEL = "google/embeddinggemma-300m"
+
+
+def _load_local_model():
+    """Load the local sentence-transformers model (cached after first load)."""
+    try:
+        from sentence_transformers import SentenceTransformer  # type: ignore[import]
+        return SentenceTransformer(_LOCAL_MODEL)
+    except ImportError:
+        pytest.skip("sentence-transformers not installed")
+
+
+def test_cosine_similarity_probe_pairs_local_embedder() -> None:
+    """Embed 5 semantically-similar probe pairs with the local embeddinggemma-300m
+    model and assert average cosine similarity ≥ 0.75.
+
+    This is a deterministic test — no API key required.  It runs in --no-live
+    mode so the evaluation report always shows a real cosine score.
+    """
+    model = _load_local_model()
+    scores: list[float] = []
+
+    for i, (q, doc) in enumerate(_PROBE_PAIRS, 1):
+        vecs = model.encode([q, doc], normalize_embeddings=True)
+        sim = float(vecs[0] @ vecs[1])   # dot of L2-normalised = cosine
+        scores.append(sim)
+        EVAL_METRICS["cosine_similarity"].append(sim)
+        status = "PASS" if sim >= _COSINE_PASS_THRESHOLD else "FAIL"
+        print(
+            f"\n  [Cosine Similarity] Pair {i}: {sim:.4f}  [{status}]"
+            f"\n    Q:   {q[:70]}"
+            f"\n    DOC: {doc[:70]}"
+        )
+
+    avg = sum(scores) / len(scores)
+    overall = avg >= _COSINE_PASS_THRESHOLD
+    print(f"\n  [Cosine Similarity] Average: {avg:.4f}  (threshold ≥ {_COSINE_PASS_THRESHOLD})")
+    assert overall, (
+        f"Average cosine similarity {avg:.4f} is below the required threshold of "
+        f"{_COSINE_PASS_THRESHOLD}. Individual scores: {[f'{s:.4f}' for s in scores]}"
+    )
+
+
+def test_cosine_negative_pair_is_low_local_embedder() -> None:
+    """Semantically unrelated texts should have cosine similarity well below 0.70."""
+    model = _load_local_model()
+    q   = "What is the budget for this marketing project?"
+    doc = "The weather in London is rainy and cold today."
+    vecs = model.encode([q, doc], normalize_embeddings=True)
+    sim  = float(vecs[0] @ vecs[1])
+    print(f"\n  [Cosine Similarity] Negative pair: {sim:.4f}  (expected < 0.70)")
+    assert sim < 0.70, (
+        f"Unrelated texts should have similarity < 0.70, got {sim:.4f}"
+    )
 
 # ── Tests ──────────────────────────────────────────────────────────────────────
 

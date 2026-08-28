@@ -174,21 +174,30 @@ class PromptBuilder:
         status_block = self._format_brief_status(
             missing_fields, is_complete=is_complete, brief_summary=brief_summary
         )
+
+        # Build a simple, direct extraction instruction that smaller models can follow
+        extraction_examples = self._format_extraction_examples(missing_fields)
         parts.append(
-            "## Current Brief Status\n\n"
+            "## STEP 1 — EXTRACT AND SAVE FIELDS (do this first, before any reply)\n\n"
+            "Read the user's latest message carefully. For every piece of information they provided "
+            "that matches a required field below, call the appropriate save tool immediately.\n\n"
+            "## Required Fields Still Missing\n\n"
             + status_block
-            + "\n\nYou are equipped with a set of named action tools. "
+            + "\n\n"
+            "## How to Call the Save Tools\n\n"
+            "You are equipped with a set of named action tools. "
             "Use them NOW to explicitly save any field values the user just provided. "
             "Call save_text_field, save_enum_field, or save_quantitative_field once per field. "
             "You may call multiple tools in one turn if the user provided multiple fields. "
             "If the user provided NO field data (pure conversation), call no tools — leave this turn tool-free. "
-            "Do NOT generate a conversational reply here — that happens in a separate step.\n"
-            "CRITICAL TOOL-CALL RULES:\n"
-            "- Use the EXACT field_code from the required fields list — never guess or rephrase it.\n"
-            "- If the user is correcting or updating a previously captured field, assign confidence 1.0.\n"
-            "- ONLY call a tool for information the user explicitly provided in their last message.\n"
-            "- Do NOT call a tool for fields not yet discussed unless the user volunteered the answer unprompted.\n"
-            # Bug 1 / Bug 4 fix: hard prohibition on premature completion/file claims
+            "Do NOT generate a conversational reply here — that happens in a separate step.\n\n"
+            + extraction_examples
+            + "\n\nRULES:\n"
+            "- Use the EXACT field_code from the list above — never invent new codes.\n"
+            "- Call one tool per field. You may call several tools in a single turn.\n"
+            "- If the user volunteered a field without being asked, still save it.\n"
+            "- If the user is correcting a field they already gave, save it with confidence=1.0.\n"
+            "- Do NOT call a tool if you are not sure. Only save what is clearly stated.\n"
             "HONESTY INVARIANTS (enforced — never override):\n"
             "- NEVER use language like 'all set', 'you\'re good to go', 'we\'re done', or 'brief is complete' "
             "unless the system explicitly tells you STATUS: BRIEF COMPLETE.\n"
@@ -426,6 +435,66 @@ class PromptBuilder:
 
         # Also append raw JSON for precise machine parsing by future tooling
         lines.append("\nRAW JSON: " + json.dumps(write_outcomes))
+
+        return "\n".join(lines)
+
+    def _format_extraction_examples(self, missing_fields: list[MissingField]) -> str:
+        """Generate concrete few-shot examples for the missing fields.
+
+        Shows the model exactly which tool to call and what arguments to use,
+        making it easier for smaller LLMs to reliably call tools correctly.
+
+        Args:
+            missing_fields: Fields not yet captured (from ledger).
+
+        Returns:
+            Formatted string with extraction examples, or empty string if no fields.
+        """
+        if not missing_fields:
+            return ""
+
+        lines = ["## Examples — How to Save Fields\n"]
+
+        # Categorise fields into text vs enum vs quantitative for examples
+        enum_fields = [mf for mf in missing_fields if getattr(mf, "enum_values", None)]
+        quant_fields = [mf for mf in missing_fields if mf.field_code in (
+            "success_metrics", "budget_range", "key_messages",
+            "industry_vertical", "competitors_or_references", "existing_assets",
+        )]
+        text_fields = [mf for mf in missing_fields
+                       if mf not in enum_fields and mf not in quant_fields]
+
+        example_count = 0
+
+        # Show up to 2 text-field examples
+        for mf in text_fields[:2]:
+            lines.append(
+                f'  If the user gives you their {mf.field_code.replace("_", " ")}, call:\n'
+                f'    save_text_field(field_code="{mf.field_code}", value="<what they said>", confidence=0.9)'
+            )
+            example_count += 1
+
+        # Show 1 enum example
+        for mf in enum_fields[:1]:
+            opts = getattr(mf, "enum_values", [])
+            example_val = opts[0] if opts else "value_from_list"
+            lines.append(
+                f'  If the user names their {mf.field_code.replace("_", " ")}, call:\n'
+                f'    save_enum_field(field_code="{mf.field_code}", value="{example_val}", confidence=0.9)\n'
+                f'    (value MUST be one of: {", ".join(str(v) for v in opts[:5])}{"..." if len(opts) > 5 else ""})'
+            )
+            example_count += 1
+
+        # Show 1 quantitative example
+        for mf in quant_fields[:1]:
+            lines.append(
+                f'  If the user gives a number or KPI for {mf.field_code.replace("_", " ")}, call:\n'
+                f'    save_quantitative_field(field_code="{mf.field_code}", value="<the number/target>", confidence=0.9)'
+            )
+            example_count += 1
+
+        if example_count == 0:
+            return ""
 
         return "\n".join(lines)
 

@@ -32,8 +32,10 @@ from app.domain.llm.provider import LLMProvider
 from app.domain.llm.prompt_builder import PromptBuilder
 from app.domain.rag.embedder import Embedder
 from app.domain.rag.retriever import RAGRetriever
-from app.infrastructure.llm.openai_provider import OpenAIProvider
+from app.infrastructure.llm.openai_provider import OpenAIProvider  # noqa: F401 — kept for one-line revert
+from app.infrastructure.llm.ollama_provider import OllamaProvider
 from app.infrastructure.rag.openai_embedder import OpenAIEmbedder
+from app.infrastructure.rag.embedding_gemma_embedder import EmbeddingGemmaEmbedder
 from app.infrastructure.persistence.postgres_session_repo import PostgresSessionRepository
 from app.infrastructure.vector_db.pgvector_client import PgVectorClient
 from app.project_profiles.base_profile import BaseProfile
@@ -105,9 +107,12 @@ def get_llm_provider() -> LLMProvider:
         3. Zero changes to orchestrator, prompts, or any domain code.
     ─────────────────────────────────────────────────────────────────────
     """
-    return OpenAIProvider(
-        api_key=settings.openai_api_key,
-        model=settings.chat_model,
+    # ── ACTIVE PROVIDER: Ollama ────────────────────────────────────────────
+    # To revert to OpenAI, replace the line below with:
+    #   return OpenAIProvider(api_key=settings.openai_api_key, model=settings.chat_model)
+    return OllamaProvider(
+        base_url=settings.ollama_base_url,
+        model=settings.ollama_model,
     )
 
 
@@ -117,14 +122,41 @@ def get_embedder() -> Embedder:
 
     ─────────────────────────────────────────────────────────────────────
     REUSABILITY BOUNDARY:
-      This is the single point where the concrete embedding implementation
-      is wired up.  To switch embedding providers, replace ``OpenAIEmbedder``
-      below with a new class from app/infrastructure/rag/.
+      Controlled by the EMBEDDING_PROVIDER env var (default: "local").
+        "local"  → EmbeddingGemmaEmbedder (google/embedding-gemma-3-300m-it-v0,
+                    768-dim, sentence-transformers, no API key required)
+        "openai" → OpenAIEmbedder (text-embedding-3-small, 1536-dim, requires
+                    OPENAI_API_KEY)
+      Changing EMBEDDING_PROVIDER in .env and restarting switches the provider.
+      Zero changes to retriever, ingestion pipeline, or any domain code.
     ─────────────────────────────────────────────────────────────────────
+
+    ⚠️  SIMILARITY THRESHOLD NOTE:
+      The vector_similarity_threshold (currently read from
+      VECTOR_SIMILARITY_THRESHOLD, default 0.7) was tuned for
+      text-embedding-3-small.  After switching to the local Gemma embedder
+      this value will likely need re-tuning — the embedding spaces are
+      different.  See: app/core/config.py → vector_similarity_threshold
     """
-    return OpenAIEmbedder(
-        api_key=settings.openai_api_key,
-        model=settings.embedding_model,
+    provider = settings.embedding_provider.lower()
+
+    if provider == "openai":
+        logger.info(
+            "Embedder: OpenAIEmbedder (text-embedding-3-small, 1536-dim)",
+            extra={"embedding_provider": provider},
+        )
+        return OpenAIEmbedder(
+            api_key=settings.openai_api_key,
+            model=settings.embedding_model,
+        )
+
+    # Default: local EmbeddingGemmaEmbedder
+    logger.info(
+        "Embedder: EmbeddingGemmaEmbedder (google/embedding-gemma-3-300m-it-v0, 768-dim)",
+        extra={"embedding_provider": provider},
+    )
+    return EmbeddingGemmaEmbedder(
+        model_name=settings.local_embedding_model,
     )
 
 

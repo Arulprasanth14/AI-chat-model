@@ -16,13 +16,13 @@ from app.domain.rag.vector_store import VectorSearchResult
 # ── Mocks ──────────────────────────────────────────────────────────────────────
 
 class MockEmbedder:
-    """Always returns a fixed zero vector."""
+    """Always returns a fixed zero vector (768-dim, matching EmbeddingGemmaEmbedder)."""
 
     async def embed(self, text: str) -> list[float]:
-        return [0.0] * 1536
+        return [0.0] * 768
 
     async def embed_batch(self, texts: list[str]) -> list[list[float]]:
-        return [[0.0] * 1536 for _ in texts]
+        return [[0.0] * 768 for _ in texts]
 
 
 class MockVectorStore:
@@ -115,10 +115,10 @@ class TestRetrieve:
         class CapturingEmbedder:
             async def embed(self, text: str) -> list[float]:
                 embedded_texts.append(text)
-                return [0.0] * 1536
+                return [0.0] * 768
 
             async def embed_batch(self, texts: list[str]) -> list[list[float]]:
-                return [[0.0] * 1536 for _ in texts]
+                return [[0.0] * 768 for _ in texts]
 
         retriever = RAGRetriever(
             embedder=CapturingEmbedder(),

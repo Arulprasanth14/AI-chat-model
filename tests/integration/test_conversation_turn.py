@@ -65,10 +65,10 @@ class StubLLMProvider:
 
 class MockEmbedder:
     async def embed(self, text: str) -> list[float]:
-        return [0.0] * 1536
+        return [0.0] * 768
 
     async def embed_batch(self, texts: list[str]) -> list[list[float]]:
-        return [[0.0] * 1536 for _ in texts]
+        return [[0.0] * 768 for _ in texts]
 
 
 class MockVectorStore:

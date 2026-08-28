@@ -172,9 +172,9 @@ class MockEmbedder:
     """
 
     async def embed(self, text: str) -> list[float]:
-        """Returns a fixed 1536-dim vector seeded by text length for determinism."""
+        """Returns a fixed 768-dim vector seeded by text length for determinism."""
         seed = sum(ord(c) for c in text[:50]) / 10000.0
-        return [seed] * 1536
+        return [seed] * 768
 
     async def embed_batch(self, texts: list[str]) -> list[list[float]]:
         return [await self.embed(t) for t in texts]
