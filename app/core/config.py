@@ -63,14 +63,24 @@ class Settings(BaseSettings):
         ),
     )
 
-    # ── Ollama (active LLM provider) ──────────────────────────────────────────
+    # ── Groq (active LLM provider) ────────────────────────────────────────────
+    groq_api_key: str = Field(
+        default="",
+        description="Groq API Key",
+    )
+    groq_model: str = Field(
+        default="llama-3.1-8b-instant",
+        description="Groq chat model identifier",
+    )
+
+    # ── Ollama ────────────────────────────────────────────────────────────────
     ollama_base_url: str = Field(
         default="http://localhost:11434",
         description="Base URL for the local Ollama server",
     )
     ollama_model: str = Field(
         default="qwen2.5:1.5b",
-        description="Ollama chat model identifier (e.g. qwen2.5:1.5b)",
+        description="Ollama chat model identifier (unused while Groq is active)",
     )
 
     # ── Database ──────────────────────────────────────────────────────────────

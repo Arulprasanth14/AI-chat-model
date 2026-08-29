@@ -34,6 +34,7 @@ from app.domain.rag.embedder import Embedder
 from app.domain.rag.retriever import RAGRetriever
 from app.infrastructure.llm.openai_provider import OpenAIProvider  # noqa: F401 — kept for one-line revert
 from app.infrastructure.llm.ollama_provider import OllamaProvider
+from app.infrastructure.llm.groq_provider import GroqProvider
 from app.infrastructure.rag.openai_embedder import OpenAIEmbedder
 from app.infrastructure.rag.embedding_gemma_embedder import EmbeddingGemmaEmbedder
 from app.infrastructure.persistence.postgres_session_repo import PostgresSessionRepository
@@ -107,12 +108,12 @@ def get_llm_provider() -> LLMProvider:
         3. Zero changes to orchestrator, prompts, or any domain code.
     ─────────────────────────────────────────────────────────────────────
     """
-    # ── ACTIVE PROVIDER: Ollama ────────────────────────────────────────────
-    # To revert to OpenAI, replace the line below with:
-    #   return OpenAIProvider(api_key=settings.openai_api_key, model=settings.chat_model)
-    return OllamaProvider(
-        base_url=settings.ollama_base_url,
-        model=settings.ollama_model,
+    # ── ACTIVE PROVIDER: Groq ──────────────────────────────────────────────
+    # To revert to Ollama, replace the line below with:
+    #   return OllamaProvider(base_url=settings.ollama_base_url, model=settings.ollama_model)
+    return GroqProvider(
+        api_key=settings.groq_api_key,
+        model=settings.groq_model,
     )
 
 
