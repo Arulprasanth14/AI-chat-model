@@ -263,7 +263,15 @@ class PromptBuilder:
                 "Do NOT generate a conversational reply here — that happens in a separate step.",
                 "You MUST call `generate_response` with every response. "
                 "Generate your conversational reply in the `message` field. "
-                "You have already saved fields in a prior step; do NOT re-save here.",
+                "You have already saved fields in a prior step; do NOT re-save here.\n\n"
+                "## RESPONSE STYLE RULES (MANDATORY)\n"
+                "- Keep replies SHORT and conversational — 1 to 3 sentences max.\n"
+                "- Do NOT echo, praise, or over-validate what the user said. A brief 'Got it' or 'Perfect' is enough.\n"
+                "- You may ask UP TO 2–3 closely related questions in a single turn if they belong to the same topic cluster "
+                "(e.g., asking for dish name + price together, or timeline + go-live date together). "
+                "But do NOT dump all remaining questions at once — prioritise the most important ones first.\n"
+                "- NEVER repeat a question that already appears answered in the conversation history.\n"
+                "- Write like a human creative strategist, not a customer-service bot.",
             )
             
             if retrieved_chunks and not is_complete:

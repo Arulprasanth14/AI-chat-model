@@ -69,7 +69,7 @@ class Settings(BaseSettings):
         description="Groq API Key",
     )
     groq_model: str = Field(
-        default="llama-3.1-8b-instant",
+        default="qwen/qwen3.8-27b",
         description="Groq chat model identifier",
     )
 
