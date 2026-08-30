@@ -349,6 +349,12 @@ class ConversationOrchestrator:
             state.status = "complete"
 
         # ── Step 10: Build Phase B prompt ───────────────────────────────────
+        # Recompute missing_fields AFTER Phase A so Phase B has an accurate
+        # view of what still needs to be collected (prevents re-asking saved fields).
+        missing_fields_post_a = state.compute_missing_fields(
+            active_profile, settings.extraction_confidence_threshold
+        )
+
         phase_b_messages = self._prompt_builder.build_response_phase(
             phase_a_messages=phase_a_messages,
             phase_a_tool_calls=phase_a_dispatched_tool_calls,
@@ -357,6 +363,7 @@ class ConversationOrchestrator:
             is_complete=is_complete,
             brief_summary=brief_summary,
             retrieved_chunks=retrieved_chunks,
+            missing_fields=missing_fields_post_a,
         )
 
         # ── Step 11: Phase B — Stream response to client ────────────────────

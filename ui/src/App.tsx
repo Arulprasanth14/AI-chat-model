@@ -591,7 +591,7 @@ export default function App() {
     // Send a hidden trigger so the backend generates the first greeting dynamically.
     // hiddenUserMessage=true keeps the trigger out of the visible chat.
     // This also ensures the backend knows the vertical+template from turn 1,
-    // so it can extract fields from the very first user reply.
+    // so it can extract fields from the very first user reply. 
     sendMessage("__start__", ctx, true);
   };
 
