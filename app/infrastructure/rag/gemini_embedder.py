@@ -45,7 +45,12 @@ class GeminiEmbedder(Embedder):
             extra={"model": self.model_name},
         )
 
-    async def embed(self, texts: list[str]) -> list[list[float]]:
+    async def embed(self, text: str) -> list[float]:
+        """Embed a single text string."""
+        batch_result = await self.embed_batch([text])
+        return batch_result[0]
+
+    async def embed_batch(self, texts: list[str]) -> list[list[float]]:
         """Generate embeddings for a batch of strings using Gemini API.
 
         Args:
@@ -57,10 +62,6 @@ class GeminiEmbedder(Embedder):
         if not texts:
             return []
 
-        # We use a synchronous API call wrapped in an async wrapper if necessary,
-        # but the google-genai client currently supports standard sync calls easily.
-        # Since this runs in FastAPI, we should ideally use run_in_executor to avoid blocking,
-        # but for embeddings it is fast. Let's do it cleanly:
         import asyncio
         loop = asyncio.get_running_loop()
 
@@ -72,8 +73,6 @@ class GeminiEmbedder(Embedder):
                     task_type="RETRIEVAL_DOCUMENT"
                 )
             )
-            # The response.embeddings is a list of Embedding objects.
-            # We extract the `values` from each.
             return [emb.values for emb in response.embeddings]
 
         try:
