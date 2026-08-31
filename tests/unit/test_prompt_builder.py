@@ -43,6 +43,24 @@ class TestBuildSystemMessage:
             missing_fields=[],
         )
         system = next(m for m in messages if m["role"] == "system")
+        assert "backend data extraction process" in system["content"]
+
+    def test_persona_injected_in_phase_b_system_message(
+        self, builder: PromptBuilder, profile: BaseProfile
+    ) -> None:
+        phase_a = builder.build(
+            profile=profile,
+            retrieved_chunks=[],
+            conversation_history=[],
+            missing_fields=[],
+        )
+        messages = builder.build_response_phase(
+            phase_a_messages=phase_a,
+            phase_a_tool_calls=[],
+            write_outcomes=[],
+            profile=profile,
+        )
+        system = next(m for m in messages if m["role"] == "system")
         assert "test creative strategist" in system["content"]
 
     def test_missing_fields_summary_in_system_message(

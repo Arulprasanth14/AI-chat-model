@@ -32,15 +32,19 @@ _MAX_RETRIES = 3
 
 def _is_rate_limit_or_server_error(exc: BaseException) -> bool:
     """Return True for 429 rate-limit and 5xx server errors — both are retryable."""
-    from groq import RateLimitError, InternalServerError
-    return isinstance(exc, (RateLimitError, InternalServerError))
+    from groq import RateLimitError, InternalServerError, APIStatusError
+    if isinstance(exc, (RateLimitError, InternalServerError)):
+        return True
+    if isinstance(exc, APIStatusError) and getattr(exc, "status_code", None) in (429, 500, 502, 503, 504):
+        return True
+    return False
 
 
-# Shared retry policy: up to 4 attempts, exponential backoff (1s → 2s → 4s)
+# Shared retry policy: up to 10 attempts, exponential backoff (2s → 3s → ... max 60s)
 _groq_retry = retry(
     retry=retry_if_exception(_is_rate_limit_or_server_error),
-    stop=stop_after_attempt(4),
-    wait=wait_exponential(multiplier=1, min=1, max=8),
+    stop=stop_after_attempt(10),
+    wait=wait_exponential(multiplier=1.5, min=2, max=60),
     before_sleep=before_sleep_log(logging.getLogger(__name__), logging.WARNING),
     reraise=True,  # re-raise the original exception if all retries exhausted
 )
@@ -125,7 +129,7 @@ class GroqProvider:
             model=self._model,
             messages=cast(list[ChatCompletionMessageParam], messages),
             tools=cast(list[ChatCompletionToolParam], tools),
-            tool_choice="required",
+            tool_choice="auto",
             temperature=temperature,
             stream=False,
         )

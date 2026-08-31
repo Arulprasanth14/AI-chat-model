@@ -155,8 +155,11 @@ class PromptBuilder:
         """Assemble the system message from its three components."""
         parts: list[str] = []
 
-        # 1. Profile persona (tone, role, high-level instructions)
-        parts.append(profile.persona_prompt.strip())
+        # 1. Profile persona (Phase A uses a minimal extraction persona to save tokens)
+        parts.append(
+            "You are a backend data extraction process. Do not converse with the user. "
+            "Your only job is to extract data into structured tool calls."
+        )
 
         # 2. Retrieved knowledge context (moved to Phase B)
         # We no longer inject retrieved chunks during Phase A to allow parallel execution
@@ -270,12 +273,12 @@ class PromptBuilder:
             "you MUST follow this exact 5-step flow:\n"
             "1. Acknowledge their feeling warmly in ONE short sentence (e.g. 'Totally fair — sorry for the overload!').\n"
             "2. Tell them EXACTLY how many fields are still missing and name them briefly "
-            "(e.g. 'We just need 2 more things: your timeline and how you\'ll measure success.').\n"
+            "(e.g. 'We just need 2 more things: your timeline and how you\\'ll measure success.').\n"
             "3. Offer a clear choice: 'Want to knock these out now, or should I "
             "save a draft brief with what we have so you can add the rest later?'\n"
             "4. If they choose LATER/NOT NOW: give a clean bullet-point summary of everything "
             "captured so far, then say: 'You can return to this session anytime to fill in the rest.'\n"
-            "5. If they choose NOW/LET\'S FINISH: ask ONLY the remaining fields, one tight cluster, "
+            "5. If they choose NOW/LET\\'S FINISH: ask ONLY the remaining fields, one tight cluster, "
             "no preamble, no echoing.\n"
             "CRITICAL: Do NOT auto-complete or skip the remaining fields without user consent."
         )
@@ -283,7 +286,16 @@ class PromptBuilder:
         # Patch the system message for Phase B instructions
         if messages and messages[0]["role"] == "system":
             original_system = messages[0]["content"]
+            
+            # 1. Swap the minimal extraction persona with the real conversational persona
             patched = original_system.replace(
+                "You are a backend data extraction process. Do not converse with the user. "
+                "Your only job is to extract data into structured tool calls.",
+                profile.persona_prompt.strip()
+            )
+
+            # 2. Swap the tool instruction
+            patched = patched.replace(
                 "You are equipped with a set of named action tools. "
                 "Use them NOW to explicitly save any field values the user just provided. "
                 "Call save_text_field, save_enum_field, or save_quantitative_field once per field. "
@@ -296,11 +308,11 @@ class PromptBuilder:
                 "## RESPONSE STYLE RULES (MANDATORY)\n"
                 "- Keep replies SHORT and conversational — 1 to 3 sentences max.\n"
                 "- NEVER echo or repeat the user's answer back to them. One-word acknowledgements only: 'Got it.', 'Perfect.', 'Noted.'\n"
-                "- Do NOT over-validate or over-praise. No 'That\'s a great choice!', 'Love that!', or 'Wonderful!'.\n"
+                "- Do NOT over-validate or over-praise. No 'That\\'s a great choice!', 'Love that!', or 'Wonderful!'.\n"
                 "- You may ask UP TO 2 closely related questions in a single turn if they belong to the same topic cluster. "
                 "But do NOT dump all remaining questions at once.\n"
                 "- NEVER ask about a topic that was already answered in the conversation history above.\n"
-                "- Write like a confident creative consultant, not a customer-service bot.",
+                "- Write like a confident creative consultant, not a customer-service bot."
             )
 
             # Inject the updated (post-Phase-A) missing fields status so Phase B
