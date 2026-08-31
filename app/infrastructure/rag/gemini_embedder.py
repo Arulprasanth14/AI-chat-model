@@ -24,14 +24,14 @@ class GeminiEmbedder(Embedder):
 
     Requires GEMINI_API_KEY to be set in the environment.
 
-    Default model: ``text-embedding-004`` (768-dim)
+    Default model: ``gemini-embedding-2`` (768-dim)
 
     Args:
         api_key: Google Gemini API key.
-        model:   Model identifier (default: "text-embedding-004").
+        model:   Model identifier (default: "gemini-embedding-2").
     """
 
-    def __init__(self, api_key: str, model: str = "text-embedding-004") -> None:
+    def __init__(self, api_key: str, model: str = "gemini-embedding-2") -> None:
         if not api_key:
             raise ValueError(
                 "Gemini API key is required but missing. "
@@ -70,7 +70,8 @@ class GeminiEmbedder(Embedder):
                 model=self.model_name,
                 contents=texts,
                 config=types.EmbedContentConfig(
-                    task_type="RETRIEVAL_DOCUMENT"
+                    task_type="RETRIEVAL_DOCUMENT",
+                    output_dimensionality=768,
                 )
             )
             return [emb.values for emb in response.embeddings]
