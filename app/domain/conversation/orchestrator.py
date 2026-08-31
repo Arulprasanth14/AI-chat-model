@@ -328,11 +328,18 @@ class ConversationOrchestrator:
 
         import asyncio
         retrieval_task = asyncio.create_task(fetch_retrieval())
-        phase_a_task = asyncio.create_task(self._run_phase_a(
-            state=state,
-            active_profile=active_profile,
-            phase_a_messages=phase_a_messages,
-        ))
+        
+        # Skip Phase A entirely for the __start__ trigger (no user message to extract from)
+        if is_start_trigger:
+            async def _dummy_phase_a():
+                return [], [], {"model_believes_complete": False, "suggested_next_topic": None}
+            phase_a_task = asyncio.create_task(_dummy_phase_a())
+        else:
+            phase_a_task = asyncio.create_task(self._run_phase_a(
+                state=state,
+                active_profile=active_profile,
+                phase_a_messages=phase_a_messages,
+            ))
 
         try:
             retrieved_chunks, phase_a_result = await asyncio.gather(retrieval_task, phase_a_task)
