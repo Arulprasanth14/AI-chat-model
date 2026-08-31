@@ -87,6 +87,8 @@ class PostgresSessionRepository:
             },
             "model_believes_complete": state.model_believes_complete,
             "suggested_next_topic": state.suggested_next_topic,
+            "resolved_vertical": state.resolved_vertical,
+            "resolved_template_key": state.resolved_template_key,
             "updated_at": datetime.now(timezone.utc),
         }
 
@@ -101,6 +103,8 @@ class PostgresSessionRepository:
                         "extracted_answers": stmt.excluded.extracted_answers,
                         "model_believes_complete": stmt.excluded.model_believes_complete,
                         "suggested_next_topic": stmt.excluded.suggested_next_topic,
+                        "resolved_vertical": stmt.excluded.resolved_vertical,
+                        "resolved_template_key": stmt.excluded.resolved_template_key,
                         "updated_at": stmt.excluded.updated_at,
                     },
                 )
@@ -159,6 +163,8 @@ class PostgresSessionRepository:
             captured=captured,
             model_believes_complete=row.model_believes_complete,
             suggested_next_topic=row.suggested_next_topic,
+            resolved_vertical=row.resolved_vertical,
+            resolved_template_key=row.resolved_template_key,
         )
 
     @staticmethod
@@ -180,4 +186,6 @@ class PostgresSessionRepository:
             },
             model_believes_complete=state.model_believes_complete,
             suggested_next_topic=state.suggested_next_topic,
+            resolved_vertical=state.resolved_vertical,
+            resolved_template_key=state.resolved_template_key,
         )
