@@ -125,7 +125,7 @@ class GroqProvider:
             model=self._model,
             messages=cast(list[ChatCompletionMessageParam], messages),
             tools=cast(list[ChatCompletionToolParam], tools),
-            tool_choice="auto",
+            tool_choice="required",
             temperature=temperature,
             stream=False,
         )
