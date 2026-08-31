@@ -546,7 +546,6 @@ export default function App() {
     isStreaming,
     error,
     sendMessage,
-    addLocalMessage,
     uploadDocument,
     sessionId,
     clearSession,
