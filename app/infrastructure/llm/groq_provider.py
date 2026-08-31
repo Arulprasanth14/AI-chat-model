@@ -16,11 +16,34 @@ from typing import Any, AsyncIterator, cast
 
 from groq import AsyncGroq
 from groq.types.chat import ChatCompletionMessageParam, ChatCompletionToolParam
+from tenacity import (
+    retry,
+    retry_if_exception,
+    stop_after_attempt,
+    wait_exponential,
+    before_sleep_log,
+)
 
 logger = logging.getLogger(__name__)
 
 # Maximum number of rate-limit retries
 _MAX_RETRIES = 3
+
+
+def _is_rate_limit_or_server_error(exc: BaseException) -> bool:
+    """Return True for 429 rate-limit and 5xx server errors — both are retryable."""
+    from groq import RateLimitError, InternalServerError
+    return isinstance(exc, (RateLimitError, InternalServerError))
+
+
+# Shared retry policy: up to 4 attempts, exponential backoff (1s → 2s → 4s)
+_groq_retry = retry(
+    retry=retry_if_exception(_is_rate_limit_or_server_error),
+    stop=stop_after_attempt(4),
+    wait=wait_exponential(multiplier=1, min=1, max=8),
+    before_sleep=before_sleep_log(logging.getLogger(__name__), logging.WARNING),
+    reraise=True,  # re-raise the original exception if all retries exhausted
+)
 
 
 class GroqProvider:
@@ -35,7 +58,8 @@ class GroqProvider:
     """
 
     def __init__(self, api_key: str, model: str) -> None:
-        self._client = AsyncGroq(api_key=api_key, max_retries=_MAX_RETRIES)
+        # max_retries=0 because tenacity handles retries with full back-off logic
+        self._client = AsyncGroq(api_key=api_key, max_retries=0)
         self._model = model
 
     # ── LLMProvider protocol methods ───────────────────────────────────────────
@@ -54,14 +78,20 @@ class GroqProvider:
             extra={"model": self._model, "tool": tool_name, "messages": len(messages)},
         )
 
-        stream = await self._client.chat.completions.create(
-            model=self._model,
-            messages=cast(list[ChatCompletionMessageParam], messages),
-            tools=[cast(ChatCompletionToolParam, tool_schema)],
-            tool_choice={"type": "function", "function": {"name": tool_name}},
-            temperature=temperature,
-            stream=True,
-        )
+        # Wrap the blocking create() call in a retry-decorated inner coroutine
+        # so tenacity can retry it on 429/5xx without wrapping the whole generator.
+        @_groq_retry
+        async def _create_stream():
+            return await self._client.chat.completions.create(
+                model=self._model,
+                messages=cast(list[ChatCompletionMessageParam], messages),
+                tools=[cast(ChatCompletionToolParam, tool_schema)],
+                tool_choice={"type": "function", "function": {"name": tool_name}},
+                temperature=temperature,
+                stream=True,
+            )
+
+        stream = await _create_stream()
 
         async for chunk in stream:
             delta = chunk.choices[0].delta if chunk.choices else None
@@ -74,6 +104,7 @@ class GroqProvider:
                     if tc.function and tc.function.arguments:
                         yield tc.function.arguments
 
+    @_groq_retry
     async def call_with_tools(
         self,
         messages: list[dict[str, Any]],

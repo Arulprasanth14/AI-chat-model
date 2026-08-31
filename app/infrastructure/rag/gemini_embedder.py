@@ -66,6 +66,11 @@ class GeminiEmbedder(Embedder):
         loop = asyncio.get_running_loop()
 
         def _embed_single(text: str) -> list[float]:
+            # Gemini API throws an error for completely empty whitespace strings.
+            # Handle empty texts gracefully to avoid crashes.
+            if not text or not text.strip():
+                return [0.0] * 768
+
             response = self._client.models.embed_content(
                 model=self.model_name,
                 contents=text,
@@ -74,13 +79,19 @@ class GeminiEmbedder(Embedder):
                     output_dimensionality=768,
                 )
             )
-            return response.embeddings[0].values
+            
+            if not response.embeddings:
+                logger.warning(f"Gemini API returned empty embeddings for text: {text[:50]}...")
+                return [0.0] * 768
+                
+            values = response.embeddings[0].values
+            if not values:
+                return [0.0] * 768
+            return values
 
         # Process sequentially with rate limiting to respect 100 req/min quota
         results = []
         for i, text in enumerate(texts):
-            # To stay under 100 requests per minute, wait ~0.65s per request.
-            # We add a sleep between requests.
             if i > 0:
                 await asyncio.sleep(0.7)
             
