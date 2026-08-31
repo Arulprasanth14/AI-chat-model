@@ -216,6 +216,7 @@ class PromptBuilder:
         is_complete: bool = False,
         brief_summary: str | None = None,
         retrieved_chunks: list[RetrievedChunk] | None = None,
+        missing_fields: list | None = None,
     ) -> list[dict[str, Any]]:
         """Build the Phase B message list for the response-generation LLM call.
 
@@ -244,12 +245,40 @@ class PromptBuilder:
             profile:            Active project profile.
             is_complete:        Whether the brief is now complete.
             brief_summary:      Optional deterministic brief summary string.
+            missing_fields:     Fields STILL missing after Phase A saves.
+                                Used to rebuild the status block so Phase B
+                                never re-asks a field that was just saved.
 
         Returns:
             Message list ready for the Phase B LLM call.
         """
         # Start from a copy of Phase A messages
         messages: list[dict[str, Any]] = list(phase_a_messages)
+
+        # Build updated status block using post-Phase-A missing fields
+        # This is the core fix: Phase B sees the CURRENT state, not Phase A's stale view.
+        if missing_fields is not None and not is_complete:
+            updated_status = self._format_brief_status(missing_fields, is_complete=False)
+        else:
+            updated_status = None
+
+        # Build frustration handler rule (fixed instruction, always injected)
+        frustration_handler = (
+            "## FRUSTRATION / FATIGUE HANDLER\n"
+            "If the user expresses fatigue, frustration, or impatience "
+            "(e.g. 'too many questions', 'I'm exhausted', 'when will this end', 'just finish it'), "
+            "you MUST follow this exact 5-step flow:\n"
+            "1. Acknowledge their feeling warmly in ONE short sentence (e.g. 'Totally fair — sorry for the overload!').\n"
+            "2. Tell them EXACTLY how many fields are still missing and name them briefly "
+            "(e.g. 'We just need 2 more things: your timeline and how you\'ll measure success.').\n"
+            "3. Offer a clear choice: 'Want to knock these out now, or should I "
+            "save a draft brief with what we have so you can add the rest later?'\n"
+            "4. If they choose LATER/NOT NOW: give a clean bullet-point summary of everything "
+            "captured so far, then say: 'You can return to this session anytime to fill in the rest.'\n"
+            "5. If they choose NOW/LET\'S FINISH: ask ONLY the remaining fields, one tight cluster, "
+            "no preamble, no echoing.\n"
+            "CRITICAL: Do NOT auto-complete or skip the remaining fields without user consent."
+        )
 
         # Patch the system message for Phase B instructions
         if messages and messages[0]["role"] == "system":
@@ -263,9 +292,32 @@ class PromptBuilder:
                 "Do NOT generate a conversational reply here — that happens in a separate step.",
                 "You MUST call `generate_response` with every response. "
                 "Generate your conversational reply in the `message` field. "
-                "You have already saved fields in a prior step; do NOT re-save here.",
+                "You have already saved fields in a prior step; do NOT re-save here.\n\n"
+                "## RESPONSE STYLE RULES (MANDATORY)\n"
+                "- Keep replies SHORT and conversational — 1 to 3 sentences max.\n"
+                "- NEVER echo or repeat the user's answer back to them. One-word acknowledgements only: 'Got it.', 'Perfect.', 'Noted.'\n"
+                "- Do NOT over-validate or over-praise. No 'That\'s a great choice!', 'Love that!', or 'Wonderful!'.\n"
+                "- You may ask UP TO 2 closely related questions in a single turn if they belong to the same topic cluster. "
+                "But do NOT dump all remaining questions at once.\n"
+                "- NEVER ask about a topic that was already answered in the conversation history above.\n"
+                "- Write like a confident creative consultant, not a customer-service bot.",
             )
-            
+
+            # Inject the updated (post-Phase-A) missing fields status so Phase B
+            # never re-asks fields that were just saved in this turn.
+            if updated_status is not None:
+                # Replace the old status block with the freshly computed one.
+                import re as _re
+                patched = _re.sub(
+                    r"## Required Fields Still Missing\n\n[\s\S]*?(?=\n\n## How to Call)",
+                    "## Required Fields Still Missing\n\n" + updated_status,
+                    patched,
+                )
+
+            # Always append the frustration handler rule
+            patched += "\n\n" + frustration_handler
+
+            # Inject retrieved knowledge chunks (only in-progress, after frustration handler)
             if retrieved_chunks and not is_complete:
                 context_block = self._format_retrieved_chunks(retrieved_chunks)
                 if context_block:
@@ -274,11 +326,11 @@ class PromptBuilder:
                         "The following context has been retrieved from the knowledge base "
                         "to help guide this conversation turn. Use it to inform your "
                         "questions and extraction, but don't quote it verbatim.\n"
-                        "CRITICAL: You may use a warm, empathetic tone, but DO NOT invent new unlisted examples, options, pricing, or specific guarantees that are not in the retrieved context (e.g., do not suggest 'brand identity revamp or social media campaign' unless those exact phrases exist in the chunks).\n"
-                        "CRITICAL: Always acknowledge the user's message directly before moving to a new topic. If retrieved context is irrelevant to the user's input, ignore it.\n\n"
+                        "CRITICAL: DO NOT invent examples, options, or pricing not present in these chunks.\n"
+                        "CRITICAL: If retrieved context is irrelevant to the user's input, ignore it.\n\n"
                         + context_block
                     )
-            
+
             messages[0] = {"role": "system", "content": patched}
 
         if phase_a_tool_calls:
@@ -495,6 +547,25 @@ class PromptBuilder:
 
         if example_count == 0:
             return ""
+
+        # Qwen-specific guardrails: explicit rules appended to every Phase A prompt.
+        # These address the most common extraction failures observed in testing.
+        lines.append(
+            "\n## EXTRACTION GUARDRAILS (MANDATORY — read before calling any tool)\n"
+            "1. ENUM FIELDS: If the field has a list of allowed values, you MUST map the user's "
+            "answer to the closest matching value from that list. NEVER save a free-text sentence "
+            "for an enum field. Example: if the user says 'I have a logo', map it to "
+            "'upload_logo_assets' for brand_identity_preference.\n"
+            "2. LIST FIELDS (distribution_channels, brand_personality, deliverables): "
+            "If the user mentions multiple values (e.g., 'Instagram and Facebook'), save them "
+            "as a comma-separated string: value=\"instagram, facebook\".\n"
+            "3. LOW CONFIDENCE: If you are 70% sure about a value, SAVE IT with confidence=0.7. "
+            "Do not skip saving just because you are not 100% certain.\n"
+            "4. MULTI-FIELD: If the user answers multiple fields in one message, call a separate "
+            "tool for EACH field. Do not bundle them.\n"
+            "5. ALREADY SAVED: Do NOT save a field that has already been saved in previous turns. "
+            "Check the conversation history before calling a save tool."
+        )
 
         return "\n".join(lines)
 

@@ -587,12 +587,12 @@ export default function App() {
     setChatContext(ctx);
     setContextLabel(`${vertical.icon} ${vertical.label} · ${contentType.label}`);
     setAppStep("chat");
-    
-    // Instantly inject a local AI greeting so the user doesn't have to wait for the LLM
-    addLocalMessage(
-      "assistant",
-      `Hi! I'm excited to help you create your ${vertical.label} ${contentType.label}. Let's get started — what's the name of the brand or restaurant we're working on today?`
-    );
+
+    // Send a hidden trigger so the backend generates the first greeting dynamically.
+    // hiddenUserMessage=true keeps the trigger out of the visible chat.
+    // This also ensures the backend knows the vertical+template from turn 1,
+    // so it can extract fields from the very first user reply. 
+    sendMessage("__start__", ctx, true);
   };
 
   const handleNewSession = () => {
@@ -609,6 +609,10 @@ export default function App() {
     const text = input.trim();
     if (!text || isStreaming) return;
     setInput("");
+    // Reset textarea height after send
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+    }
     // Pass context on first send (context is cleared after session is created)
     sendMessage(text, chatContext ?? undefined);
   };
@@ -767,7 +771,13 @@ export default function App() {
                   ref={textareaRef}
                   className="input-bar-textarea no-sb"
                   value={input}
-                  onChange={(e) => setInput(e.target.value)}
+                  onChange={(e) => {
+                    setInput(e.target.value);
+                    // Auto-resize: reset to auto then set to scrollHeight so it grows with content
+                    const el = e.target;
+                    el.style.height = "auto";
+                    el.style.height = Math.min(el.scrollHeight, 180) + "px";
+                  }}
                   onKeyDown={handleKeyDown}
                   placeholder={
                     isComplete
@@ -777,6 +787,7 @@ export default function App() {
                   disabled={isStreaming}
                   rows={1}
                   id="chat-input"
+                  style={{ overflowY: input.length > 0 && textareaRef.current && textareaRef.current.scrollHeight > 180 ? "auto" : "hidden", resize: "none" }}
                 />
                 <button
                   type="button"

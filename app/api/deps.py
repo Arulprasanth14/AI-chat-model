@@ -34,8 +34,10 @@ from app.domain.rag.embedder import Embedder
 from app.domain.rag.retriever import RAGRetriever
 from app.infrastructure.llm.openai_provider import OpenAIProvider  # noqa: F401 — kept for one-line revert
 from app.infrastructure.llm.ollama_provider import OllamaProvider
+from app.infrastructure.llm.groq_provider import GroqProvider
 from app.infrastructure.rag.openai_embedder import OpenAIEmbedder
 from app.infrastructure.rag.embedding_gemma_embedder import EmbeddingGemmaEmbedder
+from app.infrastructure.rag.gemini_embedder import GeminiEmbedder
 from app.infrastructure.persistence.postgres_session_repo import PostgresSessionRepository
 from app.infrastructure.vector_db.pgvector_client import PgVectorClient
 from app.project_profiles.base_profile import BaseProfile
@@ -107,12 +109,12 @@ def get_llm_provider() -> LLMProvider:
         3. Zero changes to orchestrator, prompts, or any domain code.
     ─────────────────────────────────────────────────────────────────────
     """
-    # ── ACTIVE PROVIDER: Ollama ────────────────────────────────────────────
-    # To revert to OpenAI, replace the line below with:
-    #   return OpenAIProvider(api_key=settings.openai_api_key, model=settings.chat_model)
-    return OllamaProvider(
-        base_url=settings.ollama_base_url,
-        model=settings.ollama_model,
+    # ── ACTIVE PROVIDER: Groq ──────────────────────────────────────────────
+    # To revert to Ollama, replace the line below with:
+    #   return OllamaProvider(base_url=settings.ollama_base_url, model=settings.ollama_model)
+    return GroqProvider(
+        api_key=settings.groq_api_key,
+        model=settings.groq_model,
     )
 
 
@@ -123,6 +125,7 @@ def get_embedder() -> Embedder:
     ─────────────────────────────────────────────────────────────────────
     REUSABILITY BOUNDARY:
       Controlled by the EMBEDDING_PROVIDER env var (default: "local").
+        "gemini" → GeminiEmbedder (text-embedding-004, 768-dim, requires GEMINI_API_KEY)
         "local"  → EmbeddingGemmaEmbedder (google/embedding-gemma-3-300m-it-v0,
                     768-dim, sentence-transformers, no API key required)
         "openai" → OpenAIEmbedder (text-embedding-3-small, 1536-dim, requires
@@ -140,7 +143,15 @@ def get_embedder() -> Embedder:
     """
     provider = settings.embedding_provider.lower()
 
-    if provider == "openai":
+    if provider == "gemini":
+        logger.info(
+            "Embedder: GeminiEmbedder (text-embedding-004, 768-dim)",
+            extra={"provider": "gemini"},
+        )
+        return GeminiEmbedder(
+            api_key=settings.gemini_api_key,
+        )
+    elif provider == "openai":
         logger.info(
             "Embedder: OpenAIEmbedder (text-embedding-3-small, 1536-dim)",
             extra={"embedding_provider": provider},

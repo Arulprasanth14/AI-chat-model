@@ -211,7 +211,12 @@ class ConversationOrchestrator:
         )
 
         # ── Step 2: Add user turn to history ────────────────────────────────
-        state.add_turn("user", user_message)
+        # __start__ is a hidden UI trigger to generate the opening greeting.
+        # We do NOT add it to conversation history so the LLM sees an empty
+        # history and produces a natural first-turn opener for the selected vertical.
+        is_start_trigger = user_message.strip() == "__start__"
+        if not is_start_trigger:
+            state.add_turn("user", user_message)
 
         # Obtain the effective profile for this turn (applies field sets if resolved)
         active_profile = self._profile_provider(state)
@@ -266,6 +271,25 @@ class ConversationOrchestrator:
             brief_summary=brief_summary,
             suggestion_gate_rule=suggestion_gate_rule,
         )
+
+        # For __start__ trigger: inject a directive so the LLM generates a
+        # context-aware opening greeting instead of asking about a user message.
+        if is_start_trigger:
+            vertical_label = state.resolved_vertical or "creative"
+            template_label = (state.resolved_template_key or "project").replace("_", " ")
+            start_directive = (
+                f"\n\n## OPENING TURN DIRECTIVE\n"
+                f"This is the very first turn of a new brief session. The client has selected:\n"
+                f"- **Vertical:** {vertical_label}\n"
+                f"- **Content type:** {template_label}\n\n"
+                f"Generate a warm, SHORT (1-2 sentences) opening greeting that:\n"
+                f"1. Acknowledges the specific vertical and content type they selected.\n"
+                f"2. Asks for the client/brand name as the very first question.\n"
+                f"Do NOT ask multiple questions. Do NOT say 'I'm excited' or similar filler phrases.\n"
+                f"Write like a confident creative consultant meeting a client for the first time."
+            )
+            if phase_a_messages and phase_a_messages[0]["role"] == "system":
+                phase_a_messages[0]["content"] += start_directive
         timings["prompt_assembly"] = time.perf_counter() - t_prompt_start
 
         # ── Concurrent Execution: RAG Retrieval + Phase A ───────────────────
@@ -325,6 +349,12 @@ class ConversationOrchestrator:
             state.status = "complete"
 
         # ── Step 10: Build Phase B prompt ───────────────────────────────────
+        # Recompute missing_fields AFTER Phase A so Phase B has an accurate
+        # view of what still needs to be collected (prevents re-asking saved fields).
+        missing_fields_post_a = state.compute_missing_fields(
+            active_profile, settings.extraction_confidence_threshold
+        )
+
         phase_b_messages = self._prompt_builder.build_response_phase(
             phase_a_messages=phase_a_messages,
             phase_a_tool_calls=phase_a_dispatched_tool_calls,
@@ -333,6 +363,7 @@ class ConversationOrchestrator:
             is_complete=is_complete,
             brief_summary=brief_summary,
             retrieved_chunks=retrieved_chunks,
+            missing_fields=missing_fields_post_a,
         )
 
         # ── Step 11: Phase B — Stream response to client ────────────────────
