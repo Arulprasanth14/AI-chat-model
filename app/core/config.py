@@ -62,6 +62,10 @@ class Settings(BaseSettings):
             "Only used when EMBEDDING_PROVIDER=local."
         ),
     )
+    gemini_api_key: str = Field(
+        default="",
+        description="Google Gemini API key (used when EMBEDDING_PROVIDER=gemini)",
+    )
 
     # ── Groq (active LLM provider) ────────────────────────────────────────────
     groq_api_key: str = Field(
