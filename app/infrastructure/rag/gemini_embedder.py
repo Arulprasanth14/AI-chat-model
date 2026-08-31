@@ -65,20 +65,22 @@ class GeminiEmbedder(Embedder):
         import asyncio
         loop = asyncio.get_running_loop()
 
-        def _call_gemini() -> list[list[float]]:
+        def _embed_single(text: str) -> list[float]:
             response = self._client.models.embed_content(
                 model=self.model_name,
-                contents=texts,
+                contents=text,
                 config=types.EmbedContentConfig(
                     task_type="RETRIEVAL_DOCUMENT",
                     output_dimensionality=768,
                 )
             )
-            return [emb.values for emb in response.embeddings]
+            return response.embeddings[0].values
 
+        # Run each request in the default thread pool to achieve concurrency
+        # without blocking the async event loop.
         try:
-            embeddings = await loop.run_in_executor(None, _call_gemini)
-            return embeddings
+            tasks = [loop.run_in_executor(None, _embed_single, text) for text in texts]
+            return await asyncio.gather(*tasks)
         except Exception as e:
             logger.error("Gemini embedding failed", exc_info=e)
             raise
