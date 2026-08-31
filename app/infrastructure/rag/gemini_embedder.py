@@ -76,14 +76,22 @@ class GeminiEmbedder(Embedder):
             )
             return response.embeddings[0].values
 
-        # Run each request in the default thread pool to achieve concurrency
-        # without blocking the async event loop.
-        try:
-            tasks = [loop.run_in_executor(None, _embed_single, text) for text in texts]
-            return await asyncio.gather(*tasks)
-        except Exception as e:
-            logger.error("Gemini embedding failed", exc_info=e)
-            raise
+        # Process sequentially with rate limiting to respect 100 req/min quota
+        results = []
+        for i, text in enumerate(texts):
+            # To stay under 100 requests per minute, wait ~0.65s per request.
+            # We add a sleep between requests.
+            if i > 0:
+                await asyncio.sleep(0.7)
+            
+            try:
+                res = await loop.run_in_executor(None, _embed_single, text)
+                results.append(res)
+            except Exception as e:
+                logger.error(f"Gemini embedding failed on chunk {i}", exc_info=e)
+                raise
+                
+        return results
 
     @property
     def identifier(self) -> str:
