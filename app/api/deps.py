@@ -125,7 +125,7 @@ def get_embedder() -> Embedder:
     ─────────────────────────────────────────────────────────────────────
     REUSABILITY BOUNDARY:
       Controlled by the EMBEDDING_PROVIDER env var (default: "local").
-        "gemini" → GeminiEmbedder (text-embedding-004, 768-dim, requires GEMINI_API_KEY)
+        "gemini" → GeminiEmbedder (gemini-embedding-2, 768-dim, requires GEMINI_API_KEY)
         "local"  → EmbeddingGemmaEmbedder (google/embedding-gemma-3-300m-it-v0,
                     768-dim, sentence-transformers, no API key required)
         "openai" → OpenAIEmbedder (text-embedding-3-small, 1536-dim, requires
@@ -145,7 +145,7 @@ def get_embedder() -> Embedder:
 
     if provider == "gemini":
         logger.info(
-            "Embedder: GeminiEmbedder (text-embedding-004, 768-dim)",
+            "Embedder: GeminiEmbedder (gemini-embedding-2, 768-dim)",
             extra={"provider": "gemini"},
         )
         return GeminiEmbedder(

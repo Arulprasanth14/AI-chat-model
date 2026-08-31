@@ -84,6 +84,18 @@ class ConversationSessionORM(Base):
         comment="LLM's suggested next topic (last turn) — for debugging/UX only",
     )
 
+    # ── Multi-template resolution state ─────────────────────────────────────────
+    resolved_vertical: Mapped[str | None] = mapped_column(
+        String(100),
+        nullable=True,
+        comment="Persisted resolved vertical for field set switching",
+    )
+    resolved_template_key: Mapped[str | None] = mapped_column(
+        String(100),
+        nullable=True,
+        comment="Persisted resolved template key for field set switching",
+    )
+
     # ── Timestamps ─────────────────────────────────────────────────────────────
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),

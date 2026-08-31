@@ -328,13 +328,37 @@ class ConversationOrchestrator:
 
         import asyncio
         retrieval_task = asyncio.create_task(fetch_retrieval())
-        phase_a_task = asyncio.create_task(self._run_phase_a(
-            state=state,
-            active_profile=active_profile,
-            phase_a_messages=phase_a_messages,
-        ))
+        
+        # Skip Phase A entirely for the __start__ trigger (no user message to extract from)
+        if is_start_trigger:
+            async def _dummy_phase_a():
+                return [], [], {"model_believes_complete": False, "suggested_next_topic": None}
+            phase_a_task = asyncio.create_task(_dummy_phase_a())
+        else:
+            phase_a_task = asyncio.create_task(self._run_phase_a(
+                state=state,
+                active_profile=active_profile,
+                phase_a_messages=phase_a_messages,
+            ))
 
-        retrieved_chunks, phase_a_result = await asyncio.gather(retrieval_task, phase_a_task)
+        try:
+            retrieved_chunks, phase_a_result = await asyncio.gather(retrieval_task, phase_a_task)
+        except Exception as exc:
+            logger.error(
+                "Phase A or RAG retrieval failed — aborting turn to prevent data loss",
+                extra={"session_id": state.session_id},
+                exc_info=exc,
+            )
+            # Cancel the sibling task to avoid leaking it
+            retrieval_task.cancel()
+            phase_a_task.cancel()
+            yield self._sse_chunk(
+                "I'm experiencing high load right now and couldn't save your message. "
+                "Please send it again in a moment!"
+            )
+            yield self._sse_done(state.to_snapshot(active_profile, settings.extraction_confidence_threshold))
+            return
+
         write_outcomes, phase_a_dispatched_tool_calls, phase_a_advisory = phase_a_result
         
         timings["rag_and_phase_a_parallel"] = time.perf_counter() - t_parallel_start
@@ -499,19 +523,13 @@ class ConversationOrchestrator:
         }
 
         # Call the LLM with auto tool_choice (zero, one, or many tool calls)
-        try:
-            raw_tool_calls = await self._llm.call_with_tools(
-                messages=phase_a_messages,
-                tools=tools,
-                temperature=active_profile.llm_temperature,
-            )
-        except Exception as exc:
-            logger.error(
-                "Phase A: call_with_tools failed",
-                extra={"session_id": state.session_id},
-                exc_info=exc,
-            )
-            return [], [], advisory_flags
+        # Let exceptions (including RateLimitError after tenacity retries) propagate.
+        # The caller (process_turn) is responsible for surfacing a user-visible error.
+        raw_tool_calls = await self._llm.call_with_tools(
+            messages=phase_a_messages,
+            tools=tools,
+            temperature=active_profile.llm_temperature,
+        )
 
         # Fast path: no tool calls — pure conversation, skip Phase A
         if not raw_tool_calls:

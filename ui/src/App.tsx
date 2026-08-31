@@ -734,7 +734,7 @@ export default function App() {
             <div className="input-area-container">
               {/* Enum Option Chips */}
               {snapshot && snapshot.missing_fields.length > 0 && snapshot.missing_fields[0].enum_values && !isComplete && (
-                <div style={{ padding: '8px 16px', display: 'flex', flexWrap: 'wrap', gap: '8px', background: 'rgba(0,0,0,0.02)', borderRadius: '12px 12px 0 0', border: '1px solid #e0e0e0', borderBottom: 'none' }}>
+                <div style={{ padding: '8px 16px', display: 'flex', flexWrap: 'wrap', gap: '8px', background: 'rgba(0,0,0,0.02)', borderRadius: '12px 12px 0 0', border: '1px solid #e0e0e0', borderBottom: 'none', width: '100%', maxWidth: '820px', maxHeight: '120px', overflowY: 'auto' }}>
                   <span style={{ fontSize: '12px', fontWeight: 600, color: '#666', marginRight: '8px', display: 'flex', alignItems: 'center' }}>
                     Options for {snapshot.missing_fields[0].field_code}:
                   </span>

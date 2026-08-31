@@ -123,7 +123,7 @@ class Settings(BaseSettings):
     # ── Server ────────────────────────────────────────────────────────────────
     log_level: str = Field(default="INFO")
     cors_origins: list[str] = Field(
-        default=["http://localhost:5173", "http://localhost:3000"],
+        default=["http://localhost:5173", "http://localhost:5174", "http://localhost:5175", "http://localhost:3000"],
         description="CORS allowed origins (Vite dev server etc.)",
     )
 

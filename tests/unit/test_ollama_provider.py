@@ -27,13 +27,26 @@ from app.infrastructure.llm.ollama_provider import OllamaProvider
 # ── Helpers ────────────────────────────────────────────────────────────────────
 
 def _make_ollama_tool_response(tool_calls: list[dict[str, Any]]) -> dict[str, Any]:
-    """Build a mock Ollama /api/chat response with tool_calls."""
+    """Build a mock Ollama /api/chat response with tool_calls (JSON content mode)."""
+    flat_calls = []
+    for tc in tool_calls:
+        func = tc.get("function", {})
+        flat = {"name": func.get("name", "")}
+        args = func.get("arguments", {})
+        if isinstance(args, str):
+            try:
+                args = json.loads(args)
+            except Exception:
+                pass
+        if isinstance(args, dict):
+            flat.update(args)
+        flat_calls.append(flat)
+
     return {
         "model": "qwen2.5:7b",
         "message": {
             "role": "assistant",
-            "content": "",
-            "tool_calls": tool_calls,
+            "content": json.dumps({"tool_calls": flat_calls}),
         },
         "done": True,
     }
@@ -303,14 +316,7 @@ class TestStreamToolCall:
             "suggested_next_topic": "project_type",
             "model_believes_complete": False,
         }
-        ollama_response = _make_ollama_tool_response([
-            {
-                "function": {
-                    "name": "generate_response",
-                    "arguments": expected_payload,
-                }
-            }
-        ])
+        ollama_response = _make_ollama_content_response(json.dumps(expected_payload))
         mock_client = _mock_httpx_post(ollama_response)
 
         with patch("app.infrastructure.llm.ollama_provider.httpx.AsyncClient", return_value=mock_client):
