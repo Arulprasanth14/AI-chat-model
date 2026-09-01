@@ -158,7 +158,10 @@ class PromptBuilder:
         # 1. Profile persona (Phase A uses a minimal extraction persona to save tokens)
         parts.append(
             "You are a backend data extraction process. Do not converse with the user. "
-            "Your only job is to extract data into structured tool calls."
+            "Your only job is to extract data into structured tool calls.\n\n"
+            "CONTEXT AWARENESS: Always read the immediately preceding assistant message "
+            "(if one exists) to understand the context of the user's latest reply "
+            "(e.g., resolving short answers like 'Yes', 'English', or 'Skip')."
         )
 
         # 2. Retrieved knowledge context (moved to Phase B)
@@ -307,7 +310,7 @@ class PromptBuilder:
                 "You have already saved fields in a prior step; do NOT re-save here.\n\n"
                 "## RESPONSE STYLE RULES (MANDATORY)\n"
                 "- Keep replies SHORT and conversational — 1 to 3 sentences max.\n"
-                "- NEVER echo or repeat the user's answer back to them. One-word acknowledgements only: 'Got it.', 'Perfect.', 'Noted.'\n"
+                "- Use natural, varied, and brief acknowledgements (e.g., 'Makes sense', 'Understood', 'Great', 'Got it'). Do not use the exact same phrase repeatedly.\n"
                 "- Do NOT over-validate or over-praise. No 'That\\'s a great choice!', 'Love that!', or 'Wonderful!'.\n"
                 "- You may ask UP TO 2 closely related questions in a single turn if they belong to the same topic cluster. "
                 "But do NOT dump all remaining questions at once.\n"
@@ -482,9 +485,9 @@ class PromptBuilder:
         lines.append(
             "\nHONESTY RULES:\n"
             "- Only say 'saved', 'updated', 'got it', etc. for ✅ SAVED fields.\n"
-            "- For 'rejected_low_confidence': say you weren't sure what they meant and ask to confirm.\n"
-            "- For 'rejected_enum': say the value wasn't valid and offer the valid options.\n"
-            "- For 'rejected_qualitative': say you need a specific number or measurable target.\n"
+            "- For 'rejected_low_confidence': say you weren't sure what they meant and ask to clarify (do not repeat the exact same question blindly).\n"
+            "- For 'rejected_enum': explain the value wasn't valid, provide the allowed options, and ask again.\n"
+            "- For 'rejected_qualitative': explain you need a specific number or measurable target.\n"
             "- For 'rejected_lower_confidence': note that the existing capture was kept (higher confidence).\n"
             "- For 'rejected_unknown_field': do not mention — field mismatch is a system issue.\n"
             "- For 'rejected_malformed': say you couldn't understand the value and ask to clarify.\n"
@@ -493,8 +496,8 @@ class PromptBuilder:
             "- NEVER say 'I can see your logo', 'I received your file', or 'your asset was uploaded' "
             "unless that file's field_code appears with status='saved' in the ✅ SAVED list above.\n"
             # Bug 4 fix: prohibit premature completion language
-            "- NEVER use 'all set', 'you\'re good to go', 'we\'re done', or any completion language "
-            "unless the system explicitly states STATUS: BRIEF COMPLETE in the context above."
+            "- CRITICAL: NEVER use 'all set', 'you\\'re good to go', 'we\\'re done', or any language suggesting the brief is finished "
+            "UNLESS the system explicitly states STATUS: BRIEF COMPLETE above. If you do this prematurely, the system will fail."
         )
 
         # Also append raw JSON for precise machine parsing by future tooling
@@ -565,12 +568,10 @@ class PromptBuilder:
         lines.append(
             "\n## EXTRACTION GUARDRAILS (MANDATORY — read before calling any tool)\n"
             "1. ENUM FIELDS: If the field has a list of allowed values, you MUST map the user's "
-            "answer to the closest matching value from that list. NEVER save a free-text sentence "
-            "for an enum field. Example: if the user says 'I have a logo', map it to "
-            "'upload_logo_assets' for brand_identity_preference.\n"
-            "2. LIST FIELDS (distribution_channels, brand_personality, deliverables): "
-            "If the user mentions multiple values (e.g., 'Instagram and Facebook'), save them "
-            "as a comma-separated string: value=\"instagram, facebook\".\n"
+            "answer to the closest matching value from that list. Apply semantic mapping (e.g. if they say 'skip', "
+            "map it to 'none_needed' or 'custom'). NEVER save a free-text sentence for an enum field.\n"
+            "2. LIST FIELDS: For ANY field where the user provides multiple values (e.g. languages, "
+            "distribution_channels, deliverables), save them as a comma-separated string: value=\"val1, val2\".\n"
             "3. LOW CONFIDENCE: If you are 70% sure about a value, SAVE IT with confidence=0.7. "
             "Do not skip saving just because you are not 100% certain.\n"
             "4. MULTI-FIELD: If the user answers multiple fields in one message, call a separate "

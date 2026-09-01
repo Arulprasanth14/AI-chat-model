@@ -24,6 +24,9 @@ import logging
 from pathlib import Path
 from typing import Annotated, AsyncIterator
 
+import cloudinary
+import cloudinary.uploader
+
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
@@ -285,9 +288,38 @@ async def upload_logo(
     filename = file.filename or "uploaded_asset"
     active_profile = orchestrator._profile_provider(state)
 
+    if not settings.cloudinary_url:
+        return {
+            "status": "failed",
+            "field_code": "existing_assets",
+            "filename": filename,
+            "message": "Cloudinary is not configured. Please add CLOUDINARY_URL to your .env file.",
+        }
+
+    try:
+        content = await file.read()
+        import os
+        # Ensure cloudinary picks up the url from settings if not auto-loaded
+        cloudinary.config(cloudinary_url=settings.cloudinary_url)
+        
+        upload_result = cloudinary.uploader.upload(
+            content,
+            resource_type="auto",
+            public_id=f"picasso_fusion/{session_id}/{filename.split('.')[0]}",
+        )
+        secure_url = upload_result.get("secure_url")
+    except Exception as exc:
+        logger.error(f"Cloudinary upload failed for {filename}", exc_info=exc)
+        return {
+            "status": "failed",
+            "field_code": "existing_assets",
+            "filename": filename,
+            "message": f"Cloudinary upload failed: {exc}",
+        }
+
     result = state.handle_save_text_field(
         field_code="existing_assets",
-        value=filename,
+        value=secure_url,
         confidence=1.0,
         profile=active_profile,
         confidence_threshold=0.0,
