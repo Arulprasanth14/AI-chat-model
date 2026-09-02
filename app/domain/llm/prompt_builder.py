@@ -344,10 +344,11 @@ class PromptBuilder:
             # never re-asks fields that were just saved in this turn.
             if updated_status is not None:
                 # Replace the old status block with the freshly computed one.
-                # Since missing fields is now at the absolute end, we replace everything after it.
+                # Use a lookahead to stop at the OPENING TURN DIRECTIVE (if present)
+                # so we don't accidentally delete the start directive appended by orchestrator.
                 import re as _re
                 patched = _re.sub(
-                    r"## Required Fields Still Missing\n\n[\s\S]*$",
+                    r"## Required Fields Still Missing\n\n[\s\S]*?(?=\n\n## OPENING TURN DIRECTIVE|$)",
                     "## Required Fields Still Missing\n\n" + updated_status,
                     patched,
                 )
