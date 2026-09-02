@@ -439,18 +439,32 @@ class ConversationOrchestrator:
         # ── Step 12: Add assistant turn to history ──────────────────────────
         state.add_turn("assistant", final_message)
 
-        # ── Step 13: Persist final state ────────────────────────────────────
+        # ── Step 13: Persist final state (Background Write) ─────────────────
         # Phase A already persisted the extraction changes. We persist again
         # here to capture the updated conversation history (assistant message).
+        # Optimization: We fire-and-forget this write to return the final 
+        # SSE chunk to the user immediately, eliminating the DB wait time.
         t_write_start = time.perf_counter()
-        try:
-            await self._repo.save_session(state)
-        except Exception as exc:
-            logger.error(
-                "Final state persist failed (conversation history not saved)",
-                extra={"session_id": state.session_id},
-                exc_info=exc,
-            )
+
+        async def _bg_save(state_to_save: ConversationState) -> None:
+            try:
+                await self._repo.save_session(state_to_save)
+            except Exception as exc:
+                logger.error(
+                    "Final state persist failed (conversation history not saved)",
+                    extra={"session_id": state_to_save.session_id},
+                    exc_info=exc,
+                )
+
+        import asyncio
+        bg_task = asyncio.create_task(_bg_save(state))
+        
+        # Strong reference to prevent GC during fire-and-forget
+        if not hasattr(self, "_bg_tasks"):
+            self._bg_tasks = set()
+        self._bg_tasks.add(bg_task)
+        bg_task.add_done_callback(self._bg_tasks.discard)
+
         timings["backend_write_b"] = time.perf_counter() - t_write_start
         timings["total_turn"] = time.perf_counter() - t_start
 

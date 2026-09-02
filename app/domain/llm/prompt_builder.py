@@ -187,9 +187,6 @@ class PromptBuilder:
             "## STEP 1 — EXTRACT AND SAVE FIELDS (do this first, before any reply)\n\n"
             "Read the user's latest message carefully. For every piece of information they provided "
             "that matches a required field below, call the appropriate save tool immediately.\n\n"
-            "## Required Fields Still Missing\n\n"
-            + status_block
-            + "\n\n"
             "## How to Call the Save Tools\n\n"
             "You are equipped with a set of named action tools. "
             "Use them NOW to explicitly save any field values the user just provided. "
@@ -205,10 +202,15 @@ class PromptBuilder:
             "- If the user is correcting a field they already gave, save it with confidence=1.0.\n"
             "- Do NOT call a tool if you are not sure. Only save what is clearly stated.\n"
             "HONESTY INVARIANTS (enforced — never override):\n"
-            "- NEVER use language like 'all set', 'you\'re good to go', 'we\'re done', or 'brief is complete' "
+            "- NEVER use language like 'all set', 'you\\'re good to go', 'we\\'re done', or 'brief is complete' "
             "unless the system explicitly tells you STATUS: BRIEF COMPLETE.\n"
             "- NEVER claim a file, logo, or asset was received unless it appears as a SAVED field "
             "in the write outcome report. The user uploading a file in chat is not confirmation."
+        )
+
+        parts.append(
+            "## Required Fields Still Missing\n\n"
+            + status_block
         )
 
         return self.SECTION_SEP.join(parts)
@@ -297,7 +299,7 @@ class PromptBuilder:
                 profile.persona_prompt.strip()
             )
 
-            # 2. Swap the tool instruction
+            # 2. Swap the tool instruction AND append the static frustration handler right after it
             patched = patched.replace(
                 "You are equipped with a set of named action tools. "
                 "Use them NOW to explicitly save any field values the user just provided. "
@@ -316,35 +318,39 @@ class PromptBuilder:
                 "But do NOT dump all remaining questions at once.\n"
                 "- NEVER ask about a topic that was already answered in the conversation history above.\n"
                 "- Write like a confident creative consultant, not a customer-service bot."
+                + "\n\n" + frustration_handler
             )
 
-            # Inject the updated (post-Phase-A) missing fields status so Phase B
-            # never re-asks fields that were just saved in this turn.
-            if updated_status is not None:
-                # Replace the old status block with the freshly computed one.
-                import re as _re
-                patched = _re.sub(
-                    r"## Required Fields Still Missing\n\n[\s\S]*?(?=\n\n## How to Call)",
-                    "## Required Fields Still Missing\n\n" + updated_status,
-                    patched,
-                )
-
-            # Always append the frustration handler rule
-            patched += "\n\n" + frustration_handler
-
-            # Inject retrieved knowledge chunks (only in-progress, after frustration handler)
+            # Inject retrieved knowledge chunks BEFORE the missing fields block so all dynamic
+            # content sits together at the end of the prompt (optimizes prompt caching).
             if retrieved_chunks and not is_complete:
                 context_block = self._format_retrieved_chunks(retrieved_chunks)
                 if context_block:
-                    patched += (
-                        "\n\n## Retrieved Knowledge\n\n"
+                    retrieved_str = (
+                        "## Retrieved Knowledge\n\n"
                         "The following context has been retrieved from the knowledge base "
                         "to help guide this conversation turn. Use it to inform your "
                         "questions and extraction, but don't quote it verbatim.\n"
                         "CRITICAL: DO NOT invent examples, options, or pricing not present in these chunks.\n"
                         "CRITICAL: If retrieved context is irrelevant to the user's input, ignore it.\n\n"
-                        + context_block
+                        + context_block + "\n\n"
                     )
+                    patched = patched.replace(
+                        "## Required Fields Still Missing",
+                        retrieved_str + "## Required Fields Still Missing"
+                    )
+
+            # Inject the updated (post-Phase-A) missing fields status so Phase B
+            # never re-asks fields that were just saved in this turn.
+            if updated_status is not None:
+                # Replace the old status block with the freshly computed one.
+                # Since missing fields is now at the absolute end, we replace everything after it.
+                import re as _re
+                patched = _re.sub(
+                    r"## Required Fields Still Missing\n\n[\s\S]*$",
+                    "## Required Fields Still Missing\n\n" + updated_status,
+                    patched,
+                )
 
             messages[0] = {"role": "system", "content": patched}
 
@@ -639,13 +645,16 @@ class PromptBuilder:
             return (
                 "**STATUS: BRIEF COMPLETE — All required fields have been captured.**\n\n"
                 "You are now in post-completion Q&A mode. Rules for this mode:\n"
-                "1. READ the user's message carefully. Respond DIRECTLY and SPECIFICALLY to what they asked.\n"
-                "2. Do NOT recite or summarise the full brief again unless the user explicitly asks "
+                "1. If this is the FIRST time you are responding after the brief is complete, "
+                "   you MUST acknowledge completion and explicitly ask: 'Your brief is fully complete! Let me know if you want to update any fields.' "
+                "   Do NOT ask any more questions about the brief.\n"
+                "2. READ the user's message carefully. Respond DIRECTLY and SPECIFICALLY to what they asked.\n"
+                "3. Do NOT recite or summarise the full brief again unless the user explicitly asks "
                 "   (e.g. 'show me the brief', 'what did we capture', 'summarise everything').\n"
-                "3. If the user asks to change or update a field, acknowledge it warmly and note the change.\n"
-                "4. If the user asks a question about the project, answer it from the captured context.\n"
-                "5. If the user says they are done, confirm readiness to proceed.\n"
-                "6. NEVER give the same response twice for different questions — your response must "
+                "4. If the user asks to change or update a field, acknowledge it warmly and note the change.\n"
+                "5. If the user asks a question about the project, answer it from the captured context.\n"
+                "6. If the user says they are done, confirm readiness to proceed.\n"
+                "7. NEVER give the same response twice for different questions — your response must "
                 "   be specifically tailored to what was just asked."
                 + summary_ref
             )
