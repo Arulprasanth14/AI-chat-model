@@ -10,6 +10,7 @@ fields:
   section_name: Email Purpose
   section_order: 0
   section_field_order: 0
+  question: What type of email template do you need?
   options:
   - label: Newsletter
     value: newsletter
@@ -35,6 +36,9 @@ fields:
   section_name: Template Goal
   section_order: 1
   section_field_order: 0
+  question: What is the primary goal of this email template?
+  hint: 'Examples: Drive website traffic, Generate leads, Promote products, Share
+    company updates, Register for events, Educate customers.'
   options:
   - label: Drive Website Traffic
     value: drive_website_traffic
@@ -56,6 +60,9 @@ fields:
   section_name: Email Platform
   section_order: 2
   section_field_order: 0
+  question: Which email platform will this template be used in?
+  hint: This should be one of the first questions because it affects how the template
+    is built.
   options:
   - label: Mailchimp
     value: mailchimp
@@ -79,6 +86,7 @@ fields:
   section_name: Content Structure
   section_order: 3
   section_field_order: 0
+  question: Which sections should be included in the template?
   options:
   - label: Hero Banner
     value: hero_banner
@@ -106,6 +114,8 @@ fields:
   section_name: Content & Assets
   section_order: 4
   section_field_order: 0
+  question: Do you have photography, product images, illustrations, or brand assets
+    to use?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -117,12 +127,15 @@ fields:
   section_name: Content & Assets
   section_order: 4
   section_field_order: 1
+  question: Upload assets.
+  hint: Only if you have photography, product images, illustrations, or brand assets.
 - code: ET7
   kind: radio
   required: true
   section_name: Calls to Action
   section_order: 5
   section_field_order: 0
+  question: Will this template include call-to-action buttons?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -134,6 +147,8 @@ fields:
   section_name: Calls to Action
   section_order: 5
   section_field_order: 1
+  question: What CTA buttons should be available in the template?
+  hint: Only if you said yes above.
   options:
   - label: Learn More
     value: learn_more
@@ -147,12 +162,17 @@ fields:
     value: contact_us
   - label: Other
     value: other
+  show_if:
+    field: ET8
+    in:
+    - 'yes'
 - code: ET9
   kind: radio
   required: true
   section_name: Tracking Requirements
   section_order: 6
   section_field_order: 0
+  question: Will links in this template require UTM tracking?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -164,12 +184,19 @@ fields:
   section_name: Tracking Requirements
   section_order: 6
   section_field_order: 1
+  question: Provide UTM parameters or confirm AI-generated UTMs.
+  hint: Only if you said yes above.
+  show_if:
+    field: ET9
+    in:
+    - 'yes'
 - code: ET11
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 7
   section_field_order: 0
+  question: Any reference email designs or inspiration?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -181,12 +208,19 @@ fields:
   section_name: Design Direction
   section_order: 7
   section_field_order: 1
+  question: Upload reference emails, up to 3.
+  hint: Only if you said yes to reference email designs above.
+  show_if:
+    field: ET11
+    in:
+    - 'yes'
 - code: ET13
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 7
   section_field_order: 2
+  question: Describe the email design style you'd like.
   options:
   - label: Minimal
     value: minimal
@@ -210,6 +244,8 @@ fields:
   section_name: Technical Requirements
   section_order: 8
   section_field_order: 0
+  question: Do you require a fully coded HTML email or a design-only template?
+  hint: This is a critical question that's currently missing.
   options:
   - label: Fully Coded HTML Email
     value: fully_coded_html_email
@@ -223,3 +259,5 @@ fields:
   section_name: Additional Requirements
   section_order: 9
   section_field_order: 0
+  question: Any technical, accessibility, or platform-specific requirements?
+  hint: Leave blank if unsure.

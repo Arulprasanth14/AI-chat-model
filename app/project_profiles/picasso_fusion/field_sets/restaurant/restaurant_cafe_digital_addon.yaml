@@ -14,6 +14,8 @@ fields:
   section_name: Digital Asset & Message
   section_order: 0
   section_field_order: 0
+  question: What are we creating today?
+  hint: Select the digital asset.
   options:
   - label: Website Banner
     value: website_banner
@@ -47,18 +49,26 @@ fields:
   section_name: Digital Asset & Message
   section_order: 0
   section_field_order: 1
+  question: What are we promoting?
+  hint: 'Provide the key details: Dish/Menu/Event Name, Category, Price (Optional),
+    Key Ingredients/Highlights.'
 - code: DG3
   kind: text
   required: true
   section_name: Digital Asset & Message
   section_order: 0
   section_field_order: 2
+  question: What's the ONE message customers should remember?
+  hint: 'Describe the biggest takeaway after seeing this digital asset. Example: "Try
+    our new wood-fired pizzas.", "Weekend brunch is now available.", "Order directly
+    and enjoy exclusive offers."'
 - code: DG4
   kind: checkbox
   required: true
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 0
+  question: What's the goal of this digital asset?
   options:
   - label: Increase Restaurant Visits
     value: increase_restaurant_visits
@@ -86,12 +96,15 @@ fields:
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 1
+  question: Who is this campaign for?
+  hint: Describe your ideal customer.
 - code: DG6
   kind: radio
   required: true
   section_name: Offer
   section_order: 2
   section_field_order: 0
+  question: Are you running an offer?
   options:
   - label: No Offer
     value: no_offer
@@ -115,12 +128,19 @@ fields:
   section_name: Offer
   section_order: 2
   section_field_order: 1
+  question: Provide the offer details, start & end date, and terms & conditions.
+  hint: Only if you are running an offer.
+  show_if:
+    field: DG6
+    not_in:
+    - no_offer
 - code: DG8
   kind: radio
   required: true
   section_name: Content
   section_order: 3
   section_field_order: 0
+  question: Do you already have the content?
   options:
   - label: Final Copy Ready
     value: final_copy_ready
@@ -134,12 +154,16 @@ fields:
   section_name: Content
   section_order: 3
   section_field_order: 1
+  question: Provide your copy or rough points.
+  hint: Only if you have final copy ready or rough points.
 - code: DG10
   kind: checkbox
   required: false
   section_name: Design Requirements
   section_order: 4
   section_field_order: 0
+  question: Is there anything that must appear?
+  hint: Select all that apply.
   options:
   - label: Dish Name
     value: dish_name
@@ -175,6 +199,7 @@ fields:
   section_name: Images & Assets
   section_order: 5
   section_field_order: 0
+  question: Do you have images or assets?
   options:
   - label: I'll Upload Food Photos
     value: ill_upload_food_photos
@@ -196,12 +221,24 @@ fields:
   section_name: Images & Assets
   section_order: 5
   section_field_order: 1
+  question: Upload your files.
+  hint: 'Upload food photography, restaurant images, menus, logos, or supporting assets.
+    Recommended formats: PNG, JPG, SVG, PDF.'
+  show_if:
+    field: DG11
+    in:
+    - ill_upload_food_photos
+    - ill_upload_restaurant_ambience_photos
+    - ill_upload_menu_graphics
+    - ill_upload_logos_and_brand_assets
 - code: DG13
   kind: radio
   required: true
   section_name: Brand Assets
   section_order: 6
   section_field_order: 0
+  question: Would you like us to follow your existing brand identity?
+  hint: Brand Assets & Guidelines.
   options:
   - label: Use My Saved Brand Kit
     value: use_my_saved_brand_kit
@@ -217,6 +254,8 @@ fields:
   section_name: Brand Assets
   section_order: 6
   section_field_order: 1
+  question: What should we customize?
+  hint: Only if you selected "Customize This Project" above.
   options:
   - label: Brand Colors
     value: brand_colors
@@ -224,18 +263,30 @@ fields:
     value: brand_fonts
   - label: Additional Instructions
     value: additional_instructions
+  show_if:
+    field: DG14
+    in:
+    - customize_this_project
 - code: DG15
   kind: text
   required: false
   section_name: Brand Assets
   section_order: 6
   section_field_order: 2
+  question: Provide any additional brand customization details.
+  hint: Only if you selected "Customize This Project" above.
+  show_if:
+    field: DG14
+    in:
+    - customize_this_project
 - code: DG16
   kind: checkbox
   required: true
   section_name: Style & References
   section_order: 7
   section_field_order: 0
+  question: How should this digital asset feel?
+  hint: Choose up to 3.
   options:
   - label: Premium
     value: premium
@@ -267,6 +318,8 @@ fields:
   section_name: Style & References
   section_order: 7
   section_field_order: 1
+  question: Do you have any inspiration?
+  hint: Share digital designs you like.
   options:
   - label: Website Link
     value: website_link
@@ -284,12 +337,19 @@ fields:
   section_name: Style & References
   section_order: 7
   section_field_order: 2
+  question: Provide the reference link(s), or note that you're uploading images.
+  hint: Only if you selected a reference option above (not Skip).
+  show_if:
+    field: DG17
+    not_in:
+    - skip
 - code: DG19
   kind: checkbox
   required: true
   section_name: Placement & Format
   section_order: 8
   section_field_order: 0
+  question: Where will this asset be used?
   options:
   - label: Website
     value: website
@@ -319,6 +379,7 @@ fields:
   section_name: Placement & Format
   section_order: 8
   section_field_order: 1
+  question: What size or format do you need?
   options:
   - label: Standard Platform Size
     value: standard_platform_size
@@ -332,12 +393,15 @@ fields:
   section_name: Placement & Format
   section_order: 8
   section_field_order: 2
+  question: "Provide the width \xD7 height in pixels."
+  hint: Only if you selected Custom Dimensions above.
 - code: DG22
   kind: radio
   required: true
   section_name: Language & Notes
   section_order: 9
   section_field_order: 0
+  question: What language should the design use?
   options:
   - label: English
     value: english
@@ -377,3 +441,6 @@ fields:
   section_name: Language & Notes
   section_order: 9
   section_field_order: 1
+  question: Is there anything you'd like us to avoid?
+  hint: Mention any colours, imagery, wording, or visual styles you'd prefer not to
+    use.

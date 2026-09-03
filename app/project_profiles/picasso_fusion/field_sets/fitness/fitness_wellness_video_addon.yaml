@@ -14,6 +14,8 @@ fields:
   section_name: Video Purpose & Message
   section_order: 0
   section_field_order: 0
+  question: What are we creating today?
+  hint: Select the purpose of the video.
   options:
   - label: Brand Video
     value: brand_video
@@ -47,12 +49,17 @@ fields:
   section_name: Video Purpose & Message
   section_order: 0
   section_field_order: 1
+  question: What's the one message viewers should remember?
+  hint: 'Describe the single biggest takeaway. Example: "We build premium homes with
+    transparent pricing.", "Our new skincare range is now available.", "Join our annual
+    fitness challenge."'
 - code: VD3
   kind: checkbox
   required: true
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 0
+  question: What's the goal of this video?
   options:
   - label: Increase Brand Awareness
     value: increase_brand_awareness
@@ -78,12 +85,16 @@ fields:
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 1
+  question: Who is this video for?
+  hint: Describe your target audience.
 - code: VD5
   kind: checkbox
   required: true
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 2
+  question: Who or what will be featured?
+  hint: Select all that apply.
   options:
   - label: Founder / Team
     value: founder_team
@@ -109,12 +120,16 @@ fields:
   section_name: Key Messages & Footage
   section_order: 2
   section_field_order: 0
+  question: What are the three most important points this video should communicate?
+  hint: "Keep it simple \u2014 focus on the key messages you want every viewer to\
+    \ remember."
 - code: VD7
   kind: checkbox
   required: true
   section_name: Key Messages & Footage
   section_order: 2
   section_field_order: 1
+  question: Do you already have footage?
   options:
   - label: I'll Upload Video Clips
     value: ill_upload_video_clips
@@ -134,28 +149,40 @@ fields:
   section_name: Key Messages & Footage
   section_order: 2
   section_field_order: 2
+  question: Upload your files.
+  hint: 'Upload videos, photos, logos, graphics, or supporting assets. Recommended:
+    MP4/MOV, 1080p or higher. Only if you''ll be uploading your own footage.'
+  show_if:
+    field: VD7
+    in:
+    - ill_upload_video_clips
+    - ill_upload_photos
 - code: VD9
   kind: text
   required: false
   section_name: Key Messages & Footage
   section_order: 2
   section_field_order: 3
+  question: Are there any important scenes that must appear?
+  hint: 'Example: Product demonstration, Customer testimonial, Team introduction,
+    Factory tour, Before & after, Event highlights.'
 - code: VD10
   kind: radio
   required: true
   section_name: Length & Script
   section_order: 3
   section_field_order: 0
+  question: Approximately how long should the final video be?
   options:
   - label: Under 30 Seconds
     value: under_30_seconds
-  - label: 30–60 Seconds
+  - label: "30\u201360 Seconds"
     value: 30_60_seconds
-  - label: 1–3 Minutes
+  - label: "1\u20133 Minutes"
     value: 1_3_minutes
-  - label: 3–5 Minutes
+  - label: "3\u20135 Minutes"
     value: 3_5_minutes
-  - label: 5–10 Minutes
+  - label: "5\u201310 Minutes"
     value: 5_10_minutes
   - label: Let the Creative Team Decide
     value: let_the_creative_team_decide
@@ -165,6 +192,7 @@ fields:
   section_name: Length & Script
   section_order: 3
   section_field_order: 1
+  question: Do you already have a script?
   options:
   - label: Final Script Ready
     value: final_script_ready
@@ -180,12 +208,16 @@ fields:
   section_name: Length & Script
   section_order: 3
   section_field_order: 2
+  question: Provide your script or rough talking points.
+  hint: Only if you selected "Final Script Ready" or "Rough Talking Points" above.
 - code: VD13
   kind: checkbox
   required: true
   section_name: Tone & Music
   section_order: 4
   section_field_order: 0
+  question: How should the video feel?
+  hint: Choose up to 3.
   options:
   - label: Premium
     value: premium
@@ -223,6 +255,7 @@ fields:
   section_name: Tone & Music
   section_order: 4
   section_field_order: 1
+  question: What kind of music would you prefer?
   options:
   - label: Cinematic
     value: cinematic
@@ -250,6 +283,8 @@ fields:
   section_name: Brand Assets
   section_order: 5
   section_field_order: 0
+  question: Would you like us to follow your existing brand identity?
+  hint: Brand Assets & Guidelines.
   options:
   - label: Use My Saved Brand Kit
     value: use_my_saved_brand_kit
@@ -265,6 +300,8 @@ fields:
   section_name: Brand Assets
   section_order: 5
   section_field_order: 1
+  question: What should we customize?
+  hint: Only if you selected "Customize This Project" above.
   options:
   - label: Brand Colors
     value: brand_colors
@@ -274,18 +311,30 @@ fields:
     value: logo_placement
   - label: Additional Instructions
     value: additional_instructions
+  show_if:
+    field: VD16
+    in:
+    - customize_this_project
 - code: VD17
   kind: text
   required: false
   section_name: Brand Assets
   section_order: 5
   section_field_order: 2
+  question: Provide any additional brand customization details.
+  hint: Only if you selected "Customize This Project" above.
+  show_if:
+    field: VD16
+    in:
+    - customize_this_project
 - code: VD18
   kind: checkbox
   required: false
   section_name: Style & References
   section_order: 6
   section_field_order: 0
+  question: Do you have any inspiration?
+  hint: Share videos you like.
   options:
   - label: YouTube Link
     value: youtube_link
@@ -305,18 +354,28 @@ fields:
   section_name: Style & References
   section_order: 6
   section_field_order: 1
+  question: Provide the reference link(s).
+  hint: Only if you selected YouTube Link, Vimeo Link, Instagram Reel, or TikTok above.
 - code: VD20
   kind: file
   required: false
   section_name: Style & References
   section_order: 6
   section_field_order: 2
+  question: Upload reference video.
+  hint: Only if you selected "Upload Reference Video" above.
+  show_if:
+    field: VD18
+    in:
+    - upload_reference_video
 - code: VD21
   kind: checkbox
   required: true
   section_name: Publishing & Format
   section_order: 7
   section_field_order: 0
+  question: Where will this video be published?
+  hint: Select all that apply.
   options:
   - label: Instagram
     value: instagram
@@ -346,6 +405,8 @@ fields:
   section_name: Publishing & Format
   section_order: 7
   section_field_order: 1
+  question: What output formats do you need?
+  hint: Select all that apply.
   options:
   - label: Vertical (9:16)
     value: vertical_9_16
@@ -363,6 +424,7 @@ fields:
   section_name: Publishing & Format
   section_order: 7
   section_field_order: 2
+  question: What language should the video use?
   options:
   - label: English
     value: english
@@ -402,6 +464,7 @@ fields:
   section_name: Call to Action & Notes
   section_order: 8
   section_field_order: 0
+  question: What should viewers do after watching?
   options:
   - label: Visit Our Website
     value: visit_our_website
@@ -427,3 +490,6 @@ fields:
   section_name: Call to Action & Notes
   section_order: 8
   section_field_order: 1
+  question: Is there anything you'd like us to avoid?
+  hint: Mention any editing styles, transitions, music, wording, colours, competitors,
+    or visual directions you'd prefer not to use.

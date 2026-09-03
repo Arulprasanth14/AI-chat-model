@@ -14,6 +14,8 @@ fields:
   section_name: Video Purpose & Product
   section_order: 0
   section_field_order: 0
+  question: What are we creating today?
+  hint: Select the type of video.
   options:
   - label: Brand Film
     value: brand_film
@@ -47,18 +49,26 @@ fields:
   section_name: Video Purpose & Product
   section_order: 0
   section_field_order: 1
+  question: What are we featuring?
+  hint: 'Provide the key details: Dish/Menu/Event Name, Category, Price (Optional),
+    Key Ingredients/Highlights.'
 - code: VD3
   kind: text
   required: true
   section_name: Video Purpose & Product
   section_order: 0
   section_field_order: 2
+  question: What's the ONE message customers should remember?
+  hint: 'Describe the biggest takeaway after watching the video. Example: "Fresh pasta
+    made daily.", "Our summer menu is now available.", "Reserve your table for our
+    live music night."'
 - code: VD4
   kind: checkbox
   required: true
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 0
+  question: What's the goal of this video?
   options:
   - label: Increase Restaurant Visits
     value: increase_restaurant_visits
@@ -84,12 +94,15 @@ fields:
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 1
+  question: Who is this video for?
+  hint: Describe your ideal customer.
 - code: VD6
   kind: radio
   required: true
   section_name: Offer
   section_order: 2
   section_field_order: 0
+  question: Are you running an offer?
   options:
   - label: No Offer
     value: no_offer
@@ -113,12 +126,19 @@ fields:
   section_name: Offer
   section_order: 2
   section_field_order: 1
+  question: Provide the offer details, start & end date, and terms & conditions.
+  hint: Only if you are running an offer.
+  show_if:
+    field: VD6
+    not_in:
+    - no_offer
 - code: VD8
   kind: checkbox
   required: true
   section_name: Footage & Key Shots
   section_order: 3
   section_field_order: 0
+  question: What footage do you have?
   options:
   - label: I'll Upload Food Preparation Videos
     value: ill_upload_food_preparation_videos
@@ -140,26 +160,42 @@ fields:
   section_name: Footage & Key Shots
   section_order: 3
   section_field_order: 1
+  question: Upload your files.
+  hint: 'Upload videos, photos, logos, menus, or supporting assets. Recommended: MP4/MOV,
+    1080p or higher.'
+  show_if:
+    field: VD8
+    in:
+    - ill_upload_food_preparation_videos
+    - ill_upload_finished_dish_videos
+    - ill_upload_restaurant_ambience
+    - ill_upload_customer_experience_footage
+    - ill_upload_chef_or_staff_interviews
 - code: VD10
   kind: text
   required: false
   section_name: Footage & Key Shots
   section_order: 3
   section_field_order: 2
+  question: Are there any moments that must appear?
+  hint: 'Examples: Ingredients, Cooking process, Grilling, Cheese pull, Sauce pour,
+    Plating, Steam, Chef preparing the dish, Customer reactions, Restaurant ambience,
+    Offer announcement.'
 - code: VD11
   kind: radio
   required: true
   section_name: Length & Script
   section_order: 4
   section_field_order: 0
+  question: Approximately how long should the final video be?
   options:
   - label: Under 30 Seconds
     value: under_30_seconds
-  - label: 30–60 Seconds
+  - label: "30\u201360 Seconds"
     value: 30_60_seconds
-  - label: 1–3 Minutes
+  - label: "1\u20133 Minutes"
     value: 1_3_minutes
-  - label: 3–5 Minutes
+  - label: "3\u20135 Minutes"
     value: 3_5_minutes
   - label: Let the Creative Team Decide
     value: let_the_creative_team_decide
@@ -169,6 +205,7 @@ fields:
   section_name: Length & Script
   section_order: 4
   section_field_order: 1
+  question: Do you already have a script?
   options:
   - label: Final Script Ready
     value: final_script_ready
@@ -184,12 +221,16 @@ fields:
   section_name: Length & Script
   section_order: 4
   section_field_order: 2
+  question: Provide your script or rough talking points.
+  hint: Only if you selected "Final Script Ready" or "Rough Talking Points" above.
 - code: VD14
   kind: checkbox
   required: true
   section_name: Tone & Music
   section_order: 5
   section_field_order: 0
+  question: How should the video feel?
+  hint: Choose up to 3.
   options:
   - label: Premium
     value: premium
@@ -221,6 +262,7 @@ fields:
   section_name: Tone & Music
   section_order: 5
   section_field_order: 1
+  question: What kind of music would you prefer?
   options:
   - label: Trending Instagram Audio
     value: trending_instagram_audio
@@ -246,6 +288,8 @@ fields:
   section_name: Brand Assets
   section_order: 6
   section_field_order: 0
+  question: Would you like us to follow your existing brand identity?
+  hint: Brand Assets & Guidelines.
   options:
   - label: Use My Saved Brand Kit
     value: use_my_saved_brand_kit
@@ -261,6 +305,8 @@ fields:
   section_name: Brand Assets
   section_order: 6
   section_field_order: 1
+  question: What should we customize?
+  hint: Only if you selected "Customize This Project" above.
   options:
   - label: Brand Colors
     value: brand_colors
@@ -270,18 +316,30 @@ fields:
     value: logo_placement
   - label: Additional Instructions
     value: additional_instructions
+  show_if:
+    field: VD17
+    in:
+    - customize_this_project
 - code: VD18
   kind: text
   required: false
   section_name: Brand Assets
   section_order: 6
   section_field_order: 2
+  question: Provide any additional brand customization details.
+  hint: Only if you selected "Customize This Project" above.
+  show_if:
+    field: VD17
+    in:
+    - customize_this_project
 - code: VD19
   kind: checkbox
   required: false
   section_name: Style & References
   section_order: 7
   section_field_order: 0
+  question: Do you have any inspiration?
+  hint: Share videos you like.
   options:
   - label: Instagram Link
     value: instagram_link
@@ -299,18 +357,27 @@ fields:
   section_name: Style & References
   section_order: 7
   section_field_order: 1
+  question: Provide the reference link(s).
+  hint: Only if you selected Instagram Link, YouTube Link, or TikTok Link above.
 - code: VD21
   kind: file
   required: false
   section_name: Style & References
   section_order: 7
   section_field_order: 2
+  question: Upload reference videos.
+  hint: Only if you selected "Upload Reference Videos" above.
+  show_if:
+    field: VD19
+    in:
+    - upload_reference_videos
 - code: VD22
   kind: checkbox
   required: true
   section_name: Publishing & Format
   section_order: 8
   section_field_order: 0
+  question: Where will this video be published?
   options:
   - label: Instagram
     value: instagram
@@ -332,6 +399,7 @@ fields:
   section_name: Publishing & Format
   section_order: 8
   section_field_order: 1
+  question: What output formats do you need?
   options:
   - label: Vertical (9:16)
     value: vertical_9_16
@@ -349,6 +417,7 @@ fields:
   section_name: Publishing & Format
   section_order: 8
   section_field_order: 2
+  question: What language should the video use?
   options:
   - label: English
     value: english
@@ -388,3 +457,6 @@ fields:
   section_name: Additional Notes
   section_order: 9
   section_field_order: 0
+  question: Is there anything you'd like us to avoid?
+  hint: Mention any editing styles, colours, music, wording, or visual directions
+    you'd prefer not to use.

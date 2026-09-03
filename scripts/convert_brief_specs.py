@@ -222,6 +222,10 @@ def _build_field_set(spec: dict[str, Any]) -> dict[str, Any]:
                 "section_order": section_order,
                 "section_field_order": section_field_order,
             }
+            if "question" in q:
+                field["question"] = q["question"]
+            if "hint" in q:
+                field["hint"] = q["hint"]
             if q.get("options"):
                 field["options"] = [
                     {"label": o["label"], "value": o["value"]}

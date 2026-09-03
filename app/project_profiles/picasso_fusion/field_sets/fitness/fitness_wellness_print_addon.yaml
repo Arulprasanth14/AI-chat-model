@@ -14,6 +14,8 @@ fields:
   section_name: Print Item & Message
   section_order: 0
   section_field_order: 0
+  question: What are we creating today?
+  hint: Select the print item.
   options:
   - label: Flyer
     value: flyer
@@ -55,12 +57,17 @@ fields:
   section_name: Print Item & Message
   section_order: 0
   section_field_order: 1
+  question: What's the one message people should remember?
+  hint: 'Describe the main purpose of this print piece. Example: "Grand opening this
+    Saturday.", "Introducing our new premium apartment project.", "Summer sale up
+    to 50% off."'
 - code: PT3
   kind: checkbox
   required: true
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 0
+  question: What's the goal of this print piece?
   options:
   - label: Promote a Product
     value: promote_a_product
@@ -86,12 +93,15 @@ fields:
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 1
+  question: Who is this for?
+  hint: Describe your target audience.
 - code: PT5
   kind: radio
   required: true
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 2
+  question: What action should people take?
   options:
   - label: Visit Website
     value: visit_website
@@ -117,12 +127,16 @@ fields:
   section_name: Content
   section_order: 2
   section_field_order: 0
+  question: What are you promoting?
+  hint: 'Provide the key information: Product/Service Name, Price (if applicable),
+    Key Benefits, Offer Details, Event Date & Time, Terms & Conditions.'
 - code: PT7
   kind: radio
   required: true
   section_name: Content
   section_order: 2
   section_field_order: 1
+  question: Do you already have the final content?
   options:
   - label: Yes, Final Copy Is Ready
     value: final_copy_ready
@@ -136,12 +150,16 @@ fields:
   section_name: Content
   section_order: 2
   section_field_order: 2
+  question: Provide your final copy or rough points.
+  hint: Only if you have final copy ready or rough points.
 - code: PT9
   kind: checkbox
   required: false
   section_name: Design Requirements
   section_order: 3
   section_field_order: 0
+  question: Is there anything that must appear?
+  hint: Select all that apply.
   options:
   - label: Logo
     value: logo
@@ -173,6 +191,7 @@ fields:
   section_name: Images & Assets
   section_order: 4
   section_field_order: 0
+  question: Do you have images or artwork?
   options:
   - label: I'll Upload Photos
     value: ill_upload_photos
@@ -194,12 +213,23 @@ fields:
   section_name: Images & Assets
   section_order: 4
   section_field_order: 1
+  question: Upload your files.
+  hint: Upload logos, photos, illustrations, product images, or supporting assets.
+    For best print quality, high-resolution images (300 DPI or higher) are recommended.
+  show_if:
+    field: PT10
+    in:
+    - ill_upload_photos
+    - ill_upload_product_images
+    - ill_upload_illustrations
 - code: PT12
   kind: radio
   required: true
   section_name: Brand Assets
   section_order: 5
   section_field_order: 0
+  question: Would you like us to follow your existing brand identity?
+  hint: Brand Assets & Guidelines.
   options:
   - label: Use My Saved Brand Kit
     value: use_my_saved_brand_kit
@@ -215,6 +245,8 @@ fields:
   section_name: Brand Assets
   section_order: 5
   section_field_order: 1
+  question: What should we customize?
+  hint: Only if you selected "Customize This Project" above.
   options:
   - label: Brand Colors
     value: brand_colors
@@ -222,18 +254,30 @@ fields:
     value: brand_fonts
   - label: Additional Brand Instructions
     value: additional_brand_instructions
+  show_if:
+    field: PT13
+    in:
+    - customize_this_project
 - code: PT14
   kind: text
   required: false
   section_name: Brand Assets
   section_order: 5
   section_field_order: 2
+  question: Provide any additional brand customization details.
+  hint: Only if you selected "Customize This Project" above.
+  show_if:
+    field: PT13
+    in:
+    - customize_this_project
 - code: PT15
   kind: checkbox
   required: true
   section_name: Style & References
   section_order: 6
   section_field_order: 0
+  question: What style should this print design have?
+  hint: Choose up to 3.
   options:
   - label: Premium
     value: premium
@@ -269,6 +313,8 @@ fields:
   section_name: Style & References
   section_order: 6
   section_field_order: 1
+  question: Do you have any inspiration?
+  hint: Share examples you like.
   options:
   - label: Upload Images
     value: upload_images
@@ -286,12 +332,19 @@ fields:
   section_name: Style & References
   section_order: 6
   section_field_order: 2
+  question: Provide the reference link(s), or note that you're uploading files.
+  hint: Only if you selected a reference option above (not Skip).
+  show_if:
+    field: PT16
+    not_in:
+    - skip
 - code: PT18
   kind: radio
   required: true
   section_name: Print Specifications
   section_order: 7
   section_field_order: 0
+  question: What print size do you need?
   options:
   - label: Standard Size
     value: standard_size
@@ -303,12 +356,19 @@ fields:
   section_name: Print Specifications
   section_order: 7
   section_field_order: 1
+  question: Provide the width, height, and unit.
+  hint: Only if you selected Custom Size above.
+  show_if:
+    field: PT18
+    in:
+    - custom_size
 - code: PT20
   kind: radio
   required: true
   section_name: Print Specifications
   section_order: 7
   section_field_order: 2
+  question: What orientation should the design be?
   options:
   - label: Portrait
     value: portrait
@@ -322,6 +382,7 @@ fields:
   section_name: Print Specifications
   section_order: 7
   section_field_order: 3
+  question: Single-sided or double-sided printing?
   options:
   - label: Single-Sided
     value: single_sided
@@ -333,18 +394,25 @@ fields:
   section_name: Print Specifications
   section_order: 7
   section_field_order: 4
+  question: Any additional print specifications?
+  hint: 'Examples: Number of pages (for brochures, catalogues, booklets), Fold type
+    (Bi-fold, Tri-fold, Z-fold, Gate fold), bleed/dieline supplied, printer specifications
+    available. Leave blank if not applicable.'
 - code: PT23
   kind: file
   required: false
   section_name: Print Specifications
   section_order: 7
   section_field_order: 5
+  question: Upload your bleed/dieline or printer specifications.
+  hint: Only if you have these available.
 - code: PT24
   kind: radio
   required: true
   section_name: Language & Notes
   section_order: 8
   section_field_order: 0
+  question: What language should the design use?
   options:
   - label: English
     value: english
@@ -384,3 +452,6 @@ fields:
   section_name: Language & Notes
   section_order: 8
   section_field_order: 1
+  question: Is there anything you'd like us to avoid?
+  hint: Mention any colors, imagery, wording, styles, or competitors you'd prefer
+    not to reference.

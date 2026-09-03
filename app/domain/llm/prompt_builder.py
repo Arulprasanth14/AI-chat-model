@@ -92,6 +92,7 @@ class PromptBuilder:
         is_complete: bool = False,
         brief_summary: str | None = None,
         suggestion_gate_rule: str | None = None,
+        current_field_hint: str | None = None,
     ) -> list[dict[str, Any]]:
         """Build the full message list for the LLM API call.
 
@@ -114,6 +115,7 @@ class PromptBuilder:
             profile, retrieved_chunks, missing_fields,
             is_complete=is_complete, brief_summary=brief_summary,
             suggestion_gate_rule=suggestion_gate_rule,
+            current_field=missing_fields[0] if missing_fields else None,
         )
 
         messages: list[dict[str, Any]] = [
@@ -127,6 +129,15 @@ class PromptBuilder:
         ]
         trimmed = history[-history_window:] if history_window > 0 else history
         messages.extend({"role": m["role"], "content": m["content"]} for m in trimmed)
+
+        # Bug 2 fix: Inject a "CURRENT CONTEXT" annotation as the last message before
+        # the user's reply. This tells Phase A exactly which field is being answered,
+        # eliminating the guessing that caused empty tool calls for short/Tanglish answers.
+        if current_field_hint and not is_complete and missing_fields:
+            messages.append({
+                "role": "system",
+                "content": current_field_hint,
+            })
 
         logger.debug(
             "Prompt built",
@@ -151,6 +162,7 @@ class PromptBuilder:
         is_complete: bool = False,
         brief_summary: str | None = None,
         suggestion_gate_rule: str | None = None,
+        current_field: MissingField | None = None,
     ) -> str:
         """Assemble the system message from its three components."""
         parts: list[str] = []
@@ -178,16 +190,16 @@ class PromptBuilder:
 
         # 3. Brief status block — switches mode based on completion state
         status_block = self._format_brief_status(
-            missing_fields, is_complete=is_complete, brief_summary=brief_summary
+            missing_fields, is_complete=is_complete, brief_summary=brief_summary, profile=profile
         )
 
         # Build a simple, direct extraction instruction that smaller models can follow
-        extraction_examples = self._format_extraction_examples(missing_fields)
+        extraction_examples = self._format_extraction_examples(missing_fields, current_field=current_field)
         parts.append(
             "## STEP 1 — EXTRACT AND SAVE FIELDS (do this first, before any reply)\n\n"
             "Read the user's latest message carefully. For every piece of information they provided "
             "that matches a required field below, call the appropriate save tool immediately.\n\n"
-            "## Required Fields Still Missing\n\n"
+            "## Brief Status\n\n"
             + status_block
             + "\n\n"
             "## How to Call the Save Tools\n\n"
@@ -195,20 +207,22 @@ class PromptBuilder:
             "Use them NOW to explicitly save any field values the user just provided. "
             "Call save_text_field, save_enum_field, or save_quantitative_field once per field. "
             "You may call multiple tools in one turn if the user provided multiple fields. "
-            "If the user provided NO field data (pure conversation), call no tools — leave this turn tool-free. "
+            "If the user provided an answer to the current question (even informally), YOU MUST call a save tool. "
+            "Call no tools ONLY if their message is purely conversational (e.g. 'hello', 'wait a minute'). "
             "Do NOT generate a conversational reply here — that happens in a separate step.\n\n"
             + extraction_examples
             + "\n\nRULES:\n"
             "- Use the EXACT field_code from the list above — never invent new codes.\n"
             "- Call one tool per field. You may call several tools in a single turn.\n"
+            "- If the user's message exactly matches or closely matches an option for an enum field, YOU MUST call `save_enum_field`.\n"
             "- If the user volunteered a field without being asked, still save it.\n"
             "- If the user is correcting a field they already gave, save it with confidence=1.0.\n"
             "- Do NOT call a tool if you are not sure. Only save what is clearly stated.\n"
             "HONESTY INVARIANTS (enforced — never override):\n"
-            "- NEVER use language like 'all set', 'you\'re good to go', 'we\'re done', or 'brief is complete' "
+            "- NEVER use language like 'all set', 'you\\'re good to go', 'we\\'re done', or 'brief is complete' "
             "unless the system explicitly tells you STATUS: BRIEF COMPLETE.\n"
-            "- NEVER claim a file, logo, or asset was received unless it appears as a SAVED field "
-            "in the write outcome report. The user uploading a file in chat is not confirmation."
+            "- NEVER claim a file, logo, or asset was received unless it is listed in the 'Captured Fields' summary below "
+            "OR it appears as a SAVED field in the write outcome report. The user saying they uploaded a file in chat is not confirmation; you must verify it exists in your system data."
         )
 
         return self.SECTION_SEP.join(parts)
@@ -223,6 +237,7 @@ class PromptBuilder:
         brief_summary: str | None = None,
         retrieved_chunks: list[RetrievedChunk] | None = None,
         missing_fields: list | None = None,
+        field_saved_note: str | None = None,
     ) -> list[dict[str, Any]]:
         """Build the Phase B message list for the response-generation LLM call.
 
@@ -264,7 +279,7 @@ class PromptBuilder:
         # Build updated status block using post-Phase-A missing fields
         # This is the core fix: Phase B sees the CURRENT state, not Phase A's stale view.
         if missing_fields is not None and not is_complete:
-            updated_status = self._format_brief_status(missing_fields, is_complete=False)
+            updated_status = self._format_brief_status(missing_fields, is_complete=False, profile=profile)
         else:
             updated_status = None
 
@@ -312,8 +327,8 @@ class PromptBuilder:
                 "- Keep replies SHORT and conversational — 1 to 3 sentences max.\n"
                 "- Use natural, varied, and brief acknowledgements (e.g., 'Makes sense', 'Understood', 'Great', 'Got it'). Do not use the exact same phrase repeatedly.\n"
                 "- Do NOT over-validate or over-praise. No 'That\\'s a great choice!', 'Love that!', or 'Wonderful!'.\n"
-                "- You may ask UP TO 2 closely related questions in a single turn if they belong to the same topic cluster. "
-                "But do NOT dump all remaining questions at once.\n"
+                "- CRITICAL UI SYNC: When asking a question to collect missing information, you MUST ask about the VERY FIRST field listed in the 'Brief Status' section under 'not yet captured'. The user interface displays specific clickable buttons based on this first field. If you ask about a different field, the UI will break and show the wrong buttons!\n"
+                "- Ask ONLY 1 question per turn to ensure the UI buttons exactly match your question.\n"
                 "- NEVER ask about a topic that was already answered in the conversation history above.\n"
                 "- Write like a confident creative consultant, not a customer-service bot."
             )
@@ -324,8 +339,8 @@ class PromptBuilder:
                 # Replace the old status block with the freshly computed one.
                 import re as _re
                 patched = _re.sub(
-                    r"## Required Fields Still Missing\n\n[\s\S]*?(?=\n\n## How to Call)",
-                    "## Required Fields Still Missing\n\n" + updated_status,
+                    r"## Brief Status\n\n[\s\S]*?(?=\n\n## How to Call)",
+                    "## Brief Status\n\n" + updated_status,
                     patched,
                 )
 
@@ -345,7 +360,7 @@ class PromptBuilder:
                         "CRITICAL: If retrieved context is irrelevant to the user's input, ignore it.\n\n"
                         + context_block
                     )
-
+                    
             messages[0] = {"role": "system", "content": patched}
 
         if phase_a_tool_calls:
@@ -395,13 +410,41 @@ class PromptBuilder:
         # Only inject the summary as a system-role note to avoid OpenAI
         # API errors (tool results must immediately follow a tool_calls message)
         if not phase_a_tool_calls:
-            # No tool calls were made — inject as a user-visible note
+            # Bug 5 fix: If this turn was triggered by a chip click (direct_field_write),
+            # inject a synthetic save notification so Phase B knows what was just saved.
+            if field_saved_note:
+                note_content = (
+                    f"[SYSTEM NOTE — not from the real user]: "
+                    f"The user selected an option using the UI chip buttons. "
+                    f"The following field was ALREADY SAVED directly to the database at confidence=1.0 "
+                    f"(no LLM extraction was needed for this UI-selected value): {field_saved_note}\n"
+                    f"You MUST:\n"
+                    f"1. Give a brief natural acknowledgement of what was saved (1 short sentence).\n"
+                    f"2. Then immediately ask about the next missing field listed in the Brief Status above.\n"
+                    f"Do NOT say 'no saves were made' — one was made via direct write."
+                )
+            else:
+                note_content = (
+                    "[SYSTEM NOTE — not from the real user]: "
+                    + outcomes_summary
+                )
+            messages.append({
+                "role": "user",
+                "content": note_content,
+            })
+
+        # Explicitly force the LLM to ask the correct next question using recency bias
+        if missing_fields and not is_complete:
+            next_field = missing_fields[0]
             messages.append({
                 "role": "user",
                 "content": (
-                    "[SYSTEM NOTE — not from the real user]: "
-                    + outcomes_summary
-                ),
+                    f"[SYSTEM OVERRIDE — MANDATORY DIRECTIVE]: "
+                    f"You MUST ask the user about the following field NOW:\n"
+                    f"[{next_field.field_code}] {next_field.description}\n"
+                    f"Do NOT ask about any other field. Do NOT repeat questions that have already been answered. "
+                    f"Frame your question naturally based on the field description above."
+                )
             })
 
         logger.debug(
@@ -505,7 +548,7 @@ class PromptBuilder:
 
         return "\n".join(lines)
 
-    def _format_extraction_examples(self, missing_fields: list[MissingField]) -> str:
+    def _format_extraction_examples(self, missing_fields: list[MissingField], current_field: MissingField | None = None) -> str:
         """Generate concrete few-shot examples for the missing fields.
 
         Shows the model exactly which tool to call and what arguments to use,
@@ -522,6 +565,11 @@ class PromptBuilder:
 
         lines = ["## Examples — How to Save Fields\n"]
 
+        # Bug 9 fix: Always show the CURRENT field (missing_fields[0] or current_field) as the
+        # PRIMARY example. This is the field the AI just asked about and the user is answering.
+        # Additional examples follow for context.
+        primary = current_field or (missing_fields[0] if missing_fields else None)
+
         # Categorise fields into text vs enum vs quantitative for examples
         enum_fields = [mf for mf in missing_fields if getattr(mf, "enum_values", None)]
         quant_fields = [mf for mf in missing_fields if mf.field_code in (
@@ -531,34 +579,103 @@ class PromptBuilder:
         text_fields = [mf for mf in missing_fields
                        if mf not in enum_fields and mf not in quant_fields]
 
+        shown_codes: set[str] = set()
         example_count = 0
 
-        # Show up to 2 text-field examples
-        for mf in text_fields[:2]:
+        # ── Primary example: the field currently being asked about ─────────────
+        if primary:
+            shown_codes.add(primary.field_code)
+            opts = getattr(primary, "enum_options", None)
+            enum_vals = getattr(primary, "enum_values", None)
+            if enum_vals:
+                # Enum field — show BOTH label and machine value so LLM knows either is accepted
+                if opts:
+                    display_opts_labels = [o.get("label", o.get("value")) for o in opts]
+                    display_opts_values = [o.get("value", o.get("label")) for o in opts]
+                    example_label = display_opts_labels[0] if display_opts_labels else enum_vals[0]
+                    example_val = display_opts_values[0] if display_opts_values else enum_vals[0]
+                    # Show both forms so the LLM knows labels map to values
+                    pairs = ", ".join(
+                        f'"{l}" → "{v}"'
+                        for l, v in zip(display_opts_labels[:5], display_opts_values[:5])
+                    )
+                    lines.append(
+                        f'  ★ CURRENT QUESTION is about: {primary.field_code.replace("_", " ")}\n'
+                        f'    If the user picks an option, call:\n'
+                        f'    save_enum_field(field_code="{primary.field_code}", value="{example_val}", confidence=0.95)\n'
+                        f'    Accepted label→value pairs: {pairs}{" ..." if len(display_opts_labels) > 5 else ""}\n'
+                        f'    IMPORTANT: Accept EITHER the label (e.g. "{example_label}") OR the machine value (e.g. "{example_val}") — they are equivalent.'
+                    )
+                else:
+                    example_val = enum_vals[0]
+                    lines.append(
+                        f'  ★ CURRENT QUESTION is about: {primary.field_code.replace("_", " ")}\n'
+                        f'    If the user picks an option, call:\n'
+                        f'    save_enum_field(field_code="{primary.field_code}", value="{example_val}", confidence=0.95)\n'
+                        f'    (value MUST be one of: {", ".join(str(v) for v in enum_vals[:5])}{"..." if len(enum_vals) > 5 else ""})'
+                    )
+            elif primary.field_code in (
+                "success_metrics", "budget_range", "key_messages",
+                "industry_vertical", "competitors_or_references", "existing_assets",
+            ):
+                lines.append(
+                    f'  ★ CURRENT QUESTION is about: {primary.field_code.replace("_", " ")}\n'
+                    f'    If the user gives a number or KPI, call:\n'
+                    f'    save_quantitative_field(field_code="{primary.field_code}", value="<the number/target>", confidence=0.9)'
+                )
+            else:
+                lines.append(
+                    f'  ★ CURRENT QUESTION is about: {primary.field_code.replace("_", " ")}\n'
+                    f'    If the user answers this, call:\n'
+                    f'    save_text_field(field_code="{primary.field_code}", value="<what they said>", confidence=0.9)'
+                )
+            example_count += 1
+
+        # ── Secondary examples: remaining fields for multi-field turns ─────────
+        # Show up to 1 additional text-field example
+        for mf in text_fields:
+            if mf.field_code in shown_codes:
+                continue
             lines.append(
-                f'  If the user gives you their {mf.field_code.replace("_", " ")}, call:\n'
+                f'  If the user also mentions their {mf.field_code.replace("_", " ")}, call:\n'
                 f'    save_text_field(field_code="{mf.field_code}", value="<what they said>", confidence=0.9)'
             )
+            shown_codes.add(mf.field_code)
             example_count += 1
+            break  # Only 1 secondary text example
 
-        # Show 1 enum example
-        for mf in enum_fields[:1]:
-            opts = getattr(mf, "enum_values", [])
-            example_val = opts[0] if opts else "value_from_list"
+        # Show 1 additional enum example if different from primary
+        for mf in enum_fields:
+            if mf.field_code in shown_codes:
+                continue
+            opts = getattr(mf, "enum_options", None)
+            if opts:
+                example_val = opts[0].get("value", opts[0].get("label"))
+                display_opts = [o.get("label", o.get("value")) for o in opts]
+            else:
+                opts = getattr(mf, "enum_values", [])
+                example_val = opts[0] if opts else "value_from_list"
+                display_opts = opts
             lines.append(
-                f'  If the user names their {mf.field_code.replace("_", " ")}, call:\n'
+                f'  If the user also names their {mf.field_code.replace("_", " ")}, call:\n'
                 f'    save_enum_field(field_code="{mf.field_code}", value="{example_val}", confidence=0.9)\n'
-                f'    (value MUST be one of: {", ".join(str(v) for v in opts[:5])}{"..." if len(opts) > 5 else ""})'
+                f'    (value MUST be one of: {", ".join(str(v) for v in display_opts[:5])}{"..." if len(display_opts) > 5 else ""})'
             )
+            shown_codes.add(mf.field_code)
             example_count += 1
+            break  # Only 1 secondary enum example
 
-        # Show 1 quantitative example
-        for mf in quant_fields[:1]:
+        # Show 1 additional quantitative example if different from primary
+        for mf in quant_fields:
+            if mf.field_code in shown_codes:
+                continue
             lines.append(
                 f'  If the user gives a number or KPI for {mf.field_code.replace("_", " ")}, call:\n'
                 f'    save_quantitative_field(field_code="{mf.field_code}", value="<the number/target>", confidence=0.9)'
             )
+            shown_codes.add(mf.field_code)
             example_count += 1
+            break  # Only 1 secondary quant example
 
         if example_count == 0:
             return ""
@@ -615,6 +732,7 @@ class PromptBuilder:
         missing_fields: list[MissingField],
         is_complete: bool = False,
         brief_summary: str | None = None,
+        profile: BaseProfile | None = None,
     ) -> str:
         """Format the brief status block for the LLM.
 
@@ -626,6 +744,7 @@ class PromptBuilder:
 
         IN-PROGRESS MODE (is_complete=False):
           Lists remaining required fields so the LLM knows what to collect.
+          Also lists captured fields so the LLM can update them.
         """
         if is_complete:
             summary_ref = ""
@@ -651,17 +770,23 @@ class PromptBuilder:
             )
 
         # In-progress: list remaining fields
+        lines = []
         if not missing_fields:
-            return (
+            lines.append(
                 "**All required fields have been captured.** "
                 "Consider confirming the brief summary with the client."
             )
+        else:
+            lines.append(f"**{len(missing_fields)} required field(s) not yet captured:**\n")
+            for mf in missing_fields:
+                lines.append(f"- `{mf.field_code}`: {mf.description.strip()}")
 
-        lines = [
-            f"**{len(missing_fields)} required field(s) not yet captured:**\n"
-        ]
-        for mf in missing_fields:
-            # Use description (from profile) — no hardcoded wording
-            lines.append(f"- `{mf.field_code}`: {mf.description.strip()}")
+        if profile:
+            missing_codes = {mf.field_code for mf in missing_fields}
+            captured = [f for f in profile.required_fields if f.code not in missing_codes]
+            if captured:
+                lines.append(f"\n**{len(captured)} field(s) already captured (can be updated):**\n")
+                for cf in captured:
+                    lines.append(f"- `{cf.code}`: {cf.description.strip()}")
 
-        return "\n".join(lines)
+        return "\n\n".join(lines)

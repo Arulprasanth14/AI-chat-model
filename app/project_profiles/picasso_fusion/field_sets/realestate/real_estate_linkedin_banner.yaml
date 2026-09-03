@@ -11,6 +11,7 @@ fields:
   section_name: Banner Overview
   section_order: 0
   section_field_order: 0
+  question: Is this banner for a personal profile or a company page?
   options:
   - label: Personal LinkedIn Banner
     value: personal
@@ -22,6 +23,7 @@ fields:
   section_name: Banner Overview
   section_order: 0
   section_field_order: 1
+  question: What is the primary goal of this banner?
   options:
   - label: Personal Branding
     value: personal_branding
@@ -45,6 +47,8 @@ fields:
   section_name: Banner Overview
   section_order: 0
   section_field_order: 2
+  question: Who is the target audience?
+  hint: This is one of the most important questions.
   options:
   - label: Business Owners
     value: business_owners
@@ -70,24 +74,36 @@ fields:
   section_name: Core Message
   section_order: 1
   section_field_order: 0
+  question: What is the key message this banner should communicate?
+  hint: 'One clear message works best. Examples: "Helping businesses scale with AI",
+    "Australia''s trusted property advisors", "Award-winning digital marketing agency",
+    "Building the future of fintech".'
 - code: LB5
   kind: text
   required: true
   section_name: Core Message
   section_order: 1
   section_field_order: 1
+  question: What text should appear on the banner?
+  hint: 'Examples: tagline, service list, company slogan, credentials, website URL,
+    professional title.'
 - code: LB6
   kind: file
   required: true
   section_name: Assets
   section_order: 2
   section_field_order: 0
+  question: Do you have photography, headshots, product visuals, or brand assets to
+    include? Please upload images and assets.
+  hint: PNG or JPG preferred.
 - code: LB7
   kind: checkbox
   required: true
   section_name: Assets
   section_order: 2
   section_field_order: 1
+  question: Should any specific logos, certifications, awards, or achievements be
+    featured?
   options:
   - label: Industry Awards
     value: industry_awards
@@ -107,6 +123,8 @@ fields:
   section_name: Personal Profile Only (Conditional)
   section_order: 3
   section_field_order: 0
+  question: What do you want to be known for professionally?
+  hint: Only ask this if the banner is for a Personal LinkedIn profile (LB1 = Personal).
   options:
   - label: Real Estate Advisor
     value: real_estate_advisor
@@ -126,18 +144,24 @@ fields:
   section_name: Company Page Only (Conditional)
   section_order: 4
   section_field_order: 0
+  question: What products, services, or capabilities should be highlighted? List the
+    most important offerings.
+  hint: Only ask this if the banner is for a Company LinkedIn page (LB1 = Company).
 - code: LB10
   kind: file
   required: false
   section_name: Design Direction
   section_order: 5
   section_field_order: 0
+  question: Any LinkedIn banners or profiles you'd like us to reference?
+  hint: Upload references, up to 3.
 - code: LB11
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 5
   section_field_order: 1
+  question: Describe the visual style you'd like.
   options:
   - label: Corporate
     value: corporate
@@ -161,3 +185,6 @@ fields:
   section_name: Technical Requirements
   section_order: 6
   section_field_order: 0
+  question: Any LinkedIn-specific or technical requirements?
+  hint: Leave blank if unsure — we'll use LinkedIn-recommended dimensions and safe
+    zones.

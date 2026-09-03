@@ -25,6 +25,13 @@ import yaml
 from pydantic import BaseModel, Field, field_validator
 
 
+class ShowIfCondition(BaseModel):
+    """Conditional logic for showing a field based on another field's value."""
+    field_code: str = Field(alias="field")
+    in_: list[str] | None = Field(default=None, alias="in")
+    not_in: list[str] | None = Field(default=None)
+
+
 class FieldDefinition(BaseModel):
     """Describes a single field the LLM should try to extract.
 
@@ -55,6 +62,10 @@ class FieldDefinition(BaseModel):
             "re-asks rather than silently capturing bad data."
         ),
     )
+    enum_options: list[dict[str, str]] | None = Field(
+        default=None,
+        description="Full option dicts containing both 'label' and 'value'. Used for LLM prompt generation.",
+    )
     input_type: str = Field(
         default="text",
         description=(
@@ -66,6 +77,10 @@ class FieldDefinition(BaseModel):
             "'quantitative' (must contain numeric/KPI signal), "
             "'file_upload' (handled by the /logo or /document endpoints)."
         ),
+    )
+    show_if: ShowIfCondition | None = Field(
+        default=None,
+        description="Optional conditional display logic.",
     )
 
 

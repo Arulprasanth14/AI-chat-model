@@ -51,9 +51,25 @@ def load_field_set(yaml_path: Path) -> list[FieldDefinition] | None:
         # Build a richer description so the LLM understands the field's context
         # and can calibrate confidence more accurately.
         kind = f.get("kind", "text")
-        options = f.get("options", [])
+        options = f.get("options")
+        if options and not isinstance(options, list):
+            logger.warning(f"Field {code} options is not a list. Ignoring.")
+            options = None
+            
         required = f.get("required", True)
         section_name = f.get("section_name", "")
+        show_if = f.get("show_if")
+
+        if kind == "file":
+            input_type = "file_upload"
+        elif kind == "checkbox":
+            input_type = "list"
+        elif kind == "radio":
+            input_type = "enum"
+        else:
+            input_type = "text"
+
+        enum_values = [str(o.get("value")) for o in options if "value" in o] if options else None
 
         desc_parts: list[str] = []
 
@@ -72,7 +88,7 @@ def load_field_set(yaml_path: Path) -> list[FieldDefinition] | None:
 
         if options:
             # Show all options (not just 5) so the LLM knows the full enum
-            opts_str = ", ".join(f"'{o['label']}'" for o in options)
+            opts_str = ", ".join(f"'{o.get('label', o.get('value'))}'" for o in options)
             desc_parts.append(f"Options: {opts_str}.")
             if kind == "radio":
                 desc_parts.append(
@@ -89,11 +105,29 @@ def load_field_set(yaml_path: Path) -> list[FieldDefinition] | None:
                 "they answered — 0.9+ for a clear direct statement, 0.6-0.8 for inferred."
             )
 
+        input_type = kind
+        
+        # Determine enum properties
+        enum_values = None
+        enum_options = None
+        if options:
+            enum_values = [o["value"] for o in options]
+            enum_options = options
+            
+            if kind == "radio":
+                input_type = "enum"
+            elif kind == "checkbox":
+                input_type = "list"
+
         fields.append(
             FieldDefinition(
                 code=code,
                 description=" ".join(desc_parts),
                 required=required,
+                enum_values=enum_values,
+                enum_options=enum_options,
+                input_type=input_type,
+                show_if=show_if,
             )
         )
 

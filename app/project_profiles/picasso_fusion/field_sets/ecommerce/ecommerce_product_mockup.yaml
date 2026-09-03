@@ -12,6 +12,8 @@ fields:
   section_name: Mockup Type & Product
   section_order: 0
   section_field_order: 0
+  question: What are we creating today?
+  hint: Select the type of mockup.
   options:
   - label: Product Mockup
     value: product_mockup
@@ -47,18 +49,26 @@ fields:
   section_name: Mockup Type & Product
   section_order: 0
   section_field_order: 1
+  question: Which product(s) are we showcasing?
+  hint: 'Provide the key product information: Product Name, Category, Colours/Variants,
+    Size or Dimensions (Optional), Key Features.'
 - code: MK3
   kind: text
   required: true
   section_name: Mockup Type & Product
   section_order: 0
   section_field_order: 2
+  question: What's the ONE message customers should remember?
+  hint: 'Describe the impression this mockup should create. Example: "Premium skincare
+    with a luxurious feel.", "Minimal, sustainable packaging.", "Designed for modern
+    professionals."'
 - code: MK4
   kind: radio
   required: true
   section_name: Goal & Placement
   section_order: 1
   section_field_order: 0
+  question: What's the goal of this mockup?
   options:
   - label: Product Launch
     value: product_launch
@@ -86,6 +96,7 @@ fields:
   section_name: Goal & Placement
   section_order: 1
   section_field_order: 1
+  question: Where will this mockup be used?
   options:
   - label: Website
     value: website
@@ -113,6 +124,8 @@ fields:
   section_name: Style & Presentation
   section_order: 2
   section_field_order: 0
+  question: What style best suits your product?
+  hint: Choose up to 3.
   options:
   - label: Premium
     value: premium
@@ -146,6 +159,7 @@ fields:
   section_name: Style & Presentation
   section_order: 2
   section_field_order: 1
+  question: What type of presentation would you like?
   options:
   - label: Studio Product Shot
     value: studio_product_shot
@@ -169,6 +183,7 @@ fields:
   section_name: Images & Assets
   section_order: 3
   section_field_order: 0
+  question: Do you have product images or artwork?
   options:
   - label: I'll Upload Product Photos
     value: ill_upload_product_photos
@@ -188,12 +203,24 @@ fields:
   section_name: Images & Assets
   section_order: 3
   section_field_order: 1
+  question: Upload your files.
+  hint: Upload product photos, packaging artwork, labels, logos, or transparent PNGs.
+    For the best results, provide multiple angles or high-resolution images.
+  show_if:
+    field: MK8
+    in:
+    - ill_upload_product_photos
+    - ill_upload_packaging_artwork
+    - ill_upload_labels
+    - ill_upload_3d_renders
 - code: MK10
   kind: checkbox
   required: false
   section_name: Design Requirements
   section_order: 4
   section_field_order: 0
+  question: Is there anything that must appear?
+  hint: Select all that apply.
   options:
   - label: Product Logo
     value: product_logo
@@ -221,6 +248,8 @@ fields:
   section_name: Brand Assets
   section_order: 5
   section_field_order: 0
+  question: Would you like us to follow your existing brand identity?
+  hint: Brand Assets & Guidelines.
   options:
   - label: Use My Saved Brand Kit
     value: use_my_saved_brand_kit
@@ -236,6 +265,8 @@ fields:
   section_name: Brand Assets
   section_order: 5
   section_field_order: 1
+  question: What should we customize?
+  hint: Only if you selected "Customize This Project" above.
   options:
   - label: Brand Colors
     value: brand_colors
@@ -243,18 +274,30 @@ fields:
     value: brand_fonts
   - label: Additional Instructions
     value: additional_instructions
+  show_if:
+    field: MK12
+    in:
+    - customize_this_project
 - code: MK13
   kind: text
   required: false
   section_name: Brand Assets
   section_order: 5
   section_field_order: 2
+  question: Provide any additional brand customization details.
+  hint: Only if you selected "Customize This Project" above.
+  show_if:
+    field: MK12
+    in:
+    - customize_this_project
 - code: MK14
   kind: checkbox
   required: false
   section_name: References & Notes
   section_order: 6
   section_field_order: 0
+  question: Do you have any inspiration?
+  hint: Share mockups or product visuals you like.
   options:
   - label: Website Link
     value: website_link
@@ -272,18 +315,28 @@ fields:
   section_name: References & Notes
   section_order: 6
   section_field_order: 1
+  question: Provide the reference link(s), or note that you're uploading images.
+  hint: Only if you selected a reference option above (not Skip).
+  show_if:
+    field: MK14
+    not_in:
+    - skip
 - code: MK16
   kind: text
   required: false
   section_name: References & Notes
   section_order: 6
   section_field_order: 2
+  question: Is there anything you'd like us to avoid?
+  hint: Mention any colours, props, backgrounds, compositions, or visual styles you'd
+    prefer not to use.
 - code: MK17
   kind: checkbox
   required: true
   section_name: Output & Language
   section_order: 7
   section_field_order: 0
+  question: What output do you need?
   options:
   - label: Web Optimized
     value: web_optimized
@@ -303,6 +356,7 @@ fields:
   section_name: Output & Language
   section_order: 7
   section_field_order: 1
+  question: What language should appear on the mockup?
   options:
   - label: English
     value: english

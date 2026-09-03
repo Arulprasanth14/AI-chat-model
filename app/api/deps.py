@@ -109,7 +109,7 @@ def get_llm_provider() -> LLMProvider:
         3. Zero changes to orchestrator, prompts, or any domain code.
     ─────────────────────────────────────────────────────────────────────
     """
-    # ── ACTIVE PROVIDER: Groq ──────────────────────────────────────────────
+    # ── ACTIVE PROVIDER: Groq ────────────────────────────────────────────────
     # To revert to Ollama, replace the line below with:
     #   return OllamaProvider(base_url=settings.ollama_base_url, model=settings.ollama_model)
     return GroqProvider(
@@ -213,12 +213,22 @@ def _make_profile_provider(
     field_sets_root = profile_dir / "field_sets"
 
     def provider(state: ConversationState) -> BaseProfile:
+        def _inject_globals(fields: list) -> list:
+            client_name = base_profile.get_field_by_code("client_name")
+            if client_name and not any(f.code == "client_name" for f in fields):
+                fields.insert(0, client_name)
+                
+            existing = base_profile.get_field_by_code("existing_assets")
+            if existing and not any(f.code == "existing_assets" for f in fields):
+                fields.append(existing)
+            return fields
+
         # If we already resolved a template, try loading it
         if state.resolved_vertical and state.resolved_template_key:
             field_set_path = field_sets_root / state.resolved_vertical / f"{state.resolved_template_key}.yaml"
             fields = load_field_set(field_set_path)
             if fields:
-                return base_profile.model_copy(update={"required_fields": fields})
+                return base_profile.model_copy(update={"required_fields": _inject_globals(fields)})
 
         # Find the first user message to extract hints
         first_user_msg = next(
@@ -249,7 +259,7 @@ def _make_profile_provider(
                 state.resolved_template_key = resolved.template_key
                 fields = load_field_set(resolved.field_set_path)
                 if fields:
-                    return base_profile.model_copy(update={"required_fields": fields})
+                    return base_profile.model_copy(update={"required_fields": _inject_globals(fields)})
 
         return base_profile
 

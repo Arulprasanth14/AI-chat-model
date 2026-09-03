@@ -1,10 +1,10 @@
 template_key: startup_entrepreneur_sales_deck
-template_label: Sales Deck — Presentation
+template_label: "Sales Deck \u2014 Presentation"
 vertical: startup
 template_name_match:
 - sales deck
 - sales presentation
-- presentation deck — sales
+- "presentation deck \u2014 sales"
 - sales pitch deck
 fields:
 - code: SD1
@@ -13,18 +13,24 @@ fields:
   section_name: Deck Overview
   section_order: 0
   section_field_order: 0
+  question: What is this sales presentation about?
+  hint: One deck = one conversion goal.
 - code: SD2
   kind: text
   required: true
   section_name: Deck Overview
   section_order: 0
   section_field_order: 1
+  question: What product, service, or solution are we selling?
+  hint: Provide a brief overview including key benefits and differentiators.
 - code: SD3
   kind: checkbox
   required: true
   section_name: Deck Overview
   section_order: 0
   section_field_order: 2
+  question: Who is the target audience?
+  hint: The deck should speak directly to the decision-maker.
   options:
   - label: Founders
     value: founders
@@ -48,18 +54,24 @@ fields:
   section_name: Problem & Solution
   section_order: 1
   section_field_order: 0
+  question: What challenges or pain points does the audience face?
+  hint: Strong sales decks start with the customer's problem.
 - code: SD5
   kind: text
   required: true
   section_name: Problem & Solution
   section_order: 1
   section_field_order: 1
+  question: How does your solution solve those challenges?
+  hint: Focus on outcomes and value, not just features.
 - code: SD6
   kind: checkbox
   required: true
   section_name: Differentiation & Proof
   section_order: 2
   section_field_order: 0
+  question: What are your key differentiators?
+  hint: Why should someone choose you instead of competitors or alternatives?
   options:
   - label: Faster Implementation
     value: faster_implementation
@@ -79,6 +91,8 @@ fields:
   section_name: Differentiation & Proof
   section_order: 2
   section_field_order: 1
+  question: What proof, results, or case studies can we include?
+  hint: Evidence increases trust and conversion.
   options:
   - label: Client Success Stories
     value: client_success_stories
@@ -102,6 +116,7 @@ fields:
   section_name: Offer & Call to Action
   section_order: 3
   section_field_order: 0
+  question: What pricing or package information should be included?
   options:
   - label: Include Pricing
     value: include_pricing
@@ -117,6 +132,8 @@ fields:
   section_name: Offer & Call to Action
   section_order: 3
   section_field_order: 1
+  question: What is the primary call to action?
+  hint: The presentation should end with one clear next step.
   options:
   - label: Book a Demo
     value: book_a_demo
@@ -136,6 +153,7 @@ fields:
   section_name: Existing Content
   section_order: 4
   section_field_order: 0
+  question: Do you already have content or an existing sales deck?
   options:
   - label: Complete Deck Available
     value: complete_deck_available
@@ -151,12 +169,17 @@ fields:
   section_name: Existing Content
   section_order: 4
   section_field_order: 1
+  question: Upload your existing deck, sales materials, or supporting documents.
+  hint: 'Accepted formats: PPTX, PDF, DOCX, Google Slides export. Only if you have
+    existing content.'
 - code: SD12
   kind: radio
   required: true
   section_name: Branding & Assets
   section_order: 5
   section_field_order: 0
+  question: Do you have branding and assets?
+  hint: Strong visual consistency builds credibility.
   options:
   - label: 'Yes'
     value: 'yes'
@@ -170,12 +193,18 @@ fields:
   section_name: Branding & Assets
   section_order: 5
   section_field_order: 1
+  question: Upload logos, screenshots, product visuals, case study graphics, and brand
+    assets.
+  hint: PNG, SVG, JPG preferred. Only if you have branding assets.
 - code: SD14
   kind: radio
   required: true
   section_name: Delivery & Presentation Style
   section_order: 6
   section_field_order: 0
+  question: How will this deck be used?
+  hint: This is one of the most important questions because a live deck and a send-ahead
+    deck require different content density.
   options:
   - label: Live Sales Presentation
     value: live_sales_presentation
@@ -189,6 +218,8 @@ fields:
   section_name: Delivery & Presentation Style
   section_order: 6
   section_field_order: 1
+  question: Any sales decks or presentation styles you'd like us to reference?
+  hint: Competitor decks, industry examples, or presentations you admire.
   options:
   - label: 'Yes'
     value: 'yes'
@@ -200,12 +231,19 @@ fields:
   section_name: Delivery & Presentation Style
   section_order: 6
   section_field_order: 2
+  question: Upload reference decks, up to 3.
+  hint: Only if you said yes to reference decks above.
+  show_if:
+    field: SD15
+    in:
+    - 'yes'
 - code: SD17
   kind: radio
   required: true
   section_name: Delivery & Presentation Style
   section_order: 6
   section_field_order: 3
+  question: Describe the presentation style you'd like.
   options:
   - label: Modern SaaS
     value: modern_saas

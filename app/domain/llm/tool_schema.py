@@ -123,12 +123,24 @@ def get_phase_a_tools(profile: BaseProfile) -> list[dict[str, Any]]:
     # ── save_enum_field ───────────────────────────────────────────────────────
     # Only included when there are enum-constrained fields.
     if enum_field_codes:
-        # Build a combined enum map for the description
-        enum_map = {
-            f.code: f.enum_values
-            for f in profile.required_fields
-            if f.enum_values
-        }
+        # Bug 8 fix: Build enum_map with BOTH machine values AND labels so the LLM
+        # can match whatever form the user types (e.g. "Percentage Discount" OR "percentage_discount").
+        enum_map: dict[str, list[str]] = {}
+        for f in profile.required_fields:
+            if f.enum_options:
+                # Include both label and value so either form is recognizable
+                combined = []
+                for o in f.enum_options:
+                    label = o.get("label", "")
+                    value = o.get("value", "")
+                    if label and label not in combined:
+                        combined.append(label)
+                    if value and value not in combined and value != label:
+                        combined.append(value)
+                enum_map[f.code] = combined
+            elif f.enum_values:
+                enum_map[f.code] = f.enum_values
+                
         tools.append({
             "type": "function",
             "function": {
@@ -136,10 +148,9 @@ def get_phase_a_tools(profile: BaseProfile) -> list[dict[str, Any]]:
                 "description": (
                     "Save a field whose value must be chosen from a fixed list of allowed options. "
                     "ONLY use this tool for fields with a defined options list. "
-                    "The value you provide MUST exactly match one of the allowed options "
-                    "(case-insensitive, underscores/hyphens treated equivalently). "
-                    f"Enum fields: {json.dumps(enum_map, indent=None)}. "
-                    "If the user's answer does not clearly match an option, do NOT call this tool — "
+                    "The value you provide should match one of the allowed options as closely as possible. "
+                    f"Enum options available: {json.dumps(enum_map, indent=None)}. "
+                    "If the user's answer does not clearly map to an option, do NOT call this tool — "
                     "instead, respond in Phase B asking them to choose from the options."
                 ),
                 "parameters": {

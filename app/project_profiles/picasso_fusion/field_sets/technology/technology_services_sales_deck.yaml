@@ -1,10 +1,10 @@
 template_key: technology_services_sales_deck
-template_label: Sales Deck — Presentation
+template_label: "Sales Deck \u2014 Presentation"
 vertical: technology
 template_name_match:
 - sales deck
 - sales presentation
-- presentation deck — sales
+- "presentation deck \u2014 sales"
 - sales pitch deck
 fields:
 - code: SD1
@@ -13,6 +13,9 @@ fields:
   section_name: Presentation Goal
   section_order: 0
   section_field_order: 0
+  question: What is the primary goal of this sales presentation?
+  hint: 'Examples: Generate leads, close a sale, secure a meeting, pitch a service,
+    introduce a product, win a contract.'
   options:
   - label: Generate Leads
     value: generate_leads
@@ -34,6 +37,11 @@ fields:
   section_name: Presentation Goal
   section_order: 0
   section_field_order: 1
+  question: Who is the target audience?
+  hint: 'Examples: Small business owners, enterprise buyers, HR managers, procurement
+    teams, retailers, investors, healthcare professionals, etc. This is one of the
+    most important questions because the design and messaging should be tailored to
+    the audience.'
   options:
   - label: Small Business Owners
     value: small_business_owners
@@ -57,18 +65,23 @@ fields:
   section_name: Product / Service Information
   section_order: 1
   section_field_order: 0
+  question: What product, service, or solution are you presenting?
+  hint: Provide a brief description of the offering.
 - code: SD4
   kind: text
   required: true
   section_name: Product / Service Information
   section_order: 1
   section_field_order: 1
+  question: What are the key benefits or selling points?
+  hint: List the most important features, benefits, or competitive advantages to highlight.
 - code: SD5
   kind: radio
   required: true
   section_name: Product / Service Information
   section_order: 1
   section_field_order: 2
+  question: Are there any offers, pricing details, memberships, or promotions to include?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -80,12 +93,20 @@ fields:
   section_name: Product / Service Information
   section_order: 1
   section_field_order: 3
+  question: What are the offer details?
+  hint: Pricing, offer terms, dates, what's included, and any conditions. Only if
+    you said yes above.
+  show_if:
+    field: SD5
+    in:
+    - 'yes'
 - code: SD7
   kind: radio
   required: true
   section_name: Content
   section_order: 2
   section_field_order: 0
+  question: Do you already have presentation content prepared?
   options:
   - label: Yes, Complete Content Ready
     value: complete_content_ready
@@ -101,12 +122,17 @@ fields:
   section_name: Content
   section_order: 2
   section_field_order: 1
+  question: Upload your presentation content, notes, or existing deck.
+  hint: 'Accepted formats: PPTX, PDF, DOCX, Google Slides export. Only if you have
+    existing content.'
 - code: SD9
   kind: radio
   required: true
   section_name: Assets
   section_order: 3
   section_field_order: 0
+  question: Do you have photography, product screenshots, charts, case studies, or
+    visuals to include?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -118,12 +144,18 @@ fields:
   section_name: Assets
   section_order: 3
   section_field_order: 1
+  question: Upload available assets.
+  hint: Only if you have photography, product screenshots, charts, case studies, or
+    visuals.
 - code: SD11
   kind: radio
   required: true
   section_name: Call to Action
   section_order: 4
   section_field_order: 0
+  question: What action should the audience take after viewing the presentation?
+  hint: 'Examples: Book a demo, Request a proposal, Contact sales, Start a trial,
+    Schedule a meeting.'
   options:
   - label: Book a Demo
     value: book_a_demo
@@ -143,6 +175,7 @@ fields:
   section_name: Call to Action
   section_order: 4
   section_field_order: 1
+  question: Will the presentation include a QR code?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -154,12 +187,20 @@ fields:
   section_name: Call to Action
   section_order: 4
   section_field_order: 2
+  question: What is the destination URL for the QR code?
+  hint: Only if you said yes above.
+  show_if:
+    field: SD12
+    in:
+    - 'yes'
 - code: SD14
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 5
   section_field_order: 0
+  question: Any presentation designs or inspiration you'd like us to reference?
+  hint: Competitors, industry leaders, previous presentations, or styles you admire.
   options:
   - label: 'Yes'
     value: 'yes'
@@ -171,12 +212,21 @@ fields:
   section_name: Design Direction
   section_order: 5
   section_field_order: 1
+  question: Upload reference presentations, up to 3.
+  hint: Only if you said yes to reference designs above.
+  show_if:
+    field: SD14
+    in:
+    - 'yes'
 - code: SD16
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 5
   section_field_order: 2
+  question: Describe the presentation style you'd like.
+  hint: 'Examples: Corporate, premium, modern SaaS, bold, minimal, enterprise, data-driven,
+    luxury.'
   options:
   - label: Corporate
     value: corporate
@@ -202,6 +252,9 @@ fields:
   section_name: Delivery Requirements
   section_order: 6
   section_field_order: 0
+  question: Will this presentation be presented live or shared as a standalone deck?
+  hint: This is a critical question because live presentations use less text, while
+    standalone decks require more context.
   options:
   - label: Presented Live
     value: presented_live
@@ -215,6 +268,7 @@ fields:
   section_name: Delivery Requirements
   section_order: 6
   section_field_order: 1
+  question: What format would you like delivered?
   options:
   - label: PowerPoint (.pptx)
     value: powerpoint_pptx
@@ -232,3 +286,5 @@ fields:
   section_name: Delivery Requirements
   section_order: 6
   section_field_order: 2
+  question: Any technical or presentation-specific requirements?
+  hint: Leave blank if unsure.

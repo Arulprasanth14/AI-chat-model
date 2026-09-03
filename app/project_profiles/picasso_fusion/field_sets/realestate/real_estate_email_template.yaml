@@ -10,6 +10,8 @@ fields:
   section_name: Email Template Overview
   section_order: 0
   section_field_order: 0
+  question: What type of email template do you need? Select the template's primary
+    purpose.
   options:
   - label: Newsletter
     value: newsletter
@@ -37,6 +39,7 @@ fields:
   section_name: Email Template Overview
   section_order: 0
   section_field_order: 1
+  question: What is the primary goal of this email template?
   options:
   - label: Drive website traffic
     value: drive_traffic
@@ -58,6 +61,9 @@ fields:
   section_name: Email Platform
   section_order: 1
   section_field_order: 0
+  question: Which email platform will this template be used in?
+  hint: This should be one of the first questions — it affects how the template is
+    built.
   options:
   - label: Mailchimp
     value: mailchimp
@@ -81,6 +87,7 @@ fields:
   section_name: Content Structure
   section_order: 2
   section_field_order: 0
+  question: Which sections should be included in the template?
   options:
   - label: Hero Banner
     value: hero_banner
@@ -110,6 +117,7 @@ fields:
   section_name: Content Structure
   section_order: 2
   section_field_order: 1
+  question: Do you already have content prepared?
   options:
   - label: Yes, final content ready
     value: final_ready
@@ -123,18 +131,24 @@ fields:
   section_name: Content Structure
   section_order: 2
   section_field_order: 2
+  question: What copy or placeholder content should appear in the template? Provide
+    approved content or indicate which sections should use editable placeholders.
 - code: ET7
   kind: file
   required: true
   section_name: Assets
   section_order: 3
   section_field_order: 0
+  question: Do you have imagery, graphics, or brand assets to include? Please upload
+    images and assets.
+  hint: PNG or JPG preferred. Web-optimised assets are acceptable.
 - code: ET8
   kind: checkbox
   required: true
   section_name: Call to Action
   section_order: 4
   section_field_order: 0
+  question: What CTA buttons should be available in the template?
   options:
   - label: Learn More
     value: learn_more
@@ -154,6 +168,7 @@ fields:
   section_name: Call to Action
   section_order: 4
   section_field_order: 1
+  question: Will CTA links require UTM tracking?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -165,18 +180,25 @@ fields:
   section_name: Call to Action
   section_order: 4
   section_field_order: 2
+  question: Please provide the UTM parameters, or confirm you'd like AI-generated
+    UTMs.
+  hint: Only ask this if the client said yes to UTM tracking above.
 - code: ET11
   kind: file
   required: false
   section_name: Design Direction
   section_order: 5
   section_field_order: 0
+  question: Any email designs or inspiration you'd like us to reference?
+  hint: Share examples from competitors, favourite brands, or previous campaigns.
+    Upload reference emails, up to 3.
 - code: ET12
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 5
   section_field_order: 1
+  question: Describe the email design style you'd like.
   options:
   - label: Modern SaaS
     value: modern_saas
@@ -200,6 +222,8 @@ fields:
   section_name: Delivery Requirements
   section_order: 6
   section_field_order: 0
+  question: Do you need a fully coded HTML email or a design-only template?
+  hint: One of the most important questions here — easy to miss.
   options:
   - label: Fully coded HTML email
     value: fully_coded_html
@@ -215,6 +239,7 @@ fields:
   section_name: Delivery Requirements
   section_order: 6
   section_field_order: 1
+  question: Will this template be used on desktop, mobile, or both?
   options:
   - label: Desktop
     value: desktop

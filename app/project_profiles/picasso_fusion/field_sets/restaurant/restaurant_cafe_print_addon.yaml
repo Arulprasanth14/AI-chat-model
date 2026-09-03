@@ -14,6 +14,8 @@ fields:
   section_name: Print Item & Message
   section_order: 0
   section_field_order: 0
+  question: What are we creating today?
+  hint: Select the print item.
   options:
   - label: Restaurant Menu
     value: restaurant_menu
@@ -47,18 +49,26 @@ fields:
   section_name: Print Item & Message
   section_order: 0
   section_field_order: 1
+  question: What are we promoting?
+  hint: 'Provide the key details: Dish/Menu/Event Name, Category, Price (Optional),
+    Key Ingredients/Highlights.'
 - code: PT3
   kind: text
   required: true
   section_name: Print Item & Message
   section_order: 0
   section_field_order: 2
+  question: What's the ONE message customers should remember?
+  hint: 'Describe the biggest takeaway after seeing this print piece. Example: "Try
+    our new summer menu.", "Weekend brunch is now available.", "Book your table for
+    Valentine''s Dinner."'
 - code: PT4
   kind: checkbox
   required: true
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 0
+  question: What's the goal of this print piece?
   options:
   - label: Increase Restaurant Visits
     value: increase_restaurant_visits
@@ -84,12 +94,15 @@ fields:
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 1
+  question: Who is this for?
+  hint: Describe your ideal customer.
 - code: PT6
   kind: radio
   required: true
   section_name: Offer
   section_order: 2
   section_field_order: 0
+  question: Are you running an offer?
   options:
   - label: No Offer
     value: no_offer
@@ -113,12 +126,19 @@ fields:
   section_name: Offer
   section_order: 2
   section_field_order: 1
+  question: Provide the offer details, start & end date, and terms & conditions.
+  hint: Only if you are running an offer.
+  show_if:
+    field: PT6
+    not_in:
+    - no_offer
 - code: PT8
   kind: radio
   required: true
   section_name: Content
   section_order: 3
   section_field_order: 0
+  question: Do you already have the final content?
   options:
   - label: Final Copy Ready
     value: final_copy_ready
@@ -132,12 +152,16 @@ fields:
   section_name: Content
   section_order: 3
   section_field_order: 1
+  question: Provide your final copy or rough points.
+  hint: Only if you have final copy ready or rough points.
 - code: PT10
   kind: checkbox
   required: false
   section_name: Design Requirements
   section_order: 4
   section_field_order: 0
+  question: Is there anything that must appear?
+  hint: Select all that apply.
   options:
   - label: Dish Name
     value: dish_name
@@ -171,6 +195,7 @@ fields:
   section_name: Images & Assets
   section_order: 5
   section_field_order: 0
+  question: Do you have photography or artwork?
   options:
   - label: I'll Upload Food Photos
     value: ill_upload_food_photos
@@ -192,12 +217,24 @@ fields:
   section_name: Images & Assets
   section_order: 5
   section_field_order: 1
+  question: Upload your files.
+  hint: Upload food photography, restaurant images, logos, menus, or supporting artwork.
+    For the best print quality, high-resolution images (300 DPI or higher) are recommended.
+  show_if:
+    field: PT11
+    in:
+    - ill_upload_food_photos
+    - ill_upload_restaurant_ambience_photos
+    - ill_upload_menu_images
+    - ill_upload_illustrations_or_graphics
 - code: PT13
   kind: radio
   required: true
   section_name: Brand Assets
   section_order: 6
   section_field_order: 0
+  question: Would you like us to follow your existing brand identity?
+  hint: Brand Assets & Guidelines.
   options:
   - label: Use My Saved Brand Kit
     value: use_my_saved_brand_kit
@@ -213,6 +250,8 @@ fields:
   section_name: Brand Assets
   section_order: 6
   section_field_order: 1
+  question: What should we customize?
+  hint: Only if you selected "Customize This Project" above.
   options:
   - label: Brand Colors
     value: brand_colors
@@ -220,18 +259,29 @@ fields:
     value: brand_fonts
   - label: Additional Instructions
     value: additional_instructions
+  show_if:
+    field: PT14
+    in:
+    - customize_this_project
 - code: PT15
   kind: text
   required: false
   section_name: Brand Assets
   section_order: 6
   section_field_order: 2
+  question: Provide any additional brand customization details.
+  hint: Only if you selected "Customize This Project" above.
+  show_if:
+    field: PT14
+    in:
+    - customize_this_project
 - code: PT16
   kind: checkbox
   required: true
   section_name: Placement
   section_order: 7
   section_field_order: 0
+  question: Where will this print piece be displayed?
   options:
   - label: Inside Restaurant
     value: inside_restaurant
@@ -257,6 +307,8 @@ fields:
   section_name: Style & References
   section_order: 8
   section_field_order: 0
+  question: How should this print design feel?
+  hint: Choose up to 3.
   options:
   - label: Premium
     value: premium
@@ -288,6 +340,8 @@ fields:
   section_name: Style & References
   section_order: 8
   section_field_order: 1
+  question: Do you have any inspiration?
+  hint: Share print designs you like.
   options:
   - label: Website Link
     value: website_link
@@ -303,12 +357,19 @@ fields:
   section_name: Style & References
   section_order: 8
   section_field_order: 2
+  question: Provide the reference link(s), or note that you're uploading images.
+  hint: Only if you selected a reference option above (not Skip).
+  show_if:
+    field: PT18
+    not_in:
+    - skip
 - code: PT20
   kind: radio
   required: true
   section_name: Print Specifications
   section_order: 9
   section_field_order: 0
+  question: What print size do you need?
   options:
   - label: Standard Size
     value: standard_size
@@ -320,12 +381,19 @@ fields:
   section_name: Print Specifications
   section_order: 9
   section_field_order: 1
+  question: Provide the width and height.
+  hint: Only if you selected Custom Size above.
+  show_if:
+    field: PT20
+    in:
+    - custom_size
 - code: PT22
   kind: radio
   required: true
   section_name: Print Specifications
   section_order: 9
   section_field_order: 2
+  question: What orientation should the design be?
   options:
   - label: Portrait
     value: portrait
@@ -337,6 +405,7 @@ fields:
   section_name: Print Specifications
   section_order: 9
   section_field_order: 3
+  question: Single-sided or double-sided printing?
   options:
   - label: Single-Sided
     value: single_sided
@@ -348,18 +417,24 @@ fields:
   section_name: Print Specifications
   section_order: 9
   section_field_order: 4
+  question: Any additional print specifications?
+  hint: 'Examples: Number of pages, Fold type (Bi-fold, Tri-fold, Z-fold), printer
+    specifications available, dieline available. Leave blank if not applicable.'
 - code: PT25
   kind: file
   required: false
   section_name: Print Specifications
   section_order: 9
   section_field_order: 5
+  question: Upload your printer specifications or dieline.
+  hint: Only if you have these available.
 - code: PT26
   kind: radio
   required: true
   section_name: Language & Notes
   section_order: 10
   section_field_order: 0
+  question: What language should the design use?
   options:
   - label: English
     value: english
@@ -399,3 +474,6 @@ fields:
   section_name: Language & Notes
   section_order: 10
   section_field_order: 1
+  question: Is there anything you'd like us to avoid?
+  hint: Mention any colours, imagery, wording, or visual styles you'd prefer not to
+    use.

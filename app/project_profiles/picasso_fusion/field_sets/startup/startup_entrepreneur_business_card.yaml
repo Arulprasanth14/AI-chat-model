@@ -12,12 +12,18 @@ fields:
   section_name: Card Overview
   section_order: 0
   section_field_order: 0
+  question: Who is this business card for?
+  hint: "Provide the person's name and job title exactly as it should appear. Examples:\
+    \ \"John Smith \u2013 Founder & CEO\", \"Sarah Lee \u2013 Senior Property Consultant\"\
+    , \"Michael Chen \u2013 Marketing Director\"."
 - code: BC2
   kind: radio
   required: true
   section_name: Card Overview
   section_order: 0
   section_field_order: 1
+  question: What is the primary purpose of this business card?
+  hint: Different goals require different layouts and information hierarchy.
   options:
   - label: Networking
     value: networking
@@ -37,6 +43,8 @@ fields:
   section_name: Card Overview
   section_order: 0
   section_field_order: 2
+  question: What contact details should appear?
+  hint: Include only information recipients should use.
   options:
   - label: Mobile Number
     value: mobile_number
@@ -58,6 +66,8 @@ fields:
   section_name: QR Code
   section_order: 1
   section_field_order: 0
+  question: Should a QR code be included?
+  hint: QR codes can improve engagement and lead generation.
   options:
   - label: Website
     value: website
@@ -77,12 +87,17 @@ fields:
   section_name: QR Code
   section_order: 1
   section_field_order: 1
+  question: Provide QR code destination URL.
+  hint: Please verify the link before production. Only if you selected a QR code option
+    above.
 - code: BC6
   kind: radio
   required: true
   section_name: Branding & Assets
   section_order: 2
   section_field_order: 0
+  question: Do you have brand assets?
+  hint: Consistent branding creates a professional impression.
   options:
   - label: Full Brand Guidelines
     value: full_brand_guidelines
@@ -98,12 +113,16 @@ fields:
   section_name: Branding & Assets
   section_order: 2
   section_field_order: 1
+  question: Upload logo, brand guide, and visual assets.
+  hint: Vector files (SVG, AI, EPS, PDF) preferred. Only if you have brand assets.
 - code: BC8
   kind: radio
   required: true
   section_name: Layout
   section_order: 3
   section_field_order: 0
+  question: Single-sided or double-sided card?
+  hint: Double-sided cards provide additional space for branding and QR codes.
   options:
   - label: Single-Sided
     value: single_sided
@@ -115,6 +134,8 @@ fields:
   section_name: Layout
   section_order: 3
   section_field_order: 1
+  question: Should any additional information appear?
+  hint: Only include information that adds value.
   options:
   - label: Tagline
     value: tagline
@@ -138,6 +159,8 @@ fields:
   section_name: Layout
   section_order: 3
   section_field_order: 2
+  question: What card orientation do you prefer?
+  hint: This affects layout significantly and is often forgotten.
   options:
   - label: Horizontal
     value: horizontal
@@ -153,6 +176,8 @@ fields:
   section_name: Style & References
   section_order: 4
   section_field_order: 0
+  question: Preferred card style?
+  hint: Match the card to the brand personality.
   options:
   - label: Corporate
     value: corporate
@@ -176,6 +201,7 @@ fields:
   section_name: Style & References
   section_order: 4
   section_field_order: 1
+  question: Any reference business cards or inspiration?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -187,12 +213,20 @@ fields:
   section_name: Style & References
   section_order: 4
   section_field_order: 2
+  question: Upload reference cards, up to 3.
+  hint: Only if you said yes to reference business cards above.
+  show_if:
+    field: BC12
+    in:
+    - 'yes'
 - code: BC14
   kind: checkbox
   required: false
   section_name: Print & Production
   section_order: 5
   section_field_order: 0
+  question: Any print-specific requirements?
+  hint: Leave blank if unsure.
   options:
   - label: Matte Finish
     value: matte_finish
@@ -216,6 +250,9 @@ fields:
   section_name: Print & Production
   section_order: 5
   section_field_order: 1
+  question: Will multiple employees use this design template?
+  hint: This determines whether the designer should create a reusable business card
+    system.
   options:
   - label: 'Yes'
     value: 'yes'

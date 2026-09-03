@@ -13,6 +13,8 @@ fields:
   section_name: Post Purpose & Product
   section_order: 0
   section_field_order: 0
+  question: What are we creating today?
+  hint: Select the purpose of this post.
   options:
   - label: Product Launch
     value: product_launch
@@ -42,18 +44,26 @@ fields:
   section_name: Post Purpose & Product
   section_order: 0
   section_field_order: 1
+  question: Which product are we featuring?
+  hint: 'Provide the key product details: Product Name, Category, Price (Optional),
+    Key Benefits/Features, Available Colours, Sizes or Variants (Optional).'
 - code: SP3
   kind: text
   required: true
   section_name: Post Purpose & Product
   section_order: 0
   section_field_order: 2
+  question: What's the one message customers should remember?
+  hint: 'Describe the biggest reason someone should buy this product. Example: "Ultra-light
+    running shoes designed for all-day comfort.", "Organic skincare made for sensitive
+    skin."'
 - code: SP4
   kind: checkbox
   required: true
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 0
+  question: What's the goal of this post?
   options:
   - label: Increase Sales
     value: increase_sales
@@ -77,12 +87,15 @@ fields:
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 1
+  question: Who is this product for?
+  hint: Describe your ideal customer.
 - code: SP6
   kind: radio
   required: true
   section_name: Offer
   section_order: 2
   section_field_order: 0
+  question: Are you running an offer?
   options:
   - label: No Offer
     value: no_offer
@@ -104,12 +117,19 @@ fields:
   section_name: Offer
   section_order: 2
   section_field_order: 1
+  question: Provide the offer details, start & end date, and terms & conditions.
+  hint: Only if you are running an offer.
+  show_if:
+    field: SP6
+    not_in:
+    - no_offer
 - code: SP8
   kind: radio
   required: true
   section_name: Copy
   section_order: 3
   section_field_order: 0
+  question: Do you already have the copy?
   options:
   - label: Final Copy Ready
     value: final_copy_ready
@@ -123,12 +143,16 @@ fields:
   section_name: Copy
   section_order: 3
   section_field_order: 1
+  question: Provide your copy or rough points.
+  hint: Only if you have final copy ready or rough points.
 - code: SP10
   kind: checkbox
   required: false
   section_name: Design Requirements
   section_order: 4
   section_field_order: 0
+  question: Is there anything that must appear?
+  hint: Select all that apply.
   options:
   - label: Product Name
     value: product_name
@@ -156,6 +180,7 @@ fields:
   section_name: Images & Assets
   section_order: 5
   section_field_order: 0
+  question: Do you have product photos?
   options:
   - label: I'll Upload Product Photos
     value: ill_upload_product_photos
@@ -175,12 +200,22 @@ fields:
   section_name: Images & Assets
   section_order: 5
   section_field_order: 1
+  question: Upload your files.
+  hint: Upload product images, logos, packaging, or supporting assets.
+  show_if:
+    field: SP11
+    in:
+    - ill_upload_product_photos
+    - ill_upload_lifestyle_photos
+    - ill_upload_both
 - code: SP13
   kind: radio
   required: true
   section_name: Brand Assets
   section_order: 6
   section_field_order: 0
+  question: Would you like us to follow your existing brand identity?
+  hint: Brand Assets & Guidelines.
   options:
   - label: Use My Saved Brand Kit
     value: use_my_saved_brand_kit
@@ -196,6 +231,8 @@ fields:
   section_name: Brand Assets
   section_order: 6
   section_field_order: 1
+  question: What should we customize?
+  hint: Only if you selected "Customize This Project" above.
   options:
   - label: Brand Colors
     value: brand_colors
@@ -203,18 +240,30 @@ fields:
     value: brand_fonts
   - label: Additional Instructions
     value: additional_instructions
+  show_if:
+    field: SP14
+    in:
+    - customize_this_project
 - code: SP15
   kind: text
   required: false
   section_name: Brand Assets
   section_order: 6
   section_field_order: 2
+  question: Provide any additional brand customization details.
+  hint: Only if you selected "Customize This Project" above.
+  show_if:
+    field: SP14
+    in:
+    - customize_this_project
 - code: SP16
   kind: checkbox
   required: true
   section_name: Style & References
   section_order: 7
   section_field_order: 0
+  question: What visual style should this post have?
+  hint: Choose up to 3.
   options:
   - label: Premium
     value: premium
@@ -248,6 +297,8 @@ fields:
   section_name: Style & References
   section_order: 7
   section_field_order: 1
+  question: Do you have any inspiration?
+  hint: Share examples you like.
   options:
   - label: Instagram Link
     value: instagram_link
@@ -265,12 +316,19 @@ fields:
   section_name: Style & References
   section_order: 7
   section_field_order: 2
+  question: Provide the reference link(s), or note that you're uploading images.
+  hint: Only if you selected a reference option above (not Skip).
+  show_if:
+    field: SP17
+    not_in:
+    - skip
 - code: SP19
   kind: checkbox
   required: true
   section_name: Publishing & Language
   section_order: 8
   section_field_order: 0
+  question: Where will this post be published?
   options:
   - label: Instagram Feed (1:1)
     value: instagram_feed_1_1
@@ -294,6 +352,7 @@ fields:
   section_name: Publishing & Language
   section_order: 8
   section_field_order: 1
+  question: What language should the copy use?
   options:
   - label: English
     value: english
@@ -333,3 +392,6 @@ fields:
   section_name: Additional Notes
   section_order: 9
   section_field_order: 0
+  question: Is there anything you'd like us to avoid?
+  hint: Mention any colours, imagery, wording, styles, or competitor references you'd
+    prefer not to use.

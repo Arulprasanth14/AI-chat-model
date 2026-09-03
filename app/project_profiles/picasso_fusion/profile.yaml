@@ -76,35 +76,35 @@ required_fields:
       free-text sentence — use only values from this list.
     required: true
     enum_values:
-      - static_post
-      - carousel
-      - reel
-      - video_addon
-      - print_addon
-      - digital_addon
-      - listing_sheet
-      - flyer_brochure
-      - buyer_seller_guide
-      - market_report
-      - cma_presentation
-      - open_home_signboard
-      - testimonial_set
-      - email_template
-      - linkedin_banner
-      - youtube_banner
-      - product_mockup
-      - ad_banner
-      - pitch_deck
-      - one_pager
-      - sales_deck
-      - proposal_template
-      - presentation
-      - press_kit
-      - business_card
-      - email_signature
-      - case_study
-      - white_paper
-      - web_banner_set
+      - "Static Post"
+      - "Carousel"
+      - "Reel"
+      - "Video Add-on"
+      - "Print Add-on"
+      - "Digital Add-on"
+      - "Listing Sheet"
+      - "Flyer / Brochure"
+      - "Buyer / Seller Guide"
+      - "Market Report"
+      - "CMA Presentation"
+      - "Open Home Signboard"
+      - "Testimonial Set"
+      - "Email Template"
+      - "LinkedIn Banner"
+      - "YouTube Banner"
+      - "Product Mockup"
+      - "Ad Banner"
+      - "Pitch Deck"
+      - "One Pager"
+      - "Sales Deck"
+      - "Proposal Template"
+      - "Presentation"
+      - "Press Kit"
+      - "Business Card"
+      - "Email Signature"
+      - "Case Study"
+      - "White Paper"
+      - "Web Banner Set"
 
   - code: primary_objective
     description: >
@@ -135,12 +135,12 @@ required_fields:
     required: true
     input_type: list
     enum_values:
-      - bold_disruptive
-      - warm_approachable
-      - premium_minimal
-      - playful_youthful
-      - authentic_genuine
-      - corporate_professional
+      - "Bold & Disruptive"
+      - "Warm & Approachable"
+      - "Premium & Minimal"
+      - "Playful & Youthful"
+      - "Authentic & Genuine"
+      - "Corporate & Professional"
 
   - code: key_messages
     description: >
@@ -199,15 +199,18 @@ required_fields:
     required: true
     input_type: list
     enum_values:
-      - instagram
-      - linkedin
-      - tiktok
-      - facebook
-      - youtube
-      - website
-      - email
-      - print
-      - ooh
+      - "Instagram 1:1"
+      - "Instagram 4:5"
+      - "Facebook"
+      - "X"
+      - "LinkedIn"
+      - "TikTok"
+      - "YouTube"
+      - "Website"
+      - "Email"
+      - "Print"
+      - "OOH"
+      - "Others"
 
   - code: success_metrics
     description: >
@@ -225,23 +228,23 @@ required_fields:
       How the client wants to handle brand identity and logos. This is a STRUCTURAL
       choice about brand assets, NOT a personality descriptor.
       Few-shot examples to distinguish from brand_personality:
-        - "We have brand guidelines I'll upload" -> upload_brand_guidelines
-        - "Use our saved brand kit" -> use_saved_brand_kit
-        - "I'll upload our logo files" -> upload_logo_assets
-        - "I want to customise just this project with new colors" -> customize_this_project
+        - "We have brand guidelines I'll upload" -> Upload Brand Guidelines
+        - "Use our saved brand kit" -> Use Saved Brand Kit
+        - "I'll upload our logo files" -> Upload Logo Assets
+        - "I want to customise just this project with new colors" -> Customize This Project
         - "bold and premium" -> this is brand_personality, NOT brand_identity_preference
     required: true
     enum_values:
-      - use_saved_brand_kit
-      - upload_brand_guidelines
-      - upload_logo_assets
-      - customize_this_project
+      - "Use Saved Brand Kit"
+      - "Upload Brand Guidelines"
+      - "Upload Logo Assets"
+      - "Customize This Project"
 
   - code: hybrid_notes
     description: >
       Additional notes when the client wants a hybrid or customized brand approach
-      (chosen customize_this_project in brand_identity_preference). Captures
+      (chosen Customize This Project in brand_identity_preference). Captures
       specifics like 'use existing colors but a new logo style', 'keep the font
       but update the palette', etc. Only ask this if brand_identity_preference
-      is set to customize_this_project.
+      is set to Customize This Project.
     required: false

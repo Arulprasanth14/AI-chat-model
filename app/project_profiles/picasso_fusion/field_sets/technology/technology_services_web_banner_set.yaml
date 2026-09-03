@@ -12,6 +12,9 @@ fields:
   section_name: Banner Purpose
   section_order: 0
   section_field_order: 0
+  question: What is the primary goal of these web banners?
+  hint: 'Examples: Drive sales, Promote a product launch, Generate leads, Increase
+    sign-ups, Promote an event, Drive traffic to a landing page.'
   options:
   - label: Drive Sales
     value: drive_sales
@@ -33,6 +36,8 @@ fields:
   section_name: Banner Purpose
   section_order: 0
   section_field_order: 1
+  question: Where will these banners appear?
+  hint: This is more useful than asking about homepage hero vs sidebar first.
   options:
   - label: Website Homepage
     value: website_homepage
@@ -54,12 +59,17 @@ fields:
   section_name: Campaign Information
   section_order: 1
   section_field_order: 0
+  question: What is being promoted?
+  hint: Provide the product, service, feature, offer, event, or campaign details.
 - code: WB4
   kind: checkbox
   required: true
   section_name: Campaign Information
   section_order: 1
   section_field_order: 1
+  question: Who is the target audience?
+  hint: 'Examples: Existing customers, New visitors, Small businesses, Enterprise
+    buyers, Students, Homeowners, Healthcare professionals.'
   options:
   - label: Existing Customers
     value: existing_customers
@@ -83,6 +93,9 @@ fields:
   section_name: Banner Sizes
   section_order: 2
   section_field_order: 0
+  question: What banner sizes are required?
+  hint: "This is a 3-size package by default \u2014 confirm the standard set works,\
+    \ or request custom sizes."
   options:
   - label: Standard Display Ad Sizes
     value: standard_display_ad_sizes
@@ -96,18 +109,27 @@ fields:
   section_name: Banner Sizes
   section_order: 2
   section_field_order: 1
+  question: Please provide the exact pixel dimensions.
+  hint: Only if you selected Custom Sizes above.
+  show_if:
+    field: WB5
+    in:
+    - custom_size
 - code: WB7
   kind: text
   required: true
   section_name: Content & Assets
   section_order: 3
   section_field_order: 0
+  question: What copy should appear on the banners?
+  hint: Headline, supporting text, offer details, and CTA copy.
 - code: WB8
   kind: radio
   required: true
   section_name: Content & Assets
   section_order: 3
   section_field_order: 1
+  question: Do you have images, product screenshots, or visuals to use?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -119,12 +141,17 @@ fields:
   section_name: Content & Assets
   section_order: 3
   section_field_order: 2
+  question: Upload assets.
+  hint: PNG or JPG preferred. Minimum 1200px wide. Only if you have images, product
+    screenshots, or visuals.
 - code: WB10
   kind: radio
   required: true
   section_name: Call to Action
   section_order: 4
   section_field_order: 0
+  question: What action should users take after clicking the banner?
+  hint: 'Examples: Shop Now, Learn More, Book a Demo, Register, Download, Get Started.'
   options:
   - label: Shop Now
     value: shop_now
@@ -146,12 +173,14 @@ fields:
   section_name: Call to Action
   section_order: 4
   section_field_order: 1
+  question: What is the destination URL?
 - code: WB12
   kind: radio
   required: true
   section_name: Call to Action
   section_order: 4
   section_field_order: 2
+  question: Will UTM tracking be required?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -163,12 +192,20 @@ fields:
   section_name: Call to Action
   section_order: 4
   section_field_order: 3
+  question: Provide UTM parameters or confirm AI-generated UTMs.
+  hint: Only if you said yes above.
+  show_if:
+    field: WB12
+    in:
+    - 'yes'
 - code: WB14
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 5
   section_field_order: 0
+  question: Any reference banners or inspiration?
+  hint: Share examples, competitors, or campaigns you admire.
   options:
   - label: 'Yes'
     value: 'yes'
@@ -180,12 +217,21 @@ fields:
   section_name: Design Direction
   section_order: 5
   section_field_order: 1
+  question: Upload references, up to 3.
+  hint: Only if you said yes to reference banners above.
+  show_if:
+    field: WB14
+    in:
+    - 'yes'
 - code: WB16
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 5
   section_field_order: 2
+  question: Describe the visual style you'd like.
+  hint: 'Examples: Modern SaaS, Premium, Minimal, Product-focused, Corporate, Luxury,
+    Bold promotional.'
   options:
   - label: Modern SaaS
     value: modern_saas
@@ -209,6 +255,8 @@ fields:
   section_name: Technical Requirements
   section_order: 6
   section_field_order: 0
+  question: Will these banners be static or animated?
+  hint: This is a critical question currently missing.
   options:
   - label: Static JPG/PNG
     value: static_jpg_png
@@ -222,6 +270,8 @@ fields:
   section_name: Technical Requirements
   section_order: 6
   section_field_order: 1
+  question: Any platform-specific requirements?
+  hint: 'Examples: Google Display Network, Programmatic Ads, Internal Website.'
   options:
   - label: Google Display Network
     value: google_display_network
@@ -237,3 +287,5 @@ fields:
   section_name: Technical Requirements
   section_order: 6
   section_field_order: 2
+  question: Any technical requirements?
+  hint: Leave blank if unsure.

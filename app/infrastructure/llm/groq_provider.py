@@ -40,11 +40,11 @@ def _is_rate_limit_or_server_error(exc: BaseException) -> bool:
     return False
 
 
-# Shared retry policy: up to 10 attempts, exponential backoff (2s → 3s → ... max 60s)
+# Shared retry policy: up to 6 attempts, exponential backoff (2s → 3s → ... max 30s)
 _groq_retry = retry(
     retry=retry_if_exception(_is_rate_limit_or_server_error),
-    stop=stop_after_attempt(10),
-    wait=wait_exponential(multiplier=1.5, min=2, max=60),
+    stop=stop_after_attempt(6),
+    wait=wait_exponential(multiplier=1.5, min=2, max=30),
     before_sleep=before_sleep_log(logging.getLogger(__name__), logging.WARNING),
     reraise=True,  # re-raise the original exception if all retries exhausted
 )
@@ -136,7 +136,7 @@ class GroqProvider:
 
         message = response.choices[0].message
         if not message.tool_calls:
-            logger.debug("call_with_tools: LLM made no tool calls")
+            logger.debug("call_with_tools: LLM made no tool calls. Raw content: %s", message.content)
             return []
 
         result: list[dict[str, Any]] = []

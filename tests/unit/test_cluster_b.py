@@ -218,7 +218,7 @@ def test_brand_identity_profile_has_structural_enum(list_field_profile: BaseProf
     )
 
     # brand_identity_preference should have structural values
-    structural_values = {"use_saved_brand_kit", "upload_brand_guidelines", "upload_logo_assets", "customize_this_project"}
+    structural_values = {"Use Saved Brand Kit", "Upload Brand Guidelines", "Upload Logo Assets", "Customize This Project"}
     assert structural_values.issubset(bip_enums), (
         f"brand_identity_preference should contain structural values. Got: {bip_enums}"
     )

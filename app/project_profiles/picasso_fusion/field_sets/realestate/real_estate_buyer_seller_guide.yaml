@@ -13,6 +13,7 @@ fields:
   section_name: Guide Overview
   section_order: 0
   section_field_order: 0
+  question: What type of guide is this?
   options:
   - label: First Home Buyer Guide
     value: first_home_buyer
@@ -34,6 +35,9 @@ fields:
   section_name: Guide Overview
   section_order: 0
   section_field_order: 1
+  question: Who is the target audience?
+  hint: This is one of the most important questions — it affects the tone, content
+    hierarchy, and visual style.
   options:
   - label: First-time buyers
     value: first_time_buyers
@@ -55,6 +59,7 @@ fields:
   section_name: Guide Overview
   section_order: 0
   section_field_order: 2
+  question: What is the primary goal of this guide?
   options:
   - label: Generate appraisal leads
     value: generate_appraisal_leads
@@ -76,6 +81,7 @@ fields:
   section_name: Guide Content
   section_order: 1
   section_field_order: 0
+  question: What topics or sections should be included?
   options:
   - label: Buying process
     value: buying_process
@@ -103,6 +109,7 @@ fields:
   section_name: Guide Content
   section_order: 1
   section_field_order: 1
+  question: Do you already have the content prepared?
   options:
   - label: Yes, final content ready
     value: final_ready
@@ -118,12 +125,15 @@ fields:
   section_name: Guide Content
   section_order: 1
   section_field_order: 2
+  question: Please upload your content files.
+  hint: 'Accepted formats: DOCX, PDF, Google Docs export.'
 - code: BG7
   kind: radio
   required: true
   section_name: Guide Content
   section_order: 1
   section_field_order: 3
+  question: Approximately how many pages should the guide contain?
   options:
   - label: 4 Pages
     value: '4'
@@ -139,12 +149,16 @@ fields:
   section_name: Photography & Assets
   section_order: 2
   section_field_order: 0
+  question: Do you have photography, illustrations, or visuals for the guide? Please
+    upload images and assets.
+  hint: Minimum 300 DPI for print.
 - code: BG9
   kind: checkbox
   required: true
   section_name: Photography & Assets
   section_order: 2
   section_field_order: 1
+  question: Are there any additional assets to include?
   options:
   - label: Agent photos
     value: agent_photos
@@ -170,6 +184,7 @@ fields:
   section_name: Lead Generation & CTA
   section_order: 3
   section_field_order: 0
+  question: What action should readers take after reading the guide?
   options:
   - label: Request an appraisal
     value: request_appraisal
@@ -189,6 +204,7 @@ fields:
   section_name: Lead Generation & CTA
   section_order: 3
   section_field_order: 1
+  question: Will a QR code be included?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -200,12 +216,17 @@ fields:
   section_name: Lead Generation & CTA
   section_order: 3
   section_field_order: 2
+  question: What URL should the QR code link to?
+  hint: Only ask this if the client said yes to including a QR code.
 - code: BG13
   kind: radio
   required: true
   section_name: Distribution Format
   section_order: 4
   section_field_order: 0
+  question: How will this guide be distributed?
+  hint: This is much more useful to ask than a generic "what output format is required"
+    question.
   options:
   - label: Printed Guide
     value: printed
@@ -225,12 +246,16 @@ fields:
   section_name: Design Direction
   section_order: 5
   section_field_order: 0
+  question: Any guide designs or publications you'd like us to reference?
+  hint: 'Examples: competitor buyer guides, seller guides, real estate magazines,
+    previous editions. Upload reference designs, up to 3.'
 - code: BG15
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 5
   section_field_order: 1
+  question: Describe the visual style you'd like.
   options:
   - label: Luxury Real Estate
     value: luxury_real_estate
@@ -252,3 +277,6 @@ fields:
   section_name: Technical Requirements
   section_order: 6
   section_field_order: 0
+  question: Any technical or production requirements?
+  hint: 'Examples: interactive PDF, fillable PDF, print-ready PDF, custom page size.
+    Leave blank if unsure.'
