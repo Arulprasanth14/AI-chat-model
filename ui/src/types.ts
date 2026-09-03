@@ -10,6 +10,9 @@ export interface MissingField {
   field_code: string;
   description: string;
   enum_values?: string[];
+  /** Bug 7 fix: human-readable {label, value} pairs for UI chip rendering */
+  enum_options?: Array<{ label?: string; value?: string }>;
+  input_type?: string;
 }
 
 export interface SessionSnapshot {

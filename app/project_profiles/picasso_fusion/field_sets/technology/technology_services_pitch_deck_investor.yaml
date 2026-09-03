@@ -1,5 +1,5 @@
 template_key: technology_services_pitch_deck_investor
-template_label: Pitch Deck — Investor
+template_label: "Pitch Deck \u2014 Investor"
 vertical: technology
 template_name_match:
 - pitch deck
@@ -13,12 +13,15 @@ fields:
   section_name: Company Overview
   section_order: 0
   section_field_order: 0
+  question: What is your company, product, or startup?
+  hint: Provide a brief overview of the business and what it does.
 - code: PD2
   kind: radio
   required: true
   section_name: Company Overview
   section_order: 0
   section_field_order: 1
+  question: What stage is the business currently at?
   options:
   - label: Idea Stage
     value: idea_stage
@@ -36,6 +39,7 @@ fields:
   section_name: Investor Deck Goal
   section_order: 1
   section_field_order: 0
+  question: What is the primary purpose of this deck?
   options:
   - label: Raise Investment
     value: raise_investment
@@ -57,6 +61,7 @@ fields:
   section_name: Investor Deck Goal
   section_order: 1
   section_field_order: 1
+  question: Who is the intended audience?
   options:
   - label: Angel Investors
     value: angel_investors
@@ -80,6 +85,7 @@ fields:
   section_name: Deck Content
   section_order: 2
   section_field_order: 0
+  question: Do you already have content for the presentation?
   options:
   - label: Yes, Complete Content Ready
     value: complete_content_ready
@@ -95,30 +101,39 @@ fields:
   section_name: Deck Content
   section_order: 2
   section_field_order: 1
+  question: Upload your existing deck, document, or content materials.
+  hint: 'Accepted formats: PPTX, PDF, DOCX, Google Slides export. Only if you have
+    existing content.'
 - code: PD7
   kind: text
   required: true
   section_name: Business Story
   section_order: 3
   section_field_order: 0
+  question: What problem does your company solve?
 - code: PD8
   kind: text
   required: true
   section_name: Business Story
   section_order: 3
   section_field_order: 1
+  question: What is your solution?
 - code: PD9
   kind: text
   required: true
   section_name: Business Story
   section_order: 3
   section_field_order: 2
+  question: What makes your solution different from competitors?
 - code: PD10
   kind: checkbox
   required: true
   section_name: Business Story
   section_order: 3
   section_field_order: 3
+  question: What are the key metrics, traction, or achievements to highlight?
+  hint: 'Examples: Revenue, Users, Growth rate, Customers, Retention, Partnerships,
+    Market share.'
   options:
   - label: Revenue
     value: revenue
@@ -142,6 +157,7 @@ fields:
   section_name: Funding Information
   section_order: 4
   section_field_order: 0
+  question: Are you currently raising capital?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -153,12 +169,21 @@ fields:
   section_name: Funding Information
   section_order: 4
   section_field_order: 1
+  question: If yes, how much funding are you seeking?
+  hint: Only if you are currently raising capital.
+  show_if:
+    field: PD11
+    in:
+    - 'yes'
 - code: PD13
   kind: checkbox
   required: false
   section_name: Funding Information
   section_order: 4
   section_field_order: 2
+  question: How will the funds be used?
+  hint: 'Examples: Product development, Hiring, Marketing, Operations, Expansion.
+    Only if you are currently raising capital.'
   options:
   - label: Product Development
     value: product_development
@@ -178,6 +203,7 @@ fields:
   section_name: Visual Assets
   section_order: 5
   section_field_order: 0
+  question: Do you have product screenshots, photography, charts, or visuals to include?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -189,12 +215,16 @@ fields:
   section_name: Visual Assets
   section_order: 5
   section_field_order: 1
+  question: Upload available assets.
+  hint: Only if you have product screenshots, photography, charts, or visuals.
 - code: PD16
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 6
   section_field_order: 0
+  question: Any investor decks or presentation designs you admire?
+  hint: 'Examples: Sequoia-style, YC-style, Modern SaaS, Corporate, Premium, Minimal.'
   options:
   - label: 'Yes'
     value: 'yes'
@@ -206,12 +236,21 @@ fields:
   section_name: Design Direction
   section_order: 6
   section_field_order: 1
+  question: Upload reference presentations, up to 3.
+  hint: Only if you said yes to reference decks above.
+  show_if:
+    field: PD16
+    in:
+    - 'yes'
 - code: PD18
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 6
   section_field_order: 2
+  question: Describe the presentation style you'd like.
+  hint: 'Examples: Investor-grade, Premium, Corporate, Minimal, Technology-focused,
+    Bold startup, Data-driven.'
   options:
   - label: Investor-Grade
     value: investor_grade
@@ -235,6 +274,7 @@ fields:
   section_name: Technical Requirements
   section_order: 7
   section_field_order: 0
+  question: What format do you need delivered?
   options:
   - label: PowerPoint (.pptx)
     value: powerpoint_pptx
@@ -252,6 +292,9 @@ fields:
   section_name: Technical Requirements
   section_order: 7
   section_field_order: 1
+  question: Will this presentation be presented live or shared for reading?
+  hint: This is extremely important because decks designed for live presentation are
+    very different from decks designed to be read independently.
   options:
   - label: Presented Live
     value: presented_live
@@ -265,3 +308,5 @@ fields:
   section_name: Technical Requirements
   section_order: 7
   section_field_order: 2
+  question: Any technical, accessibility, or presentation-specific requirements?
+  hint: Leave blank if unsure.

@@ -42,15 +42,6 @@ _FIELD_SPEC_OVERRIDES: dict[str, FieldSpec] = {
         input_type="file_upload",
         label="Upload Brand Assets / Logo",
     ),
-    # Bug 11: distribution_channels uses multi_select + explicit platform options
-    # (override needed because enum_values in YAML uses underscored codes,
-    #  but the UI should display human-readable labels)
-    "distribution_channels": FieldSpec(
-        field_code="distribution_channels",
-        input_type="multi_select",
-        options=["Instagram", "Facebook", "LinkedIn", "TikTok", "YouTube", "Website", "Email", "Print", "OOH"],
-        label="Distribution Channels",
-    ),
 }
 
 

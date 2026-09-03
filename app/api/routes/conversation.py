@@ -24,6 +24,9 @@ import logging
 from pathlib import Path
 from typing import Annotated, AsyncIterator
 
+import cloudinary
+import cloudinary.uploader
+
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
@@ -205,31 +208,67 @@ async def get_brief(
 
 @router.post(
     "/session/{session_id}/document",
-    summary="Upload a document and extract fields",
+    summary="Upload document(s) and extract fields",
     response_model=dict,
 )
 async def upload_document(
     session_id: str,
     orchestrator: Annotated[ConversationOrchestrator, Depends(get_orchestrator)],
-    file: UploadFile = File(...),
+    files: list[UploadFile] = File(...),
 ) -> dict:
-    """Upload a document to pre-fill the brief.
+    """Upload document(s) to pre-fill the brief.
     
     Reuses the exact same orchestrator turn logic to prevent divergence.
     """
-    content = await file.read()
-    try:
-        text = content.decode("utf-8")
-    except UnicodeDecodeError:
-        text = content.decode("latin-1")
+    if len(files) < 1 or len(files) > 5:
+        raise HTTPException(status_code=400, detail="Please upload between 1 and 5 files.")
+
+    image_files = []
+    text_files = []
+    
+    for file in files:
+        if file.content_type and file.content_type.startswith("image/"):
+            image_files.append(file)
+        else:
+            text_files.append(file)
+            
+    if image_files and not text_files:
+        # All files are images, process as asset uploads
+        result = await upload_logo(session_id, orchestrator, image_files)
+        
+        # In case the session could not be fetched after upload
+        state = await orchestrator._repo.get_session(session_id)
+        if state is None:
+            raise HTTPException(status_code=404, detail=f"Session {session_id!r} not found after upload")
+            
+        active_profile = orchestrator._profile_provider(state)
+        snapshot = state.to_snapshot(active_profile, settings.extraction_confidence_threshold)
+        return {
+            "message": result.get("message", "Images uploaded successfully."),
+            "snapshot": snapshot
+        }
+
+    all_text = []
+    for file in text_files:
+        content = await file.read()
+        try:
+            text = content.decode("utf-8")
+        except UnicodeDecodeError:
+            text = content.decode("latin-1")
+            
+        # Strip null bytes to prevent PostgreSQL JSONB crashes (UntranslatableCharacterError)
+        text = text.replace("\x00", "")
+        all_text.append(f"--- Document: {file.filename} ---\n{text}")
+
+    combined_text = "\n\n".join(all_text)
 
     # We construct a user message that forces the LLM to extract fields from the document
     # and also explicitly asks it to mention any additional info found.
     prompt = (
-        f"I have uploaded a document for this brief. Please extract all relevant information from it "
+        f"I have uploaded document(s) for this brief. Please extract all relevant information from them "
         f"into the correct fields. If there is any important information in the document that doesn't "
         f"match a known required field, please surface it to me by summarizing it in your conversational reply "
-        f"as 'additional info found'.\n\nDocument Content:\n{text}"
+        f"as 'additional info found'.\n\nDocument Content:\n{combined_text}"
     )
 
     import json
@@ -263,31 +302,72 @@ async def upload_document(
 
 @router.post(
     "/session/{session_id}/logo",
-    summary="Upload a logo/brand asset with confirmed field write",
+    summary="Upload multiple files with confirmed field write",
     response_model=dict,
 )
 async def upload_logo(
     session_id: str,
     orchestrator: Annotated[ConversationOrchestrator, Depends(get_orchestrator)],
-    file: UploadFile = File(...),
+    files: list[UploadFile] = File(...),
 ) -> dict:
-    """Upload a logo or brand asset and write directly to the existing_assets field.
+    """Upload logo(s) or brand assets and write directly to the target field.
 
     Bypasses LLM extraction — the upload IS the write. Written at confidence 1.0.
-    Frontend should show a hard UI confirmation (thumbnail + checkmark) driven
-    by this response, not by chat text. Fixes Bug 3 (logo not recognized) and
-    Bug 13 (no explicit upload affordance).
+    Dynamically finds the missing file_upload field to satisfy.
     """
+    if len(files) < 1 or len(files) > 5:
+        raise HTTPException(status_code=400, detail="Please upload between 1 and 5 files.")
+
     state = await orchestrator._repo.get_session(session_id)
     if state is None:
         raise HTTPException(status_code=404, detail=f"Session {session_id!r} not found")
 
-    filename = file.filename or "uploaded_asset"
     active_profile = orchestrator._profile_provider(state)
+    missing = state.compute_missing_fields(active_profile, settings.extraction_confidence_threshold)
+    
+    target_field = "existing_assets"
+    for f in missing:
+        if getattr(f, "input_type", "") == "file_upload":
+            target_field = f.field_code
+            break
 
+    if not settings.cloudinary_url:
+        return {
+            "status": "failed",
+            "field_code": target_field,
+            "message": "Cloudinary is not configured. Please add CLOUDINARY_URL to your .env file.",
+        }
+
+    secure_urls = []
+    filenames = []
+    
+    import os
+    os.environ["CLOUDINARY_URL"] = settings.cloudinary_url
+    cloudinary.reset_config()
+
+    for file in files:
+        filename = file.filename or "uploaded_asset"
+        filenames.append(filename)
+        try:
+            content = await file.read()
+            upload_result = cloudinary.uploader.upload(
+                content,
+                resource_type="auto",
+                public_id=f"picasso_fusion/{session_id}/{filename.split('.')[0]}",
+            )
+            secure_urls.append(upload_result.get("secure_url"))
+        except Exception as exc:
+            logger.error(f"Cloudinary upload failed for {filename}", exc_info=exc)
+            return {
+                "status": "failed",
+                "field_code": target_field,
+                "message": f"Cloudinary upload failed for {filename}: {exc}",
+            }
+
+    value = ", ".join(secure_urls)
     result = state.handle_save_text_field(
-        field_code="existing_assets",
-        value=filename,
+        field_code=target_field,
+        value=value,
         confidence=1.0,
         profile=active_profile,
         confidence_threshold=0.0,
@@ -299,31 +379,32 @@ async def upload_logo(
         except Exception as exc:
             logger.error(
                 "Logo upload: save_session failed",
-                extra={"session_id": session_id, "filename": filename},
+                extra={"session_id": session_id, "uploaded_files": filenames},
                 exc_info=exc,
             )
             return {
                 "status": "failed",
-                "field_code": "existing_assets",
-                "filename": filename,
+                "field_code": target_field,
                 "message": f"Upload received but failed to save: {exc}",
             }
 
         logger.info(
             "Logo/asset uploaded and confirmed",
-            extra={"session_id": session_id, "filename": filename},
+            extra={"session_id": session_id, "uploaded_files": filenames},
         )
+        snapshot = state.to_snapshot(active_profile, settings.extraction_confidence_threshold)
+        file_count = len(filenames)
         return {
             "status": "confirmed",
-            "field_code": "existing_assets",
-            "filename": filename,
-            "message": f"✅ Logo '{filename}' uploaded and saved to your brief.",
+            "field_code": target_field,
+            "filename": ", ".join(filenames),
+            "message": f"✅ {file_count} file(s) uploaded and saved.",
+            "snapshot": snapshot,
         }
 
     return {
         "status": "failed",
-        "field_code": "existing_assets",
-        "filename": filename,
+        "field_code": target_field,
         "message": f"Upload rejected: {result.reason}",
     }
 
@@ -426,9 +507,13 @@ async def direct_field_write(
                 exc_info=exc,
             )
 
+    # Bug 5 fix: Return snapshot so the frontend can update its state panel immediately
+    # after a chip click without waiting for the subsequent Phase B SSE stream.
+    snapshot = state.to_snapshot(active_profile, settings.extraction_confidence_threshold)
     return {
         "status": result.status,
         "field_code": field_code,
         "value": value,
         "reason": result.reason,
+        "snapshot": snapshot,
     }

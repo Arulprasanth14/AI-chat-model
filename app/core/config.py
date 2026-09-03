@@ -93,6 +93,12 @@ class Settings(BaseSettings):
         description="Async SQLAlchemy DB URL (postgresql+asyncpg://...)",
     )
 
+    # ── Cloudinary ────────────────────────────────────────────────────────────
+    cloudinary_url: str = Field(
+        default="",
+        description="Cloudinary URL for image uploads (e.g., cloudinary://API_KEY:API_SECRET@CLOUD_NAME)",
+    )
+
     # ── RAG ───────────────────────────────────────────────────────────────────
     retrieval_top_k: Annotated[int, Field(ge=1, le=20)] = Field(
         default=2,

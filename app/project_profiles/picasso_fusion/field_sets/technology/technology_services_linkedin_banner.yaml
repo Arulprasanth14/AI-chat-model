@@ -11,6 +11,9 @@ fields:
   section_name: Banner Purpose
   section_order: 0
   section_field_order: 0
+  question: What is the primary goal of this LinkedIn banner?
+  hint: 'Examples: Personal branding, thought leadership, lead generation, recruiting,
+    company awareness, product promotion, event promotion.'
   options:
   - label: Personal Branding
     value: personal_branding
@@ -34,6 +37,7 @@ fields:
   section_name: Banner Type
   section_order: 1
   section_field_order: 0
+  question: Is this for a personal profile or a company page?
   options:
   - label: Personal LinkedIn Banner
     value: personal_linkedin_banner
@@ -45,18 +49,25 @@ fields:
   section_name: Core Message
   section_order: 2
   section_field_order: 0
+  question: What key message should people remember after seeing this banner?
+  hint: "Keep it concise \u2014 one clear message works best."
 - code: LB4
   kind: text
   required: true
   section_name: Content
   section_order: 3
   section_field_order: 0
+  question: What text should appear on the banner?
+  hint: 'Examples: Headline, tagline, services, credentials, company positioning,
+    website URL.'
 - code: LB5
   kind: radio
   required: true
   section_name: Images & Assets
   section_order: 4
   section_field_order: 0
+  question: Do you have photography, headshots, product visuals, or brand assets to
+    use?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -68,24 +79,36 @@ fields:
   section_name: Images & Assets
   section_order: 4
   section_field_order: 1
+  question: Upload images and assets.
+  hint: PNG or JPG format recommended. Only if you have photography, headshots, product
+    visuals, or brand assets.
 - code: LB7
   kind: text
   required: false
   section_name: Personal Profile Only (Conditional)
   section_order: 5
   section_field_order: 0
+  question: What do you want to be known for professionally?
+  hint: 'Examples: Fractional CMO, SaaS Founder, Leadership Coach, Real Estate Advisor.
+    Only ask this if the banner is for a Personal LinkedIn profile (LB2 = Personal
+    LinkedIn Banner).'
 - code: LB8
   kind: text
   required: false
   section_name: Company Page Only (Conditional)
   section_order: 6
   section_field_order: 0
+  question: What products, services, or capabilities should be highlighted?
+  hint: List the most important offerings to showcase. Only ask this if the banner
+    is for a Company LinkedIn page (LB2 = Company LinkedIn Banner).
 - code: LB9
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 7
   section_field_order: 0
+  question: Any reference designs or inspiration?
+  hint: Share LinkedIn banners, personal brands, or company pages you admire.
   options:
   - label: 'Yes'
     value: 'yes'
@@ -97,12 +120,21 @@ fields:
   section_name: Design Direction
   section_order: 7
   section_field_order: 1
+  question: Upload reference designs, up to 3.
+  hint: Only if you said yes to reference designs above.
+  show_if:
+    field: LB9
+    in:
+    - 'yes'
 - code: LB11
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 7
   section_field_order: 2
+  question: Describe the visual style you'd like.
+  hint: 'Examples: Corporate, modern, premium, minimal, technology-focused, bold,
+    personal brand-driven.'
   options:
   - label: Corporate
     value: corporate
@@ -126,3 +158,6 @@ fields:
   section_name: Technical Requirements
   section_order: 8
   section_field_order: 0
+  question: Any technical or platform-specific requirements?
+  hint: "Leave blank if unsure \u2014 we'll use LinkedIn-recommended dimensions and\
+    \ safe zones."

@@ -11,12 +11,15 @@ fields:
   section_name: CMA Overview
   section_order: 0
   section_field_order: 0
+  question: What property is this CMA being prepared for? Give the property address
+    and suburb.
 - code: CM2
   kind: radio
   required: true
   section_name: CMA Overview
   section_order: 0
   section_field_order: 1
+  question: What type of property is it?
   options:
   - label: House
     value: house
@@ -38,6 +41,9 @@ fields:
   section_name: CMA Overview
   section_order: 0
   section_field_order: 2
+  question: What is the purpose of this CMA?
+  hint: This is more useful than asking "What type of presentation is this?" — the
+    asset is already a CMA.
   options:
   - label: Listing Appointment
     value: listing_appointment
@@ -57,12 +63,16 @@ fields:
   section_name: Property Information
   section_order: 1
   section_field_order: 0
+  question: What are the key property details?
+  hint: 'Examples: bedrooms, bathrooms, car spaces, land size, building area, year
+    built.'
 - code: CM5
   kind: checkbox
   required: true
   section_name: Property Information
   section_order: 1
   section_field_order: 1
+  question: What are the property's key selling points?
   options:
   - label: Renovated
     value: renovated
@@ -84,18 +94,23 @@ fields:
   section_name: Comparable Sales Data
   section_order: 2
   section_field_order: 0
+  question: What comparable sales should be included? Please provide all comparable
+    properties and sale information.
 - code: CM7
   kind: file
   required: true
   section_name: Comparable Sales Data
   section_order: 2
   section_field_order: 1
+  question: Please upload comparable sales data.
+  hint: 'Accepted formats: Excel, PDF, CSV, property reports.'
 - code: CM8
   kind: radio
   required: true
   section_name: Comparable Sales Data
   section_order: 2
   section_field_order: 2
+  question: Should active listings or pending sales be included?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -107,6 +122,7 @@ fields:
   section_name: Market Insights
   section_order: 3
   section_field_order: 0
+  question: What market data should be included?
   options:
   - label: Median sale price
     value: median_sale_price
@@ -128,18 +144,21 @@ fields:
   section_name: Market Insights
   section_order: 3
   section_field_order: 1
+  question: Please upload any market data and reports.
 - code: CM11
   kind: file
   required: true
   section_name: Assets
   section_order: 4
   section_field_order: 0
+  question: Do you have property photography to include? Please upload the images.
 - code: CM12
   kind: checkbox
   required: true
   section_name: Assets
   section_order: 4
   section_field_order: 1
+  question: Do you have any additional assets?
   options:
   - label: Maps
     value: maps
@@ -161,6 +180,7 @@ fields:
   section_name: Presentation Structure
   section_order: 5
   section_field_order: 0
+  question: Approximately how many slides are required?
   options:
   - label: 8–12 Slides
     value: 8-12
@@ -174,12 +194,15 @@ fields:
   section_name: Presentation Structure
   section_order: 5
   section_field_order: 1
+  question: Do you have an existing CMA template or previous presentation to follow?
+    Please upload the existing files.
 - code: CM15
   kind: radio
   required: true
   section_name: Closing & CTA
   section_order: 6
   section_field_order: 0
+  question: What should the presentation conclude with?
   options:
   - label: Recommended Price Range
     value: recommended_price_range
@@ -199,6 +222,7 @@ fields:
   section_name: Closing & CTA
   section_order: 6
   section_field_order: 1
+  question: Will a QR code be included?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -210,18 +234,23 @@ fields:
   section_name: Closing & CTA
   section_order: 6
   section_field_order: 2
+  question: What should the QR code destination URL be?
+  hint: Only ask this if the client said yes to including a QR code.
 - code: CM18
   kind: file
   required: false
   section_name: Design Direction
   section_order: 7
   section_field_order: 0
+  question: Any CMA presentations or real estate reports you'd like us to reference?
+  hint: Upload reference presentations, up to 3.
 - code: CM19
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 7
   section_field_order: 1
+  question: Describe the desired presentation style.
   options:
   - label: Premium Real Estate
     value: premium_real_estate
@@ -241,6 +270,7 @@ fields:
   section_name: Delivery Requirements
   section_order: 8
   section_field_order: 0
+  question: What format is required?
   options:
   - label: PowerPoint (.pptx)
     value: pptx
@@ -256,6 +286,9 @@ fields:
   section_name: Delivery Requirements
   section_order: 8
   section_field_order: 1
+  question: Will the CMA be presented live or sent as a standalone document?
+  hint: A critical question that's easy to miss — a live presentation can be visually
+    lighter, while a standalone CMA needs more explanatory content.
   options:
   - label: Presented Live
     value: presented_live

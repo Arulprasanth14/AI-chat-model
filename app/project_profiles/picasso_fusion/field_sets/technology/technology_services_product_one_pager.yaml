@@ -14,18 +14,25 @@ fields:
   section_name: One-Pager Overview
   section_order: 0
   section_field_order: 0
+  question: What product, service, or offering is this one-pager promoting?
+  hint: Provide the product/service name and a brief description.
 - code: PP2
   kind: text
   required: true
   section_name: One-Pager Overview
   section_order: 0
   section_field_order: 1
+  question: What are the key benefits or selling points?
+  hint: List the most important features, benefits, or differentiators to highlight.
 - code: PP3
   kind: checkbox
   required: true
   section_name: One-Pager Overview
   section_order: 0
   section_field_order: 2
+  question: Who is the target audience?
+  hint: 'Examples: Consumers, retailers, distributors, investors, enterprise buyers,
+    healthcare professionals, etc.'
   options:
   - label: Consumers
     value: consumers
@@ -47,6 +54,8 @@ fields:
   section_name: Offer Details (Optional)
   section_order: 1
   section_field_order: 0
+  question: Is there a specific offer, promotion, membership, or pricing information
+    to include?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -58,18 +67,29 @@ fields:
   section_name: Offer Details (Optional)
   section_order: 1
   section_field_order: 1
+  question: What are the offer details?
+  hint: Offer, dates, what's included, pricing, and any conditions. Only if you said
+    yes above.
+  show_if:
+    field: PP4
+    in:
+    - 'yes'
 - code: PP6
   kind: text
   required: true
   section_name: Content & Assets
   section_order: 2
   section_field_order: 0
+  question: What copy/text should appear on this one-pager?
+  hint: Please provide final content. Late copy changes may require additional revisions.
 - code: PP7
   kind: radio
   required: true
   section_name: Content & Assets
   section_order: 2
   section_field_order: 1
+  question: Do you have photography, product images, screenshots, or other visuals?
+  hint: Print assets should be a minimum of 300 DPI at final print size.
   options:
   - label: 'Yes'
     value: 'yes'
@@ -81,12 +101,15 @@ fields:
   section_name: Content & Assets
   section_order: 2
   section_field_order: 2
+  question: Upload print-ready images.
+  hint: Only if you have photography, product images, screenshots, or other visuals.
 - code: PP9
   kind: radio
   required: true
   section_name: Call to Action
   section_order: 3
   section_field_order: 0
+  question: What action should readers take after viewing this one-pager?
   options:
   - label: Visit Website
     value: visit_website
@@ -106,12 +129,21 @@ fields:
   section_name: Call to Action
   section_order: 3
   section_field_order: 1
+  question: What is the destination URL for the QR code?
+  hint: Only if you selected Scan QR Code above.
+  show_if:
+    field: PP9
+    in:
+    - scan_a_qr_code
+    - scan_qr_code
 - code: PP11
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 4
   section_field_order: 0
+  question: Any reference designs or inspiration?
+  hint: Competitors, favourite brands, previous sell sheets, or examples you admire.
   options:
   - label: 'Yes'
     value: 'yes'
@@ -123,12 +155,20 @@ fields:
   section_name: Design Direction
   section_order: 4
   section_field_order: 1
+  question: Upload reference designs, up to 3.
+  hint: Only if you said yes to reference designs above.
+  show_if:
+    field: PP11
+    in:
+    - 'yes'
 - code: PP13
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 4
   section_field_order: 2
+  question: Describe the visual style you'd like.
+  hint: 'Examples: Premium, corporate, modern, bold, minimal, technical, luxury, retail-focused.'
   options:
   - label: Premium
     value: premium
@@ -154,6 +194,7 @@ fields:
   section_name: Production Requirements
   section_order: 5
   section_field_order: 0
+  question: What size should the one-pager be?
   options:
   - label: A4
     value: a4
@@ -169,6 +210,8 @@ fields:
   section_name: Production Requirements
   section_order: 5
   section_field_order: 1
+  question: Single-sided or double-sided?
+  hint: A sell sheet is often double-sided, so this is worth asking.
   options:
   - label: Single-Sided
     value: single_sided
@@ -180,3 +223,5 @@ fields:
   section_name: Production Requirements
   section_order: 5
   section_field_order: 2
+  question: Any technical or print-specific requirements?
+  hint: "Leave blank if unsure \u2014 we'll use standard print specifications."

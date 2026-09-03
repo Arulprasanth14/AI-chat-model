@@ -11,6 +11,8 @@ fields:
   section_name: Signature Type
   section_order: 0
   section_field_order: 0
+  question: Is this email signature for an individual or a company-wide template?
+  hint: This determines how flexible the signature needs to be.
   options:
   - label: Individual Signature
     value: individual_signature
@@ -24,6 +26,8 @@ fields:
   section_name: Contact & Social
   section_order: 1
   section_field_order: 0
+  question: What contact information should appear?
+  hint: Only include details recipients should use.
   options:
   - label: Full Name
     value: full_name
@@ -49,6 +53,8 @@ fields:
   section_name: Contact & Social
   section_order: 1
   section_field_order: 1
+  question: Should social media links be included?
+  hint: Social links can improve credibility and engagement.
   options:
   - label: LinkedIn
     value: linkedin
@@ -70,12 +76,17 @@ fields:
   section_name: Contact & Social
   section_order: 1
   section_field_order: 2
+  question: Provide social profile URLs.
+  hint: Please ensure all URLs are correct. Only if you selected social media links
+    above.
 - code: ES5
   kind: radio
   required: true
   section_name: Call to Action
   section_order: 2
   section_field_order: 0
+  question: Do you want a call-to-action banner or promotional section?
+  hint: Email signatures can drive leads, bookings, or awareness.
   options:
   - label: Book a Call
     value: book_a_call
@@ -95,12 +106,16 @@ fields:
   section_name: Call to Action
   section_order: 2
   section_field_order: 1
+  question: Provide CTA text and destination URL.
+  hint: Only if you selected a CTA option above.
 - code: ES7
   kind: radio
   required: true
   section_name: Branding & Assets
   section_order: 3
   section_field_order: 0
+  question: Do you have brand assets?
+  hint: Brand consistency improves trust and recognition.
   options:
   - label: Logo Only
     value: logo_only
@@ -116,12 +131,16 @@ fields:
   section_name: Branding & Assets
   section_order: 3
   section_field_order: 1
+  question: Upload logo and brand assets.
+  hint: SVG or PNG preferred. Only if you have brand assets.
 - code: ES9
   kind: radio
   required: true
   section_name: Style & People
   section_order: 4
   section_field_order: 0
+  question: What style would you prefer?
+  hint: Choose a style that matches your brand.
   options:
   - label: Corporate
     value: corporate
@@ -143,6 +162,7 @@ fields:
   section_name: Style & People
   section_order: 4
   section_field_order: 1
+  question: Will employee headshots be included?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -156,6 +176,7 @@ fields:
   section_name: Legal & Compliance
   section_order: 5
   section_field_order: 0
+  question: Should a legal disclaimer or compliance notice be included?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -167,12 +188,20 @@ fields:
   section_name: Legal & Compliance
   section_order: 5
   section_field_order: 1
+  question: Provide disclaimer text.
+  hint: Only if you said yes above.
+  show_if:
+    field: ES11
+    in:
+    - 'yes'
 - code: ES13
   kind: checkbox
   required: true
   section_name: Platform & Technical
   section_order: 6
   section_field_order: 0
+  question: Which email platform(s) will use this signature?
+  hint: Rendering differs between platforms.
   options:
   - label: Outlook
     value: outlook
@@ -192,6 +221,8 @@ fields:
   section_name: Platform & Technical
   section_order: 6
   section_field_order: 1
+  question: Do you need HTML email signature files or design-only output?
+  hint: This is probably the most important technical question and is currently missing.
   options:
   - label: HTML Signature
     value: html_signature
@@ -207,6 +238,7 @@ fields:
   section_name: References
   section_order: 7
   section_field_order: 0
+  question: Any reference signatures or inspiration?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -218,3 +250,9 @@ fields:
   section_name: References
   section_order: 7
   section_field_order: 1
+  question: Upload reference signatures, up to 3.
+  hint: Only if you said yes to reference signatures above.
+  show_if:
+    field: ES15
+    in:
+    - 'yes'

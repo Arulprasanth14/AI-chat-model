@@ -139,6 +139,10 @@ async def _collect_sse(orchestrator: ConversationOrchestrator, message: str) -> 
             except Exception:
                 pass
 
+    if hasattr(orchestrator, "_bg_tasks") and orchestrator._bg_tasks:
+        import asyncio
+        await asyncio.gather(*orchestrator._bg_tasks)
+
     return final_message, all_chunks
 
 

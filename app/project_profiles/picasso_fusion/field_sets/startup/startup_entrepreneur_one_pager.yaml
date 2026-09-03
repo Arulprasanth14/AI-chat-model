@@ -1,5 +1,5 @@
 template_key: startup_entrepreneur_one_pager
-template_label: One-Pager — Company Overview
+template_label: "One-Pager \u2014 Company Overview"
 vertical: startup
 template_name_match:
 - one-pager
@@ -12,6 +12,8 @@ fields:
   section_name: One-Pager Overview
   section_order: 0
   section_field_order: 0
+  question: What is the purpose of this one-pager?
+  hint: One-pager = one clear business story.
   options:
   - label: Investor Introduction
     value: investor_introduction
@@ -31,12 +33,16 @@ fields:
   section_name: One-Pager Overview
   section_order: 0
   section_field_order: 1
+  question: What company, product, or startup are we presenting?
+  hint: Briefly describe what the business does.
 - code: OP3
   kind: checkbox
   required: true
   section_name: One-Pager Overview
   section_order: 0
   section_field_order: 2
+  question: Who is the target audience?
+  hint: Content and messaging should match the reader.
   options:
   - label: Investors
     value: investors
@@ -60,18 +66,24 @@ fields:
   section_name: Problem & Solution
   section_order: 1
   section_field_order: 0
+  question: What problem does the company solve?
+  hint: Keep it concise and outcome-focused.
 - code: OP5
   kind: text
   required: true
   section_name: Problem & Solution
   section_order: 1
   section_field_order: 1
+  question: What is the solution or offering?
+  hint: Describe the product, service, or platform being presented.
 - code: OP6
   kind: checkbox
   required: true
   section_name: Problem & Solution
   section_order: 1
   section_field_order: 2
+  question: What makes the company different?
+  hint: Highlight your competitive advantage or unique value proposition.
   options:
   - label: Proprietary Technology
     value: proprietary_technology
@@ -91,6 +103,8 @@ fields:
   section_name: Content & Traction
   section_order: 2
   section_field_order: 0
+  question: What key information should appear on the one-pager?
+  hint: Select the most important sections. Multi-select.
   options:
   - label: Company Overview
     value: company_overview
@@ -122,6 +136,8 @@ fields:
   section_name: Content & Traction
   section_order: 2
   section_field_order: 1
+  question: What traction, results, or proof points should be highlighted?
+  hint: Credibility is often the most valuable section on a startup one-pager.
   options:
   - label: Revenue
     value: revenue
@@ -145,6 +161,8 @@ fields:
   section_name: Assets & Copy
   section_order: 3
   section_field_order: 0
+  question: Do you have company assets and imagery?
+  hint: Visuals improve engagement and credibility.
   options:
   - label: 'Yes'
     value: 'yes'
@@ -158,18 +176,25 @@ fields:
   section_name: Assets & Copy
   section_order: 3
   section_field_order: 1
+  question: Upload logos, screenshots, product visuals, team photos, or marketing
+    assets.
+  hint: PNG, SVG, JPG preferred. Only if you have assets available.
 - code: OP11
   kind: text
   required: true
   section_name: Assets & Copy
   section_order: 3
   section_field_order: 2
+  question: What copy or text should appear?
+  hint: Provide approved content, key messages, or existing company descriptions.
 - code: OP12
   kind: radio
   required: true
   section_name: Call to Action & Format
   section_order: 4
   section_field_order: 0
+  question: What is the primary call to action?
+  hint: Every one-pager should encourage a clear next step.
   options:
   - label: Book a Meeting
     value: book_a_meeting
@@ -191,12 +216,20 @@ fields:
   section_name: Call to Action & Format
   section_order: 4
   section_field_order: 1
+  question: Custom CTA text.
+  hint: Only if you selected Other above.
+  show_if:
+    field: OP12
+    in:
+    - other
 - code: OP14
   kind: radio
   required: true
   section_name: Call to Action & Format
   section_order: 4
   section_field_order: 2
+  question: Will this one-pager be printed, shared digitally, or both?
+  hint: This affects layout, readability, and interactivity.
   options:
   - label: Print
     value: print
@@ -210,6 +243,8 @@ fields:
   section_name: Style & References
   section_order: 5
   section_field_order: 0
+  question: Any reference one-pagers or company profiles you'd like us to reference?
+  hint: Share examples you admire or competitors you like.
   options:
   - label: 'Yes'
     value: 'yes'
@@ -221,12 +256,19 @@ fields:
   section_name: Style & References
   section_order: 5
   section_field_order: 1
+  question: Upload reference documents, up to 3.
+  hint: Only if you said yes to reference one-pagers above.
+  show_if:
+    field: OP15
+    in:
+    - 'yes'
 - code: OP17
   kind: radio
   required: true
   section_name: Style & References
   section_order: 5
   section_field_order: 2
+  question: Describe the visual style you'd like.
   options:
   - label: Startup
     value: startup
@@ -250,6 +292,8 @@ fields:
   section_name: Style & References
   section_order: 5
   section_field_order: 3
+  question: Any technical requirements?
+  hint: Leave blank if unsure.
   options:
   - label: A4
     value: a4

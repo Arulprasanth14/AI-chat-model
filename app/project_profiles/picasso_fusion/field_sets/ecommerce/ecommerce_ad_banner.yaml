@@ -13,6 +13,8 @@ fields:
   section_name: Banner Type & Message
   section_order: 0
   section_field_order: 0
+  question: What are we creating today?
+  hint: Select the banner type.
   options:
   - label: Meta Ad Banner
     value: meta_ad_banner
@@ -42,18 +44,26 @@ fields:
   section_name: Banner Type & Message
   section_order: 0
   section_field_order: 1
+  question: What are we promoting?
+  hint: 'Provide the key product or service information: Product/Service Name, Category,
+    Price (Optional), Key Features/Benefits.'
 - code: AB3
   kind: text
   required: true
   section_name: Banner Type & Message
   section_order: 0
   section_field_order: 2
+  question: What's the ONE message customers should remember?
+  hint: 'Describe the biggest reason someone should click. Example: "Save up to 50%
+    this weekend.", "Premium skincare made for sensitive skin.", "Free shipping on
+    all orders."'
 - code: AB4
   kind: checkbox
   required: true
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 0
+  question: What's the goal of this campaign?
   options:
   - label: Increase Sales
     value: increase_sales
@@ -79,12 +89,15 @@ fields:
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 1
+  question: Who is this campaign for?
+  hint: Describe your target audience.
 - code: AB6
   kind: radio
   required: true
   section_name: Offer
   section_order: 2
   section_field_order: 0
+  question: Are you running an offer?
   options:
   - label: No Offer
     value: no_offer
@@ -110,12 +123,19 @@ fields:
   section_name: Offer
   section_order: 2
   section_field_order: 1
+  question: Provide the offer details, start & end date, and terms & conditions.
+  hint: Only if you are running an offer.
+  show_if:
+    field: AB6
+    not_in:
+    - no_offer
 - code: AB8
   kind: radio
   required: true
   section_name: Copy
   section_order: 3
   section_field_order: 0
+  question: Do you already have the copy?
   options:
   - label: Final Copy Ready
     value: final_copy_ready
@@ -129,12 +149,16 @@ fields:
   section_name: Copy
   section_order: 3
   section_field_order: 1
+  question: Provide your copy or rough points.
+  hint: Only if you have final copy ready or rough points.
 - code: AB10
   kind: checkbox
   required: false
   section_name: Design Requirements
   section_order: 4
   section_field_order: 0
+  question: Is there anything that must appear?
+  hint: Select all that apply.
   options:
   - label: Product Name
     value: product_name
@@ -164,6 +188,7 @@ fields:
   section_name: Images & Assets
   section_order: 5
   section_field_order: 0
+  question: Do you have images or assets?
   options:
   - label: I'll Upload Product Photos
     value: ill_upload_product_photos
@@ -183,12 +208,23 @@ fields:
   section_name: Images & Assets
   section_order: 5
   section_field_order: 1
+  question: Upload your files.
+  hint: Upload product photos, logos, graphics, or supporting assets. For best results,
+    use high-resolution images (1200px or larger).
+  show_if:
+    field: AB11
+    in:
+    - ill_upload_product_photos
+    - ill_upload_lifestyle_images
+    - ill_upload_graphics
 - code: AB13
   kind: radio
   required: true
   section_name: Brand Assets
   section_order: 6
   section_field_order: 0
+  question: Would you like us to follow your existing brand identity?
+  hint: Brand Assets & Guidelines.
   options:
   - label: Use My Saved Brand Kit
     value: use_my_saved_brand_kit
@@ -204,6 +240,8 @@ fields:
   section_name: Brand Assets
   section_order: 6
   section_field_order: 1
+  question: What should we customize?
+  hint: Only if you selected "Customize This Project" above.
   options:
   - label: Brand Colors
     value: brand_colors
@@ -211,18 +249,30 @@ fields:
     value: brand_fonts
   - label: Additional Instructions
     value: additional_instructions
+  show_if:
+    field: AB14
+    in:
+    - customize_this_project
 - code: AB15
   kind: text
   required: false
   section_name: Brand Assets
   section_order: 6
   section_field_order: 2
+  question: Provide any additional brand customization details.
+  hint: Only if you selected "Customize This Project" above.
+  show_if:
+    field: AB14
+    in:
+    - customize_this_project
 - code: AB16
   kind: checkbox
   required: true
   section_name: Style & References
   section_order: 7
   section_field_order: 0
+  question: What visual style should this banner have?
+  hint: Choose up to 3.
   options:
   - label: Premium
     value: premium
@@ -254,6 +304,8 @@ fields:
   section_name: Style & References
   section_order: 7
   section_field_order: 1
+  question: Do you have any inspiration?
+  hint: Share banner examples you like.
   options:
   - label: Website Link
     value: website_link
@@ -269,12 +321,19 @@ fields:
   section_name: Style & References
   section_order: 7
   section_field_order: 2
+  question: Provide the reference link(s), or note that you're uploading images.
+  hint: Only if you selected a reference option above (not Skip).
+  show_if:
+    field: AB17
+    not_in:
+    - skip
 - code: AB19
   kind: checkbox
   required: true
   section_name: Placement & Sizes
   section_order: 8
   section_field_order: 0
+  question: Where will this banner be used?
   options:
   - label: Meta (Facebook & Instagram)
     value: meta_facebook_instagram
@@ -298,6 +357,7 @@ fields:
   section_name: Placement & Sizes
   section_order: 8
   section_field_order: 1
+  question: What banner sizes do you need?
   options:
   - label: Use Recommended Platform Sizes
     value: use_recommended_platform_sizes
@@ -313,12 +373,15 @@ fields:
   section_name: Placement & Sizes
   section_order: 8
   section_field_order: 2
+  question: "Provide the width \xD7 height in pixels."
+  hint: Only if you selected Custom Dimensions above.
 - code: AB22
   kind: radio
   required: true
   section_name: Language & Notes
   section_order: 9
   section_field_order: 0
+  question: What language should the banner use?
   options:
   - label: English
     value: english
@@ -358,3 +421,6 @@ fields:
   section_name: Language & Notes
   section_order: 9
   section_field_order: 1
+  question: Is there anything you'd like us to avoid?
+  hint: Mention any colours, imagery, wording, competitor references, or visual directions
+    you'd prefer not to use.

@@ -138,6 +138,8 @@ class MissingField(BaseModel):
     field_code: str
     description: str  # from profile — fed to LLM as context
     enum_values: list[str] | None = None
+    enum_options: list[dict[str, str]] | None = None
+    input_type: str = "text"
 
 
 # ── Core state object ──────────────────────────────────────────────────────────
@@ -336,35 +338,47 @@ class ConversationState(BaseModel):
                 tool_call_id=tool_call_id,
             )
 
-        # Enum validation
-        value_lower = value.lower().strip()
-        allowed = [v.lower() for v in field_def.enum_values]
-        normalised = value_lower.replace(" ", "_").replace("-", "_")
-
-        if value_lower in allowed:
-            canonical = field_def.enum_values[allowed.index(value_lower)]
-        elif normalised in allowed:
-            canonical = field_def.enum_values[allowed.index(normalised)]
-        else:
-            logger.info(
-                "save_enum_field: rejected — value not in enum list",
-                extra={"field_code": field_code, "value": value, "allowed": field_def.enum_values[:5]},
-            )
-            return FieldWriteResult(
-                field_code=field_code,
-                value=value,
-                status=WRITE_STATUS_REJECTED_ENUM,
-                reason=(
-                    f"value {value!r} not in allowed list "
-                    f"{field_def.enum_values[:5]!r}"
-                    + (" …" if len(field_def.enum_values) > 5 else "")
-                ),
-                tool_name=tool_name,
-                tool_call_id=tool_call_id,
-            )
-
         # Look up input_type from profile to decide merge semantics
         is_list_field = (field_def.input_type == "list")
+
+        # Enum validation
+        raw_values = [v.strip() for v in value.split(",")] if is_list_field else [value.strip()]
+        allowed_values = [v.lower() for v in field_def.enum_values]
+        
+        allowed_labels = []
+        if field_def.enum_options:
+            allowed_labels = [o.get("label", "").lower() for o in field_def.enum_options]
+            
+        canonical_values = []
+
+        for raw_val in raw_values:
+            val_lower = raw_val.lower()
+            normalised = val_lower.replace(" ", "_").replace("-", "_")
+            if val_lower in allowed_values:
+                canonical_values.append(field_def.enum_values[allowed_values.index(val_lower)])
+            elif normalised in allowed_values:
+                canonical_values.append(field_def.enum_values[allowed_values.index(normalised)])
+            elif val_lower in allowed_labels:
+                canonical_values.append(field_def.enum_values[allowed_labels.index(val_lower)])
+            else:
+                logger.info(
+                    "save_enum_field: rejected — value not in enum list",
+                    extra={"field_code": field_code, "value": raw_val, "allowed": field_def.enum_values[:5]},
+                )
+                return FieldWriteResult(
+                    field_code=field_code,
+                    value=value,
+                    status=WRITE_STATUS_REJECTED_ENUM,
+                    reason=(
+                        f"value {raw_val!r} not in allowed list "
+                        f"{field_def.enum_values[:5]!r}"
+                        + (" …" if len(field_def.enum_values) > 5 else "")
+                    ),
+                    tool_name=tool_name,
+                    tool_call_id=tool_call_id,
+                )
+
+        canonical = ", ".join(canonical_values)
 
         return self._write_field(field_code, canonical, confidence, tool_name, tool_call_id, is_list_field=is_list_field)
 
@@ -477,7 +491,26 @@ class ConversationState(BaseModel):
         missing: list[MissingField] = []
         for field_def in profile.required_fields:
             if not field_def.required:
-                continue
+                if not field_def.show_if:
+                    continue
+                # Evaluate show_if dynamically
+                dependency = self.captured.get(field_def.show_if.field_code)
+                if not dependency or dependency.confidence < confidence_threshold:
+                    continue # Dependent field not yet captured, so this conditional field isn't required yet
+                
+                dep_vals = [v.strip().lower() for v in dependency.value.split(",")]
+                condition_met = False
+                
+                if field_def.show_if.in_:
+                    target_vals = [v.lower() for v in field_def.show_if.in_]
+                    condition_met = any(v in target_vals for v in dep_vals)
+                elif field_def.show_if.not_in:
+                    target_vals = [v.lower() for v in field_def.show_if.not_in]
+                    condition_met = not any(v in target_vals for v in dep_vals)
+                
+                if not condition_met:
+                    continue # Condition not met, field is not required
+
             captured = self.captured.get(field_def.code)
             if captured is None or captured.confidence < confidence_threshold:
                 missing.append(
@@ -485,6 +518,8 @@ class ConversationState(BaseModel):
                         field_code=field_def.code,
                         description=field_def.description,
                         enum_values=field_def.enum_values,
+                        enum_options=field_def.enum_options,
+                        input_type=field_def.input_type,
                     )
                 )
         return missing
@@ -533,6 +568,8 @@ class ConversationState(BaseModel):
                     "field_code": mf.field_code,
                     "description": mf.description,
                     "enum_values": mf.enum_values,
+                    "enum_options": mf.enum_options,  # Bug 7 fix: include {label, value} pairs for UI chip rendering
+                    "input_type": mf.input_type,
                 }
                 for mf in missing
             ],

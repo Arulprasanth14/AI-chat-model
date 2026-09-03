@@ -12,12 +12,14 @@ fields:
   section_name: Open Home Information
   section_order: 0
   section_field_order: 0
+  question: What property is this signboard promoting? Give the property address.
 - code: SB2
   kind: radio
   required: true
   section_name: Open Home Information
   section_order: 0
   section_field_order: 1
+  question: What type of property is it?
   options:
   - label: House
     value: house
@@ -39,6 +41,7 @@ fields:
   section_name: Open Home Information
   section_order: 0
   section_field_order: 2
+  question: What is the purpose of the signboard?
   options:
   - label: Open Home
     value: open_home
@@ -58,12 +61,16 @@ fields:
   section_name: Open Home Information
   section_order: 0
   section_field_order: 3
+  question: What date and time is the open home?
+  hint: Required if promoting an inspection — only ask this if the purpose above is
+    Open Home or Auction.
 - code: SB5
   kind: radio
   required: true
   section_name: Signboard Type
   section_order: 1
   section_field_order: 0
+  question: What type of signboard is required?
   options:
   - label: A-Frame Sign
     value: a_frame
@@ -85,30 +92,41 @@ fields:
   section_name: Signboard Type
   section_order: 1
   section_field_order: 1
+  question: What are the dimensions?
+  hint: Provide printer specifications if available.
 - code: SB7
   kind: text
   required: true
   section_name: Property Content
   section_order: 2
   section_field_order: 0
+  question: What property details should appear?
+  hint: 'Examples: bedrooms, bathrooms, car spaces, land size, price guide, auction
+    date.'
 - code: SB8
   kind: text
   required: true
   section_name: Property Content
   section_order: 2
   section_field_order: 1
+  question: What key message should the signboard communicate?
+  hint: 'Examples: "Open Home Today", "Auction This Saturday", "New Listing", "Luxury
+    Waterfront Living", "Contact Agent".'
 - code: SB9
   kind: file
   required: true
   section_name: Images & Assets
   section_order: 3
   section_field_order: 0
+  question: Do you have property photography to include? Please upload the images.
+  hint: Minimum 300 DPI at final print size.
 - code: SB10
   kind: checkbox
   required: true
   section_name: Images & Assets
   section_order: 3
   section_field_order: 1
+  question: Do you have any additional assets?
   options:
   - label: Agent Photo
     value: agent_photo
@@ -130,12 +148,15 @@ fields:
   section_name: Agent Information
   section_order: 4
   section_field_order: 0
+  question: Which agent details should appear? Give the agent name, phone number,
+    email, and website.
 - code: SB12
   kind: radio
   required: true
   section_name: Agent Information
   section_order: 4
   section_field_order: 1
+  question: What is the primary call to action?
   options:
   - label: Inspect Today
     value: inspect_today
@@ -155,6 +176,7 @@ fields:
   section_name: Agent Information
   section_order: 4
   section_field_order: 2
+  question: Will a QR code be included?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -166,12 +188,16 @@ fields:
   section_name: Agent Information
   section_order: 4
   section_field_order: 3
+  question: What URL should the QR code link to?
+  hint: 'Only ask this if the client said yes to including a QR code. Examples: property
+    listing, virtual tour, agency website, inspection registration.'
 - code: SB15
   kind: radio
   required: true
   section_name: Directional Requirements
   section_order: 5
   section_field_order: 0
+  question: Does the signboard need directional arrows?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -183,6 +209,9 @@ fields:
   section_name: Directional Requirements
   section_order: 5
   section_field_order: 1
+  question: What direction should be shown?
+  hint: One of the most commonly missed questions for open home signage — only ask
+    this if the client said yes to directional arrows above.
   options:
   - label: Left
     value: left
@@ -198,12 +227,16 @@ fields:
   section_name: Design Direction
   section_order: 6
   section_field_order: 0
+  question: Any reference signboards or inspiration?
+  hint: Competitors, previous campaigns, or styles you admire. Upload references,
+    up to 3.
 - code: SB18
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 6
   section_field_order: 1
+  question: Describe the visual style you'd like.
   options:
   - label: Premium Real Estate
     value: premium_real_estate
@@ -225,6 +258,8 @@ fields:
   section_name: Production Requirements
   section_order: 7
   section_field_order: 0
+  question: Will the signboard be used indoors or outdoors?
+  hint: This affects readability and production specifications.
   options:
   - label: Indoor
     value: indoor

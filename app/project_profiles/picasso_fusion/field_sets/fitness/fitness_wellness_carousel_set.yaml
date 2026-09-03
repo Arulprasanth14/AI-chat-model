@@ -12,6 +12,8 @@ fields:
   section_name: Carousel Topic & Message
   section_order: 0
   section_field_order: 0
+  question: What is this carousel about?
+  hint: Choose the purpose.
   options:
   - label: Workout Guide
     value: workout_guide
@@ -43,12 +45,16 @@ fields:
   section_name: Carousel Topic & Message
   section_order: 0
   section_field_order: 1
+  question: What's the ONE message people should remember?
+  hint: 'Example: "Progress beats perfection.", "5 mistakes preventing fat loss.",
+    "Our 12-week transformation program is now open."'
 - code: CR3
   kind: checkbox
   required: true
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 0
+  question: What's the goal of this carousel?
   options:
   - label: Get More Enquiries
     value: get_more_enquiries
@@ -74,6 +80,9 @@ fields:
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 1
+  question: Who is this for?
+  hint: 'Example: Beginners, Weight loss clients, Women, Men, Athletes, Busy professionals,
+    Seniors, Everyone.'
   options:
   - label: Beginners
     value: beginners
@@ -99,6 +108,7 @@ fields:
   section_name: Structure & Content
   section_order: 2
   section_field_order: 0
+  question: How should the story be structured?
   options:
   - label: Tips & Tricks
     value: tips_tricks
@@ -106,7 +116,7 @@ fields:
     value: step_by_step_guide
   - label: Common Mistakes
     value: common_mistakes
-  - label: Before → After
+  - label: "Before \u2192 After"
     value: before_after
   - label: Transformation Story
     value: transformation_story
@@ -124,6 +134,7 @@ fields:
   section_name: Structure & Content
   section_order: 2
   section_field_order: 1
+  question: Do you already have the content?
   options:
   - label: Final Content Ready
     value: final_content_ready
@@ -137,18 +148,27 @@ fields:
   section_name: Structure & Content
   section_order: 2
   section_field_order: 2
+  question: Provide your rough points.
+  hint: Only if you selected "I Have Rough Points" above.
 - code: CR8
   kind: text
   required: true
   section_name: Structure & Content
   section_order: 2
   section_field_order: 3
+  question: Tell us the flow of the carousel.
+  hint: "Instead of describing every slide separately, walk through the narrative.\
+    \ Example: Cover \u2192 \"5 Fat Loss Mistakes\"; Slide 2 \u2192 Mistake 1; Slide\
+    \ 3 \u2192 Mistake 2; Slide 4 \u2192 Mistake 3; Slide 5 \u2192 Solution; Slide\
+    \ 6 \u2192 Summary; Slide 7 \u2192 CTA. This gives designers freedom while still\
+    \ understanding the narrative."
 - code: CR9
   kind: radio
   required: true
   section_name: Slide Count & Key Slides
   section_order: 3
   section_field_order: 0
+  question: How many slides would you like?
   options:
   - label: '5'
     value: '5'
@@ -164,12 +184,16 @@ fields:
   section_name: Slide Count & Key Slides
   section_order: 3
   section_field_order: 1
+  question: What should the cover slide say?
+  hint: 'This is the most important slide. Example: "Stop Making These Gym Mistakes",
+    "7 Foods That Build Muscle", "The Beginner Workout Guide".'
 - code: CR11
   kind: radio
   required: true
   section_name: Slide Count & Key Slides
   section_order: 3
   section_field_order: 2
+  question: What should the final slide encourage people to do?
   options:
   - label: Follow for More
     value: follow_for_more
@@ -193,6 +217,7 @@ fields:
   section_name: Images & Assets
   section_order: 4
   section_field_order: 0
+  question: Do you have photos to include?
   options:
   - label: I'll Upload Photos
     value: ill_upload_photos
@@ -210,12 +235,20 @@ fields:
   section_name: Images & Assets
   section_order: 4
   section_field_order: 1
+  question: Upload your images.
+  hint: Label images if they belong to a specific slide. Only if you selected "I'll
+    Upload Photos" above.
+  show_if:
+    field: CR12
+    in:
+    - ill_upload_photos
 - code: CR14
   kind: checkbox
   required: true
   section_name: Images & Assets
   section_order: 4
   section_field_order: 2
+  question: What brand assets should be used?
   options:
   - label: Use My Brand Kit
     value: use_my_brand_kit
@@ -231,12 +264,21 @@ fields:
   section_name: Images & Assets
   section_order: 4
   section_field_order: 3
+  question: Upload your logo and brand guidelines.
+  hint: Only if you selected Upload Logo or Upload Brand Guidelines above.
+  show_if:
+    field: CR14
+    in:
+    - upload_logo
+    - upload_brand_guidelines
 - code: CR16
   kind: checkbox
   required: true
   section_name: Style & References
   section_order: 5
   section_field_order: 0
+  question: Describe the visual style.
+  hint: Choose up to 3.
   options:
   - label: Modern
     value: modern
@@ -268,6 +310,7 @@ fields:
   section_name: Style & References
   section_order: 5
   section_field_order: 1
+  question: Do you have any inspiration?
   options:
   - label: Instagram Link
     value: instagram_link
@@ -283,12 +326,19 @@ fields:
   section_name: Style & References
   section_order: 5
   section_field_order: 2
+  question: Provide the reference link(s), or upload the images.
+  hint: Only if you selected a reference option above (not Skip).
+  show_if:
+    field: CR17
+    not_in:
+    - skip
 - code: CR19
   kind: radio
   required: true
   section_name: Publishing & Language
   section_order: 6
   section_field_order: 0
+  question: Where will this carousel be published?
   options:
   - label: Instagram (1:1)
     value: instagram_1_1
@@ -306,6 +356,7 @@ fields:
   section_name: Publishing & Language
   section_order: 6
   section_field_order: 1
+  question: What language should we use?
   options:
   - label: English
     value: english

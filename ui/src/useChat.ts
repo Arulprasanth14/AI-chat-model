@@ -11,7 +11,8 @@ interface UseChatReturn {
   error: string | null;
   sendMessage: (text: string, context?: ChatContext, hiddenUserMessage?: boolean) => Promise<void>;
   addLocalMessage: (role: "user" | "assistant", content: string) => void;
-  uploadDocument: (file: File) => Promise<void>;
+  uploadDocuments: (files: File[]) => Promise<void>;
+  directFieldWrite: (fieldCode: string, value: string) => Promise<{ status: string; snapshot: SessionSnapshot | null }>;
   sessionId: string | null;
   clearSession: () => void;
 }
@@ -158,22 +159,25 @@ export function useChat(): UseChatReturn {
     }
   }, [isStreaming]);
 
-  const uploadDocument = useCallback(async (file: File) => {
-    if (!sessionIdRef.current || isStreaming) return;
+  const uploadDocuments = useCallback(async (files: File[]) => {
+    if (!sessionIdRef.current || isStreaming || files.length === 0) return;
     setError(null);
     setIsStreaming(true);
 
+    const fileNames = files.map(f => f.name).join(", ");
     const userMsg: ChatMessage = {
       id: generateId(),
       role: "user",
-      content: `[Uploaded document: ${file.name}]`,
+      content: `[Uploaded document(s): ${fileNames}]`,
       timestamp: new Date(),
     };
     setMessages((prev) => [...prev, userMsg]);
 
     try {
       const formData = new FormData();
-      formData.append("file", file);
+      files.forEach(file => {
+        formData.append("files", file); // Must match backend 'files' param
+      });
 
       const res = await fetch(`${API_BASE}/conversation/session/${sessionIdRef.current}/document`, {
         method: "POST",
@@ -190,22 +194,52 @@ export function useChat(): UseChatReturn {
         setSnapshot(data.snapshot);
       }
       
-      const assistantMsg: ChatMessage = {
-        id: generateId(),
-        role: "assistant",
-        content: data.message || "I've reviewed the document and extracted the available information.",
-        timestamp: new Date(),
-        streaming: false,
-      };
-      setMessages((prev) => [...prev, assistantMsg]);
+      // Auto-trigger AI acknowledgement via hidden message
+      const hiddenMessage = `__hidden_upload_success__: ${files.length} file(s) uploaded successfully. Acknowledge the upload and ask the next question.`;
+      
+      // Disable streaming temporarily so sendMessage can run
+      setIsStreaming(false);
+      
+      await sendMessage(hiddenMessage, undefined, true);
 
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Unknown error during upload";
       setError(msg);
-    } finally {
       setIsStreaming(false);
     }
-  }, [isStreaming]);
+  }, [isStreaming, sendMessage]);
+
+  // Bug 5 fix: directFieldWrite — bypass LLM extraction for UI chip selections.
+  // Posts directly to the backend's direct_field_write endpoint at confidence=1.0.
+  // This is the reliable path for enum field UI selections: no LLM involved = no hallucination.
+  const directFieldWrite = useCallback(async (
+    fieldCode: string,
+    value: string,
+  ): Promise<{ status: string; snapshot: SessionSnapshot | null }> => {
+    const sid = sessionIdRef.current;
+    if (!sid) return { status: "no_session", snapshot: null };
+    try {
+      const res = await fetch(
+        `${API_BASE}/conversation/session/${sid}/direct_field_write`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ field_code: fieldCode, value }),
+        }
+      );
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      // If the backend returns a snapshot, update local state
+      if (data.snapshot) {
+        setSnapshot(data.snapshot);
+      }
+      return { status: data.status ?? "saved", snapshot: data.snapshot ?? null };
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Unknown error";
+      console.error("directFieldWrite failed:", msg);
+      return { status: "error", snapshot: null };
+    }
+  }, []);
 
   return {
     messages,
@@ -214,7 +248,8 @@ export function useChat(): UseChatReturn {
     error,
     sendMessage,
     addLocalMessage,
-    uploadDocument,
+    uploadDocuments,
+    directFieldWrite,
     sessionId: sessionIdRef.current,
     clearSession,
   };

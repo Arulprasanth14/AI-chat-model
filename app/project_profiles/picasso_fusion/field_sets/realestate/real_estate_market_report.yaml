@@ -10,6 +10,7 @@ fields:
   section_name: Report Overview
   section_order: 0
   section_field_order: 0
+  question: What market or area does this report cover?
   options:
   - label: Suburb Market Report
     value: suburb
@@ -31,6 +32,7 @@ fields:
   section_name: Report Overview
   section_order: 0
   section_field_order: 1
+  question: What reporting period does this report cover?
   options:
   - label: Monthly
     value: monthly
@@ -48,6 +50,7 @@ fields:
   section_name: Report Overview
   section_order: 0
   section_field_order: 2
+  question: What is the primary goal of this report?
   options:
   - label: Generate seller leads
     value: generate_seller_leads
@@ -67,6 +70,8 @@ fields:
   section_name: Report Format
   section_order: 1
   section_field_order: 0
+  question: What format is required?
+  hint: This is critical — the layout changes significantly depending on distribution.
   options:
   - label: Printed Report
     value: printed
@@ -84,6 +89,7 @@ fields:
   section_name: Report Format
   section_order: 1
   section_field_order: 1
+  question: How many pages should the report contain?
   options:
   - label: 4 Pages
     value: '4'
@@ -99,6 +105,7 @@ fields:
   section_name: Content & Data
   section_order: 2
   section_field_order: 0
+  question: What data and insights should be included?
   options:
   - label: Median sale price
     value: median_sale_price
@@ -124,6 +131,7 @@ fields:
   section_name: Content & Data
   section_order: 2
   section_field_order: 1
+  question: Do you have the data prepared?
   options:
   - label: Yes, final data ready
     value: final_ready
@@ -137,18 +145,23 @@ fields:
   section_name: Content & Data
   section_order: 2
   section_field_order: 2
+  question: Please upload your data files.
+  hint: 'Accepted formats: Excel, CSV, PDF, Google Sheets export.'
 - code: MR9
   kind: text
   required: true
   section_name: Content & Data
   section_order: 2
   section_field_order: 3
+  question: What written commentary or analysis should appear in the report? Please
+    provide final, approved copy.
 - code: MR10
   kind: radio
   required: true
   section_name: Charts & Visuals
   section_order: 3
   section_field_order: 0
+  question: Should any charts, graphs, or infographics be included?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -160,6 +173,9 @@ fields:
   section_name: Charts & Visuals
   section_order: 3
   section_field_order: 1
+  question: Do you have existing charts, or should they be designed from the supplied
+    data?
+  hint: Only ask this if the client said yes to including charts above.
   options:
   - label: I have existing charts to provide
     value: existing_charts
@@ -173,12 +189,15 @@ fields:
   section_name: Charts & Visuals
   section_order: 3
   section_field_order: 2
+  question: Do you have photography or imagery for the report? Please upload the images.
+  hint: Minimum 300 DPI for print.
 - code: MR13
   kind: radio
   required: true
   section_name: Call to Action
   section_order: 4
   section_field_order: 0
+  question: What action should readers take after reading the report?
   options:
   - label: Request a property appraisal
     value: request_appraisal
@@ -198,6 +217,7 @@ fields:
   section_name: Call to Action
   section_order: 4
   section_field_order: 1
+  question: Will a QR code be included?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -209,18 +229,24 @@ fields:
   section_name: Call to Action
   section_order: 4
   section_field_order: 2
+  question: What URL should the QR code link to?
+  hint: Only ask this if the client said yes to including a QR code.
 - code: MR16
   kind: file
   required: false
   section_name: Design Direction
   section_order: 5
   section_field_order: 0
+  question: Any market reports or publications you'd like us to reference?
+  hint: 'Examples: competitor reports, industry reports, previous editions. Upload
+    reference designs, up to 3.'
 - code: MR17
   kind: radio
   required: true
   section_name: Design Direction
   section_order: 5
   section_field_order: 1
+  question: Describe the report design style.
   options:
   - label: Corporate
     value: corporate
@@ -242,6 +268,7 @@ fields:
   section_name: Technical Requirements
   section_order: 6
   section_field_order: 0
+  question: Will this report be printed, viewed digitally, or both?
   options:
   - label: Print Only
     value: print_only
@@ -255,3 +282,6 @@ fields:
   section_name: Technical Requirements
   section_order: 6
   section_field_order: 1
+  question: Any other technical or production requirements?
+  hint: 'Examples: interactive PDF, print-ready PDF, LinkedIn carousel format, custom
+    page size. Leave blank if unsure.'

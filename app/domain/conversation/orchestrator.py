@@ -215,7 +215,18 @@ class ConversationOrchestrator:
         # We do NOT add it to conversation history so the LLM sees an empty
         # history and produces a natural first-turn opener for the selected vertical.
         is_start_trigger = user_message.strip() == "__start__"
-        if not is_start_trigger:
+
+        # Bug 4+5 fix: __field_saved__:field_code:value is a hidden trigger from chip clicks.
+        # The field was already written via direct_field_write at confidence=1.0.
+        # We skip Phase A extraction (nothing to extract) and let Phase B acknowledge the save.
+        is_field_saved_trigger = user_message.strip().startswith("__field_saved__:")
+        field_saved_info: str | None = None
+        if is_field_saved_trigger:
+            # Extract "field_code:value" for Phase B context injection
+            parts = user_message.strip().split(":", 2)
+            field_saved_info = f"{parts[1]}={parts[2]}" if len(parts) >= 3 else None
+
+        if not is_start_trigger and not is_field_saved_trigger:
             state.add_turn("user", user_message)
 
         # Obtain the effective profile for this turn (applies field sets if resolved)
@@ -261,6 +272,16 @@ class ConversationOrchestrator:
         )
         suggestion_gate_rule: str | None = None if can_suggest else format_gate_rule(gate_missing)
 
+        # Bug 2 fix: Identify which field the AI most recently asked about so we can
+        # inject a "CURRENT CONTEXT" annotation into Phase A. This tells the LLM exactly
+        # which field the user is answering, eliminating guessing for short/Tanglish replies.
+        current_field_hint: str | None = None
+        if not is_start_trigger and not is_complete and missing_fields:
+            current_field_hint = self._build_current_context_hint(
+                state=state,
+                missing_fields=missing_fields,
+            )
+
         phase_a_messages = self._prompt_builder.build(
             profile=active_profile,
             retrieved_chunks=[],  # Omitted for Phase A to allow concurrency
@@ -270,6 +291,7 @@ class ConversationOrchestrator:
             is_complete=is_complete,
             brief_summary=brief_summary,
             suggestion_gate_rule=suggestion_gate_rule,
+            current_field_hint=current_field_hint,
         )
 
         # For __start__ trigger: inject a directive so the LLM generates a
@@ -330,7 +352,8 @@ class ConversationOrchestrator:
         retrieval_task = asyncio.create_task(fetch_retrieval())
         
         # Skip Phase A entirely for the __start__ trigger (no user message to extract from)
-        if is_start_trigger:
+        # Also skip for __field_saved__ trigger (field already saved via direct_field_write — nothing to extract)
+        if is_start_trigger or is_field_saved_trigger:
             async def _dummy_phase_a():
                 return [], [], {"model_believes_complete": False, "suggested_next_topic": None}
             phase_a_task = asyncio.create_task(_dummy_phase_a())
@@ -388,6 +411,7 @@ class ConversationOrchestrator:
             brief_summary=brief_summary,
             retrieved_chunks=retrieved_chunks,
             missing_fields=missing_fields_post_a,
+            field_saved_note=field_saved_info,  # Bug 5 fix: inject chip-save context for Phase B
         )
 
         # ── Step 11: Phase B — Stream response to client ────────────────────
@@ -439,18 +463,32 @@ class ConversationOrchestrator:
         # ── Step 12: Add assistant turn to history ──────────────────────────
         state.add_turn("assistant", final_message)
 
-        # ── Step 13: Persist final state ────────────────────────────────────
+        # ── Step 13: Persist final state (Background Write) ─────────────────
         # Phase A already persisted the extraction changes. We persist again
         # here to capture the updated conversation history (assistant message).
+        # Optimization: We fire-and-forget this write to return the final 
+        # SSE chunk to the user immediately, eliminating the DB wait time.
         t_write_start = time.perf_counter()
-        try:
-            await self._repo.save_session(state)
-        except Exception as exc:
-            logger.error(
-                "Final state persist failed (conversation history not saved)",
-                extra={"session_id": state.session_id},
-                exc_info=exc,
-            )
+
+        async def _bg_save(state_to_save: ConversationState) -> None:
+            try:
+                await self._repo.save_session(state_to_save)
+            except Exception as exc:
+                logger.error(
+                    "Final state persist failed (conversation history not saved)",
+                    extra={"session_id": state_to_save.session_id},
+                    exc_info=exc,
+                )
+
+        import asyncio
+        bg_task = asyncio.create_task(_bg_save(state))
+        
+        # Strong reference to prevent GC during fire-and-forget
+        if not hasattr(self, "_bg_tasks"):
+            self._bg_tasks = set()
+        self._bg_tasks.add(bg_task)
+        bg_task.add_done_callback(self._bg_tasks.discard)
+
         timings["backend_write_b"] = time.perf_counter() - t_write_start
         timings["total_turn"] = time.perf_counter() - t_start
 
@@ -523,13 +561,26 @@ class ConversationOrchestrator:
         }
 
         # Call the LLM with auto tool_choice (zero, one, or many tool calls)
-        # Let exceptions (including RateLimitError after tenacity retries) propagate.
-        # The caller (process_turn) is responsible for surfacing a user-visible error.
-        raw_tool_calls = await self._llm.call_with_tools(
-            messages=phase_a_messages,
-            tools=tools,
-            temperature=active_profile.llm_temperature,
-        )
+        # Bug 6 fix: Use temperature=0.0 for Phase A (extraction) to make tool calling
+        # fully deterministic. High temperature was causing probabilistic non-calls.
+        # Phase B still uses the profile's configured temperature for natural conversation.
+        try:
+            raw_tool_calls = await self._llm.call_with_tools(
+                messages=phase_a_messages,
+                tools=tools,
+                temperature=0.0,  # Bug 6 fix: deterministic extraction
+            )
+        except Exception as exc:
+            logger.error("Phase A LLM request failed", extra={"session_id": state.session_id}, exc_info=exc)
+            failure_outcome = FieldWriteResult(
+                field_code=None,
+                value=None,
+                status=WRITE_STATUS_REJECTED_MALFORMED,
+                reason=f"Phase A LLM request failed: {exc}",
+                tool_name="phase_a_execution",
+                tool_call_id="error",
+            ).to_outcome_dict()
+            return [failure_outcome], [], advisory_flags
 
         # Fast path: no tool calls — pure conversation, skip Phase A
         if not raw_tool_calls:
@@ -757,6 +808,69 @@ class ConversationOrchestrator:
         return write_outcomes, dispatched_tool_calls, advisory_flags
 
     # ── Private helpers ────────────────────────────────────────────────────────
+
+    @staticmethod
+    def _build_current_context_hint(
+        state: "ConversationState",
+        missing_fields: "list",
+    ) -> str | None:
+        """Build a CURRENT CONTEXT annotation for Phase A.
+
+        Identifies which field the AI most recently asked about by checking the
+        last assistant message in conversation history. Injects an explicit
+        annotation so Phase A never has to guess what the user is answering.
+
+        This is the primary fix for Bug 2: empty phase_a_write_outcomes caused
+        by short/Tanglish answers the LLM couldn't map to a field without context.
+
+        Args:
+            state:          Current conversation state.
+            missing_fields: Fields not yet captured (first entry = current question).
+
+        Returns:
+            A formatted CURRENT CONTEXT annotation string, or None if not applicable.
+        """
+        if not missing_fields:
+            return None
+
+        # The first missing field is the one Phase B most recently asked about
+        # (Phase B is always instructed to ask only about missing_fields[0]).
+        current_field = missing_fields[0]
+
+        # Build a rich description of the current field including enum options if present
+        field_info_lines = [
+            f"[CURRENT CONTEXT — FOR EXTRACTION ONLY]",
+            f"The AI's last question was about the field: '{current_field.field_code}'",
+            f"Field description: {current_field.description}",
+        ]
+
+        if current_field.enum_values:
+            from app.project_profiles.base_profile import FieldDefinition
+            opts = current_field.enum_options
+            if opts:
+                pairs = ", ".join(
+                    f'"{o.get("label", o.get("value"))}" → "{o.get("value", o.get("label"))}"'
+                    for o in opts[:8]
+                )
+                field_info_lines.append(
+                    f"This is an ENUM field. The user's answer must map to one of these options: {pairs}"
+                )
+                field_info_lines.append(
+                    f"Accept EITHER the label (human-readable) OR the machine value — both are valid inputs."
+                )
+            else:
+                vals = ", ".join(f'"{v}"' for v in current_field.enum_values[:8])
+                field_info_lines.append(
+                    f"This is an ENUM field. Allowed values: {vals}"
+                )
+
+        field_info_lines.append(
+            "The user's NEXT message is their answer to this question. "
+            "Even if the answer is short (a single word, a name, or casual language), "
+            "you MUST extract it and call the appropriate save tool."
+        )
+
+        return "\n".join(field_info_lines)
 
     @staticmethod
     def _sse_chunk(text: str) -> str:

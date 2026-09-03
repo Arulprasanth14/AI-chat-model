@@ -546,7 +546,8 @@ export default function App() {
     isStreaming,
     error,
     sendMessage,
-    uploadDocument,
+    uploadDocuments,
+    directFieldWrite,
     sessionId,
     clearSession,
   } = useChat();
@@ -616,10 +617,50 @@ export default function App() {
     sendMessage(text, chatContext ?? undefined);
   };
 
+  // Bug 4+5 fix: handleChipSelect — for single-select enum fields, directly write
+  // the selected value to the backend at confidence=1.0, then trigger a hidden Phase B
+  // turn so the AI acknowledges the save and asks the next question.
+  // For multi-select (list) fields, toggle in the input box and submit via Send button.
+  const handleChipSelect = async (fieldCode: string, value: string, isMultiSelect: boolean) => {
+    if (isStreaming) return;
+
+    if (!isMultiSelect) {
+      // Single-select: write directly (bypass LLM), then trigger AI response
+      const result = await directFieldWrite(fieldCode, value);
+      if (result.status === "saved" || result.status === "ok") {
+        // Clear any chip selection from input box
+        setInput("");
+        // Hidden message: Phase B sees the save outcome and asks next question
+        await sendMessage(
+          `__field_saved__:${fieldCode}:${value}`,
+          undefined,
+          true // hidden from user
+        );
+      }
+    } else {
+      // Multi-select: toggle in input box, user presses Send to submit
+      setInput((prev) => {
+        if (!prev) return value;
+        const items = prev.split(",").map((s) => s.trim());
+        if (items.includes(value)) {
+          return items.filter((s) => s !== value).join(", ");
+        } else {
+          return prev + ", " + value;
+        }
+      });
+      setTimeout(() => textareaRef.current?.focus(), 50);
+    }
+  };
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      uploadDocument(file);
+    const files = Array.from(e.target.files ?? []);
+    if (files.length > 0) {
+      if (files.length > 5) {
+        alert("You can only upload up to 5 files at a time.");
+        e.target.value = '';
+        return;
+      }
+      uploadDocuments(files);
     }
     // reset input so same file can be uploaded again if needed
     e.target.value = '';
@@ -700,9 +741,58 @@ export default function App() {
                   </div>
                 )}
 
-                {messages.map((msg) => (
-                  <MessageItem key={msg.id} message={msg} />
-                ))}
+                {messages.map((msg, index) => {
+                  const isLastAssistant = msg.role === "assistant" && index === messages.findLastIndex((m) => m.role === "assistant");
+                  return (
+                    <div key={msg.id}>
+                      <MessageItem message={msg} />
+                  {isLastAssistant && !isStreaming && snapshot && snapshot.missing_fields.length > 0 && snapshot.missing_fields[0].enum_values && !isComplete && (() => {
+                        const nextField = snapshot.missing_fields[0];
+                        const isMultiSelect = nextField.input_type === "list";
+                        // Bug 6+7 fix: use enum_options labels if available; fall back to raw machine values
+                        const options: Array<{ label: string; value: string }> =
+                          nextField.enum_options && nextField.enum_options.length > 0
+                            ? nextField.enum_options.map((o: { label?: string; value?: string }) => ({
+                                label: o.label ?? o.value ?? "",
+                                value: o.value ?? o.label ?? "",
+                              }))
+                            : (nextField.enum_values ?? []).map((v: string) => ({ label: v, value: v }));
+
+                        // For multi-select, track what's in the input box
+                        const selectedItems = isMultiSelect
+                          ? input.split(",").map((s) => s.trim()).filter(Boolean)
+                          : [];
+
+                        return (
+                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginLeft: '60px', marginTop: '4px', marginBottom: '16px' }}>
+                            {options.map((opt) => {
+                              const isSelected = isMultiSelect && selectedItems.includes(opt.value);
+                              return (
+                                <button
+                                  key={opt.value}
+                                  style={{
+                                    padding: '6px 14px',
+                                    fontSize: '13px',
+                                    borderRadius: '16px',
+                                    border: isSelected ? '1px solid #007bff' : '1px solid #e0e0e0',
+                                    background: isSelected ? '#007bff' : '#fff',
+                                    color: isSelected ? '#fff' : '#333',
+                                    cursor: isStreaming ? 'not-allowed' : 'pointer',
+                                    opacity: isStreaming ? 0.5 : 1,
+                                  }}
+                                  disabled={isStreaming}
+                                  onClick={() => handleChipSelect(nextField.field_code, opt.value, isMultiSelect)}
+                                >
+                                  {opt.label}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        );
+                      })()}
+                    </div>
+                  );
+                })}
 
                 {isStreaming &&
                   messages.length > 0 &&
@@ -731,27 +821,12 @@ export default function App() {
 
             {/* Input Bar */}
             <div className="input-area-container">
-              {/* Enum Option Chips */}
-              {snapshot && snapshot.missing_fields.length > 0 && snapshot.missing_fields[0].enum_values && !isComplete && (
-                <div style={{ padding: '8px 16px', display: 'flex', flexWrap: 'wrap', gap: '8px', background: 'rgba(0,0,0,0.02)', borderRadius: '12px 12px 0 0', border: '1px solid #e0e0e0', borderBottom: 'none', width: '100%', maxWidth: '820px', maxHeight: '120px', overflowY: 'auto' }}>
-                  <span style={{ fontSize: '12px', fontWeight: 600, color: '#666', marginRight: '8px', display: 'flex', alignItems: 'center' }}>
-                    Options for {snapshot.missing_fields[0].field_code}:
-                  </span>
-                  {snapshot.missing_fields[0].enum_values.map(val => (
-                    <button 
-                      key={val} 
-                      style={{ padding: '4px 10px', fontSize: '12px', borderRadius: '16px', border: '1px solid #ccc', background: '#fff', cursor: 'pointer' }}
-                      onClick={() => setInput((prev) => prev ? prev + ", " + val : val)}
-                    >
-                      {val}
-                    </button>
-                  ))}
-                </div>
-              )}
-              <div className="input-bar-pill" style={{ borderRadius: (snapshot && snapshot.missing_fields.length > 0 && snapshot.missing_fields[0].enum_values && !isComplete) ? '0 0 24px 24px' : '24px' }}>
+              {/* Enum Option Chips moved to chat stream */}
+              <div className="input-bar-pill">
                 <AIGlyph size={26} />
                 <input
                   type="file"
+                  multiple
                   ref={fileInputRef}
                   style={{ display: 'none' }}
                   onChange={handleFileChange}

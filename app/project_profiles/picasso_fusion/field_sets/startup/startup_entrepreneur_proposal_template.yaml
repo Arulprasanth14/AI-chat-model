@@ -13,6 +13,8 @@ fields:
   section_name: Proposal Overview
   section_order: 0
   section_field_order: 0
+  question: What is this proposal template for?
+  hint: One proposal template = one repeatable sales process.
   options:
   - label: Service Proposal
     value: service_proposal
@@ -34,12 +36,16 @@ fields:
   section_name: Proposal Overview
   section_order: 0
   section_field_order: 1
+  question: What services, products, or solutions will typically be proposed?
+  hint: Understanding the offering helps structure the template correctly.
 - code: PR3
   kind: checkbox
   required: true
   section_name: Proposal Overview
   section_order: 0
   section_field_order: 2
+  question: Who is the target audience?
+  hint: Proposal content and tone should match the decision-maker.
   options:
   - label: Small Business Owners
     value: small_business_owners
@@ -61,6 +67,8 @@ fields:
   section_name: Proposal Overview
   section_order: 0
   section_field_order: 3
+  question: Who will be using this template internally?
+  hint: Template complexity should match the user.
   options:
   - label: Founder
     value: founder
@@ -80,6 +88,8 @@ fields:
   section_name: Content & Pricing
   section_order: 1
   section_field_order: 0
+  question: Which sections should the template include?
+  hint: Select all required sections. Multi-select.
   options:
   - label: Cover Page
     value: cover_page
@@ -117,6 +127,8 @@ fields:
   section_name: Content & Pricing
   section_order: 1
   section_field_order: 1
+  question: What pricing structure should the template support?
+  hint: Proposal layouts vary significantly based on pricing model.
   options:
   - label: Fixed Price
     value: fixed_price
@@ -138,6 +150,8 @@ fields:
   section_name: Content & Pricing
   section_order: 1
   section_field_order: 2
+  question: Should pricing tables be editable?
+  hint: This is one of the most important template questions.
   options:
   - label: 'Yes'
     value: 'yes'
@@ -149,6 +163,8 @@ fields:
   section_name: Branding & Assets
   section_order: 2
   section_field_order: 0
+  question: Do you have branding assets?
+  hint: Templates should align with brand standards.
   options:
   - label: Full Brand Guidelines
     value: full_brand_guidelines
@@ -166,12 +182,17 @@ fields:
   section_name: Branding & Assets
   section_order: 2
   section_field_order: 1
+  question: Upload logo, brand guide, fonts, and visual assets.
+  hint: Editable assets preferred. Only if you have branding assets.
 - code: PR10
   kind: radio
   required: true
   section_name: Editable Content
   section_order: 3
   section_field_order: 0
+  question: Should the template include editable case studies, testimonials, and team
+    profiles?
+  hint: These sections are frequently updated and should be designed accordingly.
   options:
   - label: 'Yes'
     value: 'yes'
@@ -183,6 +204,8 @@ fields:
   section_name: Call to Action
   section_order: 4
   section_field_order: 0
+  question: What call to action should appear at the end of the proposal?
+  hint: Every proposal should guide the prospect toward acceptance.
   options:
   - label: Approve Proposal
     value: approve_proposal
@@ -200,12 +223,20 @@ fields:
   section_name: Call to Action
   section_order: 4
   section_field_order: 1
+  question: Custom CTA text.
+  hint: Only if you selected Other above.
+  show_if:
+    field: PR11
+    in:
+    - other
 - code: PR13
   kind: radio
   required: true
   section_name: Platform & Format
   section_order: 5
   section_field_order: 0
+  question: Which platform will the template be used in?
+  hint: This question is critical and currently missing.
   options:
   - label: PowerPoint
     value: powerpoint
@@ -227,6 +258,7 @@ fields:
   section_name: Platform & Format
   section_order: 5
   section_field_order: 1
+  question: Output formats required?
   options:
   - label: Editable Source File
     value: editable_source_file
@@ -246,6 +278,8 @@ fields:
   section_name: Style & References
   section_order: 6
   section_field_order: 0
+  question: Any reference proposals or inspiration?
+  hint: Share examples you admire or currently use.
   options:
   - label: 'Yes'
     value: 'yes'
@@ -257,12 +291,19 @@ fields:
   section_name: Style & References
   section_order: 6
   section_field_order: 1
+  question: Upload proposal examples, up to 3.
+  hint: Only if you said yes to reference proposals above.
+  show_if:
+    field: PR15
+    in:
+    - 'yes'
 - code: PR17
   kind: radio
   required: true
   section_name: Style & References
   section_order: 6
   section_field_order: 2
+  question: Describe the desired proposal style.
   options:
   - label: Corporate
     value: corporate
@@ -286,6 +327,8 @@ fields:
   section_name: Style & References
   section_order: 6
   section_field_order: 3
+  question: Any technical requirements?
+  hint: Leave blank if unsure.
   options:
   - label: A4 Portrait
     value: a4_portrait

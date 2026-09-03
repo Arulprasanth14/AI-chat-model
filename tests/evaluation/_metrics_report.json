@@ -1,79 +1,12 @@
 {
-  "cosine_similarity": [
-    0.8227336406707764,
-    0.7725334167480469,
-    0.6772069931030273,
-    0.7979271411895752,
-    0.7126724720001221
-  ],
-  "context_precision": [
-    1.0,
-    0.6666666666666666,
-    1.0,
-    1.0
-  ],
-  "context_recall": [
-    1.0,
-    0.5,
-    1.0,
-    1.0,
-    1.0,
-    1.0
-  ],
-  "extraction_precision": [
-    1.0,
-    1.0,
-    1.0,
-    0.0,
-    1.0,
-    1.0,
-    1.0
-  ],
-  "extraction_recall": [
-    1.0,
-    1.0,
-    1.0,
-    0.0,
-    1.0,
-    1.0,
-    1.0
-  ],
-  "faithfulness": [
-    1.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0
-  ],
-  "answer_relevance": [
-    1.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0
-  ],
-  "state_transition_correct": [
-    1.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0
-  ],
-  "turns_to_completion": [
-    4.0,
-    1.0,
-    4.0
-  ],
-  "goal_completion_success": [
-    1.0,
-    1.0
-  ]
+  "cosine_similarity": [],
+  "context_precision": [],
+  "context_recall": [],
+  "extraction_precision": [],
+  "extraction_recall": [],
+  "faithfulness": [],
+  "answer_relevance": [],
+  "state_transition_correct": [],
+  "turns_to_completion": [],
+  "goal_completion_success": []
 }

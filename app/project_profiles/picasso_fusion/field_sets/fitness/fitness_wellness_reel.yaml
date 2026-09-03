@@ -12,6 +12,8 @@ fields:
   section_name: Reel Topic & Message
   section_order: 0
   section_field_order: 0
+  question: What is this Reel about?
+  hint: Choose the purpose.
   options:
   - label: Workout Demonstration
     value: workout_demonstration
@@ -45,12 +47,16 @@ fields:
   section_name: Reel Topic & Message
   section_order: 0
   section_field_order: 1
+  question: What's the ONE message viewers should remember?
+  hint: 'Describe the biggest takeaway. Example: "Strength training is for everyone.",
+    "Join our 8-week fat loss challenge.", "Small daily habits create lasting results."'
 - code: RL3
   kind: checkbox
   required: true
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 0
+  question: What's the goal of this Reel?
   options:
   - label: Generate Leads
     value: generate_leads
@@ -78,12 +84,17 @@ fields:
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 1
+  question: Who is this Reel for?
+  hint: 'Describe your ideal audience. Example: Beginners, women, athletes, busy professionals,
+    weight-loss clients, seniors, etc.'
 - code: RL5
   kind: checkbox
   required: true
   section_name: Goal & Audience
   section_order: 1
   section_field_order: 2
+  question: What should viewers feel after watching?
+  hint: Choose up to 2.
   options:
   - label: Motivated
     value: motivated
@@ -109,6 +120,7 @@ fields:
   section_name: Footage & Key Shots
   section_order: 2
   section_field_order: 0
+  question: What footage do you have?
   options:
   - label: I'll Upload Video Clips
     value: ill_upload_video_clips
@@ -128,24 +140,37 @@ fields:
   section_name: Footage & Key Shots
   section_order: 2
   section_field_order: 1
+  question: Upload your footage.
+  hint: 'Upload videos, photos, logos, or supporting assets. Preferred format: Vertical
+    (9:16), MP4/MOV, 1080p or higher. Only if you''ll be uploading your own video
+    clips or photos.'
+  show_if:
+    field: RL6
+    in:
+    - ill_upload_video_clips
+    - ill_upload_photos
 - code: RL8
   kind: text
   required: false
   section_name: Footage & Key Shots
   section_order: 2
   section_field_order: 2
+  question: Are there any important shots that must be included?
+  hint: 'Example: Client transformation reveal, Trainer speaking to camera, Gym equipment,
+    Before & after, Product close-up, Workout demonstration.'
 - code: RL9
   kind: radio
   required: true
   section_name: Length & Hook
   section_order: 3
   section_field_order: 0
+  question: How long should the Reel be?
   options:
   - label: Under 15 Seconds
     value: under_15_seconds
-  - label: 15–30 Seconds
+  - label: "15\u201330 Seconds"
     value: 15_30_seconds
-  - label: 30–60 Seconds
+  - label: "30\u201360 Seconds"
     value: 30_60_seconds
   - label: Let the Creative Team Decide
     value: let_the_creative_team_decide
@@ -155,12 +180,15 @@ fields:
   section_name: Length & Hook
   section_order: 3
   section_field_order: 1
+  question: What's the most important first 3 seconds?
+  hint: If someone watches only the beginning, what absolutely must they see or understand?
 - code: RL11
   kind: radio
   required: true
   section_name: Script
   section_order: 4
   section_field_order: 0
+  question: Do you already have a script or talking points?
   options:
   - label: Final Script Ready
     value: final_script_ready
@@ -176,12 +204,16 @@ fields:
   section_name: Script
   section_order: 4
   section_field_order: 1
+  question: Provide your script or rough talking points.
+  hint: Only if you selected "Final Script Ready" or "Rough Ideas" above.
 - code: RL13
   kind: checkbox
   required: true
   section_name: Tone & On-Screen Text
   section_order: 5
   section_field_order: 0
+  question: How should the Reel feel?
+  hint: Choose up to 3.
   options:
   - label: Premium
     value: premium
@@ -215,6 +247,7 @@ fields:
   section_name: Tone & On-Screen Text
   section_order: 5
   section_field_order: 1
+  question: Should the Reel include text on screen?
   options:
   - label: Full Captions
     value: full_captions
@@ -232,6 +265,7 @@ fields:
   section_name: Tone & On-Screen Text
   section_order: 5
   section_field_order: 2
+  question: What kind of music would you like?
   options:
   - label: Upbeat Workout
     value: upbeat_workout
@@ -259,6 +293,8 @@ fields:
   section_name: Brand Assets
   section_order: 6
   section_field_order: 0
+  question: Would you like us to follow your existing brand identity?
+  hint: Brand Assets & Guidelines.
   options:
   - label: Use My Saved Brand Kit
     value: use_my_saved_brand_kit
@@ -274,6 +310,8 @@ fields:
   section_name: Brand Assets
   section_order: 6
   section_field_order: 1
+  question: What should we customize?
+  hint: Only if you selected "Customize This Project" above.
   options:
   - label: Brand Colors
     value: brand_colors
@@ -283,18 +321,30 @@ fields:
     value: logo_placement
   - label: Additional Instructions
     value: additional_instructions
+  show_if:
+    field: RL17
+    in:
+    - customize_this_project
 - code: RL18
   kind: text
   required: false
   section_name: Brand Assets
   section_order: 6
   section_field_order: 2
+  question: Provide any additional brand customization details.
+  hint: Only if you selected "Customize This Project" above.
+  show_if:
+    field: RL17
+    in:
+    - customize_this_project
 - code: RL19
   kind: checkbox
   required: false
   section_name: Style & References
   section_order: 7
   section_field_order: 0
+  question: Do you have any inspiration?
+  hint: Share Reels or videos you like.
   options:
   - label: Instagram Reel
     value: instagram_reel
@@ -312,18 +362,27 @@ fields:
   section_name: Style & References
   section_order: 7
   section_field_order: 1
+  question: Provide the reference link(s).
+  hint: Only if you selected Instagram Reel, TikTok, or YouTube Shorts above.
 - code: RL21
   kind: file
   required: false
   section_name: Style & References
   section_order: 7
   section_field_order: 2
+  question: Upload reference video.
+  hint: Only if you selected "Upload Reference Video" above.
+  show_if:
+    field: RL19
+    in:
+    - upload_reference_video
 - code: RL22
   kind: checkbox
   required: true
   section_name: Publishing & Language
   section_order: 8
   section_field_order: 0
+  question: Where will this Reel be published?
   options:
   - label: Instagram Reels
     value: instagram_reels
@@ -341,6 +400,7 @@ fields:
   section_name: Publishing & Language
   section_order: 8
   section_field_order: 1
+  question: What language should the Reel use?
   options:
   - label: English
     value: english
@@ -380,6 +440,7 @@ fields:
   section_name: Call to Action & Notes
   section_order: 9
   section_field_order: 0
+  question: What should viewers do after watching?
   options:
   - label: Join Our Gym
     value: join_our_gym
@@ -405,3 +466,6 @@ fields:
   section_name: Call to Action & Notes
   section_order: 9
   section_field_order: 1
+  question: Is there anything you'd like us to avoid?
+  hint: Mention any editing styles, transitions, effects, music, wording, or visual
+    directions you'd prefer not to use.

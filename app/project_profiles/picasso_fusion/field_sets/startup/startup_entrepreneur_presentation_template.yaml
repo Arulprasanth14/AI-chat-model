@@ -1,5 +1,5 @@
 template_key: startup_entrepreneur_presentation_template
-template_label: Presentation Template — Reusable Master
+template_label: "Presentation Template \u2014 Reusable Master"
 vertical: startup
 template_name_match:
 - presentation template
@@ -13,6 +13,8 @@ fields:
   section_name: Template Overview
   section_order: 0
   section_field_order: 0
+  question: What will this presentation template be used for?
+  hint: Understanding the use case helps determine the required slide layouts.
   options:
   - label: Pitch Decks
     value: pitch_decks
@@ -36,6 +38,8 @@ fields:
   section_name: Template Overview
   section_order: 0
   section_field_order: 1
+  question: Who will be using this template?
+  hint: Template complexity should match the user's skill level.
   options:
   - label: Founder
     value: founder
@@ -55,6 +59,8 @@ fields:
   section_name: Branding & Assets
   section_order: 1
   section_field_order: 0
+  question: What branding assets are available?
+  hint: Consistent branding creates professional presentations.
   options:
   - label: Full Brand Guidelines
     value: full_brand_guidelines
@@ -72,12 +78,16 @@ fields:
   section_name: Branding & Assets
   section_order: 1
   section_field_order: 1
+  question: Upload logo, fonts, brand guidelines, and visual assets.
+  hint: 'Accepted formats: SVG, PNG, PDF, PPTX. Only if you have branding assets.'
 - code: PT5
   kind: checkbox
   required: true
   section_name: Content & Layouts
   section_order: 2
   section_field_order: 0
+  question: Which slide layouts are required?
+  hint: Select all layouts that should be included.
   options:
   - label: Cover Slide
     value: cover_slide
@@ -123,6 +133,7 @@ fields:
   section_name: Content & Layouts
   section_order: 2
   section_field_order: 1
+  question: How many template layouts are required?
   options:
   - label: 10 Slides
     value: '10'
@@ -138,6 +149,8 @@ fields:
   section_name: Platform & Technical Specs
   section_order: 3
   section_field_order: 0
+  question: Which presentation platform will be used?
+  hint: This is one of the most important questions and is currently missing.
   options:
   - label: PowerPoint
     value: powerpoint
@@ -155,6 +168,7 @@ fields:
   section_name: Platform & Technical Specs
   section_order: 3
   section_field_order: 1
+  question: Should the template include editable charts, tables, and infographics?
   options:
   - label: 'Yes'
     value: 'yes'
@@ -166,6 +180,7 @@ fields:
   section_name: Platform & Technical Specs
   section_order: 3
   section_field_order: 2
+  question: What level of editability is required?
   options:
   - label: Fully Editable
     value: fully_editable
@@ -181,6 +196,7 @@ fields:
   section_name: Style & References
   section_order: 4
   section_field_order: 0
+  question: Preferred presentation style?
   options:
   - label: Startup
     value: startup
@@ -206,6 +222,8 @@ fields:
   section_name: Style & References
   section_order: 4
   section_field_order: 1
+  question: Any reference presentations or templates?
+  hint: Share examples you like or currently use.
   options:
   - label: 'Yes'
     value: 'yes'
@@ -217,12 +235,20 @@ fields:
   section_name: Style & References
   section_order: 4
   section_field_order: 2
+  question: Upload reference presentations, up to 3.
+  hint: Only if you said yes to reference presentations above.
+  show_if:
+    field: PT11
+    in:
+    - 'yes'
 - code: PT13
   kind: checkbox
   required: false
   section_name: Brand Elements & Technical Requirements
   section_order: 5
   section_field_order: 0
+  question: Are there any mandatory brand elements that must appear throughout the
+    template?
   options:
   - label: Logo Placement
     value: logo_placement
@@ -246,6 +272,7 @@ fields:
   section_name: Brand Elements & Technical Requirements
   section_order: 5
   section_field_order: 1
+  question: Any technical requirements?
   options:
   - label: 16:9 Widescreen
     value: 16_9_widescreen
