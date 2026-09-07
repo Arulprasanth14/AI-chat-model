@@ -97,9 +97,9 @@ def get_phase_a_tools(profile: BaseProfile) -> list[dict[str, Any]]:
                         "type": "string",
                         "description": (
                             "The exact machine-readable field code. "
-                            f"Must be one of: {all_field_codes!r}."
+                            f"Must be one of: {all_field_codes!r}. "
+                            "Use ONLY codes from this list — do not invent descriptive names."
                         ),
-                        "enum": all_field_codes,
                     },
                     "value": {
                         "type": "string",
@@ -158,8 +158,11 @@ def get_phase_a_tools(profile: BaseProfile) -> list[dict[str, Any]]:
                     "properties": {
                         "field_code": {
                             "type": "string",
-                            "description": "The exact field code for an enum-constrained field.",
-                            "enum": enum_field_codes,
+                            "description": (
+                                "The exact field code for an enum-constrained field. "
+                                f"Must be one of: {enum_field_codes!r}. "
+                                "Use ONLY codes from this list — do not invent descriptive names."
+                            ),
                         },
                         "value": {
                             "type": "string",
@@ -202,8 +205,11 @@ def get_phase_a_tools(profile: BaseProfile) -> list[dict[str, Any]]:
                     "properties": {
                         "field_code": {
                             "type": "string",
-                            "description": "The exact field code for the quantitative field.",
-                            "enum": quantitative_field_codes,
+                            "description": (
+                                "The exact field code for the quantitative field. "
+                                f"Must be one of: {quantitative_field_codes!r}. "
+                                "Use ONLY codes from this list — do not invent descriptive names."
+                            ),
                         },
                         "value": {
                             "type": "string",

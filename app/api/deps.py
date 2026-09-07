@@ -35,6 +35,7 @@ from app.domain.rag.retriever import RAGRetriever
 from app.infrastructure.llm.openai_provider import OpenAIProvider  # noqa: F401 — kept for one-line revert
 from app.infrastructure.llm.ollama_provider import OllamaProvider
 from app.infrastructure.llm.groq_provider import GroqProvider
+from app.infrastructure.llm.gemini_provider import GeminiProvider
 from app.infrastructure.rag.openai_embedder import OpenAIEmbedder
 from app.infrastructure.rag.embedding_gemma_embedder import EmbeddingGemmaEmbedder
 from app.infrastructure.rag.gemini_embedder import GeminiEmbedder
@@ -109,12 +110,51 @@ def get_llm_provider() -> LLMProvider:
         3. Zero changes to orchestrator, prompts, or any domain code.
     ─────────────────────────────────────────────────────────────────────
     """
-    # ── ACTIVE PROVIDER: Groq ────────────────────────────────────────────────
-    # To revert to Ollama, replace the line below with:
-    #   return OllamaProvider(base_url=settings.ollama_base_url, model=settings.ollama_model)
-    return GroqProvider(
-        api_key=settings.groq_api_key,
-        model=settings.groq_model,
+    # ── ACTIVE PROVIDER: driven by LLM_PROVIDER env var ──────────────────────
+    # LLM_PROVIDER=gemini  → GeminiProvider (gemini-2.5-flash, default)
+    # LLM_PROVIDER=groq    → GroqProvider (fallback / legacy)
+    # LLM_PROVIDER=ollama  → OllamaProvider (local dev)
+    # LLM_PROVIDER=openai  → OpenAIProvider
+    provider = settings.llm_provider.lower()
+
+    if provider == "groq":
+        logger.info(
+            "LLM Provider: Groq",
+            extra={"model": settings.groq_model},
+        )
+        return GroqProvider(
+            api_key=settings.groq_api_key,
+            model=settings.groq_model,
+        )
+
+    if provider == "ollama":
+        logger.info(
+            "LLM Provider: Ollama",
+            extra={"model": settings.ollama_model},
+        )
+        return OllamaProvider(
+            base_url=settings.ollama_base_url,
+            model=settings.ollama_model,
+        )
+
+    if provider == "openai":
+        logger.info(
+            "LLM Provider: OpenAI",
+            extra={"model": settings.chat_model},
+        )
+        return OpenAIProvider(
+            api_key=settings.openai_api_key,
+            model=settings.chat_model,
+        )
+
+    # Default: Gemini (gemini-2.5-flash)
+    logger.info(
+        "LLM Provider: Gemini",
+        extra={"model": settings.gemini_chat_model},
+    )
+    return GeminiProvider(
+        api_key=settings.gemini_api_key,
+        model=settings.gemini_chat_model,
     )
 
 

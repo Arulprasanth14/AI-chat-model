@@ -362,6 +362,7 @@ class ConversationOrchestrator:
                 state=state,
                 active_profile=active_profile,
                 phase_a_messages=phase_a_messages,
+                missing_fields=missing_fields,
             ))
 
         try:
@@ -527,6 +528,7 @@ class ConversationOrchestrator:
         state: ConversationState,
         active_profile: BaseProfile,
         phase_a_messages: list[dict[str, Any]],
+        missing_fields: list[Any] | None = None,
     ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
         """Run Phase A: explicit tool calling + backend writes.
 
@@ -545,6 +547,7 @@ class ConversationOrchestrator:
             state:            Current conversation state (mutated in-place).
             active_profile:   Active project profile.
             phase_a_messages: Prompt messages for the Phase A call.
+            missing_fields:   Optional list of missing fields computed for this turn.
 
         Returns:
             Tuple of (write_outcomes, dispatched_tool_calls, advisory_flags).
@@ -554,6 +557,11 @@ class ConversationOrchestrator:
             advisory_flags:         Dict with model_believes_complete and
                                     suggested_next_topic keys.
         """
+        if missing_fields is None:
+            missing_fields = state.compute_missing_fields(
+                active_profile, settings.extraction_confidence_threshold
+            )
+
         tools = get_phase_a_tools(active_profile)
         advisory_flags: dict[str, Any] = {
             "model_believes_complete": False,
@@ -715,6 +723,20 @@ class ConversationOrchestrator:
                 )
                 continue
 
+            # ── Fuzzy field code resolution ────────────────────────────────
+            # When the LLM uses a descriptive name (e.g. "dish_name", "price")
+            # instead of the correct SP code (e.g. "SP2"), try to resolve it.
+            # This is especially important for Qwen/small models that sometimes
+            # prefer human-readable names despite instruction to use SP codes.
+            # The enum constraint was removed from the JSON schema to allow
+            # these calls to reach the server; we now resolve them here.
+            field_code = self._resolve_field_code(
+                field_code=field_code,
+                profile=active_profile,
+                missing_fields=missing_fields,
+                session_id=state.session_id,
+            )
+
             try:
                 confidence = float(confidence_raw)
             except (TypeError, ValueError):
@@ -808,6 +830,101 @@ class ConversationOrchestrator:
         return write_outcomes, dispatched_tool_calls, advisory_flags
 
     # ── Private helpers ────────────────────────────────────────────────────────
+
+    @staticmethod
+    def _resolve_field_code(
+        field_code: str,
+        profile: "BaseProfile",
+        missing_fields: list,
+        session_id: str = "",
+    ) -> str:
+        """Resolve a potentially descriptive field code to a valid profile code.
+
+        When a small LLM (e.g. Qwen 3.8B) calls save_text_field with a
+        human-readable name like 'dish_name' or 'price' instead of 'SP2',
+        we try to map it to the closest valid field code before dispatching.
+
+        Resolution priority:
+          1. Exact match — already a valid code, return as-is.
+          2. Missing-fields priority — score against current-question context
+             (the AI was just asking about these, so user is likely answering them).
+          3. Full profile match — score against all required fields.
+
+        Scoring uses keyword overlap between the provided name and the
+        field's code, description, section_name, and question text.
+
+        Args:
+            field_code:     The field code string from the LLM tool call.
+            profile:        Active profile to validate against.
+            missing_fields: Fields currently missing (from ledger) — these
+                            are prioritised because the AI was just asking about them.
+            session_id:     Session ID for logging.
+
+        Returns:
+            The resolved field code (may be the same if it was already valid,
+            or the best fuzzy match if it was descriptive).
+        """
+        # Fast path: already a valid code
+        valid_codes = {f.code for f in profile.required_fields}
+        if field_code in valid_codes:
+            return field_code
+
+        # Normalise the provided name for comparison
+        probe = field_code.lower().replace("_", " ").replace("-", " ")
+        probe_words = set(probe.split())
+
+        best_code: str | None = None
+        best_score: int = 0
+
+        # Score each field: prioritise missing fields (currently in-context)
+        missing_codes = [mf.field_code for mf in missing_fields] if missing_fields else []
+        # Put missing fields first so they get a scoring boost
+        priority_codes = missing_codes + [
+            f.code for f in profile.required_fields if f.code not in missing_codes
+        ]
+
+        for code in priority_codes:
+            field_def = profile.get_field_by_code(code)
+            if field_def is None:
+                continue
+
+            # Build a searchable text blob from all field metadata
+            search_text = " ".join(filter(None, [
+                code.lower().replace("_", " "),
+                (field_def.description or "").lower(),
+            ]))
+            search_words = set(search_text.split())
+
+            # Keyword overlap score
+            overlap = len(probe_words & search_words)
+
+            # Bonus: missing fields that are currently being asked about
+            bonus = 2 if code in missing_codes else 0
+            score = overlap + bonus
+
+            if score > best_score:
+                best_score = score
+                best_code = code
+
+        if best_code and best_score > 0:
+            if best_code != field_code:  # only log when we actually remapped
+                logger.info(
+                    "Phase A: fuzzy field code resolved",
+                    extra={
+                        "session_id": session_id,
+                        "original_code": field_code,
+                        "resolved_code": best_code,
+                        "score": best_score,
+                    },
+                )
+            return best_code
+
+        # No match found — return original so state.py can reject it properly
+        logger.warning(
+            "Phase A: field code not resolvable",
+            extra={"session_id": session_id, "field_code": field_code},
+        )
+        return field_code
 
     @staticmethod
     def _build_current_context_hint(
