@@ -64,17 +64,27 @@ class Settings(BaseSettings):
     )
     gemini_api_key: str = Field(
         default="",
-        description="Google Gemini API key (used when EMBEDDING_PROVIDER=gemini)",
+        description="Google Gemini API key (used for embedding provider and Gemini LLM)",
+    )
+    gemini_chat_model: str = Field(
+        default="gemini-3.5-flash-lite",
+        description="Gemini chat model identifier (used when LLM_PROVIDER=gemini)",
     )
 
-    # ── Groq (active LLM provider) ────────────────────────────────────────────
+    # ── LLM Provider selection ────────────────────────────────────────────────
+    llm_provider: str = Field(
+        default="gemini",
+        description="LLM provider to use: 'gemini' (GeminiProvider) or 'groq' (GroqProvider). Defaults to 'gemini'.",
+    )
+
+    # ── Groq ──────────────────────────────────────────────────────────────────
     groq_api_key: str = Field(
         default="",
-        description="Groq API Key",
+        description="Groq API Key (only needed when LLM_PROVIDER=groq)",
     )
     groq_model: str = Field(
-        default="qwen/qwen3.8-27b",
-        description="Groq chat model identifier",
+        default="llama-3.3-70b-versatile",
+        description="Groq chat model identifier (only used when LLM_PROVIDER=groq)",
     )
 
     # ── Ollama ────────────────────────────────────────────────────────────────

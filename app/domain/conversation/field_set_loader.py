@@ -55,21 +55,10 @@ def load_field_set(yaml_path: Path) -> list[FieldDefinition] | None:
         if options and not isinstance(options, list):
             logger.warning(f"Field {code} options is not a list. Ignoring.")
             options = None
-            
+
         required = f.get("required", True)
         section_name = f.get("section_name", "")
         show_if = f.get("show_if")
-
-        if kind == "file":
-            input_type = "file_upload"
-        elif kind == "checkbox":
-            input_type = "list"
-        elif kind == "radio":
-            input_type = "enum"
-        else:
-            input_type = "text"
-
-        enum_values = [str(o.get("value")) for o in options if "value" in o] if options else None
 
         desc_parts: list[str] = []
 
@@ -105,19 +94,25 @@ def load_field_set(yaml_path: Path) -> list[FieldDefinition] | None:
                 "they answered — 0.9+ for a clear direct statement, 0.6-0.8 for inferred."
             )
 
-        input_type = kind
-        
-        # Determine enum properties
+        # Determine input_type and enum properties.
+        # NOTE: 'file' kind must map to 'file_upload' so the /logo endpoint
+        # can find the correct missing field. Using kind directly ('file') would
+        # cause the field-finder to miss it and fall back to 'existing_assets',
+        # making both uploads overwrite the same field (the original bug).
+        if kind == "file":
+            input_type = "file_upload"
+        elif kind == "radio":
+            input_type = "enum"
+        elif kind == "checkbox":
+            input_type = "list"
+        else:
+            input_type = "text"  # covers kind == "text" and any unknown kinds
+
         enum_values = None
         enum_options = None
         if options:
             enum_values = [o["value"] for o in options]
             enum_options = options
-            
-            if kind == "radio":
-                input_type = "enum"
-            elif kind == "checkbox":
-                input_type = "list"
 
         fields.append(
             FieldDefinition(

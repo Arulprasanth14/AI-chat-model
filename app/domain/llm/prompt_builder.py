@@ -242,18 +242,20 @@ class PromptBuilder:
         """Build the Phase B message list for the response-generation LLM call.
 
         Extends the Phase A message list with:
-          1. A synthetic ``assistant`` message with a ``tool_calls`` list
+          1. A fresh Phase B system message (built from scratch — NOT patched from
+             Phase A). This eliminates the brittle str.replace() approach that
+             silently failed when the Phase A tool-instruction string changed,
+             leaving Phase B without the critical UI SYNC rule that caused the
+             'ask about first missing field' constraint to be dropped.
+          2. A synthetic ``assistant`` message with a ``tool_calls`` list
              containing one entry per Phase A tool call (required by OpenAI API
              to form a valid tool-result thread).
-          2. One ``tool`` message per Phase A tool call, each containing the
+          3. One ``tool`` message per Phase A tool call, each containing the
              write outcome for that specific tool call.
 
         If Phase A made no tool calls (pure conversation turn), no tool-call
         or tool-result messages are appended — Phase B sees a clean conversation
         thread with an empty outcomes note.
-
-        The Phase B system message is also patched to instruct the LLM to
-        use the ``generate_response`` tool and to follow honesty rules.
 
         Args:
             phase_a_messages:   The exact messages list used for Phase A.
@@ -269,99 +271,32 @@ class PromptBuilder:
             missing_fields:     Fields STILL missing after Phase A saves.
                                 Used to rebuild the status block so Phase B
                                 never re-asks a field that was just saved.
+            field_saved_note:   If set, a note about a field saved via chip click.
 
         Returns:
             Message list ready for the Phase B LLM call.
         """
-        # Start from a copy of Phase A messages
+        effective_missing = missing_fields or []
+
+        # Start from a copy of Phase A messages, then REPLACE the system message
+        # with a clean Phase B system message built from scratch.
+        # Previously this was done via str.replace() patching — which silently
+        # failed whenever the Phase A instruction strings changed, leaving Phase B
+        # without critical instructions (UI SYNC, frustration handler, etc.).
         messages: list[dict[str, Any]] = list(phase_a_messages)
-
-        # Build updated status block using post-Phase-A missing fields
-        # This is the core fix: Phase B sees the CURRENT state, not Phase A's stale view.
-        if missing_fields is not None and not is_complete:
-            updated_status = self._format_brief_status(missing_fields, is_complete=False, profile=profile)
-        else:
-            updated_status = None
-
-        # Build frustration handler rule (fixed instruction, always injected)
-        frustration_handler = (
-            "## FRUSTRATION / FATIGUE HANDLER\n"
-            "If the user expresses fatigue, frustration, or impatience "
-            "(e.g. 'too many questions', 'I'm exhausted', 'when will this end', 'just finish it'), "
-            "you MUST follow this exact 5-step flow:\n"
-            "1. Acknowledge their feeling warmly in ONE short sentence (e.g. 'Totally fair — sorry for the overload!').\n"
-            "2. Tell them EXACTLY how many fields are still missing and name them briefly "
-            "(e.g. 'We just need 2 more things: your timeline and how you\\'ll measure success.').\n"
-            "3. Offer a clear choice: 'Want to knock these out now, or should I "
-            "save a draft brief with what we have so you can add the rest later?'\n"
-            "4. If they choose LATER/NOT NOW: give a clean bullet-point summary of everything "
-            "captured so far, then say: 'You can return to this session anytime to fill in the rest.'\n"
-            "5. If they choose NOW/LET\\'S FINISH: ask ONLY the remaining fields, one tight cluster, "
-            "no preamble, no echoing.\n"
-            "CRITICAL: Do NOT auto-complete or skip the remaining fields without user consent."
-        )
-
-        # Patch the system message for Phase B instructions
         if messages and messages[0]["role"] == "system":
-            original_system = messages[0]["content"]
-            
-            # 1. Swap the minimal extraction persona with the real conversational persona
-            patched = original_system.replace(
-                "You are a backend data extraction process. Do not converse with the user. "
-                "Your only job is to extract data into structured tool calls.",
-                profile.persona_prompt.strip()
-            )
+            messages[0] = {
+                "role": "system",
+                "content": self._build_phase_b_system_message(
+                    profile=profile,
+                    missing_fields=effective_missing,
+                    is_complete=is_complete,
+                    brief_summary=brief_summary,
+                    retrieved_chunks=retrieved_chunks or [],
+                ),
+            }
 
-            # 2. Swap the tool instruction
-            patched = patched.replace(
-                "You are equipped with a set of named action tools. "
-                "Use them NOW to explicitly save any field values the user just provided. "
-                "Call save_text_field, save_enum_field, or save_quantitative_field once per field. "
-                "You may call multiple tools in one turn if the user provided multiple fields. "
-                "If the user provided NO field data (pure conversation), call no tools — leave this turn tool-free. "
-                "Do NOT generate a conversational reply here — that happens in a separate step.",
-                "You MUST call `generate_response` with every response. "
-                "Generate your conversational reply in the `message` field. "
-                "You have already saved fields in a prior step; do NOT re-save here.\n\n"
-                "## RESPONSE STYLE RULES (MANDATORY)\n"
-                "- Keep replies SHORT and conversational — 1 to 3 sentences max.\n"
-                "- Use natural, varied, and brief acknowledgements (e.g., 'Makes sense', 'Understood', 'Great', 'Got it'). Do not use the exact same phrase repeatedly.\n"
-                "- Do NOT over-validate or over-praise. No 'That\\'s a great choice!', 'Love that!', or 'Wonderful!'.\n"
-                "- CRITICAL UI SYNC: When asking a question to collect missing information, you MUST ask about the VERY FIRST field listed in the 'Brief Status' section under 'not yet captured'. The user interface displays specific clickable buttons based on this first field. If you ask about a different field, the UI will break and show the wrong buttons!\n"
-                "- Ask ONLY 1 question per turn to ensure the UI buttons exactly match your question.\n"
-                "- NEVER ask about a topic that was already answered in the conversation history above.\n"
-                "- Write like a confident creative consultant, not a customer-service bot."
-            )
-
-            # Inject the updated (post-Phase-A) missing fields status so Phase B
-            # never re-asks fields that were just saved in this turn.
-            if updated_status is not None:
-                # Replace the old status block with the freshly computed one.
-                import re as _re
-                patched = _re.sub(
-                    r"## Brief Status\n\n[\s\S]*?(?=\n\n## How to Call)",
-                    "## Brief Status\n\n" + updated_status,
-                    patched,
-                )
-
-            # Always append the frustration handler rule
-            patched += "\n\n" + frustration_handler
-
-            # Inject retrieved knowledge chunks (only in-progress, after frustration handler)
-            if retrieved_chunks and not is_complete:
-                context_block = self._format_retrieved_chunks(retrieved_chunks)
-                if context_block:
-                    patched += (
-                        "\n\n## Retrieved Knowledge\n\n"
-                        "The following context has been retrieved from the knowledge base "
-                        "to help guide this conversation turn. Use it to inform your "
-                        "questions and extraction, but don't quote it verbatim.\n"
-                        "CRITICAL: DO NOT invent examples, options, or pricing not present in these chunks.\n"
-                        "CRITICAL: If retrieved context is irrelevant to the user's input, ignore it.\n\n"
-                        + context_block
-                    )
-                    
-            messages[0] = {"role": "system", "content": patched}
+        # (System message already replaced above — no further patching needed)
 
         if phase_a_tool_calls:
             # Build a synthetic assistant message with all Phase A tool calls.
@@ -698,6 +633,114 @@ class PromptBuilder:
         )
 
         return "\n".join(lines)
+
+    def _build_phase_b_system_message(
+        self,
+        profile: BaseProfile,
+        missing_fields: list[MissingField],
+        is_complete: bool = False,
+        brief_summary: str | None = None,
+        retrieved_chunks: list[RetrievedChunk] | None = None,
+    ) -> str:
+        """Build the Phase B system message from scratch.
+
+        This replaces the brittle str.replace()-based patching of the Phase A
+        system message that previously caused silent failures whenever the Phase A
+        instruction strings changed.  By building fresh, Phase B is guaranteed to
+        always receive the correct persona, brief status, and response rules —
+        regardless of how Phase A's prompt evolves.
+
+        Args:
+            profile:          Active project profile (provides persona_prompt).
+            missing_fields:   Fields still missing AFTER Phase A saves (post-A).
+            is_complete:      True if the brief is now complete.
+            brief_summary:    Deterministic brief summary (shown post-completion).
+            retrieved_chunks: RAG chunks to inject as knowledge context.
+
+        Returns:
+            Full system message string for the Phase B LLM call.
+        """
+        parts: list[str] = []
+
+        # 1. Real conversational persona (not the Phase A extraction persona)
+        parts.append(
+            profile.persona_prompt.strip() + "\n\n"
+            "CONTEXT AWARENESS: Always read the immediately preceding assistant message "
+            "(if one exists) to understand the context of the user's latest reply "
+            "(e.g., resolving short answers like 'Yes', 'English', or 'Skip')."
+        )
+
+        # 2. Brief status block — reflects the post-Phase-A state so Phase B
+        #    never re-asks a field that was just saved in this same turn.
+        status_block = self._format_brief_status(
+            missing_fields, is_complete=is_complete, brief_summary=brief_summary, profile=profile
+        )
+        parts.append(
+            "## Brief Status\n\n"
+            + status_block
+        )
+
+        # 3. Phase B response instructions (replaces Phase A tool instruction)
+        parts.append(
+            "## Response Instructions\n\n"
+            "You MUST call `generate_response` with every response. "
+            "Generate your conversational reply in the `message` field. "
+            "You have already saved fields in a prior step; do NOT re-save here.\n\n"
+            "## RESPONSE STYLE RULES (MANDATORY)\n"
+            "- Keep replies SHORT and conversational — 1 to 3 sentences max.\n"
+            "- Use natural, varied, and brief acknowledgements (e.g., 'Makes sense', "
+            "'Understood', 'Great', 'Got it'). Do not use the exact same phrase repeatedly.\n"
+            "- Do NOT over-validate or over-praise. No 'That\'s a great choice!', "
+            "'Love that!', or 'Wonderful!'.\n"
+            "- CRITICAL UI SYNC: When asking a question to collect missing information, "
+            "you MUST ask about the VERY FIRST field listed in the 'Brief Status' section "
+            "under 'not yet captured'. The user interface displays specific clickable buttons "
+            "based on this first field. If you ask about a different field, the UI will break "
+            "and show the wrong buttons!\n"
+            "- Ask ONLY 1 question per turn to ensure the UI buttons exactly match your question.\n"
+            "- NEVER ask about a topic that was already answered in the conversation history above.\n"
+            "- Write like a confident creative consultant, not a customer-service bot.\n\n"
+            "HONESTY INVARIANTS (enforced — never override):\n"
+            "- NEVER use language like 'all set', 'you\'re good to go', 'we\'re done', "
+            "or 'brief is complete' unless the system explicitly tells you STATUS: BRIEF COMPLETE.\n"
+            "- NEVER claim a file, logo, or asset was received unless it is listed in the "
+            "'Captured Fields' summary above OR it appears as a SAVED field in the write outcome report."
+        )
+
+        # 4. Frustration / fatigue handler
+        parts.append(
+            "## FRUSTRATION / FATIGUE HANDLER\n"
+            "If the user expresses fatigue, frustration, or impatience "
+            "(e.g. 'too many questions', 'I'm exhausted', 'when will this end', 'just finish it'), "
+            "you MUST follow this exact 5-step flow:\n"
+            "1. Acknowledge their feeling warmly in ONE short sentence "
+            "(e.g. 'Totally fair — sorry for the overload!').\n"
+            "2. Tell them EXACTLY how many fields are still missing and name them briefly "
+            "(e.g. 'We just need 2 more things: your timeline and how you\'ll measure success.').\n"
+            "3. Offer a clear choice: 'Want to knock these out now, or should I save a draft "
+            "brief with what we have so you can add the rest later?'\n"
+            "4. If they choose LATER/NOT NOW: give a clean bullet-point summary of everything "
+            "captured so far, then say: 'You can return to this session anytime to fill in the rest.'\n"
+            "5. If they choose NOW/LET'S FINISH: ask ONLY the remaining fields, one tight cluster, "
+            "no preamble, no echoing.\n"
+            "CRITICAL: Do NOT auto-complete or skip the remaining fields without user consent."
+        )
+
+        # 5. Retrieved knowledge chunks (only when in-progress)
+        if retrieved_chunks and not is_complete:
+            context_block = self._format_retrieved_chunks(retrieved_chunks)
+            if context_block:
+                parts.append(
+                    "## Retrieved Knowledge\n\n"
+                    "The following context has been retrieved from the knowledge base "
+                    "to help guide this conversation turn. Use it to inform your "
+                    "questions and extraction, but don't quote it verbatim.\n"
+                    "CRITICAL: DO NOT invent examples, options, or pricing not present in these chunks.\n"
+                    "CRITICAL: If retrieved context is irrelevant to the user's input, ignore it.\n\n"
+                    + context_block
+                )
+
+        return self.SECTION_SEP.join(parts)
 
     def _format_retrieved_chunks(self, chunks: list[RetrievedChunk]) -> str:
         """Format retrieved chunks into a labeled context block."""
