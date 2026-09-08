@@ -145,11 +145,14 @@ class OllamaProvider:
             "  ]\n"
             "}\n\n"
             "Available tools:\n"
-            '- "save_text_field": for free-text fields (client_name, primary_objective, '
-            "target_audience, timeline, deliverables, key_messages)\n"
-            '- "save_enum_field": for fields that must use a value from a fixed list '
-            "(project_type, brand_personality, distribution_channels, brand_identity_preference)\n"
-            '- "save_quantitative_field": for numeric/KPI fields (success_metrics, budget_range)\n\n'
+            '- "save_text_field": for free-text fields (brand_name, primary_objective, '
+            'target_audience, etc.)\n'
+            '- "save_enum_field": for strict multiple-choice fields (project_type, '
+            'industry_vertical, distribution_channels, brand_identity_preference)\n\n'
+            'Example output:\n'
+            '```json\n'
+            '{"tool_calls": [{"name": "save_text_field", "field_code": "brand_name", "value": "Acme", "confidence": 0.95}]}\n'
+            '```\n\n'
             "INSTRUCTIONS:\n"
             "1. Read the user's last message carefully.\n"
             "2. For EACH piece of information the user gave that matches a required field, "

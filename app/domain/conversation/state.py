@@ -153,7 +153,7 @@ class ConversationState(BaseModel):
     Usage:
         state = ConversationState(session_id=..., profile_id=...)
         state.add_turn("user", "I need a brand identity for my startup")
-        result = state.handle_save_text_field("client_name", "Acme", 0.95, profile, threshold)
+        result = state.handle_save_text_field("brand_name", "Acme", 0.95, profile, threshold)
         missing = state.compute_missing_fields(profile, threshold)
     """
 
@@ -823,7 +823,7 @@ class ConversationState(BaseModel):
         """Fuzzy-match a field hint to a profile field code.
 
         Matching priority:
-        1. Exact field code match (e.g. hint == "client_name")
+        1. Exact field code match (e.g. hint == "brand_name")
         2. Partial field code match (hint contains or is contained by code)
         3. Partial description match (hint words appear in field description)
 

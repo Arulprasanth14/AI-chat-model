@@ -37,6 +37,24 @@ fields:
     section_field_order: 1
     question: What company, product, or announcement are we featuring?
     hint: Provide a brief summary of the news or story.
+  - code: launch_date_time
+    kind: text
+    required: false
+    section_name: Post Purpose & Product
+    section_field_order: 2
+    question: When is this going to be launched? (Date and time)
+    hint: Provide the exact or approximate launch date and time.
+    show_if:
+      field: post_purpose
+      in:
+        - new_menu_item
+        - seasonal_special
+        - combo_meal_offer
+        - event_promotion
+        - product_launch
+        - new_collection
+        - limited_edition
+        - flash_sale
   - code: who_target_audience
     kind: checkbox
     required: true

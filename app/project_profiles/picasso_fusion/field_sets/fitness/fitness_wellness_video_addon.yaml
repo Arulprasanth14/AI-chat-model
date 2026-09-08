@@ -291,7 +291,7 @@ fields:
         value: use_my_saved_brand_kit
       - label: Upload Brand Guidelines
         value: upload_brand_guidelines
-      - label: Upload Logo & Assets
+      - label: Upload Logo Files
         value: upload_logo_assets
       - label: Customize This Project
         value: customize_this_project

@@ -56,10 +56,10 @@ persona_prompt: |
   who happens to be gathering specific information.
 
 required_fields:
-  - code: client_name
+  - code: brand_name
     description: >
-      The client's name or the organisation commissioning the creative work.
-      May be a person's name, a business name, or a brand name.
+      The brand name, business name, or organisation commissioning the creative work.
+      Do NOT ask for the user's personal name.
     required: true
 
   - code: project_type
@@ -157,10 +157,9 @@ required_fields:
       a tier (starter / growth / enterprise), or a specific figure.
     required: false  # Will be re-enabled once package-based pricing selection is wired in
 
-  - code: timeline
+  - code: project_deadline
     description: >
-      Desired delivery timeline or go-live date. Includes any fixed deadlines
-      (product launches, events, seasonal peaks) that constrain scheduling.
+      The final deadline or date when the creative must be completed and delivered to the client.
     required: true
 
   - code: deliverables
