@@ -2,252 +2,252 @@ template_key: real_estate_testimonial_set
 template_label: Testimonial Set
 vertical: realestate
 template_name_match:
-- testimonial
+  - testimonial
 fields:
-- code: TS1
-  kind: checkbox
-  required: true
-  section_name: Testimonial Overview
-  section_order: 0
-  section_field_order: 0
-  question: What is the purpose of this testimonial set?
-  options:
-  - label: Build trust and credibility
-    value: build_trust
-  - label: Showcase customer success
-    value: showcase_success
-  - label: Generate leads
-    value: generate_leads
-  - label: Support a product launch
-    value: support_launch
-  - label: Promote a service
-    value: promote_service
-  - label: Social proof campaign
-    value: social_proof
-  - label: Other
-    value: other
-- code: TS2
-  kind: radio
-  required: true
-  section_name: Testimonial Overview
-  section_order: 0
-  section_field_order: 1
-  question: How many testimonial creatives are required?
-  options:
-  - label: Single Testimonial
-    value: single
-  - label: 3-Piece Set
-    value: 3_piece
-  - label: 5-Piece Set
-    value: 5_piece
-  - label: 10-Piece Set
-    value: 10_piece
-  - label: Custom Quantity
-    value: custom
-- code: TS3
-  kind: text
-  required: true
-  section_name: Featured Client
-  section_order: 1
-  section_field_order: 0
-  question: Who is being featured? Give the client name, company name (if applicable),
-    role, and industry.
-- code: TS4
-  kind: text
-  required: true
-  section_name: Testimonial Content
-  section_order: 2
-  section_field_order: 0
-  question: What testimonial should be featured? Please provide the final, approved
-    testimonial text.
-- code: TS5
-  kind: checkbox
-  required: true
-  section_name: Testimonial Content
-  section_order: 2
-  section_field_order: 1
-  question: What result, outcome, or success story should be highlighted?
-  options:
-  - label: Increased sales
-    value: increased_sales
-  - label: Faster growth
-    value: faster_growth
-  - label: Saved time
-    value: saved_time
-  - label: Improved efficiency
-    value: improved_efficiency
-  - label: Successful property sale
-    value: successful_property_sale
-  - label: Higher ROI
-    value: higher_roi
-  - label: Other
-    value: other
-- code: TS6
-  kind: text
-  required: false
-  section_name: Testimonial Content
-  section_order: 2
-  section_field_order: 2
-  question: Do you have any supporting metrics or proof points?
-  hint: 'Examples: sold in 14 days, 25% increase in revenue, 4x ROI, 100+ customers
-    gained.'
-- code: TS7
-  kind: file
-  required: true
-  section_name: Assets
-  section_order: 3
-  section_field_order: 0
-  question: Do you have a photo of the featured client? Please upload it.
-- code: TS8
-  kind: checkbox
-  required: true
-  section_name: Assets
-  section_order: 3
-  section_field_order: 1
-  question: Do you have additional assets to include?
-  options:
-  - label: Company logo
-    value: company_logo
-  - label: Star rating
-    value: star_rating
-  - label: Product screenshots
-    value: product_screenshots
-  - label: Before/after images
-    value: before_after
-  - label: Brand imagery
-    value: brand_imagery
-  - label: Video thumbnail
-    value: video_thumbnail
-  - label: Other
-    value: other
-  - label: None
-    value: none
-- code: TS9
-  kind: file
-  required: false
-  section_name: Assets
-  section_order: 3
-  section_field_order: 2
-  question: Please upload the available assets you selected.
-  hint: Only ask this if the client selected any asset other than "None" above.
-- code: TS10
-  kind: radio
-  required: true
-  section_name: Call to Action
-  section_order: 4
-  section_field_order: 0
-  question: What action should viewers take after seeing this testimonial?
-  options:
-  - label: Contact us
-    value: contact_us
-  - label: Book a consultation
-    value: book_consultation
-  - label: Request a demo
-    value: request_demo
-  - label: Learn more
-    value: learn_more
-  - label: Visit our website
-    value: visit_website
-  - label: Other
-    value: other
-- code: TS11
-  kind: text
-  required: true
-  section_name: Call to Action
-  section_order: 4
-  section_field_order: 1
-  question: What is the destination URL?
-- code: TS12
-  kind: radio
-  required: true
-  section_name: Call to Action
-  section_order: 4
-  section_field_order: 2
-  question: Will UTM tracking be required?
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-- code: TS13
-  kind: text
-  required: false
-  section_name: Call to Action
-  section_order: 4
-  section_field_order: 3
-  question: Please provide the UTM parameters, or confirm you'd like AI-generated
-    UTMs.
-  hint: Only ask this if the client said yes to UTM tracking above.
-- code: TS14
-  kind: checkbox
-  required: true
-  section_name: Platform & Format
-  section_order: 5
-  section_field_order: 0
-  question: Where will these testimonial creatives be used?
-  hint: This is much more important to ask than generic technical requirements.
-  options:
-  - label: Instagram
-    value: instagram
-  - label: Facebook
-    value: facebook
-  - label: LinkedIn
-    value: linkedin
-  - label: Website
-    value: website
-  - label: Google Display
-    value: google_display
-  - label: Email Marketing
-    value: email_marketing
-  - label: Multiple Platforms
-    value: multiple_platforms
-  - label: Other
-    value: other
-- code: TS15
-  kind: radio
-  required: true
-  section_name: Platform & Format
-  section_order: 5
-  section_field_order: 1
-  question: Are these static graphics or video-based testimonials?
-  options:
-  - label: Static Graphics
-    value: static_graphics
-  - label: Motion Graphics
-    value: motion_graphics
-  - label: Video Testimonials
-    value: video_testimonials
-  - label: Mixed Set
-    value: mixed_set
-- code: TS16
-  kind: file
-  required: false
-  section_name: Design Direction
-  section_order: 6
-  section_field_order: 0
-  question: Any testimonial designs or inspiration you'd like us to reference?
-  hint: Upload references, up to 3.
-- code: TS17
-  kind: radio
-  required: true
-  section_name: Design Direction
-  section_order: 6
-  section_field_order: 1
-  question: Describe the visual style you'd like.
-  options:
-  - label: Premium
-    value: premium
-  - label: Corporate
-    value: corporate
-  - label: Luxury
-    value: luxury
-  - label: Modern
-    value: modern
-  - label: Minimal
-    value: minimal
-  - label: Social Media Native
-    value: social_media_native
-  - label: Bold & Promotional
-    value: bold_promotional
-  - label: Other
-    value: other
+  - code: post_purpose
+    kind: checkbox
+    required: true
+    section_name: Testimonial Overview
+    section_order: 0
+    section_field_order: 0
+    question: What is the purpose of this testimonial set?
+    options:
+      - label: Build trust and credibility
+        value: build_trust
+      - label: Showcase customer success
+        value: showcase_success
+      - label: Generate leads
+        value: generate_leads
+      - label: Support a product launch
+        value: support_launch
+      - label: Promote a service
+        value: promote_service
+      - label: Social proof campaign
+        value: social_proof
+      - label: Other
+        value: other
+  - code: many_testimonial_creatives
+    kind: radio
+    required: true
+    section_name: Testimonial Overview
+    section_order: 0
+    section_field_order: 1
+    question: How many testimonial creatives are required?
+    options:
+      - label: Single Testimonial
+        value: single
+      - label: 3-Piece Set
+        value: 3_piece
+      - label: 5-Piece Set
+        value: 5_piece
+      - label: 10-Piece Set
+        value: 10_piece
+      - label: Custom Quantity
+        value: custom
+  - code: who_being_featured
+    kind: text
+    required: true
+    section_name: Featured Client
+    section_order: 1
+    section_field_order: 0
+    question: Who is being featured? Give the client name, company name (if applicable),
+      role, and industry.
+  - code: testimonial_should_be
+    kind: text
+    required: true
+    section_name: Testimonial Content
+    section_order: 2
+    section_field_order: 0
+    question: What testimonial should be featured? Please provide the final, approved
+      testimonial text.
+  - code: result_outcome_or
+    kind: checkbox
+    required: true
+    section_name: Testimonial Content
+    section_order: 2
+    section_field_order: 1
+    question: What result, outcome, or success story should be highlighted?
+    options:
+      - label: Increased sales
+        value: increased_sales
+      - label: Faster growth
+        value: faster_growth
+      - label: Saved time
+        value: saved_time
+      - label: Improved efficiency
+        value: improved_efficiency
+      - label: Successful property sale
+        value: successful_property_sale
+      - label: Higher ROI
+        value: higher_roi
+      - label: Other
+        value: other
+  - code: have_any_supporting
+    kind: text
+    required: false
+    section_name: Testimonial Content
+    section_order: 2
+    section_field_order: 2
+    question: Do you have any supporting metrics or proof points?
+    hint: 'Examples: sold in 14 days, 25% increase in revenue, 4x ROI, 100+ customers
+      gained.'
+  - code: have_a_photo
+    kind: file
+    required: true
+    section_name: Assets
+    section_order: 3
+    section_field_order: 0
+    question: Do you have a photo of the featured client? Please upload it.
+  - code: have_additional_assets
+    kind: checkbox
+    required: true
+    section_name: Assets
+    section_order: 3
+    section_field_order: 1
+    question: Do you have additional assets to include?
+    options:
+      - label: Company logo
+        value: company_logo
+      - label: Star rating
+        value: star_rating
+      - label: Product screenshots
+        value: product_screenshots
+      - label: Before/after images
+        value: before_after
+      - label: Brand imagery
+        value: brand_imagery
+      - label: Video thumbnail
+        value: video_thumbnail
+      - label: Other
+        value: other
+      - label: None
+        value: none
+  - code: please_upload_available
+    kind: file
+    required: false
+    section_name: Assets
+    section_order: 3
+    section_field_order: 2
+    question: Please upload the available assets you selected.
+    hint: Only ask this if the client selected any asset other than "None" above.
+  - code: action_should_viewers
+    kind: radio
+    required: true
+    section_name: Call to Action
+    section_order: 4
+    section_field_order: 0
+    question: What action should viewers take after seeing this testimonial?
+    options:
+      - label: Contact us
+        value: contact_us
+      - label: Book a consultation
+        value: book_consultation
+      - label: Request a demo
+        value: request_demo
+      - label: Learn more
+        value: learn_more
+      - label: Visit our website
+        value: visit_website
+      - label: Other
+        value: other
+  - code: destination_url
+    kind: text
+    required: true
+    section_name: Call to Action
+    section_order: 4
+    section_field_order: 1
+    question: What is the destination URL?
+  - code: will_utm_tracking
+    kind: radio
+    required: true
+    section_name: Call to Action
+    section_order: 4
+    section_field_order: 2
+    question: Will UTM tracking be required?
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+  - code: please_provide_utm
+    kind: text
+    required: false
+    section_name: Call to Action
+    section_order: 4
+    section_field_order: 3
+    question: Please provide the UTM parameters, or confirm you'd like AI-generated
+      UTMs.
+    hint: Only ask this if the client said yes to UTM tracking above.
+  - code: where_will_these
+    kind: checkbox
+    required: true
+    section_name: Platform & Format
+    section_order: 5
+    section_field_order: 0
+    question: Where will these testimonial creatives be used?
+    hint: This is much more important to ask than generic technical requirements.
+    options:
+      - label: Instagram
+        value: instagram
+      - label: Facebook
+        value: facebook
+      - label: LinkedIn
+        value: linkedin
+      - label: Website
+        value: website
+      - label: Google Display
+        value: google_display
+      - label: Email Marketing
+        value: email_marketing
+      - label: Multiple Platforms
+        value: multiple_platforms
+      - label: Other
+        value: other
+  - code: these_static_graphics
+    kind: radio
+    required: true
+    section_name: Platform & Format
+    section_order: 5
+    section_field_order: 1
+    question: Are these static graphics or video-based testimonials?
+    options:
+      - label: Static Graphics
+        value: static_graphics
+      - label: Motion Graphics
+        value: motion_graphics
+      - label: Video Testimonials
+        value: video_testimonials
+      - label: Mixed Set
+        value: mixed_set
+  - code: inspiration_type
+    kind: file
+    required: false
+    section_name: Design Direction
+    section_order: 6
+    section_field_order: 0
+    question: Any testimonial designs or inspiration you'd like us to reference?
+    hint: Upload references, up to 3.
+  - code: visual_style
+    kind: radio
+    required: true
+    section_name: Design Direction
+    section_order: 6
+    section_field_order: 1
+    question: Describe the visual style you'd like.
+    options:
+      - label: Premium
+        value: premium
+      - label: Corporate
+        value: corporate
+      - label: Luxury
+        value: luxury
+      - label: Modern
+        value: modern
+      - label: Minimal
+        value: minimal
+      - label: Social Media Native
+        value: social_media_native
+      - label: Bold & Promotional
+        value: bold_promotional
+      - label: Other
+        value: other

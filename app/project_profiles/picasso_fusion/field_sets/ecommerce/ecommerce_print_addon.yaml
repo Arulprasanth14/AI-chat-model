@@ -2,449 +2,481 @@ template_key: ecommerce_print_addon
 template_label: Print Design
 vertical: ecommerce
 template_name_match:
-- print design
-- print add-on
-- print addon
-- print brief
-- print material
+  - print design
+  - print add-on
+  - print addon
+  - print brief
+  - print material
 fields:
-- code: PT1
-  kind: radio
-  required: true
-  section_name: Print Item & Message
-  section_order: 0
-  section_field_order: 0
-  question: What are we creating today?
-  hint: Select the print item.
-  options:
-  - label: Flyer
-    value: flyer
-  - label: Poster
-    value: poster
-  - label: Brochure
-    value: brochure
-  - label: Product Catalogue
-    value: product_catalogue
-  - label: Shelf Talker / Shelf Wobbler
-    value: shelf_talker_shelf_wobbler
-  - label: Price Card / Product Tag
-    value: price_card_product_tag
-  - label: Packaging Insert
-    value: packaging_insert
-  - label: Roll-up Standee
-    value: roll_up_standee
-  - label: Retail Banner
-    value: retail_banner
-  - label: Window Display
-    value: window_display
-  - label: Event Signage
-    value: event_signage
-  - label: Sticker / Label
-    value: sticker_label
-  - label: Other
-    value: other
-- code: PT2
-  kind: text
-  required: true
-  section_name: Print Item & Message
-  section_order: 0
-  section_field_order: 1
-  question: Which product(s) are we promoting?
-  hint: 'Provide the key product information: Product Name(s), Category, Price (Optional),
-    Key Features/Benefits, Colours/Sizes/Variants (Optional).'
-- code: PT3
-  kind: text
-  required: true
-  section_name: Print Item & Message
-  section_order: 0
-  section_field_order: 2
-  question: What's the ONE message customers should remember?
-  hint: 'Describe the biggest reason someone should buy. Example: "Premium quality
-    at an everyday price.", "Designed for all-day comfort.", "Limited-time festive
-    collection."'
-- code: PT4
-  kind: checkbox
-  required: true
-  section_name: Goal & Audience
-  section_order: 1
-  section_field_order: 0
-  question: What's the goal of this print piece?
-  options:
-  - label: Increase In-Store Sales
-    value: increase_in_store_sales
-  - label: Promote a Product
-    value: promote_a_product
-  - label: Launch a New Product
-    value: launch_a_new_product
-  - label: Highlight an Offer
-    value: highlight_an_offer
-  - label: Build Brand Awareness
-    value: build_brand_awareness
-  - label: Inform Customers
-    value: inform_customers
-  - label: Other
-    value: other
-- code: PT5
-  kind: text
-  required: true
-  section_name: Goal & Audience
-  section_order: 1
-  section_field_order: 1
-  question: Who is this for?
-  hint: Describe your target audience.
-- code: PT6
-  kind: radio
-  required: true
-  section_name: Offer
-  section_order: 2
-  section_field_order: 0
-  question: Are you running an offer?
-  options:
-  - label: No Offer
-    value: no_offer
-  - label: Discount
-    value: discount
-  - label: Buy One Get One
-    value: buy_one_get_one
-  - label: Bundle Offer
-    value: bundle_offer
-  - label: Free Gift
-    value: free_gift
-  - label: Limited-Time Offer
-    value: limited_time_offer
-  - label: Other
-    value: other
-- code: PT7
-  kind: text
-  required: false
-  section_name: Offer
-  section_order: 2
-  section_field_order: 1
-  question: Provide the offer details, start & end date, and terms & conditions.
-  hint: Only if you are running an offer.
-  show_if:
-    field: PT6
-    not_in:
-    - no_offer
-- code: PT8
-  kind: radio
-  required: true
-  section_name: Content
-  section_order: 3
-  section_field_order: 0
-  question: Do you already have the final content?
-  options:
-  - label: Final Copy Ready
-    value: final_copy_ready
-  - label: Rough Points
-    value: rough_points
-  - label: Need Copywriting Support
-    value: need_copywriting_support
-- code: PT9
-  kind: text
-  required: false
-  section_name: Content
-  section_order: 3
-  section_field_order: 1
-  question: Provide your final copy or rough points.
-  hint: Only if you have final copy ready or rough points.
-- code: PT10
-  kind: checkbox
-  required: false
-  section_name: Design Requirements
-  section_order: 4
-  section_field_order: 0
-  question: Is there anything that must appear?
-  hint: Select all that apply.
-  options:
-  - label: Product Name
-    value: product_name
-  - label: Product Price
-    value: product_price
-  - label: Discount
-    value: discount
-  - label: Logo
-    value: logo
-  - label: Website
-    value: website
-  - label: QR Code
-    value: qr_code
-  - label: Promo Code
-    value: promo_code
-  - label: Barcode
-    value: barcode
-  - label: Social Media Handles
-    value: social_media_handles
-  - label: Store Address
-    value: store_address
-  - label: Contact Number
-    value: contact_number
-  - label: Terms & Conditions
-    value: terms_conditions
-  - label: Other
-    value: other
-- code: PT11
-  kind: checkbox
-  required: true
-  section_name: Images & Assets
-  section_order: 5
-  section_field_order: 0
-  question: Do you have product photos or artwork?
-  options:
-  - label: I'll Upload Product Photos
-    value: ill_upload_product_photos
-  - label: I'll Upload Lifestyle Images
-    value: ill_upload_lifestyle_images
-  - label: I'll Upload Both
-    value: ill_upload_both
-  - label: Use Stock Images
-    value: use_stock_images
-  - label: Use Only Brand Assets
-    value: use_only_brand_assets
-  - label: Designer Can Suggest
-    value: designer_can_suggest
-- code: PT12
-  kind: file
-  required: false
-  section_name: Images & Assets
-  section_order: 5
-  section_field_order: 1
-  question: Upload your files.
-  hint: Upload product images, logos, packaging, or supporting artwork. For the best
-    print quality, high-resolution images (300 DPI or higher) are recommended.
-  show_if:
-    field: PT11
-    in:
-    - ill_upload_product_photos
-    - ill_upload_lifestyle_images
-    - ill_upload_both
-- code: PT13
-  kind: radio
-  required: true
-  section_name: Brand Assets
-  section_order: 6
-  section_field_order: 0
-  question: Would you like us to follow your existing brand identity?
-  hint: Brand Assets & Guidelines.
-  options:
-  - label: Use My Saved Brand Kit
-    value: use_my_saved_brand_kit
-  - label: Upload Brand Guidelines
-    value: upload_brand_guidelines
-  - label: Upload Logo & Assets
-    value: upload_logo_assets
-  - label: Customize This Project
-    value: customize_this_project
-- code: PT14
-  kind: checkbox
-  required: false
-  section_name: Brand Assets
-  section_order: 6
-  section_field_order: 1
-  question: What should we customize?
-  hint: Only if you selected "Customize This Project" above.
-  options:
-  - label: Brand Colors
-    value: brand_colors
-  - label: Brand Fonts
-    value: brand_fonts
-  - label: Additional Instructions
-    value: additional_instructions
-  show_if:
-    field: PT14
-    in:
-    - customize_this_project
-- code: PT15
-  kind: text
-  required: false
-  section_name: Brand Assets
-  section_order: 6
-  section_field_order: 2
-  question: Provide any additional brand customization details.
-  hint: Only if you selected "Customize This Project" above.
-  show_if:
-    field: PT14
-    in:
-    - customize_this_project
-- code: PT16
-  kind: checkbox
-  required: true
-  section_name: Style & References
-  section_order: 7
-  section_field_order: 0
-  question: What visual style should this print design have?
-  hint: Choose up to 3.
-  options:
-  - label: Premium
-    value: premium
-  - label: Luxury
-    value: luxury
-  - label: Modern
-    value: modern
-  - label: Minimal
-    value: minimal
-  - label: Bold
-    value: bold
-  - label: Retail
-    value: retail
-  - label: Lifestyle
-    value: lifestyle
-  - label: Editorial
-    value: editorial
-  - label: Clean
-    value: clean
-  - label: High Impact
-    value: high_impact
-  - label: Elegant
-    value: elegant
-  - label: Vibrant
-    value: vibrant
-  - label: Match My Brand Style
-    value: match_my_brand_style
-- code: PT17
-  kind: checkbox
-  required: false
-  section_name: Style & References
-  section_order: 7
-  section_field_order: 1
-  question: Do you have any inspiration?
-  hint: Share examples you like.
-  options:
-  - label: Upload Images
-    value: upload_images
-  - label: Pinterest Link
-    value: pinterest_link
-  - label: Website Link
-    value: website_link
-  - label: PDF Reference
-    value: pdf_reference
-  - label: Skip
-    value: skip
-- code: PT18
-  kind: text
-  required: false
-  section_name: Style & References
-  section_order: 7
-  section_field_order: 2
-  question: Provide the reference link(s), or note that you're uploading files.
-  hint: Only if you selected a reference option above (not Skip).
-  show_if:
-    field: PT17
-    not_in:
-    - skip
-- code: PT19
-  kind: radio
-  required: true
-  section_name: Print Specifications
-  section_order: 8
-  section_field_order: 0
-  question: What print size do you need?
-  options:
-  - label: Standard Size
-    value: standard_size
-  - label: Custom Size
-    value: custom_size
-- code: PT20
-  kind: text
-  required: false
-  section_name: Print Specifications
-  section_order: 8
-  section_field_order: 1
-  question: Provide the width, height, and unit.
-  hint: Only if you selected Custom Size above.
-  show_if:
-    field: PT19
-    in:
-    - custom_size
-- code: PT21
-  kind: radio
-  required: true
-  section_name: Print Specifications
-  section_order: 8
-  section_field_order: 2
-  question: What orientation should the design be?
-  options:
-  - label: Portrait
-    value: portrait
-  - label: Landscape
-    value: landscape
-  - label: Square
-    value: square
-- code: PT22
-  kind: radio
-  required: true
-  section_name: Print Specifications
-  section_order: 8
-  section_field_order: 3
-  question: Single-sided or double-sided printing?
-  options:
-  - label: Single-Sided
-    value: single_sided
-  - label: Double-Sided
-    value: double_sided
-- code: PT23
-  kind: text
-  required: false
-  section_name: Print Specifications
-  section_order: 8
-  section_field_order: 4
-  question: Any additional print specifications?
-  hint: 'Examples: Number of pages (Catalogues, Brochures), Fold type (Bi-fold, Tri-fold,
-    Z-fold), dieline available (Packaging). Leave blank if not applicable.'
-- code: PT24
-  kind: file
-  required: false
-  section_name: Print Specifications
-  section_order: 8
-  section_field_order: 5
-  question: Upload your printer specifications or dieline.
-  hint: Only if you have these available.
-- code: PT25
-  kind: radio
-  required: true
-  section_name: Language & Notes
-  section_order: 9
-  section_field_order: 0
-  question: What language should the design use?
-  options:
-  - label: English
-    value: english
-  - label: Hindi
-    value: hindi
-  - label: Tamil
-    value: tamil
-  - label: Telugu
-    value: telugu
-  - label: Malayalam
-    value: malayalam
-  - label: Kannada
-    value: kannada
-  - label: Arabic
-    value: arabic
-  - label: Spanish
-    value: spanish
-  - label: French
-    value: french
-  - label: German
-    value: german
-  - label: Portuguese
-    value: portuguese
-  - label: Chinese
-    value: chinese
-  - label: Japanese
-    value: japanese
-  - label: Korean
-    value: korean
-  - label: Urdu
-    value: urdu
-  - label: Other
-    value: other
-- code: PT26
-  kind: text
-  required: false
-  section_name: Language & Notes
-  section_order: 9
-  section_field_order: 1
-  question: Is there anything you'd like us to avoid?
-  hint: Mention any colours, imagery, wording, or competitor references you'd prefer
-    not to use.
+  - code: post_purpose
+    kind: radio
+    required: true
+    section_name: Print Item & Message
+    section_order: 0
+    section_field_order: 0
+    question: What are we creating today?
+    hint: Select the print item.
+    options:
+      - label: Flyer
+        value: flyer
+      - label: Poster
+        value: poster
+      - label: Brochure
+        value: brochure
+      - label: Product Catalogue
+        value: product_catalogue
+      - label: Shelf Talker / Shelf Wobbler
+        value: shelf_talker_shelf_wobbler
+      - label: Price Card / Product Tag
+        value: price_card_product_tag
+      - label: Packaging Insert
+        value: packaging_insert
+      - label: Roll-up Standee
+        value: roll_up_standee
+      - label: Retail Banner
+        value: retail_banner
+      - label: Window Display
+        value: window_display
+      - label: Event Signage
+        value: event_signage
+      - label: Sticker / Label
+        value: sticker_label
+      - label: Other
+        value: other
+  - code: promoted_item
+    kind: text
+    required: true
+    section_name: Print Item & Message
+    section_order: 0
+    section_field_order: 1
+    question: Which product(s) are we promoting?
+    hint: 'Provide the key product information: Product Name(s), Category, Price (Optional),
+      Key Features/Benefits, Colours/Sizes/Variants (Optional).'
+  - code: launch_date_time
+    kind: text
+    required: false
+    section_name: Post Purpose & Product
+    section_field_order: 2
+    question: When is this going to be launched? (Date and time)
+    hint: Provide the exact or approximate launch date and time.
+    show_if:
+      field: post_purpose
+      in:
+        - new_menu_item
+        - seasonal_special
+        - combo_meal_offer
+        - event_promotion
+        - product_launch
+        - new_collection
+        - limited_edition
+        - flash_sale
+  - code: key_message
+    kind: text
+    required: true
+    section_name: Print Item & Message
+    section_order: 0
+    section_field_order: 2
+    question: What's the ONE message customers should remember?
+    hint: 'Describe the biggest reason someone should buy. Example: "Premium quality
+      at an everyday price.", "Designed for all-day comfort.", "Limited-time festive
+      collection."'
+  - code: post_goal
+    kind: checkbox
+    required: true
+    section_name: Goal & Audience
+    section_order: 1
+    section_field_order: 0
+    question: What's the goal of this print piece?
+    options:
+      - label: Increase In-Store Sales
+        value: increase_in_store_sales
+      - label: Promote a Product
+        value: promote_a_product
+      - label: Launch a New Product
+        value: launch_a_new_product
+      - label: Highlight an Offer
+        value: highlight_an_offer
+      - label: Build Brand Awareness
+        value: build_brand_awareness
+      - label: Inform Customers
+        value: inform_customers
+      - label: Other
+        value: other
+  - code: target_audience
+    kind: text
+    required: true
+    section_name: Goal & Audience
+    section_order: 1
+    section_field_order: 1
+    question: Who is this for?
+    hint: Describe your target audience.
+  - code: offer_type
+    kind: radio
+    required: true
+    section_name: Offer
+    section_order: 2
+    section_field_order: 0
+    question: Are you running an offer?
+    options:
+      - label: No Offer
+        value: no_offer
+      - label: Discount
+        value: discount
+      - label: Buy One Get One
+        value: buy_one_get_one
+      - label: Bundle Offer
+        value: bundle_offer
+      - label: Free Gift
+        value: free_gift
+      - label: Limited-Time Offer
+        value: limited_time_offer
+      - label: Other
+        value: other
+  - code: offer_details
+    kind: text
+    required: false
+    section_name: Offer
+    section_order: 2
+    section_field_order: 1
+    question: Provide the offer details, start & end date, and terms & conditions.
+    hint: Only if you are running an offer.
+    show_if:
+      field: offer_type
+      not_in:
+        - no_offer
+  - code: already_have_final
+    kind: radio
+    required: true
+    section_name: Content
+    section_order: 3
+    section_field_order: 0
+    question: Do you already have the final content?
+    options:
+      - label: Final Copy Ready
+        value: final_copy_ready
+      - label: Rough Points
+        value: rough_points
+      - label: Need Copywriting Support
+        value: need_copywriting_support
+  - code: provide_your_final
+    kind: text
+    required: false
+    section_name: Content
+    section_order: 3
+    section_field_order: 1
+    question: Provide your final copy or rough points.
+    hint: Only if you have final copy ready or rough points.
+  - code: design_requirements
+    kind: checkbox
+    required: false
+    section_name: Design Requirements
+    section_order: 4
+    section_field_order: 0
+    question: Is there anything that must appear?
+    hint: Select all that apply.
+    options:
+      - label: Product Name
+        value: product_name
+      - label: Product Price
+        value: product_price
+      - label: Discount
+        value: discount
+      - label: Logo
+        value: logo
+      - label: Website
+        value: website
+      - label: QR Code
+        value: qr_code
+      - label: Promo Code
+        value: promo_code
+      - label: Barcode
+        value: barcode
+      - label: Social Media Handles
+        value: social_media_handles
+      - label: Store Address
+        value: store_address
+      - label: Contact Number
+        value: contact_number
+      - label: Terms & Conditions
+        value: terms_conditions
+      - label: Other
+        value: other
+  - code: have_product_photos
+    kind: checkbox
+    required: true
+    section_name: Images & Assets
+    section_order: 5
+    section_field_order: 0
+    question: Do you have product photos or artwork?
+    options:
+      - label: I'll Upload Product Photos
+        value: ill_upload_product_photos
+      - label: I'll Upload Lifestyle Images
+        value: ill_upload_lifestyle_images
+      - label: I'll Upload Both
+        value: ill_upload_both
+      - label: Use Stock Images
+        value: use_stock_images
+      - label: Use Only Brand Assets
+        value: use_only_brand_assets
+      - label: Designer Can Suggest
+        value: designer_can_suggest
+  - code: uploaded_files
+    kind: file
+    required: false
+    section_name: Images & Assets
+    section_order: 5
+    section_field_order: 1
+    question: Upload your files.
+    hint: Upload product images, logos, packaging, or supporting artwork. For the
+      best print quality, high-resolution images (300 DPI or higher) are recommended.
+    show_if:
+      field: have_product_photos
+      in:
+        - ill_upload_product_photos
+        - ill_upload_lifestyle_images
+        - ill_upload_both
+  - code: brand_identity_choice
+    kind: radio
+    required: true
+    section_name: Brand Assets
+    section_order: 6
+    section_field_order: 0
+    question: Would you like us to follow your existing brand identity?
+    hint: "This is about your BRAND IDENTITY (logo, colors, fonts, guidelines) \u2014\
+      \ separate from any photos or videos you may have already uploaded."
+    options:
+      - label: Use My Saved Brand Kit
+        value: use_my_saved_brand_kit
+      - label: Upload Brand Guidelines
+        value: upload_brand_guidelines
+      - label: Upload Logo Files
+        value: upload_logo_assets
+      - label: Customize This Project
+        value: customize_this_project
+  - code: brand_customization
+    kind: checkbox
+    required: false
+    section_name: Brand Assets
+    section_order: 6
+    section_field_order: 1
+    question: What should we customize?
+    hint: Only if you selected "Customize This Project" above.
+    options:
+      - label: Brand Colors
+        value: brand_colors
+      - label: Brand Fonts
+        value: brand_fonts
+      - label: Additional Instructions
+        value: additional_instructions
+    show_if:
+      field: brand_customization
+      in:
+        - customize_this_project
+  - code: brand_customization_details
+    kind: text
+    required: false
+    section_name: Brand Assets
+    section_order: 6
+    section_field_order: 2
+    question: Provide any additional brand customization details.
+    hint: Only if you selected "Customize This Project" above.
+    show_if:
+      field: brand_customization
+      in:
+        - customize_this_project
+
+  - code: brand_uploaded_files
+    kind: file
+    required: false
+    section_name: Brand Assets
+    section_field_order: 3
+    question: Please upload your brand files.
+    hint: Upload your logo, brand guidelines, or any other brand assets (PNG, JPG, PDF, AI, EPS).
+    show_if:
+      field: brand_identity_choice
+      in:
+        - upload_brand_guidelines
+        - upload_logo_assets
+  - code: visual_style
+    kind: checkbox
+    required: true
+    section_name: Style & References
+    section_order: 7
+    section_field_order: 0
+    question: What visual style should this print design have?
+    hint: Choose up to 3.
+    options:
+      - label: Premium
+        value: premium
+      - label: Luxury
+        value: luxury
+      - label: Modern
+        value: modern
+      - label: Minimal
+        value: minimal
+      - label: Bold
+        value: bold
+      - label: Retail
+        value: retail
+      - label: Lifestyle
+        value: lifestyle
+      - label: Editorial
+        value: editorial
+      - label: Clean
+        value: clean
+      - label: High Impact
+        value: high_impact
+      - label: Elegant
+        value: elegant
+      - label: Vibrant
+        value: vibrant
+      - label: Match My Brand Style
+        value: match_my_brand_style
+  - code: inspiration_type
+    kind: checkbox
+    required: false
+    section_name: Style & References
+    section_order: 7
+    section_field_order: 1
+    question: Do you have any inspiration?
+    hint: Share examples you like.
+    options:
+      - label: Upload Images
+        value: upload_images
+      - label: Pinterest Link
+        value: pinterest_link
+      - label: Website Link
+        value: website_link
+      - label: PDF Reference
+        value: pdf_reference
+      - label: Skip
+        value: skip
+  - code: inspiration_links
+    kind: text
+    required: false
+    section_name: Style & References
+    section_order: 7
+    section_field_order: 2
+    question: Provide the reference link(s), or note that you're uploading files.
+    hint: Only if you selected a reference option above (not Skip).
+    show_if:
+      field: inspiration_type
+      not_in:
+        - skip
+  - code: print_size_need
+    kind: radio
+    required: true
+    section_name: Print Specifications
+    section_order: 8
+    section_field_order: 0
+    question: What print size do you need?
+    options:
+      - label: Standard Size
+        value: standard_size
+      - label: Custom Size
+        value: custom_size
+  - code: provide_width_height
+    kind: text
+    required: false
+    section_name: Print Specifications
+    section_order: 8
+    section_field_order: 1
+    question: Provide the width, height, and unit.
+    hint: Only if you selected Custom Size above.
+    show_if:
+      field: print_size_need
+      in:
+        - custom_size
+  - code: orientation_should_design
+    kind: radio
+    required: true
+    section_name: Print Specifications
+    section_order: 8
+    section_field_order: 2
+    question: What orientation should the design be?
+    options:
+      - label: Portrait
+        value: portrait
+      - label: Landscape
+        value: landscape
+      - label: Square
+        value: square
+  - code: singlesided_or_doublesided
+    kind: radio
+    required: true
+    section_name: Print Specifications
+    section_order: 8
+    section_field_order: 3
+    question: Single-sided or double-sided printing?
+    options:
+      - label: Single-Sided
+        value: single_sided
+      - label: Double-Sided
+        value: double_sided
+  - code: any_additional_print
+    kind: text
+    required: false
+    section_name: Print Specifications
+    section_order: 8
+    section_field_order: 4
+    question: Any additional print specifications?
+    hint: 'Examples: Number of pages (Catalogues, Brochures), Fold type (Bi-fold,
+      Tri-fold, Z-fold), dieline available (Packaging). Leave blank if not applicable.'
+  - code: upload_your_printer
+    kind: file
+    required: false
+    section_name: Print Specifications
+    section_order: 8
+    section_field_order: 5
+    question: Upload your printer specifications or dieline.
+    hint: Only if you have these available.
+  - code: copy_language
+    kind: checkbox
+    required: true
+    section_name: Language & Notes
+    section_order: 9
+    section_field_order: 0
+    question: What language should the design use?
+    options:
+      - label: English
+        value: english
+      - label: Hindi
+        value: hindi
+      - label: Tamil
+        value: tamil
+      - label: Telugu
+        value: telugu
+      - label: Malayalam
+        value: malayalam
+      - label: Kannada
+        value: kannada
+      - label: Arabic
+        value: arabic
+      - label: Spanish
+        value: spanish
+      - label: French
+        value: french
+      - label: German
+        value: german
+      - label: Portuguese
+        value: portuguese
+      - label: Chinese
+        value: chinese
+      - label: Japanese
+        value: japanese
+      - label: Korean
+        value: korean
+      - label: Urdu
+        value: urdu
+      - label: Other
+        value: other
+  - code: avoid_notes
+    kind: text
+    required: false
+    section_name: Language & Notes
+    section_order: 9
+    section_field_order: 1
+    question: Is there anything you'd like us to avoid?
+    hint: Mention any colours, imagery, wording, or competitor references you'd prefer
+      not to use.

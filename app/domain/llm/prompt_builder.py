@@ -214,10 +214,10 @@ class PromptBuilder:
             + "\n\nRULES:\n"
             "- Use the EXACT field_code from the list above — never invent new codes.\n"
             "- Call one tool per field. You may call several tools in a single turn.\n"
-            "- If the user's message exactly matches or closely matches an option for an enum field, YOU MUST call `save_enum_field`.\n"
-            "- If the user volunteered a field without being asked, still save it.\n"
-            "- If the user is correcting a field they already gave, save it with confidence=1.0.\n"
-            "- Do NOT call a tool if you are not sure. Only save what is clearly stated.\n"
+            "- ONLY save a field if there is EXPLICIT evidence in the user's current message. Do NOT infer, guess, or assume values.\n"
+            "- If the user did not answer a specific question, do NOT call a save tool for that field. Leave it blank.\n"
+            "- For enum fields, do NOT force a mapping. If their answer is ambiguous or unsupported by the options (e.g. '249 only' is a price, not a 'percentage_discount'), do NOT call save_enum_field.\n"
+            "- Confidence Calibration: Use 1.0 ONLY for exact, explicit answers. Use lower confidence (e.g., 0.6) if you are semantically mapping an indirect answer. If you have no evidence, do NOT extract the field.\n"
             "HONESTY INVARIANTS (enforced — never override):\n"
             "- NEVER use language like 'all set', 'you\\'re good to go', 'we\\'re done', or 'brief is complete' "
             "unless the system explicitly tells you STATUS: BRIEF COMPLETE.\n"
@@ -371,16 +371,36 @@ class PromptBuilder:
         # Explicitly force the LLM to ask the correct next question using recency bias
         if missing_fields and not is_complete:
             next_field = missing_fields[0]
-            messages.append({
-                "role": "user",
-                "content": (
-                    f"[SYSTEM OVERRIDE — MANDATORY DIRECTIVE]: "
-                    f"You MUST ask the user about the following field NOW:\n"
-                    f"[{next_field.field_code}] {next_field.description}\n"
-                    f"Do NOT ask about any other field. Do NOT repeat questions that have already been answered. "
-                    f"Frame your question naturally based on the field description above."
-                )
-            })
+            # Bug 1 fix: When the next field is a file_upload, the LLM cannot ask a regular
+            # text question — instead it must explicitly prompt the user to use the upload button.
+            # A generic 'ask about this field' directive causes the LLM to write a text question
+            # for an upload, which never triggers the actual upload button in the UI.
+            if getattr(next_field, "input_type", "") == "file_upload":
+                messages.append({
+                    "role": "user",
+                    "content": (
+                        f"[SYSTEM OVERRIDE — FILE UPLOAD REQUIRED]: "
+                        f"The next required step is for the user to UPLOAD their files for: [{next_field.field_code}]\n"
+                        f"Field: {next_field.description}\n"
+                        f"You MUST:\n"
+                        f"1. Write ONE short sentence inviting the user to upload their files "
+                        f"(e.g. 'Please go ahead and upload your [asset type] using the upload button below.').\n"
+                        f"2. Be specific about WHAT they should upload based on the field description.\n"
+                        f"3. Do NOT ask any other question. The upload button will appear automatically — "
+                        f"just tell them to use it."
+                    )
+                })
+            else:
+                messages.append({
+                    "role": "user",
+                    "content": (
+                        f"[SYSTEM OVERRIDE — MANDATORY DIRECTIVE]: "
+                        f"You MUST ask the user about the following field NOW:\n"
+                        f"[{next_field.field_code}] {next_field.description}\n"
+                        f"Do NOT ask about any other field. Do NOT repeat questions that have already been answered. "
+                        f"Frame your question naturally based on the field description above."
+                    )
+                })
 
         logger.debug(
             "Phase B prompt built",
@@ -619,17 +639,22 @@ class PromptBuilder:
         # These address the most common extraction failures observed in testing.
         lines.append(
             "\n## EXTRACTION GUARDRAILS (MANDATORY — read before calling any tool)\n"
-            "1. ENUM FIELDS: If the field has a list of allowed values, you MUST map the user's "
-            "answer to the closest matching value from that list. Apply semantic mapping (e.g. if they say 'skip', "
-            "map it to 'none_needed' or 'custom'). NEVER save a free-text sentence for an enum field.\n"
-            "2. LIST FIELDS: For ANY field where the user provides multiple values (e.g. languages, "
+            "1. NO GUESSING: Do NOT assume values for unanswered fields. If the user only answered the current question, ONLY extract the current field. Leave other missing fields alone.\n"
+            "2. ENUM FIELDS: If the field has a list of allowed values, you MUST map the user's "
+            "answer to the closest matching value from that list. Apply semantic mapping carefully. NEVER save a free-text sentence for an enum field.\n"
+            "3. LIST FIELDS: For ANY field where the user provides multiple values (e.g. languages, "
             "distribution_channels, deliverables), save them as a comma-separated string: value=\"val1, val2\".\n"
-            "3. LOW CONFIDENCE: If you are 70% sure about a value, SAVE IT with confidence=0.7. "
-            "Do not skip saving just because you are not 100% certain.\n"
-            "4. MULTI-FIELD: If the user answers multiple fields in one message, call a separate "
+            "4. LOW CONFIDENCE: If you have to infer a value from vague context, you MUST use a low confidence (e.g., 0.3 or 0.4). Do NOT use 1.0 or 0.9 for inferred values.\n"
+            "5. MULTI-FIELD: If the user explicitly answers multiple fields in one message, call a separate "
             "tool for EACH field. Do not bundle them.\n"
-            "5. ALREADY SAVED: Do NOT save a field that has already been saved in previous turns. "
-            "Check the conversation history before calling a save tool."
+            "6. ALREADY SAVED: Do NOT save a field that has already been saved in previous turns. "
+            "Check the conversation history before calling a save tool.\n"
+            # Bug 2 fix: prevent item prices from being hallucinated into offer fields
+            "7. PRICE ≠ OFFER TYPE (CRITICAL): A plain item price or product price (e.g., '₹209', '$15', '249 only') "
+            "is NEVER an offer_type, discount type, or offer detail. Prices are part of item/product descriptions. "
+            "ONLY extract offer_type if the user explicitly says there is a promotion, deal, discount, or offer. "
+            "Example of correct behavior: User says 'launching biriyani at ₹209' → save promoted_item='Biriyani - ₹209', do NOT touch offer_type. "
+            "Example of wrong behavior: User says '₹209 only' → saving offer_type='percentage_discount' is WRONG and FORBIDDEN."
         )
 
         return "\n".join(lines)
@@ -805,7 +830,9 @@ class PromptBuilder:
                 "2. Do NOT recite or summarise the full brief again unless the user explicitly asks "
                 "   (e.g. 'show me the brief', 'what did we capture', 'summarise everything').\n"
                 "3. If the user asks to change or update a field, acknowledge it warmly and note the change.\n"
-                "4. If the user asks a question about the project, answer it from the captured context.\n"
+                "4. CRITICAL: Do NOT offer to brainstorm, create a strategy, or ask any follow-up questions. "
+                "   Your job as a brief collector is done. Simply thank the user enthusiastically, confirm "
+                "   the brief has been sent to the designer, and end the conversation.\n"
                 "5. If the user says they are done, confirm readiness to proceed.\n"
                 "6. NEVER give the same response twice for different questions — your response must "
                 "   be specifically tailored to what was just asked."

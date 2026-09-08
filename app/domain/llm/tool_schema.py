@@ -105,7 +105,10 @@ def get_phase_a_tools(profile: BaseProfile) -> list[dict[str, Any]]:
                         "type": "string",
                         "description": (
                             "The extracted value as a concise string. "
-                            "Preserve the client's own words where possible."
+                            "Preserve the client's own words and rich details. "
+                            "If the user provides a price, offer, or key detail alongside an item, "
+                            "capture the FULL detail (e.g., 'MASALA DUM BIRIYANI - Just for ₹209'). "
+                            "Do NOT strip away prices or important adjectives."
                         ),
                     },
                     "confidence": {
@@ -150,8 +153,14 @@ def get_phase_a_tools(profile: BaseProfile) -> list[dict[str, Any]]:
                     "ONLY use this tool for fields with a defined options list. "
                     "The value you provide should match one of the allowed options as closely as possible. "
                     f"Enum options available: {json.dumps(enum_map, indent=None)}. "
-                    "If the user's answer does not clearly map to an option, do NOT call this tool — "
-                    "instead, respond in Phase B asking them to choose from the options."
+                    "For checkbox/list fields, you MAY pass multiple matching options separated by commas "
+                    "(e.g., 'ill_upload_food_photos, ill_upload_restaurant_ambience_photos'). "
+                    "NEGATIVE INTENT MAPPING: If a field asks about available photos/assets, and the user says "
+                    "they have none (e.g., 'I don't have images', 'no photos'), you MUST map this to "
+                    "'Use Stock Images Where Suitable' or the equivalent stock/designer option. "
+                    "DO NOT FORCE A MATCH otherwise. If the user's answer is vague, ambiguous, or unsupported "
+                    "(e.g., they mention a price like '249' when options are discounts), DO NOT call this tool. "
+                    "CRITICAL NEGATIVE EXAMPLE: User says 'biriyani for ₹209' — this is an item PRICE, NOT an offer type."
                 ),
                 "parameters": {
                     "type": "object",
@@ -324,12 +333,12 @@ def get_phase_a_tools(profile: BaseProfile) -> list[dict[str, Any]]:
 _CONFIDENCE_DESC = (
     "Your confidence that this extracted value correctly represents the field. "
     "Calibrate carefully — do NOT default to 0.9 for everything:\n"
-    "• 0.95–1.0: User selected an option directly or stated the exact value verbatim, "
-    "or is explicitly correcting/updating a previously captured field.\n"
+    "• 0.95–1.0: User selected an option directly or stated the exact value verbatim. NEVER use 1.0 for inferences.\n"
     "• 0.80–0.94: Clear and unambiguous but required minor interpretation.\n"
     "• 0.60–0.79: Answer present but paraphrased or partial.\n"
     "• 0.40–0.59: Vague or hedged — guessing intent.\n"
-    "• 0.10–0.39: Highly uncertain — inferring from indirect context."
+    "• 0.10–0.39: Highly uncertain — inferring from indirect context (e.g., inferring offer_type from a price). "
+    "If you have to guess, use a confidence below 0.5 so the system can ask for clarification."
 )
 
 

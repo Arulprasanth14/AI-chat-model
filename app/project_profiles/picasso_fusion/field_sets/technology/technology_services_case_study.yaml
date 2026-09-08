@@ -2,183 +2,183 @@ template_key: technology_services_case_study
 template_label: Case Study
 vertical: technology
 template_name_match:
-- case study
+  - case study
 fields:
-- code: CS1
-  kind: text
-  required: true
-  section_name: Story Overview
-  section_order: 0
-  section_field_order: 0
-  question: What project, client, or success story is this case study about?
-  hint: Provide a brief overview of the project.
-- code: CS2
-  kind: text
-  required: true
-  section_name: Story Overview
-  section_order: 0
-  section_field_order: 1
-  question: What challenge or problem was being addressed?
-  hint: What was the situation before your solution was implemented?
-- code: CS3
-  kind: text
-  required: true
-  section_name: Story Overview
-  section_order: 0
-  section_field_order: 2
-  question: What solution was provided?
-  hint: Describe the service, product, or approach that solved the problem.
-- code: CS4
-  kind: text
-  required: true
-  section_name: Story Overview
-  section_order: 0
-  section_field_order: 3
-  question: What results or outcomes should be highlighted?
-  hint: Include metrics, achievements, testimonials, or measurable impact.
-- code: CS5
-  kind: text
-  required: true
-  section_name: Content & Assets
-  section_order: 1
-  section_field_order: 0
-  question: What copy/text should appear on this one-pager?
-  hint: Please provide final content. Late copy changes may require additional revisions.
-- code: CS6
-  kind: radio
-  required: true
-  section_name: Content & Assets
-  section_order: 1
-  section_field_order: 1
-  question: Do you have photography, screenshots, charts, or visuals for this case
-    study?
-  hint: Print assets should be a minimum of 300 DPI at final print size.
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-- code: CS7
-  kind: file
-  required: false
-  section_name: Content & Assets
-  section_order: 1
-  section_field_order: 2
-  question: Upload print-ready images, screenshots, or charts.
-  hint: Only if you have photography, screenshots, charts, or visuals.
-- code: CS8
-  kind: radio
-  required: true
-  section_name: Design Direction
-  section_order: 2
-  section_field_order: 0
-  question: Any reference designs or inspiration?
-  hint: Share examples you like, competitor materials, or previous case studies.
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-- code: CS9
-  kind: file
-  required: false
-  section_name: Design Direction
-  section_order: 2
-  section_field_order: 1
-  question: Upload reference designs, up to 3.
-  hint: Only if you said yes to reference designs above.
-  show_if:
-    field: CS8
-    in:
-    - 'yes'
-- code: CS10
-  kind: radio
-  required: true
-  section_name: Design Direction
-  section_order: 2
-  section_field_order: 2
-  question: Describe the visual style you'd like.
-  options:
-  - label: Professional
-    value: professional
-  - label: Corporate
-    value: corporate
-  - label: Premium
-    value: premium
-  - label: Modern
-    value: modern
-  - label: Minimal
-    value: minimal
-  - label: Bold
-    value: bold
-  - label: Data-Focused
-    value: data_focused
-  - label: Other
-    value: other
-- code: CS11
-  kind: radio
-  required: true
-  section_name: Call to Action
-  section_order: 3
-  section_field_order: 0
-  question: What action should readers take after viewing this case study?
-  options:
-  - label: Contact Us
-    value: contact_us
-  - label: Book a Consultation
-    value: book_a_consultation
-  - label: Visit Our Website
-    value: visit_our_website
-  - label: Scan a QR Code
-    value: scan_a_qr_code
-  - label: Other
-    value: other
-- code: CS12
-  kind: text
-  required: false
-  section_name: Call to Action
-  section_order: 3
-  section_field_order: 1
-  question: What is the destination URL for the QR code?
-  hint: Only if you selected Scan a QR Code above.
-  show_if:
-    field: CS11
-    in:
-    - scan_a_qr_code
-    - scan_qr_code
-- code: CS13
-  kind: radio
-  required: true
-  section_name: Production Requirements
-  section_order: 4
-  section_field_order: 0
-  question: What size should the case study be?
-  options:
-  - label: A4
-    value: a4
-  - label: US Letter
-    value: us_letter
-  - label: A5
-    value: a5
-  - label: Custom
-    value: custom
-- code: CS14
-  kind: radio
-  required: true
-  section_name: Production Requirements
-  section_order: 4
-  section_field_order: 1
-  question: Single-sided or double-sided?
-  options:
-  - label: Single-Sided
-    value: single_sided
-  - label: Double-Sided
-    value: double_sided
-- code: CS15
-  kind: text
-  required: false
-  section_name: Production Requirements
-  section_order: 4
-  section_field_order: 2
-  question: Any technical or print-specific requirements?
-  hint: "Leave blank if unsure \u2014 we'll use standard print specifications."
+  - code: project_client_or
+    kind: text
+    required: true
+    section_name: Story Overview
+    section_order: 0
+    section_field_order: 0
+    question: What project, client, or success story is this case study about?
+    hint: Provide a brief overview of the project.
+  - code: challenge_or_problem
+    kind: text
+    required: true
+    section_name: Story Overview
+    section_order: 0
+    section_field_order: 1
+    question: What challenge or problem was being addressed?
+    hint: What was the situation before your solution was implemented?
+  - code: solution_was_provided
+    kind: text
+    required: true
+    section_name: Story Overview
+    section_order: 0
+    section_field_order: 2
+    question: What solution was provided?
+    hint: Describe the service, product, or approach that solved the problem.
+  - code: results_or_outcomes
+    kind: text
+    required: true
+    section_name: Story Overview
+    section_order: 0
+    section_field_order: 3
+    question: What results or outcomes should be highlighted?
+    hint: Include metrics, achievements, testimonials, or measurable impact.
+  - code: copytext_should_appear
+    kind: text
+    required: true
+    section_name: Content & Assets
+    section_order: 1
+    section_field_order: 0
+    question: What copy/text should appear on this one-pager?
+    hint: Please provide final content. Late copy changes may require additional revisions.
+  - code: have_photography_screenshots
+    kind: radio
+    required: true
+    section_name: Content & Assets
+    section_order: 1
+    section_field_order: 1
+    question: Do you have photography, screenshots, charts, or visuals for this case
+      study?
+    hint: Print assets should be a minimum of 300 DPI at final print size.
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+  - code: upload_printready_images
+    kind: file
+    required: false
+    section_name: Content & Assets
+    section_order: 1
+    section_field_order: 2
+    question: Upload print-ready images, screenshots, or charts.
+    hint: Only if you have photography, screenshots, charts, or visuals.
+  - code: inspiration_type
+    kind: radio
+    required: true
+    section_name: Design Direction
+    section_order: 2
+    section_field_order: 0
+    question: Any reference designs or inspiration?
+    hint: Share examples you like, competitor materials, or previous case studies.
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+  - code: upload_references
+    kind: file
+    required: false
+    section_name: Design Direction
+    section_order: 2
+    section_field_order: 1
+    question: Upload reference designs, up to 3.
+    hint: Only if you said yes to reference designs above.
+    show_if:
+      field: inspiration_type
+      in:
+        - 'yes'
+  - code: visual_style
+    kind: radio
+    required: true
+    section_name: Design Direction
+    section_order: 2
+    section_field_order: 2
+    question: Describe the visual style you'd like.
+    options:
+      - label: Professional
+        value: professional
+      - label: Corporate
+        value: corporate
+      - label: Premium
+        value: premium
+      - label: Modern
+        value: modern
+      - label: Minimal
+        value: minimal
+      - label: Bold
+        value: bold
+      - label: Data-Focused
+        value: data_focused
+      - label: Other
+        value: other
+  - code: action_should_readers
+    kind: radio
+    required: true
+    section_name: Call to Action
+    section_order: 3
+    section_field_order: 0
+    question: What action should readers take after viewing this case study?
+    options:
+      - label: Contact Us
+        value: contact_us
+      - label: Book a Consultation
+        value: book_a_consultation
+      - label: Visit Our Website
+        value: visit_our_website
+      - label: Scan a QR Code
+        value: scan_a_qr_code
+      - label: Other
+        value: other
+  - code: destination_url_for
+    kind: text
+    required: false
+    section_name: Call to Action
+    section_order: 3
+    section_field_order: 1
+    question: What is the destination URL for the QR code?
+    hint: Only if you selected Scan a QR Code above.
+    show_if:
+      field: action_should_readers
+      in:
+        - scan_a_qr_code
+        - scan_qr_code
+  - code: size_should_case
+    kind: radio
+    required: true
+    section_name: Production Requirements
+    section_order: 4
+    section_field_order: 0
+    question: What size should the case study be?
+    options:
+      - label: A4
+        value: a4
+      - label: US Letter
+        value: us_letter
+      - label: A5
+        value: a5
+      - label: Custom
+        value: custom
+  - code: singlesided_or_doublesided
+    kind: radio
+    required: true
+    section_name: Production Requirements
+    section_order: 4
+    section_field_order: 1
+    question: Single-sided or double-sided?
+    options:
+      - label: Single-Sided
+        value: single_sided
+      - label: Double-Sided
+        value: double_sided
+  - code: any_technical_or
+    kind: text
+    required: false
+    section_name: Production Requirements
+    section_order: 4
+    section_field_order: 2
+    question: Any technical or print-specific requirements?
+    hint: "Leave blank if unsure \u2014 we'll use standard print specifications."

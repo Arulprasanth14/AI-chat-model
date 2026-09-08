@@ -547,7 +547,6 @@ export default function App() {
     error,
     sendMessage,
     uploadDocuments,
-    directFieldWrite,
     sessionId,
     clearSession,
   } = useChat();
@@ -617,26 +616,16 @@ export default function App() {
     sendMessage(text, chatContext ?? undefined);
   };
 
-  // Bug 4+5 fix: handleChipSelect — for single-select enum fields, directly write
-  // the selected value to the backend at confidence=1.0, then trigger a hidden Phase B
-  // turn so the AI acknowledges the save and asks the next question.
-  // For multi-select (list) fields, toggle in the input box and submit via Send button.
-  const handleChipSelect = async (fieldCode: string, value: string, isMultiSelect: boolean) => {
+
+
+  // For both single-select and multi-select, toggle in input box.
+  const handleChipSelect = async (value: string, isMultiSelect: boolean) => {
     if (isStreaming) return;
 
     if (!isMultiSelect) {
-      // Single-select: write directly (bypass LLM), then trigger AI response
-      const result = await directFieldWrite(fieldCode, value);
-      if (result.status === "saved" || result.status === "ok") {
-        // Clear any chip selection from input box
-        setInput("");
-        // Hidden message: Phase B sees the save outcome and asks next question
-        await sendMessage(
-          `__field_saved__:${fieldCode}:${value}`,
-          undefined,
-          true // hidden from user
-        );
-      }
+      // Single-select: toggle in input box (replace any existing text)
+      setInput((prev) => prev === value ? "" : value);
+      setTimeout(() => textareaRef.current?.focus(), 50);
     } else {
       // Multi-select: toggle in input box, user presses Send to submit
       setInput((prev) => {
@@ -764,30 +753,37 @@ export default function App() {
                           : [];
 
                         return (
-                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginLeft: '60px', marginTop: '4px', marginBottom: '16px' }}>
-                            {options.map((opt) => {
-                              const isSelected = isMultiSelect && selectedItems.includes(opt.value);
-                              return (
-                                <button
-                                  key={opt.value}
-                                  style={{
-                                    padding: '6px 14px',
-                                    fontSize: '13px',
-                                    borderRadius: '16px',
-                                    border: isSelected ? '1px solid #007bff' : '1px solid #e0e0e0',
-                                    background: isSelected ? '#007bff' : '#fff',
-                                    color: isSelected ? '#fff' : '#333',
-                                    cursor: isStreaming ? 'not-allowed' : 'pointer',
-                                    opacity: isStreaming ? 0.5 : 1,
-                                  }}
-                                  disabled={isStreaming}
-                                  onClick={() => handleChipSelect(nextField.field_code, opt.value, isMultiSelect)}
-                                >
-                                  {opt.label}
-                                </button>
-                              );
-                            })}
-                          </div>
+                          <div style={{ marginLeft: '60px', marginTop: '4px', marginBottom: '16px' }}>
+                            {/* Chip row */}
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                {options.map((opt) => {
+                                  const isMultiSelected = isMultiSelect && selectedItems.includes(opt.value);
+                                  const isSingleSelected = !isMultiSelect && input.trim() === opt.value;
+                                  const isHighlighted = isMultiSelected || isSingleSelected;
+                                  return (
+                                    <button
+                                      key={opt.value}
+                                      style={{
+                                        padding: '6px 14px',
+                                        fontSize: '13px',
+                                        borderRadius: '16px',
+                                        border: isHighlighted ? '2px solid #007bff' : '1px solid #e0e0e0',
+                                        background: isHighlighted ? '#e8f0fe' : '#fff',
+                                        color: isHighlighted ? '#1a56db' : '#333',
+                                        fontWeight: isHighlighted ? 600 : 400,
+                                        cursor: isStreaming ? 'not-allowed' : 'pointer',
+                                        opacity: isStreaming ? 0.5 : 1,
+                                      transition: 'all 0.15s ease',
+                                    }}
+                                    disabled={isStreaming}
+                                    onClick={() => handleChipSelect(opt.value, isMultiSelect)}
+                                  >
+                                    {opt.label}
+                                  </button>
+                                );
+                              })}
+                              </div>
+                            </div>
                         );
                       })()}
                     </div>

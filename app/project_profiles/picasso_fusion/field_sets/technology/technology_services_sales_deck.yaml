@@ -2,289 +2,291 @@ template_key: technology_services_sales_deck
 template_label: "Sales Deck \u2014 Presentation"
 vertical: technology
 template_name_match:
-- sales deck
-- sales presentation
-- "presentation deck \u2014 sales"
-- sales pitch deck
+  - sales deck
+  - sales presentation
+  - "presentation deck \u2014 sales"
+  - sales pitch deck
 fields:
-- code: SD1
-  kind: checkbox
-  required: true
-  section_name: Presentation Goal
-  section_order: 0
-  section_field_order: 0
-  question: What is the primary goal of this sales presentation?
-  hint: 'Examples: Generate leads, close a sale, secure a meeting, pitch a service,
-    introduce a product, win a contract.'
-  options:
-  - label: Generate Leads
-    value: generate_leads
-  - label: Close a Sale
-    value: close_a_sale
-  - label: Secure a Meeting
-    value: secure_a_meeting
-  - label: Pitch a Service
-    value: pitch_a_service
-  - label: Introduce a Product
-    value: introduce_a_product
-  - label: Win a Contract
-    value: win_a_contract
-  - label: Other
-    value: other
-- code: SD2
-  kind: checkbox
-  required: true
-  section_name: Presentation Goal
-  section_order: 0
-  section_field_order: 1
-  question: Who is the target audience?
-  hint: 'Examples: Small business owners, enterprise buyers, HR managers, procurement
-    teams, retailers, investors, healthcare professionals, etc. This is one of the
-    most important questions because the design and messaging should be tailored to
-    the audience.'
-  options:
-  - label: Small Business Owners
-    value: small_business_owners
-  - label: Enterprise Buyers
-    value: enterprise_buyers
-  - label: HR Managers
-    value: hr_managers
-  - label: Procurement Teams
-    value: procurement_teams
-  - label: Retailers
-    value: retailers
-  - label: Investors
-    value: investors
-  - label: Healthcare Professionals
-    value: healthcare_professionals
-  - label: Other
-    value: other
-- code: SD3
-  kind: text
-  required: true
-  section_name: Product / Service Information
-  section_order: 1
-  section_field_order: 0
-  question: What product, service, or solution are you presenting?
-  hint: Provide a brief description of the offering.
-- code: SD4
-  kind: text
-  required: true
-  section_name: Product / Service Information
-  section_order: 1
-  section_field_order: 1
-  question: What are the key benefits or selling points?
-  hint: List the most important features, benefits, or competitive advantages to highlight.
-- code: SD5
-  kind: radio
-  required: true
-  section_name: Product / Service Information
-  section_order: 1
-  section_field_order: 2
-  question: Are there any offers, pricing details, memberships, or promotions to include?
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-- code: SD6
-  kind: text
-  required: false
-  section_name: Product / Service Information
-  section_order: 1
-  section_field_order: 3
-  question: What are the offer details?
-  hint: Pricing, offer terms, dates, what's included, and any conditions. Only if
-    you said yes above.
-  show_if:
-    field: SD5
-    in:
-    - 'yes'
-- code: SD7
-  kind: radio
-  required: true
-  section_name: Content
-  section_order: 2
-  section_field_order: 0
-  question: Do you already have presentation content prepared?
-  options:
-  - label: Yes, Complete Content Ready
-    value: complete_content_ready
-  - label: Partial Content Available
-    value: partial_content_available
-  - label: Need Help Structuring Content
-    value: need_help_structuring_content
-  - label: Need Help Writing Content
-    value: need_help_writing_content
-- code: SD8
-  kind: file
-  required: false
-  section_name: Content
-  section_order: 2
-  section_field_order: 1
-  question: Upload your presentation content, notes, or existing deck.
-  hint: 'Accepted formats: PPTX, PDF, DOCX, Google Slides export. Only if you have
-    existing content.'
-- code: SD9
-  kind: radio
-  required: true
-  section_name: Assets
-  section_order: 3
-  section_field_order: 0
-  question: Do you have photography, product screenshots, charts, case studies, or
-    visuals to include?
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-- code: SD10
-  kind: file
-  required: false
-  section_name: Assets
-  section_order: 3
-  section_field_order: 1
-  question: Upload available assets.
-  hint: Only if you have photography, product screenshots, charts, case studies, or
-    visuals.
-- code: SD11
-  kind: radio
-  required: true
-  section_name: Call to Action
-  section_order: 4
-  section_field_order: 0
-  question: What action should the audience take after viewing the presentation?
-  hint: 'Examples: Book a demo, Request a proposal, Contact sales, Start a trial,
-    Schedule a meeting.'
-  options:
-  - label: Book a Demo
-    value: book_a_demo
-  - label: Request a Proposal
-    value: request_a_proposal
-  - label: Contact Sales
-    value: contact_sales
-  - label: Start a Trial
-    value: start_a_trial
-  - label: Schedule a Meeting
-    value: schedule_a_meeting
-  - label: Other
-    value: other
-- code: SD12
-  kind: radio
-  required: true
-  section_name: Call to Action
-  section_order: 4
-  section_field_order: 1
-  question: Will the presentation include a QR code?
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-- code: SD13
-  kind: text
-  required: false
-  section_name: Call to Action
-  section_order: 4
-  section_field_order: 2
-  question: What is the destination URL for the QR code?
-  hint: Only if you said yes above.
-  show_if:
-    field: SD12
-    in:
-    - 'yes'
-- code: SD14
-  kind: radio
-  required: true
-  section_name: Design Direction
-  section_order: 5
-  section_field_order: 0
-  question: Any presentation designs or inspiration you'd like us to reference?
-  hint: Competitors, industry leaders, previous presentations, or styles you admire.
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-- code: SD15
-  kind: file
-  required: false
-  section_name: Design Direction
-  section_order: 5
-  section_field_order: 1
-  question: Upload reference presentations, up to 3.
-  hint: Only if you said yes to reference designs above.
-  show_if:
-    field: SD14
-    in:
-    - 'yes'
-- code: SD16
-  kind: radio
-  required: true
-  section_name: Design Direction
-  section_order: 5
-  section_field_order: 2
-  question: Describe the presentation style you'd like.
-  hint: 'Examples: Corporate, premium, modern SaaS, bold, minimal, enterprise, data-driven,
-    luxury.'
-  options:
-  - label: Corporate
-    value: corporate
-  - label: Premium
-    value: premium
-  - label: Modern SaaS
-    value: modern_saas
-  - label: Bold
-    value: bold
-  - label: Minimal
-    value: minimal
-  - label: Enterprise
-    value: enterprise
-  - label: Data-Driven
-    value: data_driven
-  - label: Luxury
-    value: luxury
-  - label: Other
-    value: other
-- code: SD17
-  kind: radio
-  required: true
-  section_name: Delivery Requirements
-  section_order: 6
-  section_field_order: 0
-  question: Will this presentation be presented live or shared as a standalone deck?
-  hint: This is a critical question because live presentations use less text, while
-    standalone decks require more context.
-  options:
-  - label: Presented Live
-    value: presented_live
-  - label: Shared for Reading
-    value: shared_for_reading
-  - label: Both
-    value: both
-- code: SD18
-  kind: radio
-  required: true
-  section_name: Delivery Requirements
-  section_order: 6
-  section_field_order: 1
-  question: What format would you like delivered?
-  options:
-  - label: PowerPoint (.pptx)
-    value: powerpoint_pptx
-  - label: Google Slides
-    value: google_slides
-  - label: Keynote
-    value: keynote
-  - label: PDF
-    value: pdf
-  - label: Multiple Formats
-    value: multiple_formats
-- code: SD19
-  kind: text
-  required: false
-  section_name: Delivery Requirements
-  section_order: 6
-  section_field_order: 2
-  question: Any technical or presentation-specific requirements?
-  hint: Leave blank if unsure.
+  - code: post_goal
+    kind: checkbox
+    required: true
+    section_name: Presentation Goal
+    section_order: 0
+    section_field_order: 0
+    question: What is the primary goal of this sales presentation?
+    hint: 'Examples: Generate leads, close a sale, secure a meeting, pitch a service,
+      introduce a product, win a contract.'
+    options:
+      - label: Generate Leads
+        value: generate_leads
+      - label: Close a Sale
+        value: close_a_sale
+      - label: Secure a Meeting
+        value: secure_a_meeting
+      - label: Pitch a Service
+        value: pitch_a_service
+      - label: Introduce a Product
+        value: introduce_a_product
+      - label: Win a Contract
+        value: win_a_contract
+      - label: Other
+        value: other
+  - code: who_target_audience
+    kind: checkbox
+    required: true
+    section_name: Presentation Goal
+    section_order: 0
+    section_field_order: 1
+    question: Who is the target audience?
+    hint: 'Examples: Small business owners, enterprise buyers, HR managers, procurement
+      teams, retailers, investors, healthcare professionals, etc. This is one of the
+      most important questions because the design and messaging should be tailored
+      to the audience.'
+    options:
+      - label: Small Business Owners
+        value: small_business_owners
+      - label: Enterprise Buyers
+        value: enterprise_buyers
+      - label: HR Managers
+        value: hr_managers
+      - label: Procurement Teams
+        value: procurement_teams
+      - label: Retailers
+        value: retailers
+      - label: Investors
+        value: investors
+      - label: Healthcare Professionals
+        value: healthcare_professionals
+      - label: Other
+        value: other
+  - code: product_service_or
+    kind: text
+    required: true
+    section_name: Product / Service Information
+    section_order: 1
+    section_field_order: 0
+    question: What product, service, or solution are you presenting?
+    hint: Provide a brief description of the offering.
+  - code: key_benefits_or
+    kind: text
+    required: true
+    section_name: Product / Service Information
+    section_order: 1
+    section_field_order: 1
+    question: What are the key benefits or selling points?
+    hint: List the most important features, benefits, or competitive advantages to
+      highlight.
+  - code: there_any_offers
+    kind: radio
+    required: true
+    section_name: Product / Service Information
+    section_order: 1
+    section_field_order: 2
+    question: Are there any offers, pricing details, memberships, or promotions to
+      include?
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+  - code: offer_details
+    kind: text
+    required: false
+    section_name: Product / Service Information
+    section_order: 1
+    section_field_order: 3
+    question: What are the offer details?
+    hint: Pricing, offer terms, dates, what's included, and any conditions. Only if
+      you said yes above.
+    show_if:
+      field: there_any_offers
+      in:
+        - 'yes'
+  - code: already_have_presentation
+    kind: radio
+    required: true
+    section_name: Content
+    section_order: 2
+    section_field_order: 0
+    question: Do you already have presentation content prepared?
+    options:
+      - label: Yes, Complete Content Ready
+        value: complete_content_ready
+      - label: Partial Content Available
+        value: partial_content_available
+      - label: Need Help Structuring Content
+        value: need_help_structuring_content
+      - label: Need Help Writing Content
+        value: need_help_writing_content
+  - code: upload_your_presentation
+    kind: file
+    required: false
+    section_name: Content
+    section_order: 2
+    section_field_order: 1
+    question: Upload your presentation content, notes, or existing deck.
+    hint: 'Accepted formats: PPTX, PDF, DOCX, Google Slides export. Only if you have
+      existing content.'
+  - code: have_photography_product
+    kind: radio
+    required: true
+    section_name: Assets
+    section_order: 3
+    section_field_order: 0
+    question: Do you have photography, product screenshots, charts, case studies,
+      or visuals to include?
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+  - code: upload_available_assets
+    kind: file
+    required: false
+    section_name: Assets
+    section_order: 3
+    section_field_order: 1
+    question: Upload available assets.
+    hint: Only if you have photography, product screenshots, charts, case studies,
+      or visuals.
+  - code: action_should_audience
+    kind: radio
+    required: true
+    section_name: Call to Action
+    section_order: 4
+    section_field_order: 0
+    question: What action should the audience take after viewing the presentation?
+    hint: 'Examples: Book a demo, Request a proposal, Contact sales, Start a trial,
+      Schedule a meeting.'
+    options:
+      - label: Book a Demo
+        value: book_a_demo
+      - label: Request a Proposal
+        value: request_a_proposal
+      - label: Contact Sales
+        value: contact_sales
+      - label: Start a Trial
+        value: start_a_trial
+      - label: Schedule a Meeting
+        value: schedule_a_meeting
+      - label: Other
+        value: other
+  - code: will_presentation_include
+    kind: radio
+    required: true
+    section_name: Call to Action
+    section_order: 4
+    section_field_order: 1
+    question: Will the presentation include a QR code?
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+  - code: destination_url_for
+    kind: text
+    required: false
+    section_name: Call to Action
+    section_order: 4
+    section_field_order: 2
+    question: What is the destination URL for the QR code?
+    hint: Only if you said yes above.
+    show_if:
+      field: will_presentation_include
+      in:
+        - 'yes'
+  - code: inspiration_type
+    kind: radio
+    required: true
+    section_name: Design Direction
+    section_order: 5
+    section_field_order: 0
+    question: Any presentation designs or inspiration you'd like us to reference?
+    hint: Competitors, industry leaders, previous presentations, or styles you admire.
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+  - code: upload_references
+    kind: file
+    required: false
+    section_name: Design Direction
+    section_order: 5
+    section_field_order: 1
+    question: Upload reference presentations, up to 3.
+    hint: Only if you said yes to reference designs above.
+    show_if:
+      field: inspiration_type
+      in:
+        - 'yes'
+  - code: describe_presentation_style
+    kind: radio
+    required: true
+    section_name: Design Direction
+    section_order: 5
+    section_field_order: 2
+    question: Describe the presentation style you'd like.
+    hint: 'Examples: Corporate, premium, modern SaaS, bold, minimal, enterprise, data-driven,
+      luxury.'
+    options:
+      - label: Corporate
+        value: corporate
+      - label: Premium
+        value: premium
+      - label: Modern SaaS
+        value: modern_saas
+      - label: Bold
+        value: bold
+      - label: Minimal
+        value: minimal
+      - label: Enterprise
+        value: enterprise
+      - label: Data-Driven
+        value: data_driven
+      - label: Luxury
+        value: luxury
+      - label: Other
+        value: other
+  - code: will_this_presentation
+    kind: radio
+    required: true
+    section_name: Delivery Requirements
+    section_order: 6
+    section_field_order: 0
+    question: Will this presentation be presented live or shared as a standalone deck?
+    hint: This is a critical question because live presentations use less text, while
+      standalone decks require more context.
+    options:
+      - label: Presented Live
+        value: presented_live
+      - label: Shared for Reading
+        value: shared_for_reading
+      - label: Both
+        value: both
+  - code: format_would_like
+    kind: radio
+    required: true
+    section_name: Delivery Requirements
+    section_order: 6
+    section_field_order: 1
+    question: What format would you like delivered?
+    options:
+      - label: PowerPoint (.pptx)
+        value: powerpoint_pptx
+      - label: Google Slides
+        value: google_slides
+      - label: Keynote
+        value: keynote
+      - label: PDF
+        value: pdf
+      - label: Multiple Formats
+        value: multiple_formats
+  - code: any_technical_or
+    kind: text
+    required: false
+    section_name: Delivery Requirements
+    section_order: 6
+    section_field_order: 2
+    question: Any technical or presentation-specific requirements?
+    hint: Leave blank if unsure.

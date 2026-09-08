@@ -9,15 +9,21 @@ load_dotenv()
 from app.domain.conversation.orchestrator import ConversationOrchestrator
 from app.domain.conversation.structural_resolver import StructuralResolver
 from app.domain.llm.openai_provider import OpenAIProvider
-from app.domain.llm.prompt_builder import PromptBuilder, RetrievedChunk
+from app.domain.llm.prompt_builder import PromptBuilder
 from app.domain.rag.retriever import RAGRetriever
 from app.domain.rag.vector_store import VectorSearchResult
 from app.infrastructure.persistence.session_repository import InMemorySessionRepository
 from app.project_profiles.base_profile import BaseProfile
 from tests.evaluation.conftest import ConfigurableMockVectorStore, MockEmbedder
 from tests.evaluation.conftest import evaluate_answer_relevance, evaluate_faithfulness
+from typing import TypedDict
 
-test_cases = [
+class BenchmarkTestCase(TypedDict):
+    user_msg: str
+    expected_topic: str
+    chunks: list[VectorSearchResult]
+
+test_cases: list[BenchmarkTestCase] = [
     {
         "user_msg": "My company is Acme Corp and our budget is $15,000 for a static post.",
         "expected_topic": "project_type", 
@@ -82,6 +88,7 @@ async def run_benchmark():
         )
         
         assistant_text = ""
+        sid: str | None = None
         import json
         async for event in orch.process_turn(session_id=None, user_message=tc["user_msg"]):
             raw = event.replace("data: ", "").strip()
@@ -92,11 +99,13 @@ async def run_benchmark():
             except Exception:
                 pass
         
-        session = await repo.get_session(sid)
-        for turn in reversed(session.conversation_history):
-            if turn["role"] == "assistant":
-                assistant_text = turn["content"]
-                break
+        if sid is not None:
+            session = await repo.get_session(sid)
+            if session is not None:
+                for turn in reversed(session.conversation_history):
+                    if turn["role"] == "assistant":
+                        assistant_text = turn["content"]
+                        break
         
         print(f"\n--- Case {i+1} ---")
         print(f"USER: {tc['user_msg']}")

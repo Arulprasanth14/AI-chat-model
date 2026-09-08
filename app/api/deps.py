@@ -254,13 +254,18 @@ def _make_profile_provider(
 
     def provider(state: ConversationState) -> BaseProfile:
         def _inject_globals(fields: list) -> list:
-            client_name = base_profile.get_field_by_code("client_name")
-            if client_name and not any(f.code == "client_name" for f in fields):
-                fields.insert(0, client_name)
+            brand_name = base_profile.get_field_by_code("brand_name")
+            if brand_name and not any(f.code == "brand_name" for f in fields):
+                fields.insert(0, brand_name)
                 
             existing = base_profile.get_field_by_code("existing_assets")
             if existing and not any(f.code == "existing_assets" for f in fields):
                 fields.append(existing)
+                
+            deadline = base_profile.get_field_by_code("project_deadline")
+            if deadline and not any(f.code == "project_deadline" for f in fields):
+                fields.append(deadline)
+                
             return fields
 
         # If we already resolved a template, try loading it

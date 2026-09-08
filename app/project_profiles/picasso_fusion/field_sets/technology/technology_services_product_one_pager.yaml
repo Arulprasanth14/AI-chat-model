@@ -2,226 +2,245 @@ template_key: technology_services_product_one_pager
 template_label: Product One-Pager
 vertical: technology
 template_name_match:
-- product one-pager
-- product one pager
-- sell sheet
-- one-pager
-- one pager
+  - product one-pager
+  - product one pager
+  - sell sheet
+  - one-pager
+  - one pager
 fields:
-- code: PP1
-  kind: text
-  required: true
-  section_name: One-Pager Overview
-  section_order: 0
-  section_field_order: 0
-  question: What product, service, or offering is this one-pager promoting?
-  hint: Provide the product/service name and a brief description.
-- code: PP2
-  kind: text
-  required: true
-  section_name: One-Pager Overview
-  section_order: 0
-  section_field_order: 1
-  question: What are the key benefits or selling points?
-  hint: List the most important features, benefits, or differentiators to highlight.
-- code: PP3
-  kind: checkbox
-  required: true
-  section_name: One-Pager Overview
-  section_order: 0
-  section_field_order: 2
-  question: Who is the target audience?
-  hint: 'Examples: Consumers, retailers, distributors, investors, enterprise buyers,
-    healthcare professionals, etc.'
-  options:
-  - label: Consumers
-    value: consumers
-  - label: Retailers
-    value: retailers
-  - label: Distributors
-    value: distributors
-  - label: Investors
-    value: investors
-  - label: Enterprise Buyers
-    value: enterprise_buyers
-  - label: Healthcare Professionals
-    value: healthcare_professionals
-  - label: Other
-    value: other
-- code: PP4
-  kind: radio
-  required: true
-  section_name: Offer Details (Optional)
-  section_order: 1
-  section_field_order: 0
-  question: Is there a specific offer, promotion, membership, or pricing information
-    to include?
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-- code: PP5
-  kind: text
-  required: false
-  section_name: Offer Details (Optional)
-  section_order: 1
-  section_field_order: 1
-  question: What are the offer details?
-  hint: Offer, dates, what's included, pricing, and any conditions. Only if you said
-    yes above.
-  show_if:
-    field: PP4
-    in:
-    - 'yes'
-- code: PP6
-  kind: text
-  required: true
-  section_name: Content & Assets
-  section_order: 2
-  section_field_order: 0
-  question: What copy/text should appear on this one-pager?
-  hint: Please provide final content. Late copy changes may require additional revisions.
-- code: PP7
-  kind: radio
-  required: true
-  section_name: Content & Assets
-  section_order: 2
-  section_field_order: 1
-  question: Do you have photography, product images, screenshots, or other visuals?
-  hint: Print assets should be a minimum of 300 DPI at final print size.
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-- code: PP8
-  kind: file
-  required: false
-  section_name: Content & Assets
-  section_order: 2
-  section_field_order: 2
-  question: Upload print-ready images.
-  hint: Only if you have photography, product images, screenshots, or other visuals.
-- code: PP9
-  kind: radio
-  required: true
-  section_name: Call to Action
-  section_order: 3
-  section_field_order: 0
-  question: What action should readers take after viewing this one-pager?
-  options:
-  - label: Visit Website
-    value: visit_website
-  - label: Request a Demo
-    value: request_a_demo
-  - label: Contact Sales
-    value: contact_sales
-  - label: Call Now
-    value: call_now
-  - label: Scan QR Code
-    value: scan_qr_code
-  - label: Other
-    value: other
-- code: PP10
-  kind: text
-  required: false
-  section_name: Call to Action
-  section_order: 3
-  section_field_order: 1
-  question: What is the destination URL for the QR code?
-  hint: Only if you selected Scan QR Code above.
-  show_if:
-    field: PP9
-    in:
-    - scan_a_qr_code
-    - scan_qr_code
-- code: PP11
-  kind: radio
-  required: true
-  section_name: Design Direction
-  section_order: 4
-  section_field_order: 0
-  question: Any reference designs or inspiration?
-  hint: Competitors, favourite brands, previous sell sheets, or examples you admire.
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-- code: PP12
-  kind: file
-  required: false
-  section_name: Design Direction
-  section_order: 4
-  section_field_order: 1
-  question: Upload reference designs, up to 3.
-  hint: Only if you said yes to reference designs above.
-  show_if:
-    field: PP11
-    in:
-    - 'yes'
-- code: PP13
-  kind: radio
-  required: true
-  section_name: Design Direction
-  section_order: 4
-  section_field_order: 2
-  question: Describe the visual style you'd like.
-  hint: 'Examples: Premium, corporate, modern, bold, minimal, technical, luxury, retail-focused.'
-  options:
-  - label: Premium
-    value: premium
-  - label: Corporate
-    value: corporate
-  - label: Modern
-    value: modern
-  - label: Bold
-    value: bold
-  - label: Minimal
-    value: minimal
-  - label: Technical
-    value: technical
-  - label: Luxury
-    value: luxury
-  - label: Retail-Focused
-    value: retail_focused
-  - label: Other
-    value: other
-- code: PP14
-  kind: radio
-  required: true
-  section_name: Production Requirements
-  section_order: 5
-  section_field_order: 0
-  question: What size should the one-pager be?
-  options:
-  - label: A4
-    value: a4
-  - label: US Letter
-    value: us_letter
-  - label: A5
-    value: a5
-  - label: Custom
-    value: custom
-- code: PP15
-  kind: radio
-  required: true
-  section_name: Production Requirements
-  section_order: 5
-  section_field_order: 1
-  question: Single-sided or double-sided?
-  hint: A sell sheet is often double-sided, so this is worth asking.
-  options:
-  - label: Single-Sided
-    value: single_sided
-  - label: Double-Sided
-    value: double_sided
-- code: PP16
-  kind: text
-  required: false
-  section_name: Production Requirements
-  section_order: 5
-  section_field_order: 2
-  question: Any technical or print-specific requirements?
-  hint: "Leave blank if unsure \u2014 we'll use standard print specifications."
+  - code: promoted_item
+    kind: text
+    required: true
+    section_name: One-Pager Overview
+    section_order: 0
+    section_field_order: 0
+    question: What product, service, or offering is this one-pager promoting?
+    hint: Provide the product/service name and a brief description.
+  - code: launch_date_time
+    kind: text
+    required: false
+    section_name: Post Purpose & Product
+    section_field_order: 2
+    question: When is this going to be launched? (Date and time)
+    hint: Provide the exact or approximate launch date and time.
+    show_if:
+      field: post_purpose
+      in:
+        - new_menu_item
+        - seasonal_special
+        - combo_meal_offer
+        - event_promotion
+        - product_launch
+        - new_collection
+        - limited_edition
+        - flash_sale
+  - code: key_benefits_or
+    kind: text
+    required: true
+    section_name: One-Pager Overview
+    section_order: 0
+    section_field_order: 1
+    question: What are the key benefits or selling points?
+    hint: List the most important features, benefits, or differentiators to highlight.
+  - code: who_target_audience
+    kind: checkbox
+    required: true
+    section_name: One-Pager Overview
+    section_order: 0
+    section_field_order: 2
+    question: Who is the target audience?
+    hint: 'Examples: Consumers, retailers, distributors, investors, enterprise buyers,
+      healthcare professionals, etc.'
+    options:
+      - label: Consumers
+        value: consumers
+      - label: Retailers
+        value: retailers
+      - label: Distributors
+        value: distributors
+      - label: Investors
+        value: investors
+      - label: Enterprise Buyers
+        value: enterprise_buyers
+      - label: Healthcare Professionals
+        value: healthcare_professionals
+      - label: Other
+        value: other
+  - code: there_a_specific
+    kind: radio
+    required: true
+    section_name: Offer Details (Optional)
+    section_order: 1
+    section_field_order: 0
+    question: Is there a specific offer, promotion, membership, or pricing information
+      to include?
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+  - code: offer_details
+    kind: text
+    required: false
+    section_name: Offer Details (Optional)
+    section_order: 1
+    section_field_order: 1
+    question: What are the offer details?
+    hint: Offer, dates, what's included, pricing, and any conditions. Only if you
+      said yes above.
+    show_if:
+      field: there_a_specific
+      in:
+        - 'yes'
+  - code: copytext_should_appear
+    kind: text
+    required: true
+    section_name: Content & Assets
+    section_order: 2
+    section_field_order: 0
+    question: What copy/text should appear on this one-pager?
+    hint: Please provide final content. Late copy changes may require additional revisions.
+  - code: have_photography_product
+    kind: radio
+    required: true
+    section_name: Content & Assets
+    section_order: 2
+    section_field_order: 1
+    question: Do you have photography, product images, screenshots, or other visuals?
+    hint: Print assets should be a minimum of 300 DPI at final print size.
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+  - code: upload_printready_images
+    kind: file
+    required: false
+    section_name: Content & Assets
+    section_order: 2
+    section_field_order: 2
+    question: Upload print-ready images.
+    hint: Only if you have photography, product images, screenshots, or other visuals.
+  - code: action_should_readers
+    kind: radio
+    required: true
+    section_name: Call to Action
+    section_order: 3
+    section_field_order: 0
+    question: What action should readers take after viewing this one-pager?
+    options:
+      - label: Visit Website
+        value: visit_website
+      - label: Request a Demo
+        value: request_a_demo
+      - label: Contact Sales
+        value: contact_sales
+      - label: Call Now
+        value: call_now
+      - label: Scan QR Code
+        value: scan_qr_code
+      - label: Other
+        value: other
+  - code: destination_url_for
+    kind: text
+    required: false
+    section_name: Call to Action
+    section_order: 3
+    section_field_order: 1
+    question: What is the destination URL for the QR code?
+    hint: Only if you selected Scan QR Code above.
+    show_if:
+      field: action_should_readers
+      in:
+        - scan_a_qr_code
+        - scan_qr_code
+  - code: inspiration_type
+    kind: radio
+    required: true
+    section_name: Design Direction
+    section_order: 4
+    section_field_order: 0
+    question: Any reference designs or inspiration?
+    hint: Competitors, favourite brands, previous sell sheets, or examples you admire.
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+  - code: upload_references
+    kind: file
+    required: false
+    section_name: Design Direction
+    section_order: 4
+    section_field_order: 1
+    question: Upload reference designs, up to 3.
+    hint: Only if you said yes to reference designs above.
+    show_if:
+      field: inspiration_type
+      in:
+        - 'yes'
+  - code: visual_style
+    kind: radio
+    required: true
+    section_name: Design Direction
+    section_order: 4
+    section_field_order: 2
+    question: Describe the visual style you'd like.
+    hint: 'Examples: Premium, corporate, modern, bold, minimal, technical, luxury,
+      retail-focused.'
+    options:
+      - label: Premium
+        value: premium
+      - label: Corporate
+        value: corporate
+      - label: Modern
+        value: modern
+      - label: Bold
+        value: bold
+      - label: Minimal
+        value: minimal
+      - label: Technical
+        value: technical
+      - label: Luxury
+        value: luxury
+      - label: Retail-Focused
+        value: retail_focused
+      - label: Other
+        value: other
+  - code: size_should_onepager
+    kind: radio
+    required: true
+    section_name: Production Requirements
+    section_order: 5
+    section_field_order: 0
+    question: What size should the one-pager be?
+    options:
+      - label: A4
+        value: a4
+      - label: US Letter
+        value: us_letter
+      - label: A5
+        value: a5
+      - label: Custom
+        value: custom
+  - code: singlesided_or_doublesided
+    kind: radio
+    required: true
+    section_name: Production Requirements
+    section_order: 5
+    section_field_order: 1
+    question: Single-sided or double-sided?
+    hint: A sell sheet is often double-sided, so this is worth asking.
+    options:
+      - label: Single-Sided
+        value: single_sided
+      - label: Double-Sided
+        value: double_sided
+  - code: any_technical_or
+    kind: text
+    required: false
+    section_name: Production Requirements
+    section_order: 5
+    section_field_order: 2
+    question: Any technical or print-specific requirements?
+    hint: "Leave blank if unsure \u2014 we'll use standard print specifications."
