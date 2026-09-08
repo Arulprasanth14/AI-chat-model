@@ -371,16 +371,36 @@ class PromptBuilder:
         # Explicitly force the LLM to ask the correct next question using recency bias
         if missing_fields and not is_complete:
             next_field = missing_fields[0]
-            messages.append({
-                "role": "user",
-                "content": (
-                    f"[SYSTEM OVERRIDE — MANDATORY DIRECTIVE]: "
-                    f"You MUST ask the user about the following field NOW:\n"
-                    f"[{next_field.field_code}] {next_field.description}\n"
-                    f"Do NOT ask about any other field. Do NOT repeat questions that have already been answered. "
-                    f"Frame your question naturally based on the field description above."
-                )
-            })
+            # Bug 1 fix: When the next field is a file_upload, the LLM cannot ask a regular
+            # text question — instead it must explicitly prompt the user to use the upload button.
+            # A generic 'ask about this field' directive causes the LLM to write a text question
+            # for an upload, which never triggers the actual upload button in the UI.
+            if getattr(next_field, "input_type", "") == "file_upload":
+                messages.append({
+                    "role": "user",
+                    "content": (
+                        f"[SYSTEM OVERRIDE — FILE UPLOAD REQUIRED]: "
+                        f"The next required step is for the user to UPLOAD their files for: [{next_field.field_code}]\n"
+                        f"Field: {next_field.description}\n"
+                        f"You MUST:\n"
+                        f"1. Write ONE short sentence inviting the user to upload their files "
+                        f"(e.g. 'Please go ahead and upload your [asset type] using the upload button below.').\n"
+                        f"2. Be specific about WHAT they should upload based on the field description.\n"
+                        f"3. Do NOT ask any other question. The upload button will appear automatically — "
+                        f"just tell them to use it."
+                    )
+                })
+            else:
+                messages.append({
+                    "role": "user",
+                    "content": (
+                        f"[SYSTEM OVERRIDE — MANDATORY DIRECTIVE]: "
+                        f"You MUST ask the user about the following field NOW:\n"
+                        f"[{next_field.field_code}] {next_field.description}\n"
+                        f"Do NOT ask about any other field. Do NOT repeat questions that have already been answered. "
+                        f"Frame your question naturally based on the field description above."
+                    )
+                })
 
         logger.debug(
             "Phase B prompt built",
@@ -628,7 +648,13 @@ class PromptBuilder:
             "5. MULTI-FIELD: If the user explicitly answers multiple fields in one message, call a separate "
             "tool for EACH field. Do not bundle them.\n"
             "6. ALREADY SAVED: Do NOT save a field that has already been saved in previous turns. "
-            "Check the conversation history before calling a save tool."
+            "Check the conversation history before calling a save tool.\n"
+            # Bug 2 fix: prevent item prices from being hallucinated into offer fields
+            "7. PRICE ≠ OFFER TYPE (CRITICAL): A plain item price or product price (e.g., '₹209', '$15', '249 only') "
+            "is NEVER an offer_type, discount type, or offer detail. Prices are part of item/product descriptions. "
+            "ONLY extract offer_type if the user explicitly says there is a promotion, deal, discount, or offer. "
+            "Example of correct behavior: User says 'launching biriyani at ₹209' → save promoted_item='Biriyani - ₹209', do NOT touch offer_type. "
+            "Example of wrong behavior: User says '₹209 only' → saving offer_type='percentage_discount' is WRONG and FORBIDDEN."
         )
 
         return "\n".join(lines)

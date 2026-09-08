@@ -324,12 +324,54 @@ async def upload_logo(
 
     active_profile = orchestrator._profile_provider(state)
     missing = state.compute_missing_fields(active_profile, settings.extraction_confidence_threshold)
-    
-    target_field = "existing_assets"
+
+    # Bug Fix: Smart field routing for multi-upload support.
+    # Priority 1: Check currently active missing fields for a file_upload field.
+    # This handles the first upload (e.g. food photos → uploaded_files).
+    target_field: str | None = None
     for f in missing:
         if getattr(f, "input_type", "") == "file_upload":
             target_field = f.field_code
             break
+
+    # Priority 2: If no file_upload field is currently missing (e.g. the first
+    # upload already satisfied uploaded_files, and brand_uploaded_files is now
+    # active due to brand_identity_choice being set), scan ALL profile fields
+    # for a file_upload field whose show_if dependency is satisfied.
+    if target_field is None:
+        for field_def in active_profile.required_fields:
+            if field_def.input_type != "file_upload":
+                continue
+            if field_def.code in state.captured:
+                continue  # already filled — skip
+            # Check show_if dependency: if the dependency field is captured,
+            # and the condition is met, this field is now active.
+            if field_def.show_if:
+                dep = state.captured.get(field_def.show_if.field_code)
+                if not dep:
+                    continue  # dependency not yet filled
+                dep_vals = [v.strip().lower() for v in dep.value.split(",")]
+                if field_def.show_if.in_:
+                    cond_met = any(v in [x.lower() for x in field_def.show_if.in_] for v in dep_vals)
+                elif field_def.show_if.not_in:
+                    cond_met = not any(v in [x.lower() for x in field_def.show_if.not_in] for v in dep_vals)
+                else:
+                    cond_met = False
+                if cond_met:
+                    target_field = field_def.code
+                    break
+            else:
+                # No condition — unconditional file_upload field, always active
+                target_field = field_def.code
+                break
+
+    # Priority 3: Last resort fallback
+    if target_field is None:
+        target_field = "existing_assets"
+        logger.warning(
+            "upload_logo: no suitable file_upload field found — falling back to existing_assets",
+            extra={"session_id": session_id},
+        )
 
     if not settings.cloudinary_url:
         return {

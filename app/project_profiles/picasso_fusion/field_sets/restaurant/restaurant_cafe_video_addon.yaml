@@ -333,6 +333,19 @@ fields:
       field: brand_customization
       in:
         - customize_this_project
+
+  - code: brand_uploaded_files
+    kind: file
+    required: false
+    section_name: Brand Assets
+    section_field_order: 3
+    question: Please upload your brand files.
+    hint: Upload your logo, brand guidelines, or any other brand assets (PNG, JPG, PDF, AI, EPS).
+    show_if:
+      field: brand_identity_choice
+      in:
+        - upload_brand_guidelines
+        - upload_logo_assets
   - code: inspiration_type
     kind: checkbox
     required: false

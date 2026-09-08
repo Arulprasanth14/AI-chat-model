@@ -152,7 +152,10 @@ def get_phase_a_tools(profile: BaseProfile) -> list[dict[str, Any]]:
                     f"Enum options available: {json.dumps(enum_map, indent=None)}. "
                     "DO NOT FORCE A MATCH. If the user's answer is vague, ambiguous, or unsupported by the options "
                     "(e.g., they mention a price like '249' when the options are discount types), DO NOT call this tool. "
-                    "Leave it blank so Phase B can ask a clarifying question."
+                    "Leave it blank so Phase B can ask a clarifying question. "
+                    "CRITICAL NEGATIVE EXAMPLE: User says 'biriyani for ₹209' or 'just for 249' — "
+                    "this is an item PRICE, NOT an offer type. Do NOT save offer_type='percentage_discount' or any "
+                    "offer value from this. A price alone NEVER implies there is a promotional offer."
                 ),
                 "parameters": {
                     "type": "object",
