@@ -390,6 +390,19 @@ class PromptBuilder:
                         f"just tell them to use it."
                     )
                 })
+            elif next_field.field_code == "brief_confirmation":
+                messages.append({
+                    "role": "user",
+                    "content": (
+                        "[SYSTEM OVERRIDE — REVIEW STAGE]:\n"
+                        f"All main fields are captured. The only remaining step is confirmation.\n\n"
+                        f"**Brief Summary**:\n{brief_summary}\n\n"
+                        "You MUST:\n"
+                        "1. Present the brief summary to the user using markdown.\n"
+                        "2. Tell them EXACTLY: 'Looks like we have most of the information needed for your brief. Please review the summary below and confirm it before submitting. If you want to update anything, let me know. If you have any additional information, you can share that too, and I’ll add it to the brief.'\n"
+                        "3. Do not ask any other questions."
+                    )
+                })
             else:
                 messages.append({
                     "role": "user",

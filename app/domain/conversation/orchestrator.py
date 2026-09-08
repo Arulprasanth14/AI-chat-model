@@ -695,19 +695,24 @@ class ConversationOrchestrator:
                 continue
 
             # ── Field-saving tools — extract and validate arguments ────────
+            is_custom = (tool_name == "save_custom_field")
             field_code = arguments.get("field_code")
+            field_name = arguments.get("field_name")
             value = arguments.get("value")
             confidence_raw = arguments.get("confidence")
 
             # Validate required parameters are present
-            if not field_code or value is None or confidence_raw is None:
+            req_field = field_name if is_custom else field_code
+            req_field_key = "field_name" if is_custom else "field_code"
+
+            if not req_field or value is None or confidence_raw is None:
                 missing_params = [
-                    p for p, v in [("field_code", field_code), ("value", value), ("confidence", confidence_raw)]
+                    p for p, v in [(req_field_key, req_field), ("value", value), ("confidence", confidence_raw)]
                     if v is None or v == ""
                 ]
                 write_outcomes.append(FieldWriteResult(
-                    field_code=field_code,
-                    value=value,
+                    field_code=req_field or "unknown",
+                    value=value or "",
                     status=WRITE_STATUS_REJECTED_MALFORMED,
                     reason=f"Missing required parameters: {missing_params}",
                     tool_name=tool_name,
@@ -724,24 +729,19 @@ class ConversationOrchestrator:
                 continue
 
             # ── Fuzzy field code resolution ────────────────────────────────
-            # When the LLM uses a descriptive name (e.g. "dish_name", "price")
-            # instead of the correct SP code (e.g. "SP2"), try to resolve it.
-            # This is especially important for Qwen/small models that sometimes
-            # prefer human-readable names despite instruction to use SP codes.
-            # The enum constraint was removed from the JSON schema to allow
-            # these calls to reach the server; we now resolve them here.
-            field_code = self._resolve_field_code(
-                field_code=field_code,
-                profile=active_profile,
-                missing_fields=missing_fields,
-                session_id=state.session_id,
-            )
+            if not is_custom:
+                field_code = self._resolve_field_code(
+                    field_code=field_code,
+                    profile=active_profile,
+                    missing_fields=missing_fields,
+                    session_id=state.session_id,
+                )
 
             try:
                 confidence = float(confidence_raw)
             except (TypeError, ValueError):
                 write_outcomes.append(FieldWriteResult(
-                    field_code=field_code,
+                    field_code=req_field,
                     value=str(value),
                     status=WRITE_STATUS_REJECTED_MALFORMED,
                     reason=f"confidence is not a valid number: {confidence_raw!r}",
@@ -772,6 +772,15 @@ class ConversationOrchestrator:
             elif tool_name == "save_quantitative_field":
                 result = state.handle_save_quantitative_field(
                     field_code=field_code,
+                    value=str(value),
+                    confidence=confidence,
+                    profile=active_profile,
+                    confidence_threshold=settings.extraction_confidence_threshold,
+                    tool_call_id=tool_call_id,
+                )
+            elif tool_name == "save_custom_field":
+                result = state.handle_save_custom_field(
+                    field_name=field_name,
                     value=str(value),
                     confidence=confidence,
                     profile=active_profile,

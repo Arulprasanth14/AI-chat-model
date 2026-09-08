@@ -41,7 +41,7 @@ from app.infrastructure.rag.embedding_gemma_embedder import EmbeddingGemmaEmbedd
 from app.infrastructure.rag.gemini_embedder import GeminiEmbedder
 from app.infrastructure.persistence.postgres_session_repo import PostgresSessionRepository
 from app.infrastructure.vector_db.pgvector_client import PgVectorClient
-from app.project_profiles.base_profile import BaseProfile
+from app.project_profiles.base_profile import BaseProfile, FieldDefinition
 
 logger = logging.getLogger(__name__)
 
@@ -265,6 +265,18 @@ def _make_profile_provider(
             deadline = base_profile.get_field_by_code("project_deadline")
             if deadline and not any(f.code == "project_deadline" for f in fields):
                 fields.append(deadline)
+                
+            if not any(f.code == "brief_confirmation" for f in fields):
+                fields.append(
+                    FieldDefinition(
+                        code="brief_confirmation",
+                        description="Confirmation that the brief summary looks good to the user and is ready to submit.",
+                        required=True,
+                        input_type="enum",
+                        enum_values=["confirmed"],
+                        enum_options=[{"label": "Yes, submit it", "value": "confirmed"}],
+                    )
+                )
                 
             return fields
 

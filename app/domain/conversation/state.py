@@ -277,6 +277,45 @@ class ConversationState(BaseModel):
 
         return self._write_field(field_code, value, confidence, tool_name, tool_call_id, is_list_field=is_list_field)
 
+    def handle_save_custom_field(
+        self,
+        field_name: str,
+        value: str,
+        confidence: float,
+        profile: BaseProfile,
+        confidence_threshold: float = 0.7,
+        tool_call_id: str = "",
+    ) -> FieldWriteResult:
+        """Handle a save_custom_field tool call from the LLM.
+
+        Writes a dynamically generated field directly into the captured ledger.
+        It prefixes the field_name with `custom_` to prevent collisions.
+        """
+        tool_name = "save_custom_field"
+        
+        # Sanitize and format the field name
+        safe_name = re.sub(r'[^a-z0-9_]', '', field_name.lower().replace(' ', '_'))
+        if not safe_name.startswith("custom_"):
+            safe_name = f"custom_{safe_name}"
+
+        # Validate confidence
+        if confidence < confidence_threshold:
+            logger.info(
+                "save_custom_field: rejected — low confidence",
+                extra={"field_name": field_name, "confidence": confidence, "threshold": confidence_threshold},
+            )
+            return FieldWriteResult(
+                field_code=safe_name,
+                value=value,
+                status=WRITE_STATUS_REJECTED_LOW_CONFIDENCE,
+                reason=f"confidence {confidence:.2f} < threshold {confidence_threshold:.2f}",
+                tool_name=tool_name,
+                tool_call_id=tool_call_id,
+            )
+
+        # Dynamic fields are simple text, no list merging
+        return self._write_field(safe_name, value, confidence, tool_name, tool_call_id, is_list_field=False)
+
     def handle_save_enum_field(
         self,
         field_code: str,
