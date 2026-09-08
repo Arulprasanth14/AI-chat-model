@@ -778,6 +778,17 @@ class ConversationOrchestrator:
                     confidence_threshold=settings.extraction_confidence_threshold,
                     tool_call_id=tool_call_id,
                 )
+            elif tool_name == "save_custom_field":
+                # For custom fields, the LLM passes 'field_name' but we map it to our internal field_code logic
+                field_name = kwargs.get("field_name", "custom_field")
+                result = state.handle_save_custom_field(
+                    field_name=field_name,
+                    value=str(value),
+                    confidence=confidence,
+                    profile=active_profile,
+                    confidence_threshold=settings.extraction_confidence_threshold,
+                    tool_call_id=tool_call_id,
+                )
             else:
                 # Unknown tool name — log and skip
                 logger.warning(

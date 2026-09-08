@@ -123,6 +123,40 @@ def get_phase_a_tools(profile: BaseProfile) -> list[dict[str, Any]]:
         },
     })
 
+    # ── save_custom_field ─────────────────────────────────────────────────────
+    tools.append({
+        "type": "function",
+        "function": {
+            "name": "save_custom_field",
+            "description": (
+                "Save any ADDITIONAL information the user provides that does NOT fit into the predefined required fields. "
+                "Use this only when the user shares extra details you want to capture for the brief. "
+                "The field name should be dynamically generated based on the information provided "
+                "(e.g., 'special_dietary_notes', 'parking_instructions', 'competitor_reference')."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "field_name": {
+                        "type": "string",
+                        "description": "A dynamically generated, snake_case machine-readable name for this extra field."
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "The exact value or detail provided by the user."
+                    },
+                    "confidence": {
+                        "type": "number",
+                        "minimum": 0.0,
+                        "maximum": 1.0,
+                        "description": _CONFIDENCE_DESC,
+                    },
+                },
+                "required": ["field_name", "value", "confidence"],
+            },
+        },
+    })
+
     # ── save_enum_field ───────────────────────────────────────────────────────
     # Only included when there are enum-constrained fields.
     if enum_field_codes:
