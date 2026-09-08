@@ -2,355 +2,355 @@ template_key: startup_entrepreneur_press_kit
 template_label: Press Kit
 vertical: startup
 template_name_match:
-- press kit
-- media kit
-- press release kit
+  - press kit
+  - media kit
+  - press release kit
 fields:
-- code: PK1
-  kind: radio
-  required: true
-  section_name: Press Kit Overview
-  section_order: 0
-  section_field_order: 0
-  question: What is this press kit for?
-  hint: Press kits should communicate one clear story.
-  options:
-  - label: Startup Launch
-    value: startup_launch
-  - label: Product Launch
-    value: product_launch
-  - label: Funding Announcement
-    value: funding_announcement
-  - label: Company Milestone
-    value: company_milestone
-  - label: Partnership Announcement
-    value: partnership_announcement
-  - label: Event Announcement
-    value: event_announcement
-  - label: General Media Kit
-    value: general_media_kit
-- code: PK2
-  kind: text
-  required: true
-  section_name: Press Kit Overview
-  section_order: 0
-  section_field_order: 1
-  question: What company, product, or announcement are we featuring?
-  hint: Provide a brief summary of the news or story.
-- code: PK3
-  kind: checkbox
-  required: true
-  section_name: Press Kit Overview
-  section_order: 0
-  section_field_order: 2
-  question: Who is the target audience for this press kit?
-  hint: Different audiences require different messaging.
-  options:
-  - label: Journalists
-    value: journalists
-  - label: Industry Publications
-    value: industry_publications
-  - label: Investors
-    value: investors
-  - label: Partners
-    value: partners
-  - label: Influencers
-    value: influencers
-  - label: Event Organisers
-    value: event_organisers
-  - label: Other
-    value: other
-- code: PK4
-  kind: checkbox
-  required: true
-  section_name: Content & Highlights
-  section_order: 1
-  section_field_order: 0
-  question: What content should be included?
-  hint: Select all required sections. Multi-select.
-  options:
-  - label: Company Overview
-    value: company_overview
-  - label: Founder Biography
-    value: founder_biography
-  - label: Leadership Team
-    value: leadership_team
-  - label: Product Overview
-    value: product_overview
-  - label: Funding Information
-    value: funding_information
-  - label: Company Timeline
-    value: company_timeline
-  - label: Key Statistics
-    value: key_statistics
-  - label: Awards & Recognition
-    value: awards_recognition
-  - label: Partnerships
-    value: partnerships
-  - label: Media Coverage
-    value: media_coverage
-  - label: FAQs
-    value: faqs
-  - label: Press Release
-    value: press_release
-  - label: Contact Information
-    value: contact_information
-- code: PK5
-  kind: checkbox
-  required: true
-  section_name: Content & Highlights
-  section_order: 1
-  section_field_order: 1
-  question: What key facts, statistics, or milestones should be highlighted?
-  hint: Journalists often use these directly in articles.
-  options:
-  - label: Funding Raised
-    value: funding_raised
-  - label: Customers
-    value: customers
-  - label: Users
-    value: users
-  - label: Revenue Milestones
-    value: revenue_milestones
-  - label: Growth Metrics
-    value: growth_metrics
-  - label: Geographic Reach
-    value: geographic_reach
-  - label: Team Size
-    value: team_size
-  - label: Other
-    value: other
-- code: PK6
-  kind: radio
-  required: true
-  section_name: Media Assets
-  section_order: 2
-  section_field_order: 0
-  question: Do you have photography or imagery?
-  hint: High-quality media assets are essential.
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-- code: PK7
-  kind: file
-  required: false
-  section_name: Media Assets
-  section_order: 2
-  section_field_order: 1
-  question: Upload logos, founder photos, executive headshots, team photos, screenshots,
-    and product images.
-  hint: High-resolution files preferred. Only if you have photography or imagery.
-- code: PK8
-  kind: text
-  required: true
-  section_name: Company & People
-  section_order: 3
-  section_field_order: 0
-  question: What company information should appear?
-  hint: Provide an approved company description or boilerplate.
-- code: PK9
-  kind: radio
-  required: true
-  section_name: Company & People
-  section_order: 3
-  section_field_order: 1
-  question: Should founder or executive profiles be included?
-  options:
-  - label: Founder Only
-    value: founder_only
-  - label: Leadership Team
-    value: leadership_team
-  - label: No Profiles Required
-    value: no_profiles_required
-- code: PK10
-  kind: text
-  required: false
-  section_name: Company & People
-  section_order: 3
-  section_field_order: 2
-  question: Provide founder/executive biographies and titles.
-  hint: Only if you selected Founder Only or Leadership Team above.
-  show_if:
-    field: PK9
-    in:
-    - founder_only
-    - leadership_team
-- code: PK11
-  kind: radio
-  required: true
-  section_name: Quotes & Contact
-  section_order: 4
-  section_field_order: 0
-  question: Are there approved quotes that media can use?
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-- code: PK12
-  kind: text
-  required: false
-  section_name: Quotes & Contact
-  section_order: 4
-  section_field_order: 1
-  question: Provide approved spokesperson quotes.
-  hint: 'Examples: Founder quote, CEO statement, Investor quote, Customer quote. Only
-    if you said yes above.'
-  show_if:
-    field: PK11
-    in:
-    - 'yes'
-- code: PK13
-  kind: checkbox
-  required: true
-  section_name: Quotes & Contact
-  section_order: 4
-  section_field_order: 2
-  question: What contact information should media use?
-  hint: Ensure journalists can quickly reach the correct person.
-  options:
-  - label: PR Contact
-    value: pr_contact
-  - label: Founder
-    value: founder
-  - label: Marketing Team
-    value: marketing_team
-  - label: Agency Representative
-    value: agency_representative
-  - label: Other
-    value: other
-- code: PK14
-  kind: radio
-  required: true
-  section_name: Media Coverage & Distribution
-  section_order: 5
-  section_field_order: 0
-  question: Has the company received any notable media coverage, awards, or recognition?
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-- code: PK15
-  kind: text
-  required: false
-  section_name: Media Coverage & Distribution
-  section_order: 5
-  section_field_order: 1
-  question: Provide links, publications, awards, or recognition details.
-  hint: Only if you said yes above.
-  show_if:
-    field: PK14
-    in:
-    - 'yes'
-- code: PK16
-  kind: radio
-  required: true
-  section_name: Media Coverage & Distribution
-  section_order: 5
-  section_field_order: 2
-  question: Will media assets need to be downloadable separately?
-  hint: This affects how the press kit is structured.
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-- code: PK17
-  kind: radio
-  required: true
-  section_name: Timing
-  section_order: 6
-  section_field_order: 0
-  question: Is there an announcement date or embargo?
-  hint: Important for media scheduling.
-  options:
-  - label: Immediate Release
-    value: immediate_release
-  - label: Scheduled Release Date
-    value: scheduled_release_date
-  - label: Embargoed Announcement
-    value: embargoed_announcement
-- code: PK18
-  kind: text
-  required: false
-  section_name: Timing
-  section_order: 6
-  section_field_order: 1
-  question: Provide announcement date and time.
-  hint: Only if you selected Scheduled Release Date or Embargoed Announcement above.
-  show_if:
-    field: PK17
-    in:
-    - scheduled_release_date
-    - embargoed_announcement
-- code: PK19
-  kind: radio
-  required: true
-  section_name: Style & References
-  section_order: 7
-  section_field_order: 0
-  question: Any reference press kits or media kits you'd like us to reference?
-  hint: Share examples you admire.
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-- code: PK20
-  kind: file
-  required: false
-  section_name: Style & References
-  section_order: 7
-  section_field_order: 1
-  question: Upload reference press kits, up to 3.
-  hint: Only if you said yes to reference press kits above.
-  show_if:
-    field: PK19
-    in:
-    - 'yes'
-- code: PK21
-  kind: radio
-  required: true
-  section_name: Style & References
-  section_order: 7
-  section_field_order: 2
-  question: Describe the visual style you'd like.
-  options:
-  - label: Startup
-    value: startup
-  - label: Corporate
-    value: corporate
-  - label: Investor-Grade
-    value: investor_grade
-  - label: Minimal
-    value: minimal
-  - label: Premium
-    value: premium
-  - label: Technology-Focused
-    value: technology_focused
-  - label: Other
-    value: other
-- code: PK22
-  kind: checkbox
-  required: false
-  section_name: Style & References
-  section_order: 7
-  section_field_order: 3
-  question: Any technical requirements?
-  hint: Leave blank if unsure.
-  options:
-  - label: PDF Only
-    value: pdf_only
-  - label: Print-Ready
-    value: print_ready
-  - label: Interactive PDF
-    value: interactive_pdf
-  - label: Press Download Folder
-    value: press_download_folder
-  - label: Editable Source Files
-    value: editable_source_files
-  - label: Other
-    value: other
+  - code: this_press_kit
+    kind: radio
+    required: true
+    section_name: Press Kit Overview
+    section_order: 0
+    section_field_order: 0
+    question: What is this press kit for?
+    hint: Press kits should communicate one clear story.
+    options:
+      - label: Startup Launch
+        value: startup_launch
+      - label: Product Launch
+        value: product_launch
+      - label: Funding Announcement
+        value: funding_announcement
+      - label: Company Milestone
+        value: company_milestone
+      - label: Partnership Announcement
+        value: partnership_announcement
+      - label: Event Announcement
+        value: event_announcement
+      - label: General Media Kit
+        value: general_media_kit
+  - code: promoted_item
+    kind: text
+    required: true
+    section_name: Press Kit Overview
+    section_order: 0
+    section_field_order: 1
+    question: What company, product, or announcement are we featuring?
+    hint: Provide a brief summary of the news or story.
+  - code: who_target_audience
+    kind: checkbox
+    required: true
+    section_name: Press Kit Overview
+    section_order: 0
+    section_field_order: 2
+    question: Who is the target audience for this press kit?
+    hint: Different audiences require different messaging.
+    options:
+      - label: Journalists
+        value: journalists
+      - label: Industry Publications
+        value: industry_publications
+      - label: Investors
+        value: investors
+      - label: Partners
+        value: partners
+      - label: Influencers
+        value: influencers
+      - label: Event Organisers
+        value: event_organisers
+      - label: Other
+        value: other
+  - code: content_should_be
+    kind: checkbox
+    required: true
+    section_name: Content & Highlights
+    section_order: 1
+    section_field_order: 0
+    question: What content should be included?
+    hint: Select all required sections. Multi-select.
+    options:
+      - label: Company Overview
+        value: company_overview
+      - label: Founder Biography
+        value: founder_biography
+      - label: Leadership Team
+        value: leadership_team
+      - label: Product Overview
+        value: product_overview
+      - label: Funding Information
+        value: funding_information
+      - label: Company Timeline
+        value: company_timeline
+      - label: Key Statistics
+        value: key_statistics
+      - label: Awards & Recognition
+        value: awards_recognition
+      - label: Partnerships
+        value: partnerships
+      - label: Media Coverage
+        value: media_coverage
+      - label: FAQs
+        value: faqs
+      - label: Press Release
+        value: press_release
+      - label: Contact Information
+        value: contact_information
+  - code: key_facts_statistics
+    kind: checkbox
+    required: true
+    section_name: Content & Highlights
+    section_order: 1
+    section_field_order: 1
+    question: What key facts, statistics, or milestones should be highlighted?
+    hint: Journalists often use these directly in articles.
+    options:
+      - label: Funding Raised
+        value: funding_raised
+      - label: Customers
+        value: customers
+      - label: Users
+        value: users
+      - label: Revenue Milestones
+        value: revenue_milestones
+      - label: Growth Metrics
+        value: growth_metrics
+      - label: Geographic Reach
+        value: geographic_reach
+      - label: Team Size
+        value: team_size
+      - label: Other
+        value: other
+  - code: have_photography_or
+    kind: radio
+    required: true
+    section_name: Media Assets
+    section_order: 2
+    section_field_order: 0
+    question: Do you have photography or imagery?
+    hint: High-quality media assets are essential.
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+  - code: upload_logos_founder
+    kind: file
+    required: false
+    section_name: Media Assets
+    section_order: 2
+    section_field_order: 1
+    question: Upload logos, founder photos, executive headshots, team photos, screenshots,
+      and product images.
+    hint: High-resolution files preferred. Only if you have photography or imagery.
+  - code: company_information_should
+    kind: text
+    required: true
+    section_name: Company & People
+    section_order: 3
+    section_field_order: 0
+    question: What company information should appear?
+    hint: Provide an approved company description or boilerplate.
+  - code: should_founder_or
+    kind: radio
+    required: true
+    section_name: Company & People
+    section_order: 3
+    section_field_order: 1
+    question: Should founder or executive profiles be included?
+    options:
+      - label: Founder Only
+        value: founder_only
+      - label: Leadership Team
+        value: leadership_team
+      - label: No Profiles Required
+        value: no_profiles_required
+  - code: provide_founderexecutive_biographies
+    kind: text
+    required: false
+    section_name: Company & People
+    section_order: 3
+    section_field_order: 2
+    question: Provide founder/executive biographies and titles.
+    hint: Only if you selected Founder Only or Leadership Team above.
+    show_if:
+      field: should_founder_or
+      in:
+        - founder_only
+        - leadership_team
+  - code: there_approved_quotes
+    kind: radio
+    required: true
+    section_name: Quotes & Contact
+    section_order: 4
+    section_field_order: 0
+    question: Are there approved quotes that media can use?
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+  - code: provide_approved_spokesperson
+    kind: text
+    required: false
+    section_name: Quotes & Contact
+    section_order: 4
+    section_field_order: 1
+    question: Provide approved spokesperson quotes.
+    hint: 'Examples: Founder quote, CEO statement, Investor quote, Customer quote.
+      Only if you said yes above.'
+    show_if:
+      field: there_approved_quotes
+      in:
+        - 'yes'
+  - code: contact_information_should
+    kind: checkbox
+    required: true
+    section_name: Quotes & Contact
+    section_order: 4
+    section_field_order: 2
+    question: What contact information should media use?
+    hint: Ensure journalists can quickly reach the correct person.
+    options:
+      - label: PR Contact
+        value: pr_contact
+      - label: Founder
+        value: founder
+      - label: Marketing Team
+        value: marketing_team
+      - label: Agency Representative
+        value: agency_representative
+      - label: Other
+        value: other
+  - code: has_company_received
+    kind: radio
+    required: true
+    section_name: Media Coverage & Distribution
+    section_order: 5
+    section_field_order: 0
+    question: Has the company received any notable media coverage, awards, or recognition?
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+  - code: provide_links_publications
+    kind: text
+    required: false
+    section_name: Media Coverage & Distribution
+    section_order: 5
+    section_field_order: 1
+    question: Provide links, publications, awards, or recognition details.
+    hint: Only if you said yes above.
+    show_if:
+      field: has_company_received
+      in:
+        - 'yes'
+  - code: will_media_assets
+    kind: radio
+    required: true
+    section_name: Media Coverage & Distribution
+    section_order: 5
+    section_field_order: 2
+    question: Will media assets need to be downloadable separately?
+    hint: This affects how the press kit is structured.
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+  - code: there_an_announcement
+    kind: radio
+    required: true
+    section_name: Timing
+    section_order: 6
+    section_field_order: 0
+    question: Is there an announcement date or embargo?
+    hint: Important for media scheduling.
+    options:
+      - label: Immediate Release
+        value: immediate_release
+      - label: Scheduled Release Date
+        value: scheduled_release_date
+      - label: Embargoed Announcement
+        value: embargoed_announcement
+  - code: provide_announcement_date
+    kind: text
+    required: false
+    section_name: Timing
+    section_order: 6
+    section_field_order: 1
+    question: Provide announcement date and time.
+    hint: Only if you selected Scheduled Release Date or Embargoed Announcement above.
+    show_if:
+      field: there_an_announcement
+      in:
+        - scheduled_release_date
+        - embargoed_announcement
+  - code: any_reference_press
+    kind: radio
+    required: true
+    section_name: Style & References
+    section_order: 7
+    section_field_order: 0
+    question: Any reference press kits or media kits you'd like us to reference?
+    hint: Share examples you admire.
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+  - code: upload_references
+    kind: file
+    required: false
+    section_name: Style & References
+    section_order: 7
+    section_field_order: 1
+    question: Upload reference press kits, up to 3.
+    hint: Only if you said yes to reference press kits above.
+    show_if:
+      field: any_reference_press
+      in:
+        - 'yes'
+  - code: visual_style
+    kind: radio
+    required: true
+    section_name: Style & References
+    section_order: 7
+    section_field_order: 2
+    question: Describe the visual style you'd like.
+    options:
+      - label: Startup
+        value: startup
+      - label: Corporate
+        value: corporate
+      - label: Investor-Grade
+        value: investor_grade
+      - label: Minimal
+        value: minimal
+      - label: Premium
+        value: premium
+      - label: Technology-Focused
+        value: technology_focused
+      - label: Other
+        value: other
+  - code: any_technical_requirements
+    kind: checkbox
+    required: false
+    section_name: Style & References
+    section_order: 7
+    section_field_order: 3
+    question: Any technical requirements?
+    hint: Leave blank if unsure.
+    options:
+      - label: PDF Only
+        value: pdf_only
+      - label: Print-Ready
+        value: print_ready
+      - label: Interactive PDF
+        value: interactive_pdf
+      - label: Press Download Folder
+        value: press_download_folder
+      - label: Editable Source Files
+        value: editable_source_files
+      - label: Other
+        value: other

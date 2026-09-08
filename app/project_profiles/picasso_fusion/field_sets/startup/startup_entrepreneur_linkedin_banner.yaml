@@ -2,234 +2,235 @@ template_key: startup_entrepreneur_linkedin_banner
 template_label: LinkedIn Banner
 vertical: startup
 template_name_match:
-- linkedin banner
-- linkedin cover
+  - linkedin banner
+  - linkedin cover
 fields:
-- code: LB1
-  kind: radio
-  required: true
-  section_name: Banner Overview
-  section_order: 0
-  section_field_order: 0
-  question: Is this banner for a personal profile or company page?
-  hint: Banner content and messaging differ significantly.
-  options:
-  - label: Personal Profile
-    value: personal_profile
-  - label: Company Page
-    value: company_page
-- code: LB2
-  kind: checkbox
-  required: true
-  section_name: Banner Overview
-  section_order: 0
-  section_field_order: 1
-  question: What is the objective of this LinkedIn banner?
-  hint: One banner = one clear message.
-  options:
-  - label: Personal Branding
-    value: personal_branding
-  - label: Thought Leadership
-    value: thought_leadership
-  - label: Lead Generation
-    value: lead_generation
-  - label: Company Awareness
-    value: company_awareness
-  - label: Recruiting
-    value: recruiting
-  - label: Product/Service Promotion
-    value: product_service_promotion
-  - label: Event Promotion
-    value: event_promotion
-  - label: Other
-    value: other
-- code: LB3
-  kind: checkbox
-  required: true
-  section_name: Banner Overview
-  section_order: 0
-  section_field_order: 2
-  question: Who is the target audience?
-  hint: Tailor the message to the audience.
-  options:
-  - label: Founders
-    value: founders
-  - label: Business Owners
-    value: business_owners
-  - label: Investors
-    value: investors
-  - label: Recruiters
-    value: recruiters
-  - label: Job Seekers
-    value: job_seekers
-  - label: Enterprise Buyers
-    value: enterprise_buyers
-  - label: Startups
-    value: startups
-  - label: Other
-    value: other
-- code: LB4
-  kind: checkbox
-  required: true
-  section_name: Content
-  section_order: 1
-  section_field_order: 0
-  question: What key information should appear?
-  hint: Less is more. Include only essentials.
-  options:
-  - label: Name
-    value: name
-  - label: Job Title
-    value: job_title
-  - label: Company Name
-    value: company_name
-  - label: Tagline
-    value: tagline
-  - label: Website
-    value: website
-  - label: Services
-    value: services
-  - label: Certifications
-    value: certifications
-  - label: Awards
-    value: awards
-  - label: Other
-    value: other
-- code: LB5
-  kind: radio
-  required: true
-  section_name: Assets
-  section_order: 2
-  section_field_order: 0
-  question: Do you have imagery or brand assets?
-  hint: Quality visuals improve profile performance.
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-- code: LB6
-  kind: file
-  required: false
-  section_name: Assets
-  section_order: 2
-  section_field_order: 1
-  question: Upload logos, photos, headshots, screenshots, or brand assets.
-  hint: High-resolution files preferred. Only if you have imagery or brand assets.
-- code: LB7
-  kind: checkbox
-  required: true
-  section_name: Assets
-  section_order: 2
-  section_field_order: 2
-  question: Should any achievements, awards, certifications, or social proof be featured?
-  hint: 'Examples: Forbes Featured, 500+ Clients, Google Partner, Industry Awards.'
-  options:
-  - label: Forbes Featured
-    value: forbes_featured
-  - label: 500+ Clients
-    value: 500_clients
-  - label: Google Partner
-    value: google_partner
-  - label: Industry Awards
-    value: industry_awards
-  - label: Other
-    value: other
-  - label: None
-    value: none
-- code: LB8
-  kind: text
-  required: false
-  section_name: Personal Profile Only (Conditional)
-  section_order: 3
-  section_field_order: 0
-  question: What headline or positioning statement should visitors immediately understand?
-  hint: Keep it concise and memorable. Only ask this if the banner is for a Personal
-    Profile (LB1 = Personal Profile).
-- code: LB9
-  kind: text
-  required: false
-  section_name: Personal Profile Only (Conditional)
-  section_order: 3
-  section_field_order: 1
-  question: What services, expertise, or specialties should be highlighted?
-  hint: 'Examples: SaaS Growth, Real Estate, Product Design, Marketing Strategy, AI
-    Consulting. Only ask this if the banner is for a Personal Profile (LB1 = Personal
-    Profile).'
-- code: LB10
-  kind: text
-  required: false
-  section_name: Company Page Only (Conditional)
-  section_order: 4
-  section_field_order: 0
-  question: What key company message should visitors immediately understand?
-  hint: Focus on your value proposition. Only ask this if the banner is for a Company
-    Page (LB1 = Company Page).
-- code: LB11
-  kind: text
-  required: false
-  section_name: Company Page Only (Conditional)
-  section_order: 4
-  section_field_order: 1
-  question: What products, services, or capabilities should be highlighted?
-  hint: Only ask this if the banner is for a Company Page (LB1 = Company Page).
-- code: LB12
-  kind: radio
-  required: true
-  section_name: Design Direction
-  section_order: 5
-  section_field_order: 0
-  question: Any reference banners or inspiration?
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-- code: LB13
-  kind: file
-  required: false
-  section_name: Design Direction
-  section_order: 5
-  section_field_order: 1
-  question: Upload reference banners, up to 3.
-  hint: Only if you said yes to reference banners above.
-  show_if:
-    field: LB12
-    in:
-    - 'yes'
-- code: LB14
-  kind: radio
-  required: true
-  section_name: Design Direction
-  section_order: 5
-  section_field_order: 2
-  question: Preferred design style?
-  hint: Choose a visual direction.
-  options:
-  - label: Corporate
-    value: corporate
-  - label: Premium
-    value: premium
-  - label: Modern
-    value: modern
-  - label: Minimal
-    value: minimal
-  - label: Startup
-    value: startup
-  - label: Technology
-    value: technology
-  - label: Luxury
-    value: luxury
-  - label: Personal Brand
-    value: personal_brand
-  - label: Other
-    value: other
-- code: LB15
-  kind: text
-  required: false
-  section_name: Technical Requirements
-  section_order: 6
-  section_field_order: 0
-  question: Any technical requirements?
-  hint: Leave blank if unsure. LinkedIn-recommended dimensions and safe zones will
-    be used.
+  - code: this_banner_for
+    kind: radio
+    required: true
+    section_name: Banner Overview
+    section_order: 0
+    section_field_order: 0
+    question: Is this banner for a personal profile or company page?
+    hint: Banner content and messaging differ significantly.
+    options:
+      - label: Personal Profile
+        value: personal_profile
+      - label: Company Page
+        value: company_page
+  - code: objective_this_linkedin
+    kind: checkbox
+    required: true
+    section_name: Banner Overview
+    section_order: 0
+    section_field_order: 1
+    question: What is the objective of this LinkedIn banner?
+    hint: One banner = one clear message.
+    options:
+      - label: Personal Branding
+        value: personal_branding
+      - label: Thought Leadership
+        value: thought_leadership
+      - label: Lead Generation
+        value: lead_generation
+      - label: Company Awareness
+        value: company_awareness
+      - label: Recruiting
+        value: recruiting
+      - label: Product/Service Promotion
+        value: product_service_promotion
+      - label: Event Promotion
+        value: event_promotion
+      - label: Other
+        value: other
+  - code: who_target_audience
+    kind: checkbox
+    required: true
+    section_name: Banner Overview
+    section_order: 0
+    section_field_order: 2
+    question: Who is the target audience?
+    hint: Tailor the message to the audience.
+    options:
+      - label: Founders
+        value: founders
+      - label: Business Owners
+        value: business_owners
+      - label: Investors
+        value: investors
+      - label: Recruiters
+        value: recruiters
+      - label: Job Seekers
+        value: job_seekers
+      - label: Enterprise Buyers
+        value: enterprise_buyers
+      - label: Startups
+        value: startups
+      - label: Other
+        value: other
+  - code: key_information_should
+    kind: checkbox
+    required: true
+    section_name: Content
+    section_order: 1
+    section_field_order: 0
+    question: What key information should appear?
+    hint: Less is more. Include only essentials.
+    options:
+      - label: Name
+        value: name
+      - label: Job Title
+        value: job_title
+      - label: Company Name
+        value: company_name
+      - label: Tagline
+        value: tagline
+      - label: Website
+        value: website
+      - label: Services
+        value: services
+      - label: Certifications
+        value: certifications
+      - label: Awards
+        value: awards
+      - label: Other
+        value: other
+  - code: have_imagery_or
+    kind: radio
+    required: true
+    section_name: Assets
+    section_order: 2
+    section_field_order: 0
+    question: Do you have imagery or brand assets?
+    hint: Quality visuals improve profile performance.
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+  - code: upload_logos_photos
+    kind: file
+    required: false
+    section_name: Assets
+    section_order: 2
+    section_field_order: 1
+    question: Upload logos, photos, headshots, screenshots, or brand assets.
+    hint: High-resolution files preferred. Only if you have imagery or brand assets.
+  - code: should_any_achievements
+    kind: checkbox
+    required: true
+    section_name: Assets
+    section_order: 2
+    section_field_order: 2
+    question: Should any achievements, awards, certifications, or social proof be
+      featured?
+    hint: 'Examples: Forbes Featured, 500+ Clients, Google Partner, Industry Awards.'
+    options:
+      - label: Forbes Featured
+        value: forbes_featured
+      - label: 500+ Clients
+        value: 500_clients
+      - label: Google Partner
+        value: google_partner
+      - label: Industry Awards
+        value: industry_awards
+      - label: Other
+        value: other
+      - label: None
+        value: none
+  - code: headline_or_positioning
+    kind: text
+    required: false
+    section_name: Personal Profile Only (Conditional)
+    section_order: 3
+    section_field_order: 0
+    question: What headline or positioning statement should visitors immediately understand?
+    hint: Keep it concise and memorable. Only ask this if the banner is for a Personal
+      Profile (LB1 = Personal Profile).
+  - code: services_expertise_or
+    kind: text
+    required: false
+    section_name: Personal Profile Only (Conditional)
+    section_order: 3
+    section_field_order: 1
+    question: What services, expertise, or specialties should be highlighted?
+    hint: 'Examples: SaaS Growth, Real Estate, Product Design, Marketing Strategy,
+      AI Consulting. Only ask this if the banner is for a Personal Profile (LB1 =
+      Personal Profile).'
+  - code: key_company_message
+    kind: text
+    required: false
+    section_name: Company Page Only (Conditional)
+    section_order: 4
+    section_field_order: 0
+    question: What key company message should visitors immediately understand?
+    hint: Focus on your value proposition. Only ask this if the banner is for a Company
+      Page (LB1 = Company Page).
+  - code: products_services_or
+    kind: text
+    required: false
+    section_name: Company Page Only (Conditional)
+    section_order: 4
+    section_field_order: 1
+    question: What products, services, or capabilities should be highlighted?
+    hint: Only ask this if the banner is for a Company Page (LB1 = Company Page).
+  - code: inspiration_type
+    kind: radio
+    required: true
+    section_name: Design Direction
+    section_order: 5
+    section_field_order: 0
+    question: Any reference banners or inspiration?
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+  - code: upload_references
+    kind: file
+    required: false
+    section_name: Design Direction
+    section_order: 5
+    section_field_order: 1
+    question: Upload reference banners, up to 3.
+    hint: Only if you said yes to reference banners above.
+    show_if:
+      field: inspiration_type
+      in:
+        - 'yes'
+  - code: preferred_design_style
+    kind: radio
+    required: true
+    section_name: Design Direction
+    section_order: 5
+    section_field_order: 2
+    question: Preferred design style?
+    hint: Choose a visual direction.
+    options:
+      - label: Corporate
+        value: corporate
+      - label: Premium
+        value: premium
+      - label: Modern
+        value: modern
+      - label: Minimal
+        value: minimal
+      - label: Startup
+        value: startup
+      - label: Technology
+        value: technology
+      - label: Luxury
+        value: luxury
+      - label: Personal Brand
+        value: personal_brand
+      - label: Other
+        value: other
+  - code: any_technical_requirements
+    kind: text
+    required: false
+    section_name: Technical Requirements
+    section_order: 6
+    section_field_order: 0
+    question: Any technical requirements?
+    hint: Leave blank if unsure. LinkedIn-recommended dimensions and safe zones will
+      be used.

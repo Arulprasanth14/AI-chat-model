@@ -2,215 +2,216 @@ template_key: real_estate_youtube_banner
 template_label: YouTube Banner
 vertical: realestate
 template_name_match:
-- youtube banner
-- youtube channel
+  - youtube banner
+  - youtube channel
 fields:
-- code: YB1
-  kind: checkbox
-  required: true
-  section_name: Channel Overview
-  section_order: 0
-  section_field_order: 0
-  question: What is the YouTube channel about?
-  options:
-  - label: Business & Entrepreneurship
-    value: business_entrepreneurship
-  - label: Real Estate
-    value: real_estate
-  - label: Gaming
-    value: gaming
-  - label: Education
-    value: education
-  - label: Finance
-    value: finance
-  - label: Technology
-    value: technology
-  - label: Fitness
-    value: fitness
-  - label: Lifestyle
-    value: lifestyle
-  - label: Podcast
-    value: podcast
-  - label: Other
-    value: other
-- code: YB2
-  kind: checkbox
-  required: true
-  section_name: Channel Overview
-  section_order: 0
-  section_field_order: 1
-  question: Who is the target audience?
-  options:
-  - label: First Home Buyers
-    value: first_home_buyers
-  - label: Business Owners
-    value: business_owners
-  - label: Investors
-    value: investors
-  - label: Students
-    value: students
-  - label: Developers
-    value: developers
-  - label: Fitness Enthusiasts
-    value: fitness_enthusiasts
-  - label: General Consumers
-    value: general_consumers
-  - label: Other
-    value: other
-- code: YB3
-  kind: checkbox
-  required: true
-  section_name: Channel Overview
-  section_order: 0
-  section_field_order: 2
-  question: What is the primary goal of the channel?
-  options:
-  - label: Grow Subscribers
-    value: grow_subscribers
-  - label: Build Personal Brand
-    value: build_personal_brand
-  - label: Generate Leads
-    value: generate_leads
-  - label: Educate Audience
-    value: educate_audience
-  - label: Sell Products
-    value: sell_products
-  - label: Build Community
-    value: build_community
-  - label: Other
-    value: other
-- code: YB4
-  kind: text
-  required: true
-  section_name: YouTube Banner
-  section_order: 1
-  section_field_order: 0
-  question: What key message should appear on the channel banner?
-  hint: 'Examples: channel tagline, value proposition, upload schedule, website URL,
-    services offered.'
-- code: YB5
-  kind: text
-  required: true
-  section_name: YouTube Banner
-  section_order: 1
-  section_field_order: 1
-  question: What text should appear on the banner? Please provide final banner copy.
-- code: YB6
-  kind: checkbox
-  required: true
-  section_name: Thumbnail Template System
-  section_order: 2
-  section_field_order: 0
-  question: What types of videos will these thumbnail templates be used for?
-  options:
-  - label: Tutorials
-    value: tutorials
-  - label: Property Tours
-    value: property_tours
-  - label: Product Reviews
-    value: product_reviews
-  - label: Interviews
-    value: interviews
-  - label: Podcasts
-    value: podcasts
-  - label: News Updates
-    value: news_updates
-  - label: Educational Content
-    value: educational_content
-  - label: Other
-    value: other
-- code: YB7
-  kind: radio
-  required: true
-  section_name: Thumbnail Template System
-  section_order: 2
-  section_field_order: 1
-  question: How many thumbnail template variations are required?
-  options:
-  - label: 1 Universal Template
-    value: 1_universal
-  - label: 3 Content Categories
-    value: 3_categories
-  - label: 5 Content Categories
-    value: 5_categories
-  - label: Custom
-    value: custom
-- code: YB8
-  kind: checkbox
-  required: true
-  section_name: Thumbnail Template System
-  section_order: 2
-  section_field_order: 2
-  question: What recurring elements should appear on thumbnails?
-  options:
-  - label: Presenter Photo
-    value: presenter_photo
-  - label: Logo
-    value: logo
-  - label: Episode Number
-    value: episode_number
-  - label: Category Label
-    value: category_label
-  - label: Brand Colours
-    value: brand_colours
-  - label: Icons
-    value: icons
-  - label: Progress Bars
-    value: progress_bars
-  - label: Other
-    value: other
-- code: YB9
-  kind: file
-  required: true
-  section_name: Assets
-  section_order: 3
-  section_field_order: 0
-  question: Do you have headshots, logos, product images, or brand assets to include?
-    Please upload the assets.
-- code: YB10
-  kind: radio
-  required: true
-  section_name: Assets
-  section_order: 3
-  section_field_order: 1
-  question: Will the creator's face be featured on thumbnails?
-  hint: A very important thumbnail-design question.
-  options:
-  - label: 'Yes'
-    value: 'yes'
-  - label: 'No'
-    value: 'no'
-  - label: Sometimes
-    value: sometimes
-- code: YB11
-  kind: file
-  required: false
-  section_name: Design Direction
-  section_order: 4
-  section_field_order: 0
-  question: Any YouTube channels, banners, or thumbnail styles you'd like us to reference?
-  hint: Upload references, up to 3.
-- code: YB12
-  kind: radio
-  required: true
-  section_name: Design Direction
-  section_order: 4
-  section_field_order: 1
-  question: Describe the visual style you'd like.
-  options:
-  - label: Bold Creator Style
-    value: bold_creator_style
-  - label: Premium
-    value: premium
-  - label: Educational
-    value: educational
-  - label: Minimal
-    value: minimal
-  - label: Corporate
-    value: corporate
-  - label: High-Energy
-    value: high_energy
-  - label: Modern Tech
-    value: modern_tech
-  - label: Other
-    value: other
+  - code: youtube_channel_about
+    kind: checkbox
+    required: true
+    section_name: Channel Overview
+    section_order: 0
+    section_field_order: 0
+    question: What is the YouTube channel about?
+    options:
+      - label: Business & Entrepreneurship
+        value: business_entrepreneurship
+      - label: Real Estate
+        value: real_estate
+      - label: Gaming
+        value: gaming
+      - label: Education
+        value: education
+      - label: Finance
+        value: finance
+      - label: Technology
+        value: technology
+      - label: Fitness
+        value: fitness
+      - label: Lifestyle
+        value: lifestyle
+      - label: Podcast
+        value: podcast
+      - label: Other
+        value: other
+  - code: who_target_audience
+    kind: checkbox
+    required: true
+    section_name: Channel Overview
+    section_order: 0
+    section_field_order: 1
+    question: Who is the target audience?
+    options:
+      - label: First Home Buyers
+        value: first_home_buyers
+      - label: Business Owners
+        value: business_owners
+      - label: Investors
+        value: investors
+      - label: Students
+        value: students
+      - label: Developers
+        value: developers
+      - label: Fitness Enthusiasts
+        value: fitness_enthusiasts
+      - label: General Consumers
+        value: general_consumers
+      - label: Other
+        value: other
+  - code: post_goal
+    kind: checkbox
+    required: true
+    section_name: Channel Overview
+    section_order: 0
+    section_field_order: 2
+    question: What is the primary goal of the channel?
+    options:
+      - label: Grow Subscribers
+        value: grow_subscribers
+      - label: Build Personal Brand
+        value: build_personal_brand
+      - label: Generate Leads
+        value: generate_leads
+      - label: Educate Audience
+        value: educate_audience
+      - label: Sell Products
+        value: sell_products
+      - label: Build Community
+        value: build_community
+      - label: Other
+        value: other
+  - code: key_message_should
+    kind: text
+    required: true
+    section_name: YouTube Banner
+    section_order: 1
+    section_field_order: 0
+    question: What key message should appear on the channel banner?
+    hint: 'Examples: channel tagline, value proposition, upload schedule, website
+      URL, services offered.'
+  - code: text_should_appear
+    kind: text
+    required: true
+    section_name: YouTube Banner
+    section_order: 1
+    section_field_order: 1
+    question: What text should appear on the banner? Please provide final banner copy.
+  - code: types_videos_will
+    kind: checkbox
+    required: true
+    section_name: Thumbnail Template System
+    section_order: 2
+    section_field_order: 0
+    question: What types of videos will these thumbnail templates be used for?
+    options:
+      - label: Tutorials
+        value: tutorials
+      - label: Property Tours
+        value: property_tours
+      - label: Product Reviews
+        value: product_reviews
+      - label: Interviews
+        value: interviews
+      - label: Podcasts
+        value: podcasts
+      - label: News Updates
+        value: news_updates
+      - label: Educational Content
+        value: educational_content
+      - label: Other
+        value: other
+  - code: many_thumbnail_template
+    kind: radio
+    required: true
+    section_name: Thumbnail Template System
+    section_order: 2
+    section_field_order: 1
+    question: How many thumbnail template variations are required?
+    options:
+      - label: 1 Universal Template
+        value: 1_universal
+      - label: 3 Content Categories
+        value: 3_categories
+      - label: 5 Content Categories
+        value: 5_categories
+      - label: Custom
+        value: custom
+  - code: recurring_elements_should
+    kind: checkbox
+    required: true
+    section_name: Thumbnail Template System
+    section_order: 2
+    section_field_order: 2
+    question: What recurring elements should appear on thumbnails?
+    options:
+      - label: Presenter Photo
+        value: presenter_photo
+      - label: Logo
+        value: logo
+      - label: Episode Number
+        value: episode_number
+      - label: Category Label
+        value: category_label
+      - label: Brand Colours
+        value: brand_colours
+      - label: Icons
+        value: icons
+      - label: Progress Bars
+        value: progress_bars
+      - label: Other
+        value: other
+  - code: have_headshots_logos
+    kind: file
+    required: true
+    section_name: Assets
+    section_order: 3
+    section_field_order: 0
+    question: Do you have headshots, logos, product images, or brand assets to include?
+      Please upload the assets.
+  - code: will_creators_face
+    kind: radio
+    required: true
+    section_name: Assets
+    section_order: 3
+    section_field_order: 1
+    question: Will the creator's face be featured on thumbnails?
+    hint: A very important thumbnail-design question.
+    options:
+      - label: 'Yes'
+        value: 'yes'
+      - label: 'No'
+        value: 'no'
+      - label: Sometimes
+        value: sometimes
+  - code: any_youtube_channels
+    kind: file
+    required: false
+    section_name: Design Direction
+    section_order: 4
+    section_field_order: 0
+    question: Any YouTube channels, banners, or thumbnail styles you'd like us to
+      reference?
+    hint: Upload references, up to 3.
+  - code: visual_style
+    kind: radio
+    required: true
+    section_name: Design Direction
+    section_order: 4
+    section_field_order: 1
+    question: Describe the visual style you'd like.
+    options:
+      - label: Bold Creator Style
+        value: bold_creator_style
+      - label: Premium
+        value: premium
+      - label: Educational
+        value: educational
+      - label: Minimal
+        value: minimal
+      - label: Corporate
+        value: corporate
+      - label: High-Energy
+        value: high_energy
+      - label: Modern Tech
+        value: modern_tech
+      - label: Other
+        value: other
