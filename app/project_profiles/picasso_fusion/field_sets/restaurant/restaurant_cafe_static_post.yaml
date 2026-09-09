@@ -173,6 +173,11 @@ fields:
     section_field_order: 1
     question: Provide your copy or rough points.
     hint: Only if you have final copy ready or rough points.
+    show_if:
+      field: copy_status
+      in:
+        - final_copy_ready
+        - rough_points
   - code: design_requirements
     kind: checkbox
     required: false

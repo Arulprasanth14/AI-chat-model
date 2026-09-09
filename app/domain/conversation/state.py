@@ -55,6 +55,7 @@ WRITE_STATUS_REJECTED_QUALITATIVE = "rejected_qualitative"  # quantitative field
 WRITE_STATUS_REJECTED_UNKNOWN_FIELD = "rejected_unknown_field"
 WRITE_STATUS_REJECTED_LOWER_CONFIDENCE = "rejected_lower_confidence"
 WRITE_STATUS_REJECTED_MALFORMED = "rejected_malformed"  # missing required tool arguments
+WRITE_STATUS_REJECTED_DATE_CONFLICT = "rejected_date_conflict"
 
 
 # ── Data transfer objects ──────────────────────────────────────────────────────
@@ -245,6 +246,8 @@ class ConversationState(BaseModel):
         """
         tool_name = "save_text_field"
 
+
+
         # Validate field exists
         field_def = profile.get_field_by_code(field_code)
         if field_def is None:
@@ -271,6 +274,53 @@ class ConversationState(BaseModel):
                 tool_name=tool_name,
                 tool_call_id=tool_call_id,
             )
+
+        # Date Validation logic
+        # Rule: project_deadline MUST be strictly BEFORE launch_date_time.
+        # (The design deliverable must be ready before the post goes live.)
+        # This check is bidirectional: it fires whether we are saving
+        # project_deadline or launch_date_time, as long as the other is
+        # already captured above the confidence threshold.
+        # BYPASS: confidence=1.0 means the user explicitly confirmed they
+        # want these dates despite the conflict — accept and save.
+        if field_code in ("project_deadline", "launch_date_time") and confidence < 1.0:
+            other_code = "launch_date_time" if field_code == "project_deadline" else "project_deadline"
+            other_val = self.captured.get(other_code)
+            if other_val and other_val.confidence >= confidence_threshold:
+                try:
+                    from dateutil.parser import parse
+                    val_dt = parse(value, fuzzy=True)
+                    other_dt = parse(other_val.value, fuzzy=True)
+
+                    # Determine which date is launch and which is deadline
+                    if field_code == "project_deadline":
+                        deadline_dt = val_dt
+                        launch_dt = other_dt
+                    else:  # field_code == "launch_date_time"
+                        deadline_dt = other_dt
+                        launch_dt = val_dt
+
+                    # Conflict: deadline is on or after launch date
+                    if deadline_dt >= launch_dt:
+                        conflict_msg = (
+                            f"DATE CONFLICT DETECTED: "
+                            f"The project deadline is {deadline_dt.strftime('%B %d')} "
+                            f"but the launch date is {launch_dt.strftime('%B %d')}. "
+                            f"The design must be delivered BEFORE the launch, so the "
+                            f"project deadline ({deadline_dt.strftime('%B %d')}) must be "
+                            f"earlier than the launch date ({launch_dt.strftime('%B %d')}). "
+                            f"Ask the user to confirm they truly want these dates or suggest a corrected deadline."
+                        )
+                        return FieldWriteResult(
+                            field_code=field_code,
+                            value=value,
+                            status=WRITE_STATUS_REJECTED_DATE_CONFLICT,
+                            reason=conflict_msg,
+                            tool_name=tool_name,
+                            tool_call_id=tool_call_id,
+                        )
+                except Exception as e:
+                    logger.warning(f"Date validation parsing failed: {e}")
 
         # Look up input_type from profile to decide merge semantics
         is_list_field = (field_def.input_type == "list")
@@ -561,6 +611,9 @@ class ConversationState(BaseModel):
                         input_type=field_def.input_type,
                     )
                 )
+
+
+
         return missing
 
     def is_complete(
@@ -663,9 +716,40 @@ class ConversationState(BaseModel):
         turn_index = len(self.conversation_history)
         existing = self.captured.get(field_code)
 
-        # ── List-field additive merge path ─────────────────────────────────────
+        # ── List-field path ──────────────────────────────────────────────────────
         if is_list_field and existing is not None:
-            # Split both existing and new values, merge deduplicated, preserve order
+            # confidence=1.0 signals an EXPLICIT OVERRIDE (the user is retracting or
+            # replacing their prior selection entirely, e.g. "use stock images instead").
+            # In this case, REPLACE the stored value rather than merging with old values.
+            # This is critical: if we merge, old upload options stay in the list and
+            # their dependent file-upload fields remain required — causing the upload loop.
+            if confidence >= 1.0:
+                self.captured[field_code] = CapturedField(
+                    field_code=field_code,
+                    value=value,
+                    confidence=confidence,
+                    turn_index=turn_index,
+                )
+                logger.info(
+                    "List field replaced (explicit override confidence=1.0)",
+                    extra={
+                        "field_code": field_code,
+                        "old_value": existing.value,
+                        "new_value": value,
+                        "tool_name": tool_name,
+                    },
+                )
+                return FieldWriteResult(
+                    field_code=field_code,
+                    value=value,
+                    status=WRITE_STATUS_SAVED,
+                    reason=None,
+                    tool_name=tool_name,
+                    tool_call_id=tool_call_id,
+                )
+
+            # Normal additive merge: user is adding more items to the list.
+            # Split both existing and new values, merge deduplicated, preserve order.
             existing_items = [v.strip() for v in existing.value.split(",") if v.strip()]
             new_items = [v.strip() for v in value.split(",") if v.strip()]
             # Deduplicated union (preserve insertion order)

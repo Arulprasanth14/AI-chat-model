@@ -5,7 +5,6 @@ import type { ChatContext } from "./useChat";
 import type { SessionSnapshot, ChatMessage } from "./types";
 import "./App.css";
 
-const API_BASE = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 
 // ── Vertical & Content-Type Configuration ────────────────────────────────────
 // Keys are the exact folder names in app/project_profiles/picasso_fusion/field_sets/
@@ -139,16 +138,73 @@ function TypingDots() {
   );
 }
 
+// ── Markdown Renderer for Chat & Modal ────────────────────────────────────────
+function renderMarkdownLine(line: string, idx: number, baseClass: string = "brief-modal") {
+  if (line.startsWith("## ")) {
+    return <h2 key={idx} className={`${baseClass}-h2`}>{line.slice(3)}</h2>;
+  }
+  if (line.startsWith("### ")) {
+    return <h3 key={idx} className={`${baseClass}-h3`}>{line.slice(4)}</h3>;
+  }
+  if (line.startsWith("- **")) {
+    // "- **Label**: value" pattern
+    const content = line.slice(2);
+    const match = content.match(/^\*\*(.+?)\*\*:\s*(.*)/);
+    if (match) {
+      return (
+        <div key={idx} className={`${baseClass}-field`}>
+          <span className={`${baseClass}-field-label`}>{match[1]}</span>
+          <span className={`${baseClass}-field-value`}>{match[2] || <em>not yet provided</em>}</span>
+        </div>
+      );
+    }
+  }
+  if (line.startsWith("- ")) {
+    return <li key={idx} className={`${baseClass}-li`}>{line.slice(2)}</li>;
+  }
+  if (line.startsWith("*") && line.endsWith("*")) {
+    return <p key={idx} className={`${baseClass}-meta`}>{line.slice(1, -1)}</p>;
+  }
+  if (line.trim() === "") {
+    return <div key={idx} style={{ height: 4 }} />;
+  }
+  // Bold formatting for plain text (e.g. **Brief Summary**)
+  if (line.includes("**")) {
+    const parts = line.split(/(\*\*.*?\*\*)/g);
+    return (
+      <p key={idx} className={`${baseClass}-p`}>
+        {parts.map((part, i) => {
+          if (part.startsWith("**") && part.endsWith("**")) {
+            return <strong key={i}>{part.slice(2, -2)}</strong>;
+          }
+          return part;
+        })}
+      </p>
+    );
+  }
+  return <p key={idx} className={`${baseClass}-p`}>{line}</p>;
+}
+
 // ── Message Bubbles ───────────────────────────────────────────────────────────
 function MessageItem({ message }: { message: ChatMessage }) {
   if (message.role === "assistant") {
+    // Check if the message contains markdown-like structures (e.g. "### ", "- **")
+    // If so, render it using our markdown renderer for a polished UI
+    const isMarkdown = message.content.includes("### ") || message.content.includes("- **");
+    
     return (
       <div className="msg-in ai-bubble-row">
         <AIGlyph />
         <div className="ai-bubble-wrapper">
           <div className="ai-author-label">Picasso AI</div>
           <div className="ai-bubble-content">
-            {message.content}
+            {isMarkdown ? (
+              <div className="formatted-brief-inline">
+                {message.content.split("\n").map((line, idx) => renderMarkdownLine(line, idx, "brief-modal"))}
+              </div>
+            ) : (
+              message.content
+            )}
             {message.streaming && (
               <span className="tdot inline-block ml-1 opacity-70">▍</span>
             )}
@@ -264,99 +320,13 @@ function SelectionScreen({ onStart }: SelectionScreenProps) {
   );
 }
 
-// ── Brief Modal ───────────────────────────────────────────────────────────────
-interface BriefModalProps {
-  briefMarkdown: string;
-  onClose: () => void;
-}
-
-function BriefModal({ briefMarkdown, onClose }: BriefModalProps) {
-  // Render the markdown as simple HTML paragraphs / lists
-  // (No external markdown lib — render section headings and bullet points natively)
-  const renderLine = (line: string, idx: number) => {
-    if (line.startsWith("## ")) {
-      return <h2 key={idx} className="brief-modal-h2">{line.slice(3)}</h2>;
-    }
-    if (line.startsWith("### ")) {
-      return <h3 key={idx} className="brief-modal-h3">{line.slice(4)}</h3>;
-    }
-    if (line.startsWith("- **")) {
-      // "- **Label**: value" pattern
-      const content = line.slice(2);
-      const match = content.match(/^\*\*(.+?)\*\*:\s*(.*)/);
-      if (match) {
-        return (
-          <div key={idx} className="brief-modal-field">
-            <span className="brief-modal-field-label">{match[1]}</span>
-            <span className="brief-modal-field-value">{match[2] || <em>not yet provided</em>}</span>
-          </div>
-        );
-      }
-    }
-    if (line.startsWith("- ")) {
-      return <li key={idx} className="brief-modal-li">{line.slice(2)}</li>;
-    }
-    if (line.startsWith("*") && line.endsWith("*")) {
-      return <p key={idx} className="brief-modal-meta">{line.slice(1, -1)}</p>;
-    }
-    if (line.trim() === "") {
-      return <div key={idx} style={{ height: 4 }} />;
-    }
-    return <p key={idx} className="brief-modal-p">{line}</p>;
-  };
-
-  return (
-    <div className="brief-modal-overlay" id="brief-modal-overlay" onClick={onClose}>
-      <div
-        className="brief-modal"
-        id="brief-modal"
-        onClick={(e) => e.stopPropagation()}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Full Brief Summary"
-      >
-        <div className="brief-modal-header">
-          <span className="brief-modal-title">📋 Full Brief Summary</span>
-          <button
-            className="brief-modal-close"
-            onClick={onClose}
-            id="btn-close-brief-modal"
-            aria-label="Close brief"
-          >
-            ✕
-          </button>
-        </div>
-        <div className="brief-modal-body">
-          {briefMarkdown.split("\n").map((line, idx) => renderLine(line, idx))}
-        </div>
-        <div className="brief-modal-footer">
-          <button
-            className="brief-modal-submit-btn"
-            id="btn-submit-brief-from-modal"
-            onClick={() => alert("Brief submission would trigger here once the submission backend is wired in.")}
-          >
-            🚀 Submit Brief
-          </button>
-          <button
-            className="brief-modal-close-btn"
-            onClick={onClose}
-            id="btn-close-brief-modal-footer"
-          >
-            Close
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 // ── Completion CTA Banner ─────────────────────────────────────────────────────
 interface CompletionBannerProps {
-  onViewBrief: () => void;
-  isLoadingBrief: boolean;
+  onSubmitBrief: () => void;
 }
 
-function CompletionBanner({ onViewBrief, isLoadingBrief }: CompletionBannerProps) {
+function CompletionBanner({ onSubmitBrief }: CompletionBannerProps) {
   return (
     <div className="completion-banner" id="completion-banner" role="status" aria-live="polite">
       <div className="completion-banner-content">
@@ -365,23 +335,15 @@ function CompletionBanner({ onViewBrief, isLoadingBrief }: CompletionBannerProps
           <div>
             <div className="completion-banner-title">Brief Complete!</div>
             <div className="completion-banner-sub">
-              All required fields have been captured. You can still ask questions or request changes.
+              All required fields have been captured. Please submit your brief below.
             </div>
           </div>
         </div>
         <div className="completion-banner-actions">
           <button
-            className="completion-view-btn"
-            onClick={onViewBrief}
-            disabled={isLoadingBrief}
-            id="btn-view-brief"
-          >
-            {isLoadingBrief ? "Loading…" : "📄 View Full Brief"}
-          </button>
-          <button
             className="completion-submit-btn"
             id="btn-submit-brief"
-            onClick={() => alert("Brief submission would trigger here once the submission backend is wired in.")}
+            onClick={onSubmitBrief}
           >
             🚀 Submit Brief
           </button>
@@ -547,7 +509,6 @@ export default function App() {
     error,
     sendMessage,
     uploadDocuments,
-    sessionId,
     clearSession,
   } = useChat();
   const [input, setInput] = useState("");
@@ -558,10 +519,13 @@ export default function App() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Brief modal state
-  const [briefModalOpen, setBriefModalOpen] = useState(false);
-  const [briefContent, setBriefContent] = useState<string>("");
-  const [isLoadingBrief, setIsLoadingBrief] = useState(false);
+  // Brief modal state removed as it is no longer used
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+
+  const handleSubmitBrief = () => {
+    setHasSubmitted(true);
+    sendMessage("__submit__", undefined, true);
+  };
 
   // Auto-scroll to latest message
   useEffect(() => {
@@ -599,8 +563,7 @@ export default function App() {
     setChatContext(null);
     setContextLabel("");
     setInput("");
-    setBriefModalOpen(false);
-    setBriefContent("");
+    setHasSubmitted(false);
     setAppStep("selection");
   };
 
@@ -662,22 +625,7 @@ export default function App() {
     }
   };
 
-  const handleViewBrief = async () => {
-    if (!sessionId) return;
-    setIsLoadingBrief(true);
-    try {
-      const res = await fetch(`${API_BASE}/conversation/session/${sessionId}/brief`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
-      setBriefContent(data.brief ?? "No brief content available.");
-      setBriefModalOpen(true);
-    } catch (err) {
-      setBriefContent("Failed to load brief. Please try again.");
-      setBriefModalOpen(true);
-    } finally {
-      setIsLoadingBrief(false);
-    }
-  };
+
 
   const isComplete = snapshot?.is_complete ?? false;
 
@@ -808,15 +756,15 @@ export default function App() {
             </div>
 
             {/* Completion CTA — shown above input bar when brief is complete */}
-            {isComplete && (
+            {isComplete && !hasSubmitted && (
               <CompletionBanner
-                onViewBrief={handleViewBrief}
-                isLoadingBrief={isLoadingBrief}
+                onSubmitBrief={handleSubmitBrief}
               />
             )}
 
             {/* Input Bar */}
-            <div className="input-area-container">
+            {!hasSubmitted && (
+              <div className="input-area-container">
               {/* Enum Option Chips moved to chat stream */}
               <div className="input-bar-pill">
                 <AIGlyph size={26} />
@@ -875,6 +823,7 @@ export default function App() {
                 </button>
               </div>
             </div>
+            )}
           </>
         )}
       </div>
@@ -883,12 +832,7 @@ export default function App() {
       <StatePanel snapshot={snapshot} />
 
       {/* ── Brief Modal ───────────────────────────────────────────────────── */}
-      {briefModalOpen && (
-        <BriefModal
-          briefMarkdown={briefContent}
-          onClose={() => setBriefModalOpen(false)}
-        />
-      )}
+      {/* BriefModal has been removed since the 'View Full Brief' button was removed */}
     </div>
   );
 }
