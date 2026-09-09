@@ -93,6 +93,7 @@ class PromptBuilder:
         brief_summary: str | None = None,
         suggestion_gate_rule: str | None = None,
         current_field_hint: str | None = None,
+        captured_fields: dict[str, Any] | None = None,
     ) -> list[dict[str, Any]]:
         """Build the full message list for the LLM API call.
 
@@ -107,6 +108,7 @@ class PromptBuilder:
             suggestion_gate_rule: If not None, a hard prohibition string from
                                   suggestion_gate.format_gate_rule() to inject
                                   into the system message (Cluster C, Bug 2 fix).
+            captured_fields:      Dictionary of currently stored field values.
 
         Returns:
             List of {role: str, content: str} dicts ready for the LLM API.
@@ -116,6 +118,7 @@ class PromptBuilder:
             is_complete=is_complete, brief_summary=brief_summary,
             suggestion_gate_rule=suggestion_gate_rule,
             current_field=missing_fields[0] if missing_fields else None,
+            captured_fields=captured_fields,
         )
 
         messages: list[dict[str, Any]] = [
@@ -163,6 +166,7 @@ class PromptBuilder:
         brief_summary: str | None = None,
         suggestion_gate_rule: str | None = None,
         current_field: MissingField | None = None,
+        captured_fields: dict[str, Any] | None = None,
     ) -> str:
         """Assemble the system message from its three components."""
         parts: list[str] = []
@@ -190,7 +194,7 @@ class PromptBuilder:
 
         # 3. Brief status block — switches mode based on completion state
         status_block = self._format_brief_status(
-            missing_fields, is_complete=is_complete, brief_summary=brief_summary, profile=profile
+            missing_fields, is_complete=is_complete, brief_summary=brief_summary, profile=profile, captured_fields=captured_fields
         )
 
         # Build a simple, direct extraction instruction that smaller models can follow
@@ -218,11 +222,22 @@ class PromptBuilder:
             "- If the user did not answer a specific question, do NOT call a save tool for that field. Leave it blank.\n"
             "- For enum fields, do NOT force a mapping. If their answer is ambiguous or unsupported by the options (e.g. '249 only' is a price, not a 'percentage_discount'), do NOT call save_enum_field.\n"
             "- Confidence Calibration: Use 1.0 ONLY for exact, explicit answers. Use lower confidence (e.g., 0.6) if you are semantically mapping an indirect answer. If you have no evidence, do NOT extract the field.\n"
+            "- ANSWER OVERRIDE (CRITICAL): If the user's message RETRACTS or CHANGES a previously captured answer "
+            "(e.g. 'I don't have images — use stock instead', 'actually skip the upload', 'change that to X'), "
+            "you MUST call a save tool to OVERWRITE the previously captured field with the new value. "
+            "Use confidence=1.0 for explicit retractions. This is more important than answering the current missing field — "
+            "handle the override FIRST. The system will automatically re-evaluate dependent fields after the override.\n"
             "HONESTY INVARIANTS (enforced — never override):\n"
             "- NEVER use language like 'all set', 'you\\'re good to go', 'we\\'re done', or 'brief is complete' "
             "unless the system explicitly tells you STATUS: BRIEF COMPLETE.\n"
             "- NEVER claim a file, logo, or asset was received unless it is listed in the 'Captured Fields' summary below "
-            "OR it appears as a SAVED field in the write outcome report. The user saying they uploaded a file in chat is not confirmation; you must verify it exists in your system data."
+            "OR it appears as a SAVED field in the write outcome report. The user saying they uploaded a file in chat is not confirmation; you must verify it exists in your system data.\n"
+            "9. DATE VALIDATION (CRITICAL — BIDIRECTIONAL): The project_deadline MUST be strictly BEFORE the launch_date_time. "
+            "When saving EITHER 'project_deadline' OR 'launch_date_time', check if the OTHER date is already captured. "
+            "If both dates are known and the deadline is on or after the launch date, do NOT call the save tool. "
+            "Leave the conflicting field unsaved so you can clearly warn the user in the response phase. "
+            "EXCEPTION: If the user explicitly confirms they know and want to keep the dates as-is (e.g. 'yes keep it Sept 19'), "
+            "THEN you MUST save using confidence=1.0 to bypass backend validation."
         )
 
         return self.SECTION_SEP.join(parts)
@@ -238,6 +253,7 @@ class PromptBuilder:
         retrieved_chunks: list[RetrievedChunk] | None = None,
         missing_fields: list | None = None,
         field_saved_note: str | None = None,
+        captured_fields: dict[str, Any] | None = None,
     ) -> list[dict[str, Any]]:
         """Build the Phase B message list for the response-generation LLM call.
 
@@ -404,16 +420,33 @@ class PromptBuilder:
                     )
                 })
             else:
-                messages.append({
-                    "role": "user",
-                    "content": (
-                        f"[SYSTEM OVERRIDE — MANDATORY DIRECTIVE]: "
-                        f"You MUST ask the user about the following field NOW:\n"
-                        f"[{next_field.field_code}] {next_field.description}\n"
-                        f"Do NOT ask about any other field. Do NOT repeat questions that have already been answered. "
-                        f"Frame your question naturally based on the field description above."
+                # Build inline options text for enum/radio/checkbox fields so the
+                # LLM always presents the available choices rather than asking free-text.
+                options_text = ""
+                if next_field.enum_values:
+                    opts = next_field.enum_options
+                    if opts:
+                        option_names = ", ".join(
+                            f'"{o.get("label", o.get("value"))}"' for o in opts
+                        )
+                    else:
+                        option_names = ", ".join(f'"{v}"' for v in next_field.enum_values)
+                    field_kind = "single option" if next_field.input_type == "enum" else "one or more options"
+                    options_text = (
+                        f"\nThis field has predefined choices ({field_kind}): {option_names}."
+                        f"\nIMPORTANT: These options are displayed as clickable chip buttons below your message in the UI —"
+                        f" the user taps the one that applies. You MUST write a SHORT, NATURAL, CONVERSATIONAL question."
+                        f" Do NOT enumerate or list the options yourself (no '1. 2. 3.', no 'Choose from', no bullet points)."
                     )
-                })
+                directive_content = (
+                    "[SYSTEM OVERRIDE — MANDATORY DIRECTIVE]: "
+                    f"You MUST ask the user about the following field NOW:\n"
+                    f"[{next_field.field_code}] {next_field.description}\n"
+                    + options_text
+                    + "\nDo NOT ask about any other field. Do NOT repeat questions that have already been answered. "
+                    "Frame your question naturally and conversationally."
+                )
+                messages.append({"role": "user", "content": directive_content})
 
         logger.debug(
             "Phase B prompt built",
@@ -502,6 +535,12 @@ class PromptBuilder:
             "- For 'rejected_lower_confidence': note that the existing capture was kept (higher confidence).\n"
             "- For 'rejected_unknown_field': do not mention — field mismatch is a system issue.\n"
             "- For 'rejected_malformed': say you couldn't understand the value and ask to clarify.\n"
+            "- For 'rejected_date_conflict': You MUST warn the user about this conflict clearly and in plain language. "
+            "Use a natural, conversational tone. For example: "
+            "'Hey, just a heads-up — your launch date is [Launch Date], but the project deadline you mentioned is [Deadline Date], which is AFTER the launch. "
+            "The design needs to be ready BEFORE the post goes live, so the deadline should be earlier than the launch date. "
+            "Did you mean a different deadline, or do you want to keep [Deadline Date] anyway?' "
+            "Always quote both dates from the reason. Do NOT save the field — it was rejected. Ask the user to confirm or correct the dates.\n"
             "- For 'write_failed': tell the user the save didn't go through and you'll try again.\n"
             # Bug 1 fix: hard prohibition on file/logo claims not backed by a write outcome
             "- NEVER say 'I can see your logo', 'I received your file', or 'your asset was uploaded' "
@@ -660,14 +699,21 @@ class PromptBuilder:
             "4. LOW CONFIDENCE: If you have to infer a value from vague context, you MUST use a low confidence (e.g., 0.3 or 0.4). Do NOT use 1.0 or 0.9 for inferred values.\n"
             "5. MULTI-FIELD: If the user explicitly answers multiple fields in one message, call a separate "
             "tool for EACH field. Do not bundle them.\n"
-            "6. ALREADY SAVED: Do NOT save a field that has already been saved in previous turns. "
-            "Check the conversation history before calling a save tool.\n"
-            # Bug 2 fix: prevent item prices from being hallucinated into offer fields
+            "6. ALREADY SAVED — NORMAL CASE: Do NOT re-save a field that was already captured unless the user is explicitly changing it. "
+            "If the user is simply continuing the conversation (not correcting anything), skip already-saved fields.\n"
             "7. PRICE ≠ OFFER TYPE (CRITICAL): A plain item price or product price (e.g., '₹209', '$15', '249 only') "
             "is NEVER an offer_type, discount type, or offer detail. Prices are part of item/product descriptions. "
             "ONLY extract offer_type if the user explicitly says there is a promotion, deal, discount, or offer. "
             "Example of correct behavior: User says 'launching biriyani at ₹209' → save promoted_item='Biriyani - ₹209', do NOT touch offer_type. "
-            "Example of wrong behavior: User says '₹209 only' → saving offer_type='percentage_discount' is WRONG and FORBIDDEN."
+            "Example of wrong behavior: User says '₹209 only' → saving offer_type='percentage_discount' is WRONG and FORBIDDEN.\n"
+            "8. ANSWER OVERRIDE (CRITICAL — highest priority rule): If the user's message RETRACTS, CANCELS, or CHANGES a previously captured answer, "
+            "you MUST immediately overwrite that captured field with the new value using confidence=1.0. "
+            "Do NOT skip this because the field was already saved. "
+            "Example: System asked about 'uploaded_files'. User says 'I don't have photos, use stock images'. "
+            "→ Do NOT save 'uploaded_files'. "
+            "→ INSTEAD: identify 'asset_availability' (the field whose old value caused 'uploaded_files' to appear) "
+            "→ call save_enum_field(field_code='asset_availability', value='use_stock_images_where_suitable', confidence=1.0). "
+            "This is mandatory. After this save, the system will automatically remove 'uploaded_files' from the required flow."
         )
 
         return "\n".join(lines)
@@ -725,9 +771,9 @@ class PromptBuilder:
             "Generate your conversational reply in the `message` field. "
             "You have already saved fields in a prior step; do NOT re-save here.\n\n"
             "## RESPONSE STYLE RULES (MANDATORY)\n"
-            "- Keep replies SHORT and conversational — 1 to 3 sentences max.\n"
-            "- Use natural, varied, and brief acknowledgements (e.g., 'Makes sense', "
-            "'Understood', 'Great', 'Got it'). Do not use the exact same phrase repeatedly.\n"
+            "- Keep replies SHORT and conversational — 2 to 3 sentences max.\n"
+            "- Use natural, varied acknowledgements (e.g., 'Makes sense', 'Nice', 'Got it', 'Understood'). "
+            "NEVER use the same opener twice in a row. Do NOT always start with 'Got it'.\n"
             "- Do NOT over-validate or over-praise. No 'That\'s a great choice!', "
             "'Love that!', or 'Wonderful!'.\n"
             "- CRITICAL UI SYNC: When asking a question to collect missing information, "
@@ -737,12 +783,34 @@ class PromptBuilder:
             "and show the wrong buttons!\n"
             "- Ask ONLY 1 question per turn to ensure the UI buttons exactly match your question.\n"
             "- NEVER ask about a topic that was already answered in the conversation history above.\n"
-            "- Write like a confident creative consultant, not a customer-service bot.\n\n"
+            "- Write like a confident creative consultant talking to a client — warm, clear, human.\n\n"
+            "## QUESTION QUALITY RULES (CRITICAL — read this carefully)\n"
+            "- NEVER ask a bare 4-5 word question on its own. Naked short questions feel robotic and cold.\n"
+            "- EVERY question you ask MUST follow this 2-part structure:\n"
+            "    PART 1: One short sentence giving context — WHY you're asking or what you'll use the answer for (keep it under 10 words).\n"
+            "    PART 2: The actual question itself.\n"
+            "- EXAMPLES (follow these patterns exactly):\n"
+            "    BAD:  'What item are we promoting?'\n"
+            "    GOOD: 'To make the design stand out — what's the new item you're launching, and is there a price to feature?'\n"
+            "    BAD:  'When are you launching this?'\n"
+            "    GOOD: 'So we can plan the design timeline — when is the launch date for this item?'\n"
+            "    BAD:  'What's the main goal of this post?'\n"
+            "    GOOD: 'To make sure the creative hits the right note — what do you mainly want customers to do or feel after seeing this post?'\n"
+            "    BAD:  'Who is your ideal customer for this?'\n"
+            "    GOOD: 'Knowing your audience helps us nail the tone — who are you mainly trying to reach with this?'\n"
+            "    BAD:  'What's the main message you want customers to remember?'\n"
+            "    GOOD: 'For the copy — what\'s the one thing you want people to walk away thinking or feeling about this dish?'\n"
+            "- The context lead-in must be SHORT (under 12 words). Do NOT write paragraphs.\n"
+            "- The FULL reply (acknowledgement + lead-in + question) MUST stay within 2-3 sentences total.\n\n"
             "HONESTY INVARIANTS (enforced — never override):\n"
             "- NEVER use language like 'all set', 'you\'re good to go', 'we\'re done', "
             "or 'brief is complete' unless the system explicitly tells you STATUS: BRIEF COMPLETE.\n"
             "- NEVER claim a file, logo, or asset was received unless it is listed in the "
-            "'Captured Fields' summary above OR it appears as a SAVED field in the write outcome report."
+            "'Captured Fields' summary above OR it appears as a SAVED field in the write outcome report.\n"
+            "- DATE VALIDATION (CRITICAL): If Phase A left 'project_deadline' or 'launch_date_time' unsaved with status 'rejected_date_conflict', "
+            "you MUST explain the conflict clearly using both dates from the reason field. "
+            "Example: 'Hey, just a heads-up — you mentioned launching on September 17, but the project deadline you gave is September 19, which is 2 days AFTER the launch. "
+            "The design needs to be completed before the post goes live. Did you mean an earlier deadline, or do you want to keep September 19 anyway?'"
         )
 
         # 4. Frustration / fatigue handler
@@ -814,6 +882,7 @@ class PromptBuilder:
         is_complete: bool = False,
         brief_summary: str | None = None,
         profile: BaseProfile | None = None,
+        captured_fields: dict[str, Any] | None = None,
     ) -> str:
         """Format the brief status block for the LLM.
 
@@ -830,25 +899,27 @@ class PromptBuilder:
         if is_complete:
             summary_ref = ""
             if brief_summary:
-                # Provide the brief as a reference — LLM must not paraphrase it
                 summary_ref = (
-                    "\n\n**Captured Brief (for reference only — do not repeat unless asked):**\n\n"
+                    "\n\n**Captured Brief (present this to the user in your response):**\n\n"
                     + brief_summary
                 )
 
             return (
                 "**STATUS: BRIEF COMPLETE — All required fields have been captured.**\n\n"
-                "You are now in post-completion Q&A mode. Rules for this mode:\n"
-                "1. READ the user's message carefully. Respond DIRECTLY and SPECIFICALLY to what they asked.\n"
-                "2. Do NOT recite or summarise the full brief again unless the user explicitly asks "
-                "   (e.g. 'show me the brief', 'what did we capture', 'summarise everything').\n"
-                "3. If the user asks to change or update a field, acknowledge it warmly and note the change.\n"
-                "4. CRITICAL: Do NOT offer to brainstorm, create a strategy, or ask any follow-up questions. "
-                "   Your job as a brief collector is done. Simply thank the user enthusiastically, confirm "
-                "   the brief has been sent to the designer, and end the conversation.\n"
-                "5. If the user says they are done, confirm readiness to proceed.\n"
-                "6. NEVER give the same response twice for different questions — your response must "
-                "   be specifically tailored to what was just asked."
+                "MANDATORY FIRST-COMPLETION RESPONSE RULES (follow these EXACTLY in order):\n"
+                "1. PRESENT THE FULL BRIEF SUMMARY to the user using the 'Captured Brief' below. "
+                "   Format it clearly with section headers and bullet points so it is easy to read. "
+                "   Do NOT skip this — the user MUST see a summary of what was captured.\n"
+                "2. AFTER the summary, tell the user something like: "
+                "   'Everything looks good! Please review the summary above and if you're happy with it, "
+                "   click the **🚀 Submit Brief** button below to send it to our design team.'\n"
+                "3. NEVER claim the brief has already been sent or submitted.\n"
+                "4. NEVER say 'We'll get started right away' or similar — the brief has NOT been submitted yet.\n"
+                "5. Do NOT ask any follow-up questions. The user's only action is to click Submit Brief.\n"
+                "6. If the user has ALREADY SEEN the summary (i.e. they are responding to a prior message "
+                "   where you already showed it), do NOT repeat the full summary. Instead, respond directly "
+                "   to what they said and remind them to click **🚀 Submit Brief** if they are ready.\n"
+                "NEVER give a generic 'brief is all set' message WITHOUT first showing the captured summary."
                 + summary_ref
             )
 
@@ -870,6 +941,7 @@ class PromptBuilder:
             if captured:
                 lines.append(f"\n**{len(captured)} field(s) already captured (can be updated):**\n")
                 for cf in captured:
-                    lines.append(f"- `{cf.code}`: {cf.description.strip()}")
+                    val = captured_fields.get(cf.code, "(Captured)") if captured_fields else "(Captured)"
+                    lines.append(f"- `{cf.code}` = {val}")
 
         return "\n\n".join(lines)

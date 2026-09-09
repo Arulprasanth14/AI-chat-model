@@ -322,6 +322,13 @@
   word-break: break-word;
 }
 
+.formatted-brief-inline {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
 .user-bubble-row {
   display: flex;
   gap: 10px;

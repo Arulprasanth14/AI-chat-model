@@ -215,6 +215,18 @@ class ConversationOrchestrator:
         # We do NOT add it to conversation history so the LLM sees an empty
         # history and produces a natural first-turn opener for the selected vertical.
         is_start_trigger = user_message.strip() == "__start__"
+        is_submit_trigger = user_message.strip() == "__submit__"
+
+        # Obtain the effective profile for this turn (applies field sets if resolved)
+        active_profile = self._profile_provider(state)
+
+        if is_submit_trigger:
+            final_message = "Got it! Your brief is all set and has been sent over to our design team. Thanks for working with Picasso today!"
+            state.add_turn("assistant", final_message)
+            await self._repo.save_session(state)
+            yield self._sse_chunk(final_message)
+            yield self._sse_done(state.to_snapshot(active_profile, settings.extraction_confidence_threshold))
+            return
 
         # Bug 4+5 fix: __field_saved__:field_code:value is a hidden trigger from chip clicks.
         # The field was already written via direct_field_write at confidence=1.0.
@@ -229,9 +241,6 @@ class ConversationOrchestrator:
         if not is_start_trigger and not is_field_saved_trigger:
             state.add_turn("user", user_message)
 
-        # Obtain the effective profile for this turn (applies field sets if resolved)
-        active_profile = self._profile_provider(state)
-
         # ── Step 3: Compute missing fields ──────────────────────────────────
         missing_fields = state.compute_missing_fields(
             active_profile,
@@ -240,10 +249,11 @@ class ConversationOrchestrator:
 
         is_complete = state.is_complete(active_profile, settings.extraction_confidence_threshold)
 
-        # Build brief summary when complete (ready for the post-completion block)
+        # Build brief summary when at the review stage OR already complete.
+        at_review_stage = is_complete
         brief_summary: str | None = None
-        if is_complete and self._field_sets_root:
-            field_set_yaml_path: Path | None = None
+        field_set_yaml_path: Path | None = None  # computed once, reused below
+        if at_review_stage and self._field_sets_root:
             if state.resolved_vertical and state.resolved_template_key:
                 field_set_yaml_path = (
                     self._field_sets_root
@@ -292,6 +302,7 @@ class ConversationOrchestrator:
             brief_summary=brief_summary,
             suggestion_gate_rule=suggestion_gate_rule,
             current_field_hint=current_field_hint,
+            captured_fields={k: v.value for k, v in state.captured.items()},
         )
 
         # For __start__ trigger: inject a directive so the LLM generates a
@@ -403,6 +414,27 @@ class ConversationOrchestrator:
             active_profile, settings.extraction_confidence_threshold
         )
 
+        at_review_stage_post_a = is_complete
+        if brief_summary is None and at_review_stage_post_a and self._field_sets_root:
+            if field_set_yaml_path is None and state.resolved_vertical and state.resolved_template_key:
+                field_set_yaml_path = (
+                    self._field_sets_root
+                    / state.resolved_vertical
+                    / f"{state.resolved_template_key}.yaml"
+                )
+            try:
+                brief_summary = render_brief(
+                    captured=state.captured,
+                    field_set_yaml_path=field_set_yaml_path,
+                    profile=active_profile,
+                    include_confidence=False,
+                )
+            except Exception as exc:
+                logger.warning(
+                    "Brief renderer failed (post-Phase-A review stage)",
+                    exc_info=exc,
+                )
+
         phase_b_messages = self._prompt_builder.build_response_phase(
             phase_a_messages=phase_a_messages,
             phase_a_tool_calls=phase_a_dispatched_tool_calls,
@@ -413,6 +445,7 @@ class ConversationOrchestrator:
             retrieved_chunks=retrieved_chunks,
             missing_fields=missing_fields_post_a,
             field_saved_note=field_saved_info,  # Bug 5 fix: inject chip-save context for Phase B
+            captured_fields={k: v.value for k, v in state.captured.items()},
         )
 
         # ── Step 11: Phase B — Stream response to client ────────────────────
@@ -946,8 +979,12 @@ class ConversationOrchestrator:
         last assistant message in conversation history. Injects an explicit
         annotation so Phase A never has to guess what the user is answering.
 
-        This is the primary fix for Bug 2: empty phase_a_write_outcomes caused
-        by short/Tanglish answers the LLM couldn't map to a field without context.
+        Also handles the "answer override" scenario: if the user's message retracts
+        or changes a previously captured field (e.g. switching from upload options
+        to stock images), Phase A must update the CAPTURED field rather than the
+        current missing field. This is the fix for the stale-dependency bug:
+        after the captured choice changes, dependent fields (e.g. upload prompts)
+        that no longer apply are automatically removed from missing_fields.
 
         Args:
             state:          Current conversation state.
@@ -971,7 +1008,6 @@ class ConversationOrchestrator:
         ]
 
         if current_field.enum_values:
-            from app.project_profiles.base_profile import FieldDefinition
             opts = current_field.enum_options
             if opts:
                 pairs = ", ".join(
@@ -995,6 +1031,31 @@ class ConversationOrchestrator:
             "Even if the answer is short (a single word, a name, or casual language), "
             "you MUST extract it and call the appropriate save tool."
         )
+
+        # ── Answer-override detection ──────────────────────────────────────────
+        # If the user is retracting or changing a PREVIOUSLY CAPTURED answer
+        # (e.g. 'I don't have photos, use stock images instead' when asset_availability
+        # was already saved as upload options), Phase A must update THAT captured field
+        # — NOT try to answer the current missing field.
+        #
+        # We list all recently captured fields here so Phase A can identify which
+        # captured field the user is overriding and write the new value to it.
+        # After that write, compute_missing_fields will automatically drop any
+        # dependent fields (e.g. uploaded_files) that no longer apply.
+        if state.captured:
+            captured_lines = []
+            for code, cf in state.captured.items():
+                captured_lines.append(f"  - `{code}` = \"{cf.value}\"")
+            field_info_lines.append(
+                "\n[ANSWER OVERRIDE RULE — CRITICAL]\n"
+                "If the user's message RETRACTS or CHANGES a previously captured answer "
+                "(e.g. 'I don't have images', 'forget the upload, use stock', 'change that to X'), "
+                "you MUST identify which already-captured field is being changed and call the "
+                "appropriate save tool to overwrite it with the new value. "
+                "Do NOT try to answer the current question above — answer the override instead.\n"
+                "Currently captured fields that the user might be overriding:\n"
+                + "\n".join(captured_lines)
+            )
 
         return "\n".join(field_info_lines)
 

@@ -266,18 +266,6 @@ def _make_profile_provider(
             if deadline and not any(f.code == "project_deadline" for f in fields):
                 fields.append(deadline)
                 
-            if not any(f.code == "brief_confirmation" for f in fields):
-                fields.append(
-                    FieldDefinition(
-                        code="brief_confirmation",
-                        description="Confirmation that the brief summary looks good to the user and is ready to submit.",
-                        required=True,
-                        input_type="enum",
-                        enum_values=["confirmed"],
-                        enum_options=[{"label": "Yes, submit it", "value": "confirmed"}],
-                    )
-                )
-                
             return fields
 
         # If we already resolved a template, try loading it

@@ -241,6 +241,11 @@ fields:
     section_field_order: 2
     question: Provide your script or rough talking points.
     hint: Only if you selected "Final Script Ready" or "Rough Talking Points" above.
+    show_if:
+      field: copy_status
+      in:
+        - final_script_ready
+        - rough_talking_points
   - code: should_video_feel
     kind: checkbox
     required: true
@@ -336,7 +341,7 @@ fields:
       - label: Additional Instructions
         value: additional_instructions
     show_if:
-      field: brand_customization
+      field: brand_identity_choice
       in:
         - customize_this_project
   - code: brand_customization_details
@@ -348,7 +353,7 @@ fields:
     question: Provide any additional brand customization details.
     hint: Only if you selected "Customize This Project" above.
     show_if:
-      field: brand_customization
+      field: brand_identity_choice
       in:
         - customize_this_project
 
