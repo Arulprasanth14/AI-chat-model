@@ -168,12 +168,32 @@ class BriefRenderer:
             # JSON spec if present; else construct from section + code
             question = f.get("question") or f.get("section_name") or code
 
+            # Map enum values to human labels
+            raw_value = None
+            if code in self._captured:
+                raw_value = self._captured[code].value
+                if raw_value and f.get("options"):
+                    if isinstance(raw_value, list):
+                        val_parts = [str(v).strip() for v in raw_value]
+                    elif isinstance(raw_value, str):
+                        val_parts = [v.strip() for v in raw_value.split(",")]
+                    else:
+                        val_parts = [str(raw_value).strip()]
+                        
+                    mapped_parts = []
+                    for vp in val_parts:
+                        mapped_vp = vp
+                        for opt in f.get("options", []):
+                            if opt.get("value") == vp:
+                                mapped_vp = opt.get("label", vp)
+                                break
+                        mapped_parts.append(mapped_vp)
+                    raw_value = ", ".join(mapped_parts)
+
             fields_meta[code] = _FieldEntry(
                 code=code,
                 question=question,
-                value=self._captured.get(code, CapturedField(
-                    field_code=code, value="", confidence=0.0, turn_index=0
-                )).value if code in self._captured else None,
+                value=raw_value,
                 confidence=self._captured[code].confidence if code in self._captured else 0.0,
                 required=f.get("required", True),
                 section_order=f.get("section_order", 99),
@@ -226,7 +246,8 @@ class BriefRenderer:
                         if self._include_confidence
                         else ""
                     )
-                    lines.append(f"- **{entry.question}**: {entry.value}{conf_str}")
+                    display_value = ", ".join(entry.value) if isinstance(entry.value, list) else entry.value
+                    lines.append(f"- **{entry.question}**: {display_value}{conf_str}")
                 elif entry.required:
                     lines.append(f"- **{entry.question}**: *(not yet provided)*")
                 # Optional + not captured: silently omit
@@ -239,15 +260,25 @@ class BriefRenderer:
         }
         if unknown_captured:
             lines.append("\n### 📌 Additional Captured Information")
-            for code, cf in unknown_captured.items():
+            for code, cf in sorted(unknown_captured.items()):
                 field_def = self._profile.get_field_by_code(code)
-                label = field_def.description if field_def else code
+                # Use human-readable question if available, else strip 'custom_' prefix
+                if field_def and getattr(field_def, "question", None):
+                    label = field_def.question
+                else:
+                    raw_label = code
+                    # Strip 'custom_' prefix for cleaner display
+                    if raw_label.startswith("custom_"):
+                        raw_label = raw_label[len("custom_"):]
+                    label = raw_label.replace("_", " ").title()
                 conf_str = (
                     f" *(confidence: {cf.confidence:.0%})*"
                     if self._include_confidence
                     else ""
                 )
-                lines.append(f"- **{label}**: {cf.value}{conf_str}")
+                # Make sure value is a string
+                display_value = ", ".join(cf.value) if isinstance(cf.value, list) else cf.value
+                lines.append(f"- **{label}**: {display_value}{conf_str}")
 
         return "\n".join(lines)
 

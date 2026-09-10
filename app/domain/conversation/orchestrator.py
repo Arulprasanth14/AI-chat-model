@@ -305,24 +305,27 @@ class ConversationOrchestrator:
             captured_fields={k: v.value for k, v in state.captured.items()},
         )
 
+        start_directive_text = None
         # For __start__ trigger: inject a directive so the LLM generates a
         # context-aware opening greeting instead of asking about a user message.
         if is_start_trigger:
             vertical_label = state.resolved_vertical or "creative"
             template_label = (state.resolved_template_key or "project").replace("_", " ")
-            start_directive = (
+            start_directive_text = (
                 f"\n\n## OPENING TURN DIRECTIVE\n"
                 f"This is the very first turn of a new brief session. The client has selected:\n"
                 f"- **Vertical:** {vertical_label}\n"
                 f"- **Content type:** {template_label}\n\n"
-                f"Generate a warm, SHORT (1-2 sentences) opening greeting that:\n"
+                f"Generate a warm, SHORT (2-3 sentences MAX) opening greeting that:\n"
                 f"1. Acknowledges the specific vertical and content type they selected.\n"
                 f"2. Asks for the client/brand name as the very first question.\n"
+                f"3. On a NEW line after the question, add this exact sentence: "
+                f"\"💡 Got a brief or document ready? Hit the 📁 button below to upload it and I'll extract everything automatically.\"\n"
                 f"Do NOT ask multiple questions. Do NOT say 'I'm excited' or similar filler phrases.\n"
                 f"Write like a confident creative consultant meeting a client for the first time."
             )
             if phase_a_messages and phase_a_messages[0]["role"] == "system":
-                phase_a_messages[0]["content"] += start_directive
+                phase_a_messages[0]["content"] += start_directive_text
         timings["prompt_assembly"] = time.perf_counter() - t_prompt_start
 
         # ── Concurrent Execution: RAG Retrieval + Phase A ───────────────────
@@ -446,6 +449,7 @@ class ConversationOrchestrator:
             missing_fields=missing_fields_post_a,
             field_saved_note=field_saved_info,  # Bug 5 fix: inject chip-save context for Phase B
             captured_fields={k: v.value for k, v in state.captured.items()},
+            start_directive=start_directive_text,
         )
 
         # ── Step 11: Phase B — Stream response to client ────────────────────
@@ -482,6 +486,16 @@ class ConversationOrchestrator:
         remaining = final_message[len(streamed_message):]
         if remaining:
             yield self._sse_chunk(remaining)
+
+        # ── Programmatic brief summary append ───────────────────────────────
+        # If the brief is complete, append the full formatted summary directly
+        # to the SSE stream. This bypasses LLM tendency to skip/truncate large
+        # markdown, guaranteeing the user always sees the full captured brief.
+        if is_complete and brief_summary:
+            summary_block = f"\n\n---\n\n{brief_summary}\n\n---"
+            yield self._sse_chunk(summary_block)
+            # Include summary in stored final_message for history
+            final_message = final_message + summary_block
             
         timings["llm_phase_b_total"] = time.perf_counter() - t_phase_b_start
 

@@ -123,6 +123,7 @@ def load_field_set(yaml_path: Path) -> list[FieldDefinition] | None:
                 enum_options=enum_options,
                 input_type=input_type,
                 show_if=show_if,
+                question=f.get("question"),
             )
         )
 

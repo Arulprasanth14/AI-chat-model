@@ -11,7 +11,7 @@ interface UseChatReturn {
   error: string | null;
   sendMessage: (text: string, context?: ChatContext, hiddenUserMessage?: boolean) => Promise<void>;
   addLocalMessage: (role: "user" | "assistant", content: string) => void;
-  uploadDocuments: (files: File[]) => Promise<void>;
+  uploadDocuments: (files: File[], userText?: string) => Promise<void>;
   directFieldWrite: (fieldCode: string, value: string) => Promise<{ status: string; snapshot: SessionSnapshot | null }>;
   sessionId: string | null;
   clearSession: () => void;
@@ -159,16 +159,20 @@ export function useChat(): UseChatReturn {
     }
   }, [isStreaming]);
 
-  const uploadDocuments = useCallback(async (files: File[]) => {
+  const uploadDocuments = useCallback(async (files: File[], userText?: string) => {
     if (!sessionIdRef.current || isStreaming || files.length === 0) return;
     setError(null);
     setIsStreaming(true);
 
     const fileNames = files.map(f => f.name).join(", ");
+    const content = userText 
+      ? `[Uploaded document(s): ${fileNames}]\n\n${userText}`
+      : `[Uploaded document(s): ${fileNames}]`;
+      
     const userMsg: ChatMessage = {
       id: generateId(),
       role: "user",
-      content: `[Uploaded document(s): ${fileNames}]`,
+      content: content,
       timestamp: new Date(),
     };
     setMessages((prev) => [...prev, userMsg]);
@@ -185,7 +189,16 @@ export function useChat(): UseChatReturn {
       });
 
       if (!res.ok) {
-        throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        let errorMsg = `HTTP ${res.status}: ${res.statusText}`;
+        try {
+          const errData = await res.json();
+          if (errData && errData.detail) {
+            errorMsg = errData.detail;
+          }
+        } catch (_) {
+          // ignore json parse error
+        }
+        throw new Error(errorMsg);
       }
 
       const data = await res.json();
@@ -194,13 +207,16 @@ export function useChat(): UseChatReturn {
         setSnapshot(data.snapshot);
       }
       
-      // Auto-trigger AI acknowledgement via hidden message
-      const hiddenMessage = `__hidden_upload_success__: ${files.length} file(s) uploaded successfully. Acknowledge the upload and ask the next question.`;
-      
       // Disable streaming temporarily so sendMessage can run
       setIsStreaming(false);
       
-      await sendMessage(hiddenMessage, undefined, true);
+      if (userText && userText.trim()) {
+        const hiddenMessage = `__hidden_upload_success__: ${files.length} file(s) uploaded. The user also sent this message: "${userText}". Process the uploaded documents and respond to the user's message.`;
+        await sendMessage(hiddenMessage, undefined, true);
+      } else {
+        const hiddenMessage = `__hidden_upload_success__: ${files.length} file(s) uploaded successfully. Acknowledge the upload and ask the next question.`;
+        await sendMessage(hiddenMessage, undefined, true);
+      }
 
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Unknown error during upload";

@@ -82,6 +82,13 @@ class FieldDefinition(BaseModel):
         default=None,
         description="Optional conditional display logic.",
     )
+    question: str | None = Field(
+        default=None,
+        description=(
+            "Human-readable question label from the field-set YAML. "
+            "Used by the brief renderer to display a clean heading instead of the raw field code."
+        ),
+    )
 
 
 class BaseProfile(BaseModel):
