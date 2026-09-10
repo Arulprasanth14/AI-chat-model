@@ -3,3 +3,15 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .idea/
+.venv/
+.ruff_cache/
+perf_logs*.txt
+tokens*.txt
+diag_*.py
+run_live_benchmark.py
+benchmark.py
+TEST_*.py
+test_*.py
+reingest.py
+diff.patch
+tests/
