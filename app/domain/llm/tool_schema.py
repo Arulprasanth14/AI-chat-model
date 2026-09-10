@@ -375,6 +375,243 @@ _CONFIDENCE_DESC = (
     "If you have to guess, use a confidence below 0.5 so the system can ask for clarification."
 )
 
+# Document extraction uses stricter confidence calibration — values below 0.65
+# are automatically rejected by the state handlers (confidence_threshold = 0.7).
+_DOC_CONFIDENCE_DESC = (
+    "Your confidence that this value is directly supported by the document text. "
+    "Document extraction rules:\n"
+    "• 0.90–0.95: Value is a verbatim quote or near-verbatim from the document.\n"
+    "• 0.75–0.89: Value is clearly stated but paraphrased or inferred from context.\n"
+    "• 0.65–0.74: Value is implied — use this range sparingly.\n"
+    "• Below 0.65: DO NOT save — the system will reject it. Leave the field for the user to fill in via chat.\n"
+    "CRITICAL: Only save a value if you can identify the specific sentence or phrase in the document "
+    "that supports it. If you cannot locate a supporting passage, set confidence below 0.65 or skip entirely."
+)
+
+_SOURCE_EXCERPT_DESC = (
+    "A short verbatim quote (max 150 characters) from the document that directly supports "
+    "the value you are saving. This is used for audit logging to prevent hallucinations. "
+    "Example: 'Our brand name is Acme Corporation, founded in 2010.' "
+    "If you cannot find a specific supporting passage, do NOT call this tool — set confidence low instead."
+)
+
+
+def get_document_extraction_tools(profile: "BaseProfile") -> list[dict[str, Any]]:
+    """Return the tool list for document-mode field extraction.
+
+    Differences from get_phase_a_tools():
+      • Includes source_excerpt parameter on all save tools (for audit logging).
+      • Uses stricter _DOC_CONFIDENCE_DESC calibration instructions.
+      • Does NOT include mark_session_complete, set_next_topic, or save_color_suggestion
+        (those are conversational-only advisory tools not needed for batch document extraction).
+      • save_custom_field description is tuned for intelligent additional-field detection.
+
+    Args:
+        profile: Active project profile (used to build field code lists and enum maps).
+
+    Returns:
+        List of tool dicts in the OpenAI function/tool calling format.
+    """
+    all_field_codes = [f.code for f in profile.required_fields]
+    enum_field_codes = [f.code for f in profile.required_fields if f.enum_values]
+    quantitative_field_codes = [
+        f.code for f in profile.required_fields
+        if f.enum_values is None and any(
+            kw in (f.description or "").lower()
+            for kw in ("metric", "kpi", "measur", "target", "rate", "roi", "revenue",
+                       "growth", "uplift", "conversion", "impressions", "clicks",
+                       "reach", "signups", "leads", "sales", "percent")
+        )
+    ]
+
+    tools: list[dict[str, Any]] = []
+
+    # ── Source excerpt property (shared across save tools) ─────────────────────
+    _source_excerpt_prop = {
+        "source_excerpt": {
+            "type": "string",
+            "description": _SOURCE_EXCERPT_DESC,
+        }
+    }
+
+    # ── save_text_field (document mode) ───────────────────────────────────────
+    tools.append({
+        "type": "function",
+        "function": {
+            "name": "save_text_field",
+            "description": (
+                "Save a free-text field value found in the document. "
+                "ONLY call this if the value is EXPLICITLY stated in the document. "
+                "Do NOT call this for enum-constrained fields (use save_enum_field) "
+                "or numeric/KPI fields (use save_quantitative_field). "
+                "You MUST provide a source_excerpt — a short verbatim quote from the "
+                "document that supports this value."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "field_code": {
+                        "type": "string",
+                        "description": (
+                            "The exact machine-readable field code. "
+                            f"Must be one of: {all_field_codes!r}. "
+                            "Use ONLY codes from this list."
+                        ),
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": (
+                            "The extracted value. Preserve the document's exact language. "
+                            "Do NOT rephrase or summarize — use the document's own words."
+                        ),
+                    },
+                    "confidence": {"type": "number", "minimum": 0.0, "maximum": 1.0, "description": _DOC_CONFIDENCE_DESC},
+                    **_source_excerpt_prop,
+                },
+                "required": ["field_code", "value", "confidence", "source_excerpt"],
+            },
+        },
+    })
+
+    # ── save_enum_field (document mode) ───────────────────────────────────────
+    if enum_field_codes:
+        enum_map: dict[str, list[str]] = {}
+        for f in profile.required_fields:
+            if f.enum_options:
+                combined = []
+                for o in f.enum_options:
+                    label = o.get("label", "")
+                    value = o.get("value", "")
+                    if label and label not in combined:
+                        combined.append(label)
+                    if value and value not in combined and value != label:
+                        combined.append(value)
+                enum_map[f.code] = combined
+            elif f.enum_values:
+                enum_map[f.code] = f.enum_values
+
+        tools.append({
+            "type": "function",
+            "function": {
+                "name": "save_enum_field",
+                "description": (
+                    "Save a field whose value must be chosen from a fixed list of allowed options. "
+                    "Map the document's language to the closest matching option. "
+                    "If no allowed option fits, DO NOT call this tool. "
+                    f"Enum options: {json.dumps(enum_map, indent=None)}. "
+                    "You MUST provide a source_excerpt — a short verbatim quote from the "
+                    "document that supports this value."
+                ),
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "field_code": {
+                            "type": "string",
+                            "description": (
+                                f"Must be one of: {enum_field_codes!r}."
+                            ),
+                        },
+                        "value": {
+                            "type": "string",
+                            "description": "The matched option value (from the allowed list above).",
+                        },
+                        "confidence": {"type": "number", "minimum": 0.0, "maximum": 1.0, "description": _DOC_CONFIDENCE_DESC},
+                        **_source_excerpt_prop,
+                    },
+                    "required": ["field_code", "value", "confidence", "source_excerpt"],
+                },
+            },
+        })
+
+    # ── save_quantitative_field (document mode) ────────────────────────────────
+    if quantitative_field_codes:
+        tools.append({
+            "type": "function",
+            "function": {
+                "name": "save_quantitative_field",
+                "description": (
+                    "Save a field that must contain a measurable, numeric, or KPI-style value. "
+                    "Only call this if the document explicitly states a number, percentage, "
+                    "or measurable target for this field. "
+                    f"Quantitative fields: {quantitative_field_codes!r}. "
+                    "You MUST provide a source_excerpt."
+                ),
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "field_code": {
+                            "type": "string",
+                            "description": f"Must be one of: {quantitative_field_codes!r}.",
+                        },
+                        "value": {
+                            "type": "string",
+                            "description": "The quantitative value (must include a number or measurable target).",
+                        },
+                        "confidence": {"type": "number", "minimum": 0.0, "maximum": 1.0, "description": _DOC_CONFIDENCE_DESC},
+                        **_source_excerpt_prop,
+                    },
+                    "required": ["field_code", "value", "confidence", "source_excerpt"],
+                },
+            },
+        })
+
+    # ── save_custom_field (document mode — rich extraction encouraged) ─────────
+    tools.append({
+        "type": "function",
+        "function": {
+            "name": "save_custom_field",
+            "description": (
+                "Save ADDITIONAL, USEFUL information from the document that a designer or content creator "
+                "would genuinely benefit from knowing. Your goal is to extract as much valuable context as possible — "
+                "be GENEROUS and THOROUGH. When in doubt, extract it.\n\n"
+                "EXTRACT (these are high-value examples — look for information like this):\n"
+                "  ✓ Brand personality, tone of voice, or mood descriptors (e.g. 'fun and approachable', 'premium and minimal')\n"
+                "  ✓ Specific dishes, items, or products with prices or descriptions\n"
+                "  ✓ Dietary certifications or special qualifications (halal, vegan, gluten-free, organic)\n"
+                "  ✓ Unique selling propositions or differentiators from competitors\n"
+                "  ✓ Specific audience demographics or lifestyle descriptors\n"
+                "  ✓ Visual references, mood board directions, or color preferences not in required fields\n"
+                "  ✓ Seasonal or campaign themes, occasions, or events\n"
+                "  ✓ Competitor names or market context mentioned in the document\n"
+                "  ✓ Specific promotions, deals, or offers with details\n"
+                "  ✓ Location details, outlet names, or area-specific info\n"
+                "  ✓ Any specific copy suggestions, taglines, or messaging ideas\n"
+                "  ✓ Photography or visual style preferences (e.g. 'dark moody', 'flat lay', 'lifestyle shot')\n\n"
+                "SKIP ONLY these (truly useless for a designer):\n"
+                "  ✗ Information already captured in a required field (avoid exact duplicates)\n"
+                "  ✗ System/UI artifact text (e.g. '[Uploaded document(s): ...]' strings)\n"
+                "  ✗ Company registration numbers, generic legal disclaimers, page numbers\n"
+                "  ✗ Completely generic filler ('we strive for excellence', 'quality is our priority')\n\n"
+                "The field_name must be a descriptive snake_case label (e.g. 'brand_tone', 'hero_dish_description', "
+                "'halal_certification', 'seasonal_campaign_theme'). Do NOT use generic names like 'extra_info'.\n"
+                "You MUST provide a source_excerpt."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "field_name": {
+                        "type": "string",
+                        "description": (
+                            "A descriptive snake_case name for this additional field. "
+                            "Be specific (e.g., 'halal_certification_note', not 'extra_detail'). "
+                            "The system will prefix it with 'custom_' automatically."
+                        ),
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "The specific detail from the document. Use the document's own words.",
+                    },
+                    "confidence": {"type": "number", "minimum": 0.0, "maximum": 1.0, "description": _DOC_CONFIDENCE_DESC},
+                    **_source_excerpt_prop,
+                },
+                "required": ["field_name", "value", "confidence", "source_excerpt"],
+            },
+        },
+    })
+
+    return tools
+
+
 
 # ── Phase A: Parse multi-tool-call response ────────────────────────────────────
 

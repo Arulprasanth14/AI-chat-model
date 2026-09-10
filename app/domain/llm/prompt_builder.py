@@ -254,6 +254,7 @@ class PromptBuilder:
         missing_fields: list | None = None,
         field_saved_note: str | None = None,
         captured_fields: dict[str, Any] | None = None,
+        start_directive: str | None = None,
     ) -> list[dict[str, Any]]:
         """Build the Phase B message list for the response-generation LLM call.
 
@@ -309,6 +310,7 @@ class PromptBuilder:
                     is_complete=is_complete,
                     brief_summary=brief_summary,
                     retrieved_chunks=retrieved_chunks or [],
+                    start_directive=start_directive,
                 ),
             }
 
@@ -725,6 +727,7 @@ class PromptBuilder:
         is_complete: bool = False,
         brief_summary: str | None = None,
         retrieved_chunks: list[RetrievedChunk] | None = None,
+        start_directive: str | None = None,
     ) -> str:
         """Build the Phase B system message from scratch.
 
@@ -810,7 +813,14 @@ class PromptBuilder:
             "- DATE VALIDATION (CRITICAL): If Phase A left 'project_deadline' or 'launch_date_time' unsaved with status 'rejected_date_conflict', "
             "you MUST explain the conflict clearly using both dates from the reason field. "
             "Example: 'Hey, just a heads-up — you mentioned launching on September 17, but the project deadline you gave is September 19, which is 2 days AFTER the launch. "
-            "The design needs to be completed before the post goes live. Did you mean an earlier deadline, or do you want to keep September 19 anyway?'"
+            "The design needs to be completed before the post goes live. Did you mean an earlier deadline, or do you want to keep September 19 anyway?'\n"
+            "- FILE UPLOAD / ASSET FIELDS (CRITICAL — no re-asking): If the user says they don't have photos, images, brand assets, or logo files, "
+            "do NOT ask again in any subsequent turn. The user's 'no' or 'I don't have this' is a final answer. "
+            "Accept it gracefully (e.g., 'No worries at all — we'll work with what we have!') and move to the next missing field. "
+            "NEVER loop back to ask for photos, brand files, or logo uploads after the user has declined them.\n"
+            "- CONDITIONAL FIELDS: Fields like 'brand_customization_details' and 'brand_customization' only apply if the user chose "
+            "'Customize This Project' for their brand identity. If the user chose any other brand option (saved kit, upload logos, etc.), "
+            "NEVER ask about customization details — these fields are not relevant to them."
         )
 
         # 4. Frustration / fatigue handler
@@ -845,6 +855,9 @@ class PromptBuilder:
                     "CRITICAL: If retrieved context is irrelevant to the user's input, ignore it.\n\n"
                     + context_block
                 )
+
+        if start_directive:
+            parts.append(start_directive)
 
         return self.SECTION_SEP.join(parts)
 
@@ -897,30 +910,20 @@ class PromptBuilder:
           Also lists captured fields so the LLM can update them.
         """
         if is_complete:
-            summary_ref = ""
-            if brief_summary:
-                summary_ref = (
-                    "\n\n**Captured Brief (present this to the user in your response):**\n\n"
-                    + brief_summary
-                )
-
             return (
                 "**STATUS: BRIEF COMPLETE — All required fields have been captured.**\n\n"
-                "MANDATORY FIRST-COMPLETION RESPONSE RULES (follow these EXACTLY in order):\n"
-                "1. PRESENT THE FULL BRIEF SUMMARY to the user using the 'Captured Brief' below. "
-                "   Format it clearly with section headers and bullet points so it is easy to read. "
-                "   Do NOT skip this — the user MUST see a summary of what was captured.\n"
-                "2. AFTER the summary, tell the user something like: "
-                "   'Everything looks good! Please review the summary above and if you're happy with it, "
-                "   click the **🚀 Submit Brief** button below to send it to our design team.'\n"
+                "MANDATORY RESPONSE RULES (follow these EXACTLY):\n"
+                "1. Write a SHORT, warm wrap-up message (2-3 sentences MAX). "
+                "   Something like: 'Great — that's everything I need! Your brief summary is below. "
+                "   Please review it and when you're happy, click **🚀 Submit Brief** to send it to our design team.'\n"
+                "2. Do NOT reproduce the full brief summary in your message — the system will append it automatically below your message.\n"
                 "3. NEVER claim the brief has already been sent or submitted.\n"
-                "4. NEVER say 'We'll get started right away' or similar — the brief has NOT been submitted yet.\n"
+                "4. NEVER say 'We'll get started right away' — the brief has NOT been submitted yet.\n"
                 "5. Do NOT ask any follow-up questions. The user's only action is to click Submit Brief.\n"
-                "6. If the user has ALREADY SEEN the summary (i.e. they are responding to a prior message "
-                "   where you already showed it), do NOT repeat the full summary. Instead, respond directly "
-                "   to what they said and remind them to click **🚀 Submit Brief** if they are ready.\n"
-                "NEVER give a generic 'brief is all set' message WITHOUT first showing the captured summary."
-                + summary_ref
+                "6. If the user has ALREADY SEEN the summary (prior turn) and is replying to it, "
+                "   respond directly to what they said (e.g. correct a field, confirm) and remind them "
+                "   to click **🚀 Submit Brief** when ready. Do NOT repeat the summary again.\n"
+                "NEVER give a bare 'all set' message without the warm wrap-up."
             )
 
         # In-progress: list remaining fields
@@ -945,3 +948,210 @@ class PromptBuilder:
                     lines.append(f"- `{cf.code}` = {val}")
 
         return "\n\n".join(lines)
+
+    # ── Document extraction prompt ─────────────────────────────────────────────
+
+    def build_document_extraction_phase(
+        self,
+        profile: BaseProfile,
+        missing_fields: list[MissingField],
+        chunk_text: str,
+        chunk_position: str = "1/1",
+        chunk_type: str = "text",
+        captured_fields: dict[str, Any] | None = None,
+    ) -> list[dict[str, Any]]:
+        """Build the LLM message list for a single document extraction call.
+
+        This prompt is fundamentally different from the conversational build():
+          - There is no conversation history — the document text IS the context.
+          - Anti-hallucination rules are much stricter (source_excerpt required).
+          - Confidence calibration is tuned for document reading (not conversation).
+          - Additional field guidance explicitly explains what qualifies as worth saving.
+          - No streaming or Phase B — this is a single synchronous extraction call.
+
+        Args:
+            profile:          Active project profile (fields + persona).
+            missing_fields:   Required fields not yet captured (extraction targets).
+            chunk_text:       The document chunk text to analyze.
+            chunk_position:   Human-readable position string e.g. "2/5" for logging.
+            chunk_type:       "text", "table", "list", "heading" — affects instructions.
+            captured_fields:  Currently captured fields (to avoid redundant re-saves
+                              and for the LLM to reference when reasoning about duplicates).
+
+        Returns:
+            List of {role, content} message dicts ready for the LLM API.
+        """
+        system_content = self._build_document_extraction_system_message(
+            profile=profile,
+            missing_fields=missing_fields,
+            captured_fields=captured_fields or {},
+            chunk_type=chunk_type,
+            chunk_position=chunk_position,
+        )
+
+        # The user message IS the document chunk — nothing else needed in history
+        user_content = (
+            f"Please analyze the following document content and extract all relevant "
+            f"information using the save tools.\n\n"
+            f"--- DOCUMENT CONTENT (chunk {chunk_position}) ---\n\n"
+            f"{chunk_text}\n\n"
+            f"--- END OF DOCUMENT CONTENT ---\n\n"
+            f"Extract all required fields you can find. Then scan for meaningful "
+            f"additional information worth capturing as custom fields."
+        )
+
+        messages: list[dict[str, Any]] = [
+            {"role": "system", "content": system_content},
+            {"role": "user", "content": user_content},
+        ]
+
+        logger.debug(
+            "Document extraction prompt built",
+            extra={
+                "chunk_position": chunk_position,
+                "chunk_type": chunk_type,
+                "system_chars": len(system_content),
+                "chunk_chars": len(chunk_text),
+                "missing_field_count": len(missing_fields),
+                "already_captured": len(captured_fields or {}),
+            },
+        )
+
+        return messages
+
+    def _build_document_extraction_system_message(
+        self,
+        profile: BaseProfile,
+        missing_fields: list[MissingField],
+        captured_fields: dict[str, Any],
+        chunk_type: str = "text",
+        chunk_position: str = "1/1",
+    ) -> str:
+        """Assemble the system message for document-mode extraction.
+
+        Structure:
+          1. Role definition (document analyst, not conversational agent).
+          2. Required fields block — what to extract first.
+          3. Already-captured fields block — what NOT to overwrite.
+          4. Additional fields guidance — when to create custom_ entries.
+          5. Strict extraction rules (anti-hallucination, source_excerpt, confidence).
+          6. Chunk-type-specific hints (table, list, heading).
+        """
+        parts: list[str] = []
+
+        # 1. Role definition
+        parts.append(
+            "You are a DOCUMENT ANALYSIS ASSISTANT specialized in structured information extraction. "
+            "Your task is to read the provided document content and extract field values using tool calls.\n\n"
+            "You are NOT a conversational assistant here — do NOT write any prose replies. "
+            "ONLY call the appropriate save tools. If no information is found for a field, do NOT call a tool for it."
+        )
+
+        # 2. Required fields block — primary extraction targets
+        if missing_fields:
+            field_lines = []
+            for mf in missing_fields:
+                line = f"  • `{mf.field_code}`: {mf.description.strip()}"
+                if mf.enum_values:
+                    opts = mf.enum_options
+                    if opts:
+                        labels = ", ".join(
+                            f'"{o.get("label", o.get("value", ""))}"'
+                            for o in opts[:8]
+                        )
+                        line += f"\n    Allowed values: {labels}"
+                    else:
+                        vals = ", ".join(f'"{v}"' for v in mf.enum_values[:8])
+                        line += f"\n    Allowed values: {vals}"
+                field_lines.append(line)
+
+            parts.append(
+                "## REQUIRED FIELDS TO EXTRACT (highest priority — extract these first)\n\n"
+                "The following required fields have NOT yet been captured. "
+                "Search the document for information that matches each field:\n\n"
+                + "\n".join(field_lines)
+            )
+        else:
+            parts.append(
+                "## REQUIRED FIELDS STATUS\n\n"
+                "All required fields have already been captured. "
+                "Focus only on identifying meaningful additional information "
+                "worth saving as custom fields."
+            )
+
+        # 3. Already-captured fields block — prevent redundant overwrites
+        if captured_fields:
+            cap_lines = []
+            for code, val in list(captured_fields.items())[:20]:  # cap at 20 for token budget
+                cap_lines.append(f"  • `{code}` = \"{str(val)[:80]}\"")
+            parts.append(
+                "## ALREADY CAPTURED FIELDS (do NOT re-extract unless the document provides a BETTER value)\n\n"
+                "These fields are already saved. Only overwrite if the document contains a more "
+                "specific, accurate, or higher-confidence value than the one already captured:\n\n"
+                + "\n".join(cap_lines)
+            )
+
+        # 4. Additional fields guidance — encourage rich, generous extraction
+        parts.append(
+            "## ADDITIONAL FIELDS — Extract Generously\n\n"
+            "After covering required fields, aggressively scan the document for context that would help "
+            "a designer create a stunning static post. Your goal is MAXIMUM useful extraction.\n\n"
+            "ACTIVELY LOOK FOR AND EXTRACT:\n"
+            "  ✓ Brand tone, personality, or voice descriptors\n"
+            "  ✓ Specific menu items, products, or dishes with prices or descriptions\n"
+            "  ✓ Dietary info: halal, vegan, organic, gluten-free, allergens\n"
+            "  ✓ Unique differentiators or brand positioning against competitors\n"
+            "  ✓ Audience demographics, lifestyle tags, or customer personas\n"
+            "  ✓ Visual direction: mood, color preferences, photography style (flat lay, lifestyle, dark moody etc.)\n"
+            "  ✓ Campaign themes, seasonal events, or occasion-specific details\n"
+            "  ✓ Competitor names or market context mentioned\n"
+            "  ✓ Specific promotional details, pricing, or offer mechanics\n"
+            "  ✓ Location or outlet details relevant to the content\n"
+            "  ✓ Specific copy ideas, taglines, or messaging fragments from the brief\n\n"
+            "ONLY SKIP:\n"
+            "  ✗ Information already captured in a required field (no exact duplicates)\n"
+            "  ✗ UI artifact text such as '[Uploaded document(s): ...]' — these are system strings, NOT brief content\n"
+            "  ✗ Company registration numbers, generic legal disclaimers, page numbers\n"
+            "  ✗ Completely generic filler like 'we strive for excellence' that gives the designer zero actionable direction\n\n"
+            "Use save_custom_field with a specific, descriptive snake_case field_name."
+        )
+
+        # 5. Strict extraction rules (anti-hallucination + confidence calibration)
+        chunk_hint = ""
+        if chunk_type == "table":
+            chunk_hint = (
+                "\n\nTABLE CONTENT NOTE: The document chunk contains tabular data. "
+                "Each row represents a data entry. Look for field values across all columns. "
+                "Pay attention to header rows — they describe the meaning of each column."
+            )
+        elif chunk_type == "list":
+            chunk_hint = (
+                "\n\nLIST CONTENT NOTE: The document chunk contains list items. "
+                "Each bullet point or numbered item may contain distinct field information."
+            )
+
+        parts.append(
+            "## MANDATORY EXTRACTION RULES (follow exactly — these are non-negotiable)\n\n"
+            "1. **NO HALLUCINATION**: ONLY extract values that are EXPLICITLY present in the "
+            "document text. Do NOT infer, guess, assume, or complete information that is absent.\n\n"
+            "2. **SOURCE EXCERPT REQUIRED**: For EVERY tool call, you MUST provide a "
+            "`source_excerpt` — a verbatim quote (≤150 characters) from the document that "
+            "supports the value. If you cannot find a specific supporting passage, DO NOT call the tool.\n\n"
+            "3. **CONFIDENCE CALIBRATION**:\n"
+            "   • 0.90–0.95: Verbatim or near-verbatim quote from document\n"
+            "   • 0.75–0.89: Clearly stated, minor paraphrase\n"
+            "   • 0.65–0.74: Implied — use sparingly\n"
+            "   • < 0.65: DO NOT SAVE — system will reject it\n\n"
+            "4. **ENUM FIELDS**: Map the document's language to the closest allowed value. "
+            "If no allowed value fits naturally, DO NOT save — do not force a mismatch.\n\n"
+            "5. **DO NOT RE-SAVE** already-captured fields unless the document provides a "
+            "clearly better (more specific, more accurate) value.\n\n"
+            "6. **ONE TOOL CALL PER FIELD**: Do not bundle multiple fields into one call. "
+            "Call the appropriate tool once per distinct piece of information.\n\n"
+            "7. **QUALITY OVER QUANTITY**: It is better to extract 3 high-confidence fields "
+            "than to call 10 tools with low confidence. Precision matters more than recall here."
+            + chunk_hint
+        )
+
+        return "\n\n".join(parts)
+

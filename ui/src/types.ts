@@ -20,6 +20,7 @@ export interface SessionSnapshot {
   profile_id: string;
   status: string;
   extracted_answers: Record<string, ExtractedAnswer>;
+  captured_fields_metadata?: MissingField[];
   missing_fields: MissingField[];
   model_believes_complete: boolean;
   is_complete: boolean;

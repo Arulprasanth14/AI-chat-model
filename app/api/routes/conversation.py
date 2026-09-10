@@ -216,86 +216,201 @@ async def upload_document(
     orchestrator: Annotated[ConversationOrchestrator, Depends(get_orchestrator)],
     files: list[UploadFile] = File(...),
 ) -> dict:
-    """Upload document(s) to pre-fill the brief.
-    
-    Reuses the exact same orchestrator turn logic to prevent divergence.
+    """Upload document(s) to pre-fill the brief via intelligent field extraction.
+
+    Workflow:
+      1. Validate file count and size.
+      2. Route pure image uploads to upload_logo (existing behavior).
+      3. Parse each document file using DocumentParser (PDF/DOCX/TXT/CSV).
+      4. Run DocumentExtractor to sequentially extract fields from each document.
+      5. Persist updated state to the database.
+      6. Return a structured JSON response with extraction_report and snapshot.
+
+    Returns:
+        {
+          "message":           str  — human-readable summary of what was extracted,
+          "extraction_report": dict — per-document field accounting,
+          "snapshot":          dict — full session snapshot (same format as SSE done event),
+        }
     """
+    from app.domain.document.document_extractor import DocumentExtractor
+    from app.infrastructure.document_parser import parse_document, DocumentParseError
+
     if len(files) < 1 or len(files) > 5:
         raise HTTPException(status_code=400, detail="Please upload between 1 and 5 files.")
 
-    image_files = []
-    text_files = []
-    
+    # ── File size validation ─────────────────────────────────────────────────
+    max_bytes = settings.document_max_file_size_mb * 1024 * 1024
     for file in files:
-        if file.content_type and file.content_type.startswith("image/"):
-            image_files.append(file)
-        else:
-            text_files.append(file)
-            
+        # Read and immediately seek back so content is available below
+        content_peek = await file.read()
+        await file.seek(0)
+        if len(content_peek) > max_bytes:
+            raise HTTPException(
+                status_code=413,
+                detail=(
+                    f"'{file.filename}' exceeds the maximum file size of "
+                    f"{settings.document_max_file_size_mb} MB. "
+                    "Please upload a smaller file."
+                ),
+            )
+
+    # ── Route image-only uploads to the existing logo handler ────────────────
+    image_files = [f for f in files if f.content_type and f.content_type.startswith("image/")]
+    text_files = [f for f in files if not (f.content_type and f.content_type.startswith("image/"))]
+
     if image_files and not text_files:
-        # All files are images, process as asset uploads
         result = await upload_logo(session_id, orchestrator, image_files)
-        
-        # In case the session could not be fetched after upload
         state = await orchestrator._repo.get_session(session_id)
         if state is None:
             raise HTTPException(status_code=404, detail=f"Session {session_id!r} not found after upload")
-            
         active_profile = orchestrator._profile_provider(state)
         snapshot = state.to_snapshot(active_profile, settings.extraction_confidence_threshold)
         return {
             "message": result.get("message", "Images uploaded successfully."),
-            "snapshot": snapshot
+            "extraction_report": {},
+            "snapshot": snapshot,
         }
 
-    all_text = []
+    # ── Load session state ────────────────────────────────────────────────────
+    state = await orchestrator._repo.get_session(session_id)
+    if state is None:
+        raise HTTPException(status_code=404, detail=f"Session {session_id!r} not found")
+
+    active_profile = orchestrator._profile_provider(state)
+
+    # ── Build shared extractor ────────────────────────────────────────────────
+    extractor = DocumentExtractor(
+        llm=orchestrator._llm,
+        prompt_builder=orchestrator._prompt_builder,
+    )
+
+    # ── Process each document file sequentially ───────────────────────────────
+    all_messages: list[str] = []
+    combined_report: dict = {
+        "documents_processed": [],
+        "required_fields_extracted": [],
+        "required_fields_not_found": [],
+        "additional_fields_saved": [],
+        "warnings": [],
+    }
+
     for file in text_files:
         content = await file.read()
+
+        # ── Parse document ───────────────────────────────────────────────────
         try:
-            text = content.decode("utf-8")
-        except UnicodeDecodeError:
-            text = content.decode("latin-1")
-            
-        # Strip null bytes to prevent PostgreSQL JSONB crashes (UntranslatableCharacterError)
-        text = text.replace("\x00", "")
-        all_text.append(f"--- Document: {file.filename} ---\n{text}")
+            parsed_doc = parse_document(
+                content=content,
+                filename=file.filename or "uploaded_document",
+                content_type=file.content_type,
+            )
+        except DocumentParseError as exc:
+            logger.warning(
+                "Document parse failed",
+                extra={"session_id": session_id, "file_name": file.filename, "error": str(exc)},
+            )
+            raise HTTPException(status_code=400, detail=exc.user_message) from exc
+        except Exception as exc:
+            logger.error(
+                "Document parse unexpected error",
+                extra={"session_id": session_id, "file_name": file.filename},
+                exc_info=exc,
+            )
+            raise HTTPException(
+                status_code=500,
+                detail=(
+                    f"An unexpected error occurred while reading '{file.filename}'. "
+                    "Please try again or upload a different file."
+                ),
+            ) from exc
 
-    combined_text = "\n\n".join(all_text)
+        logger.info(
+            "Document parsed for extraction",
+            extra={
+                "session_id": session_id,
+                "file_name": file.filename,
+                "parser": parsed_doc.parser_used,
+                "chunks": len(parsed_doc.chunks),
+                "chars": len(parsed_doc.raw_text),
+            },
+        )
 
-    # We construct a user message that forces the LLM to extract fields from the document
-    # and also explicitly asks it to mention any additional info found.
-    prompt = (
-        f"I have uploaded document(s) for this brief. Please extract all relevant information from them "
-        f"into the correct fields. If there is any important information in the document that doesn't "
-        f"match a known required field, please surface it to me by summarizing it in your conversational reply "
-        f"as 'additional info found'.\n\nDocument Content:\n{combined_text}"
+        # ── Extract fields from the parsed document ──────────────────────────
+        try:
+            result = await extractor.extract(
+                state=state,
+                active_profile=active_profile,
+                parsed_doc=parsed_doc,
+            )
+        except Exception as exc:
+            logger.error(
+                "Document extraction failed",
+                extra={"session_id": session_id, "file_name": file.filename},
+                exc_info=exc,
+            )
+            raise HTTPException(
+                status_code=500,
+                detail=(
+                    f"Field extraction from '{file.filename}' failed unexpectedly. "
+                    "Please try again."
+                ),
+            ) from exc
+
+        # ── Accumulate results across multiple documents ─────────────────────
+        all_messages.append(result.extraction_summary)
+        combined_report["documents_processed"].append(file.filename)
+        combined_report["required_fields_extracted"].extend(result.fields_saved)
+        combined_report["additional_fields_saved"].extend(result.additional_fields_saved)
+        combined_report["warnings"].extend(result.warnings)
+
+        logger.info(
+            "Document extraction result",
+            extra={
+                "session_id": session_id,
+                "file_name": file.filename,
+                "fields_saved": result.fields_saved,
+                "additional_fields_saved": result.additional_fields_saved,
+                "missing_remaining": len(result.missing_required_fields),
+                "chunks_processed": result.chunks_processed,
+            },
+        )
+
+    # Deduplicate combined report entries
+    combined_report["required_fields_extracted"] = list(dict.fromkeys(combined_report["required_fields_extracted"]))
+    combined_report["additional_fields_saved"] = list(dict.fromkeys(combined_report["additional_fields_saved"]))
+
+    # Compute final missing fields for the report
+    final_missing = state.compute_missing_fields(active_profile, settings.extraction_confidence_threshold)
+    combined_report["required_fields_not_found"] = [mf.field_code for mf in final_missing]
+
+    # ── Persist state to DB ───────────────────────────────────────────────────
+    try:
+        await orchestrator._repo.save_session(state)
+    except Exception as exc:
+        logger.error(
+            "upload_document: save_session failed after extraction",
+            extra={"session_id": session_id},
+            exc_info=exc,
+        )
+        raise HTTPException(
+            status_code=500,
+            detail="Extraction completed but the session could not be saved. Please try again.",
+        ) from exc
+
+    # ── Build final snapshot and response ────────────────────────────────────
+    snapshot = state.to_snapshot(active_profile, settings.extraction_confidence_threshold)
+    combined_message = "\n\n".join(all_messages) if all_messages else (
+        "No supported document text was found. Please upload a PDF, DOCX, or TXT file."
     )
-
-    import json
-    
-    stream = orchestrator.process_turn(
-        session_id=session_id,
-        user_message=prompt,
-    )
-    
-    assistant_msg = ""
-    snapshot = None
-    
-    async for event in stream:
-        if event.startswith("data: "):
-            try:
-                data = json.loads(event[6:])
-                if "chunk" in data:
-                    assistant_msg += data["chunk"]
-                if "done" in data:
-                    snapshot = data["snapshot"]
-            except Exception as e:
-                logger.error(f"Error parsing SSE event in document upload: {e}")
 
     return {
-        "message": assistant_msg,
+        "message": combined_message,
+        "extraction_report": combined_report,
         "snapshot": snapshot,
     }
+
+
 
 
 # ── Bug 3 / Bug 13 fix: Logo upload with hard field confirmation ───────────────

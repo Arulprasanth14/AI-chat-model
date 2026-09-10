@@ -25,84 +25,84 @@ interface ContentTypeOption {
 }
 
 const VERTICALS: VerticalOption[] = [
-  { key: "restaurant",  label: "Restaurant & Café",   icon: "🍽️", desc: "Food, beverage & dining" },
-  { key: "realestate",  label: "Real Estate",          icon: "🏠", desc: "Property listings & agency" },
-  { key: "ecommerce",   label: "E-Commerce",           icon: "🛒", desc: "Online retail & products" },
-  { key: "fitness",     label: "Fitness & Wellness",   icon: "💪", desc: "Gyms, studios & wellness brands" },
-  { key: "retail",      label: "Retail & Boutique",    icon: "🏪", desc: "In-store & boutique brands" },
-  { key: "startup",     label: "Startup & Entrepreneur",icon: "🚀", desc: "Pitches, decks & investor docs" },
-  { key: "technology",  label: "Technology Services",  icon: "💻", desc: "SaaS, IT & tech businesses" },
+  { key: "restaurant", label: "Restaurant & Café", icon: "🍽️", desc: "Food, beverage & dining" },
+  { key: "realestate", label: "Real Estate", icon: "🏠", desc: "Property listings & agency" },
+  { key: "ecommerce", label: "E-Commerce", icon: "🛒", desc: "Online retail & products" },
+  { key: "fitness", label: "Fitness & Wellness", icon: "💪", desc: "Gyms, studios & wellness brands" },
+  { key: "retail", label: "Retail & Boutique", icon: "🏪", desc: "In-store & boutique brands" },
+  { key: "startup", label: "Startup & Entrepreneur", icon: "🚀", desc: "Pitches, decks & investor docs" },
+  { key: "technology", label: "Technology Services", icon: "💻", desc: "SaaS, IT & tech businesses" },
 ];
 
 // Content types keyed by vertical — template_key must exactly match the YAML filename
 // (without .yaml extension) in field_sets/<vertical>/
 const CONTENT_TYPES: Record<string, ContentTypeOption[]> = {
   restaurant: [
-    { key: "restaurant_cafe_static_post",    label: "Static Post",    icon: "🖼️",  desc: "Single image or graphic" },
-    { key: "restaurant_cafe_carousel",       label: "Carousel",       icon: "📚",  desc: "Multi-slide carousel" },
-    { key: "restaurant_cafe_reel",           label: "Reel / Video",   icon: "🎬",  desc: "Short-form vertical video" },
-    { key: "restaurant_cafe_digital_addon",  label: "Digital Asset",  icon: "📱",  desc: "Banner, ad or digital file" },
-    { key: "restaurant_cafe_print_addon",    label: "Print",          icon: "🖨️",  desc: "Menu, flyer or print material" },
-    { key: "restaurant_cafe_video_addon",    label: "Video Edit",     icon: "🎞️",  desc: "Professional video edit" },
+    { key: "restaurant_cafe_static_post", label: "Static Post", icon: "🖼️", desc: "Single image or graphic" },
+    { key: "restaurant_cafe_carousel", label: "Carousel", icon: "📚", desc: "Multi-slide carousel" },
+    { key: "restaurant_cafe_reel", label: "Reel / Video", icon: "🎬", desc: "Short-form vertical video" },
+    { key: "restaurant_cafe_digital_addon", label: "Digital Asset", icon: "📱", desc: "Banner, ad or digital file" },
+    { key: "restaurant_cafe_print_addon", label: "Print", icon: "🖨️", desc: "Menu, flyer or print material" },
+    { key: "restaurant_cafe_video_addon", label: "Video Edit", icon: "🎞️", desc: "Professional video edit" },
   ],
   realestate: [
-    { key: "real_estate_listing_sheet",      label: "Listing Sheet",     icon: "🏡",  desc: "Property listing one-pager" },
-    { key: "real_estate_flyer_brochure",     label: "Flyer / Brochure",  icon: "📋",  desc: "Print flyer or brochure" },
-    { key: "real_estate_buyer_seller_guide", label: "Buyer/Seller Guide", icon: "📘",  desc: "Client education guide" },
-    { key: "real_estate_market_report",      label: "Market Report",      icon: "📊",  desc: "Area or suburb market data" },
-    { key: "real_estate_cma_presentation",   label: "CMA Presentation",   icon: "🗂️",  desc: "Comparative market analysis" },
-    { key: "real_estate_open_home_signboard",label: "Open Home Signboard", icon: "🪧",  desc: "Physical signboard" },
-    { key: "real_estate_testimonial_set",    label: "Testimonial Set",    icon: "⭐",  desc: "Client review graphics" },
-    { key: "real_estate_email_template",     label: "Email Template",     icon: "📧",  desc: "Branded email layout" },
-    { key: "real_estate_linkedin_banner",    label: "LinkedIn Banner",    icon: "💼",  desc: "Professional profile banner" },
-    { key: "real_estate_youtube_banner",     label: "YouTube Banner",     icon: "🎥",  desc: "Channel header art" },
+    { key: "real_estate_listing_sheet", label: "Listing Sheet", icon: "🏡", desc: "Property listing one-pager" },
+    { key: "real_estate_flyer_brochure", label: "Flyer / Brochure", icon: "📋", desc: "Print flyer or brochure" },
+    { key: "real_estate_buyer_seller_guide", label: "Buyer/Seller Guide", icon: "📘", desc: "Client education guide" },
+    { key: "real_estate_market_report", label: "Market Report", icon: "📊", desc: "Area or suburb market data" },
+    { key: "real_estate_cma_presentation", label: "CMA Presentation", icon: "🗂️", desc: "Comparative market analysis" },
+    { key: "real_estate_open_home_signboard", label: "Open Home Signboard", icon: "🪧", desc: "Physical signboard" },
+    { key: "real_estate_testimonial_set", label: "Testimonial Set", icon: "⭐", desc: "Client review graphics" },
+    { key: "real_estate_email_template", label: "Email Template", icon: "📧", desc: "Branded email layout" },
+    { key: "real_estate_linkedin_banner", label: "LinkedIn Banner", icon: "💼", desc: "Professional profile banner" },
+    { key: "real_estate_youtube_banner", label: "YouTube Banner", icon: "🎥", desc: "Channel header art" },
   ],
   ecommerce: [
-    { key: "ecommerce_static_post",    label: "Static Post",     icon: "🖼️",  desc: "Single social media post" },
-    { key: "ecommerce_carousel",       label: "Carousel",        icon: "📚",  desc: "Multi-slide carousel" },
-    { key: "ecommerce_reel",           label: "Reel / Video",    icon: "🎬",  desc: "Short-form video" },
-    { key: "ecommerce_product_mockup", label: "Product Mockup",  icon: "📦",  desc: "Product visual mockup" },
-    { key: "ecommerce_ad_banner",      label: "Ad Banner",       icon: "📣",  desc: "Digital advertising banner" },
-    { key: "ecommerce_digital_addon",  label: "Digital Asset",   icon: "📱",  desc: "Digital marketing asset" },
-    { key: "ecommerce_print_addon",    label: "Print",           icon: "🖨️",  desc: "Packaging or print material" },
-    { key: "ecommerce_video_addon",    label: "Video Edit",      icon: "🎞️",  desc: "Professional video edit" },
+    { key: "ecommerce_static_post", label: "Static Post", icon: "🖼️", desc: "Single social media post" },
+    { key: "ecommerce_carousel", label: "Carousel", icon: "📚", desc: "Multi-slide carousel" },
+    { key: "ecommerce_reel", label: "Reel / Video", icon: "🎬", desc: "Short-form video" },
+    { key: "ecommerce_product_mockup", label: "Product Mockup", icon: "📦", desc: "Product visual mockup" },
+    { key: "ecommerce_ad_banner", label: "Ad Banner", icon: "📣", desc: "Digital advertising banner" },
+    { key: "ecommerce_digital_addon", label: "Digital Asset", icon: "📱", desc: "Digital marketing asset" },
+    { key: "ecommerce_print_addon", label: "Print", icon: "🖨️", desc: "Packaging or print material" },
+    { key: "ecommerce_video_addon", label: "Video Edit", icon: "🎞️", desc: "Professional video edit" },
   ],
   fitness: [
-    { key: "fitness_wellness_static_post_set",  label: "Static Post",    icon: "🖼️",  desc: "Single social graphic" },
-    { key: "fitness_wellness_carousel_set",     label: "Carousel",       icon: "📚",  desc: "Multi-slide carousel" },
-    { key: "fitness_wellness_reel",             label: "Reel / Video",   icon: "🎬",  desc: "Short-form video" },
-    { key: "fitness_wellness_digital_addon",    label: "Digital Asset",  icon: "📱",  desc: "Digital marketing asset" },
-    { key: "fitness_wellness_print_addon",      label: "Print",          icon: "🖨️",  desc: "Poster or flyer" },
-    { key: "fitness_wellness_video_addon",      label: "Video Edit",     icon: "🎞️",  desc: "Professional video edit" },
+    { key: "fitness_wellness_static_post_set", label: "Static Post", icon: "🖼️", desc: "Single social graphic" },
+    { key: "fitness_wellness_carousel_set", label: "Carousel", icon: "📚", desc: "Multi-slide carousel" },
+    { key: "fitness_wellness_reel", label: "Reel / Video", icon: "🎬", desc: "Short-form video" },
+    { key: "fitness_wellness_digital_addon", label: "Digital Asset", icon: "📱", desc: "Digital marketing asset" },
+    { key: "fitness_wellness_print_addon", label: "Print", icon: "🖨️", desc: "Poster or flyer" },
+    { key: "fitness_wellness_video_addon", label: "Video Edit", icon: "🎞️", desc: "Professional video edit" },
   ],
   retail: [
-    { key: "retail_boutique_static_post",   label: "Static Post",   icon: "🖼️",  desc: "Single social graphic" },
-    { key: "retail_boutique_carousel",      label: "Carousel",      icon: "📚",  desc: "Multi-slide carousel" },
-    { key: "retail_boutique_reel",          label: "Reel / Video",  icon: "🎬",  desc: "Short-form video" },
-    { key: "retail_boutique_digital_addon", label: "Digital Asset", icon: "📱",  desc: "Digital marketing asset" },
-    { key: "retail_boutique_print_addon",   label: "Print",         icon: "🖨️",  desc: "In-store print material" },
-    { key: "retail_boutique_video_addon",   label: "Video Edit",    icon: "🎞️",  desc: "Professional video edit" },
+    { key: "retail_boutique_static_post", label: "Static Post", icon: "🖼️", desc: "Single social graphic" },
+    { key: "retail_boutique_carousel", label: "Carousel", icon: "📚", desc: "Multi-slide carousel" },
+    { key: "retail_boutique_reel", label: "Reel / Video", icon: "🎬", desc: "Short-form video" },
+    { key: "retail_boutique_digital_addon", label: "Digital Asset", icon: "📱", desc: "Digital marketing asset" },
+    { key: "retail_boutique_print_addon", label: "Print", icon: "🖨️", desc: "In-store print material" },
+    { key: "retail_boutique_video_addon", label: "Video Edit", icon: "🎞️", desc: "Professional video edit" },
   ],
   startup: [
-    { key: "startup_entrepreneur_pitch_deck_investor",    label: "Pitch Deck",         icon: "📊",  desc: "Investor presentation" },
-    { key: "startup_entrepreneur_one_pager",              label: "One-Pager",          icon: "📄",  desc: "Startup summary doc" },
-    { key: "startup_entrepreneur_sales_deck",             label: "Sales Deck",         icon: "🗂️",  desc: "Sales presentation" },
-    { key: "startup_entrepreneur_proposal_template",      label: "Proposal Template",  icon: "📝",  desc: "Client proposal" },
-    { key: "startup_entrepreneur_presentation_template",  label: "Presentation",       icon: "🖥️",  desc: "Brand presentation" },
-    { key: "startup_entrepreneur_press_kit",              label: "Press Kit",          icon: "📰",  desc: "Media & PR kit" },
-    { key: "startup_entrepreneur_business_card",          label: "Business Card",      icon: "💳",  desc: "Professional card design" },
-    { key: "startup_entrepreneur_linkedin_banner",        label: "LinkedIn Banner",    icon: "💼",  desc: "Profile header banner" },
-    { key: "startup_entrepreneur_email_signature",        label: "Email Signature",    icon: "📧",  desc: "Branded email footer" },
+    { key: "startup_entrepreneur_pitch_deck_investor", label: "Pitch Deck", icon: "📊", desc: "Investor presentation" },
+    { key: "startup_entrepreneur_one_pager", label: "One-Pager", icon: "📄", desc: "Startup summary doc" },
+    { key: "startup_entrepreneur_sales_deck", label: "Sales Deck", icon: "🗂️", desc: "Sales presentation" },
+    { key: "startup_entrepreneur_proposal_template", label: "Proposal Template", icon: "📝", desc: "Client proposal" },
+    { key: "startup_entrepreneur_presentation_template", label: "Presentation", icon: "🖥️", desc: "Brand presentation" },
+    { key: "startup_entrepreneur_press_kit", label: "Press Kit", icon: "📰", desc: "Media & PR kit" },
+    { key: "startup_entrepreneur_business_card", label: "Business Card", icon: "💳", desc: "Professional card design" },
+    { key: "startup_entrepreneur_linkedin_banner", label: "LinkedIn Banner", icon: "💼", desc: "Profile header banner" },
+    { key: "startup_entrepreneur_email_signature", label: "Email Signature", icon: "📧", desc: "Branded email footer" },
   ],
   technology: [
-    { key: "technology_services_pitch_deck_investor",  label: "Pitch Deck",      icon: "📊",  desc: "Investor presentation" },
-    { key: "technology_services_sales_deck",           label: "Sales Deck",      icon: "🗂️",  desc: "Sales presentation" },
-    { key: "technology_services_product_one_pager",    label: "Product One-Pager", icon: "📄",  desc: "Product summary" },
-    { key: "technology_services_case_study",           label: "Case Study",      icon: "🔬",  desc: "Client success story" },
-    { key: "technology_services_white_paper",          label: "White Paper",     icon: "📋",  desc: "Technical white paper" },
-    { key: "technology_services_web_banner_set",       label: "Web Banner Set",  icon: "🌐",  desc: "Display ad banners" },
-    { key: "technology_services_email_template",       label: "Email Template",  icon: "📧",  desc: "Branded email layout" },
-    { key: "technology_services_linkedin_banner",      label: "LinkedIn Banner", icon: "💼",  desc: "Profile header banner" },
+    { key: "technology_services_pitch_deck_investor", label: "Pitch Deck", icon: "📊", desc: "Investor presentation" },
+    { key: "technology_services_sales_deck", label: "Sales Deck", icon: "🗂️", desc: "Sales presentation" },
+    { key: "technology_services_product_one_pager", label: "Product One-Pager", icon: "📄", desc: "Product summary" },
+    { key: "technology_services_case_study", label: "Case Study", icon: "🔬", desc: "Client success story" },
+    { key: "technology_services_white_paper", label: "White Paper", icon: "📋", desc: "Technical white paper" },
+    { key: "technology_services_web_banner_set", label: "Web Banner Set", icon: "🌐", desc: "Display ad banners" },
+    { key: "technology_services_email_template", label: "Email Template", icon: "📧", desc: "Branded email layout" },
+    { key: "technology_services_linkedin_banner", label: "LinkedIn Banner", icon: "💼", desc: "Profile header banner" },
   ],
 };
 
@@ -191,7 +191,7 @@ function MessageItem({ message }: { message: ChatMessage }) {
     // Check if the message contains markdown-like structures (e.g. "### ", "- **")
     // If so, render it using our markdown renderer for a polished UI
     const isMarkdown = message.content.includes("### ") || message.content.includes("- **");
-    
+
     return (
       <div className="msg-in ai-bubble-row">
         <AIGlyph />
@@ -476,17 +476,35 @@ function StatePanel({ snapshot }: { snapshot: SessionSnapshot | null }) {
                 const confPercent = Math.round(data.confidence * 100);
                 const confClass =
                   data.confidence >= 0.8 ? "high" :
-                  data.confidence >= 0.6 ? "medium" : "low";
+                    data.confidence >= 0.6 ? "medium" : "low";
+
+                // Map enum labels
+                let displayVal = data.value;
+                let displayCode = code;
+                if (snapshot.captured_fields_metadata) {
+                  const meta = snapshot.captured_fields_metadata.find((m) => m.field_code === code);
+                  if (meta) {
+                    displayCode = (meta as any).question || meta.description || code;
+                    if (meta.enum_options && meta.enum_options.length > 0) {
+                      const valParts = displayVal.split(",").map((v: string) => v.trim());
+                      const mappedParts = valParts.map((vp: string) => {
+                        const opt = meta.enum_options?.find((o) => o.value === vp);
+                        return opt?.label || opt?.value || vp;
+                      });
+                      displayVal = mappedParts.join(", ");
+                    }
+                  }
+                }
 
                 return (
                   <div key={code} className="captured-card">
                     <div className="captured-header">
-                      <span className="captured-field-code">{code}</span>
+                      <span className="captured-field-code">{displayCode}</span>
                       <span className={`confidence-pill ${confClass}`}>
                         {confPercent}%
                       </span>
                     </div>
-                    <div className="captured-val">{data.value}</div>
+                    <div className="captured-val">{displayVal}</div>
                   </div>
                 );
               })}
@@ -518,6 +536,8 @@ export default function App() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
   // Brief modal state removed as it is no longer used
   const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -567,16 +587,28 @@ export default function App() {
     setAppStep("selection");
   };
 
-  const handleSend = () => {
-    const text = input.trim();
-    if (!text || isStreaming) return;
-    setInput("");
-    // Reset textarea height after send
-    if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
+  const handleSend = async () => {
+    if (isStreaming) return;
+    
+    if (selectedFiles.length > 0) {
+      const filesToUpload = [...selectedFiles];
+      const textToSend = input.trim() || undefined;
+      
+      setSelectedFiles([]);
+      setInput("");
+      if (textareaRef.current) textareaRef.current.style.height = "auto";
+      
+      await uploadDocuments(filesToUpload, textToSend);
+    } else if (input.trim()) {
+      const text = input.trim();
+      setInput("");
+      if (textareaRef.current) textareaRef.current.style.height = "auto";
+      sendMessage(text, chatContext ?? undefined);
     }
-    // Pass context on first send (context is cleared after session is created)
-    sendMessage(text, chatContext ?? undefined);
+  };
+
+  const removeFile = (index: number) => {
+    setSelectedFiles(prev => prev.filter((_, i) => i !== index));
   };
 
 
@@ -604,17 +636,12 @@ export default function App() {
     }
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files ?? []);
-    if (files.length > 0) {
-      if (files.length > 5) {
-        alert("You can only upload up to 5 files at a time.");
-        e.target.value = '';
-        return;
-      }
-      uploadDocuments(files);
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const newFiles = Array.from(e.target.files);
+      setSelectedFiles(prev => [...prev, ...newFiles]);
     }
-    // reset input so same file can be uploaded again if needed
+    // Reset so the same file can be selected again
     e.target.value = '';
   };
 
@@ -683,16 +710,16 @@ export default function App() {
                   return (
                     <div key={msg.id}>
                       <MessageItem message={msg} />
-                  {isLastAssistant && !isStreaming && snapshot && snapshot.missing_fields.length > 0 && snapshot.missing_fields[0].enum_values && !isComplete && (() => {
+                      {isLastAssistant && !isStreaming && snapshot && snapshot.missing_fields.length > 0 && snapshot.missing_fields[0].enum_values && !isComplete && (() => {
                         const nextField = snapshot.missing_fields[0];
                         const isMultiSelect = nextField.input_type === "list";
                         // Bug 6+7 fix: use enum_options labels if available; fall back to raw machine values
                         const options: Array<{ label: string; value: string }> =
                           nextField.enum_options && nextField.enum_options.length > 0
                             ? nextField.enum_options.map((o: { label?: string; value?: string }) => ({
-                                label: o.label ?? o.value ?? "",
-                                value: o.value ?? o.label ?? "",
-                              }))
+                              label: o.label ?? o.value ?? "",
+                              value: o.value ?? o.label ?? "",
+                            }))
                             : (nextField.enum_values ?? []).map((v: string) => ({ label: v, value: v }));
 
                         // For multi-select, track what's in the input box
@@ -704,23 +731,23 @@ export default function App() {
                           <div style={{ marginLeft: '60px', marginTop: '4px', marginBottom: '16px' }}>
                             {/* Chip row */}
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                                {options.map((opt) => {
-                                  const isMultiSelected = isMultiSelect && selectedItems.includes(opt.value);
-                                  const isSingleSelected = !isMultiSelect && input.trim() === opt.value;
-                                  const isHighlighted = isMultiSelected || isSingleSelected;
-                                  return (
-                                    <button
-                                      key={opt.value}
-                                      style={{
-                                        padding: '6px 14px',
-                                        fontSize: '13px',
-                                        borderRadius: '16px',
-                                        border: isHighlighted ? '2px solid #007bff' : '1px solid #e0e0e0',
-                                        background: isHighlighted ? '#e8f0fe' : '#fff',
-                                        color: isHighlighted ? '#1a56db' : '#333',
-                                        fontWeight: isHighlighted ? 600 : 400,
-                                        cursor: isStreaming ? 'not-allowed' : 'pointer',
-                                        opacity: isStreaming ? 0.5 : 1,
+                              {options.map((opt) => {
+                                const isMultiSelected = isMultiSelect && selectedItems.includes(opt.value);
+                                const isSingleSelected = !isMultiSelect && input.trim() === opt.value;
+                                const isHighlighted = isMultiSelected || isSingleSelected;
+                                return (
+                                  <button
+                                    key={opt.value}
+                                    style={{
+                                      padding: '6px 14px',
+                                      fontSize: '13px',
+                                      borderRadius: '16px',
+                                      border: isHighlighted ? '2px solid #007bff' : '1px solid #e0e0e0',
+                                      background: isHighlighted ? '#e8f0fe' : '#fff',
+                                      color: isHighlighted ? '#1a56db' : '#333',
+                                      fontWeight: isHighlighted ? 600 : 400,
+                                      cursor: isStreaming ? 'not-allowed' : 'pointer',
+                                      opacity: isStreaming ? 0.5 : 1,
                                       transition: 'all 0.15s ease',
                                     }}
                                     disabled={isStreaming}
@@ -730,8 +757,8 @@ export default function App() {
                                   </button>
                                 );
                               })}
-                              </div>
                             </div>
+                          </div>
                         );
                       })()}
                     </div>
@@ -765,64 +792,88 @@ export default function App() {
             {/* Input Bar */}
             {!hasSubmitted && (
               <div className="input-area-container">
-              {/* Enum Option Chips moved to chat stream */}
-              <div className="input-bar-pill">
-                <AIGlyph size={26} />
-                <input
-                  type="file"
-                  multiple
-                  ref={fileInputRef}
-                  style={{ display: 'none' }}
-                  onChange={handleFileChange}
-                />
-                <button
-                  type="button"
-                  onClick={() => fileInputRef.current?.click()}
-                  disabled={isStreaming}
-                  aria-label="Upload document"
-                  title="Upload Brief Document"
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', padding: '0 8px', opacity: isStreaming ? 0.5 : 0.8 }}
-                >
-                  📁
-                </button>
-                <textarea
-                  ref={textareaRef}
-                  className="input-bar-textarea no-sb"
-                  value={input}
-                  onChange={(e) => {
-                    setInput(e.target.value);
-                    // Auto-resize: reset to auto then set to scrollHeight so it grows with content
-                    const el = e.target;
-                    el.style.height = "auto";
-                    el.style.height = Math.min(el.scrollHeight, 180) + "px";
-                  }}
-                  onKeyDown={handleKeyDown}
-                  placeholder={
-                    isComplete
-                      ? "Ask a follow-up question or request changes…"
-                      : "Type your answer… (Enter to send, Shift+Enter for newline)"
-                  }
-                  disabled={isStreaming}
-                  rows={1}
-                  id="chat-input"
-                  style={{ overflowY: input.length > 0 && textareaRef.current && textareaRef.current.scrollHeight > 180 ? "auto" : "hidden", resize: "none" }}
-                />
-                <button
-                  type="button"
-                  className="send-btn"
-                  onClick={handleSend}
-                  disabled={isStreaming || !input.trim()}
-                  aria-label="Send message"
-                  id="btn-send"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
-                </button>
+                <div style={{ display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '820px', gap: '8px' }}>
+                  {selectedFiles.length > 0 && (
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', padding: '0 4px' }}>
+                      {selectedFiles.map((f, i) => (
+                        <div key={i} style={{ 
+                          display: 'flex', alignItems: 'center', gap: '6px', 
+                          background: '#f1f5f9', padding: '6px 10px', 
+                          borderRadius: '16px', fontSize: '12.5px', border: '1px solid #e2e8f0' 
+                        }}>
+                          <span>📄</span>
+                          <span style={{ maxWidth: '150px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{f.name}</span>
+                          <button 
+                            type="button"
+                            onClick={() => removeFile(i)}
+                            style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#64748b', marginLeft: '4px', padding: '2px', display: 'flex', alignItems: 'center' }}
+                            title="Remove file"
+                          >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  
+                  <div className="input-bar-pill">
+                    <AIGlyph size={26} />
+                    <input
+                      type="file"
+                      multiple
+                      ref={fileInputRef}
+                      style={{ display: 'none' }}
+                      onChange={handleFileChange}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      disabled={isStreaming}
+                      aria-label="Upload document"
+                      title="Upload Brief Document"
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', padding: '0 8px', opacity: isStreaming ? 0.5 : 0.8 }}
+                    >
+                      📁
+                    </button>
+                    <textarea
+                      ref={textareaRef}
+                      className="input-bar-textarea no-sb"
+                      value={input}
+                      onChange={(e) => {
+                        setInput(e.target.value);
+                        // Auto-resize: reset to auto then set to scrollHeight so it grows with content
+                        const el = e.target;
+                        el.style.height = "auto";
+                        el.style.height = Math.min(el.scrollHeight, 180) + "px";
+                      }}
+                      onKeyDown={handleKeyDown}
+                      placeholder={
+                        isComplete
+                          ? "Ask a follow-up question or request changes…"
+                          : "Type your answer… (Enter to send, Shift+Enter for newline)"
+                      }
+                      disabled={isStreaming}
+                      rows={1}
+                      id="chat-input"
+                      style={{ overflowY: input.length > 0 && textareaRef.current && textareaRef.current.scrollHeight > 180 ? "auto" : "hidden", resize: "none" }}
+                    />
+                    <button
+                      type="button"
+                      className="send-btn"
+                      onClick={handleSend}
+                      disabled={isStreaming || (!input.trim() && selectedFiles.length === 0)}
+                      aria-label="Send message"
+                      id="btn-send"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
             )}
           </>
         )}

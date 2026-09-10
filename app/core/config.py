@@ -136,6 +136,19 @@ class Settings(BaseSettings):
         ),
     )
 
+    # ── Document extraction ───────────────────────────────────────────────────
+    document_max_file_size_mb: Annotated[int, Field(ge=1, le=100)] = Field(
+        default=10,
+        description="Maximum uploaded document size in megabytes (default: 10 MB)",
+    )
+    document_extraction_max_tokens: Annotated[int, Field(ge=1000, le=32000)] = Field(
+        default=6000,
+        description=(
+            "Approximate maximum input tokens allocated to document text per LLM "
+            "extraction call. Chunks are sized to stay below this budget."
+        ),
+    )
+
     # ── Server ────────────────────────────────────────────────────────────────
     log_level: str = Field(default="INFO")
     cors_origins: list[str] = Field(

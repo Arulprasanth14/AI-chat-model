@@ -655,6 +655,17 @@ class ConversationState(BaseModel):
                 }
                 for code, cf in self.captured.items()
             },
+            "captured_fields_metadata": [
+                {
+                    "field_code": f.code,
+                    "description": f.description,
+                    "question": f.question or f.code.replace("_", " ").title(),
+                    "enum_values": f.enum_values,
+                    "enum_options": f.enum_options,
+                    "input_type": f.input_type,
+                }
+                for f in profile.required_fields if f.code in self.captured
+            ],
             "missing_fields": [
                 {
                     "field_code": mf.field_code,
